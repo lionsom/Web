@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- CSS引入方式一：内部样式表 -->
-    <style>  
+    <style>
 
     </style>
 
@@ -18,69 +18,74 @@
 
 <body>
 
-    <h1>常用标签</h1>
+    <div id="first_section">
+        <h1>常用标签</h1>
 
-    <!-- CSS引入方式二：行内样式表 -->
-    <div style="color: red; font-size: 12px">
-        我是段落div = division，分割分区 <br />
-        div用来布局。一行只能放一个div。大盒子
+        <!-- CSS引入方式二：行内样式表 -->
+        <div style="color: red; font-size: 12px">
+            我是段落div = division，分割分区 <br />
+            div用来布局。一行只能放一个div。大盒子
+        </div>
+
+        <br />
+
+        <span>
+            我是span <br />
+            span用来布局，一行可以放多个span。小盒子
+        </span>
+
+        <br />
+
+        <p>
+            我是段落p
+        </p>
+
+        <br />
+
+        <h1>文本格式化标签</h1>
+        <strong>我是文本加粗strong</strong> <br />
+        <em>我是文本倾斜em</em> <br />
+        <del>我是文本删除线del</del> <br />
+        <ins>我是文本下划线ins</ins> <br />
+
+        <br />
+
+        <p>
+        <h1>图片标签：</h1>
+        src = 图片路径 <br />
+        alt = 替换文本，图片不显示的文字 <br />
+        title = 提示文本，鼠标放在图象上，显示的文字 <br />
+        </p>
+
+        <img src="./images/001.png" alt="无法显示图片 哈哈" width="200" height="100" border="2">
+
+        <br />
+
+        <p>
+        <h1>超链接：</h1>
+        href = 目标url <br />
+        target = 页面打开方式，默认值_self，新窗口_blank <br />
+        <a id="clear_decoration" href="https://www.baidu.com" target="_blank">点击进入百度 + 行内元素或者行内块元素水平居中给其父元素添加 text-align:center 即可</a>
+
+        <br />
+
+        <a href="https://www.baidu.com" target="_blank">
+            <img src="./images/arr.png" alt="">
+        </a>
+        </p>
+
+        <br />
+
+        <div>
+            <h1> 特殊符号：</h1>
+            空格：1&nbsp;2 <br />
+            大于：&lt; <br />
+            小于：&gt; <br />
+        </div>
     </div>
 
-    <br />
 
-    <span>
-        我是span <br />
-        span用来布局，一行可以放多个span。小盒子
-    </span>
-
-    <br />
-
-    <p>
-        我是段落p
-    </p>
-
-    <br />
-
-    <h1>文本格式化标签</h1>
-    <strong>我是文本加粗strong</strong> <br />
-    <em>我是文本倾斜em</em> <br />
-    <del>我是文本删除线del</del> <br />
-    <ins>我是文本下划线ins</ins> <br />
-
-    <br />
-
-    <p>
-    <h1>图片标签：</h1>
-    src = 图片路径 <br />
-    alt = 替换文本，图片不显示的文字 <br />
-    title = 提示文本，鼠标放在图象上，显示的文字 <br />
-    </p>
-
-    <img src="./images/001.png" alt="无法显示图片 哈哈" width="200" height="100" border="2">
-
-    <br />
-
-    <p>
-    <h1>超链接：</h1>
-    href = 目标url <br />
-    target = 页面打开方式，默认值_self，新窗口_blank <br />
-    <a id="clear_decoration" href="https://www.baidu.com" target="_blank">点击进入百度</a>
-
-    <br />
-
-    <a href="https://www.baidu.com" target="_blank">
-        <img src="./images/arr.png" alt="">
-    </a>
-    </p>
-
-    <br />
-
-    <div>
-        <h1> 特殊符号：</h1>
-        空格：1&nbsp;2 <br />
-        大于：&lt; <br />
-        小于：&gt; <br />
-    </div>
+    <a id="clear_decoration" href="https://www.baidu.com" target="_blank">点击进入百度 + 行内元素或者行内块元素水平居中给其父元素添加 text-align:center 即可</a>
 
     <br />
 

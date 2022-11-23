@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+/* id选择器 */
+#first_section {
+    width: 900px;
+    height: 200px;
+    background-color: pink;
+    margin: 50px auto;
+}
+
 /* 标签选择器 */
 p {
     color: black;
@@ -17,6 +25,16 @@ p {
 /* 类选择器 */
 .class_test {
     color: purple;
+}
+
+#clear_decoration {
+    width: 200px;
+    height: 100px;
+    background-color: green;
+    margin: 50px auto;
+   
+    /* 行内元素或者行内块元素水平居中给其父元素添加 text-align:center 即可 */
+    text-align: center;
 }
 
 .font35 {
@@ -60,7 +78,7 @@ div p {
     /* 文本的第一行首行缩进 多少距离  */
     text-indent: 20px;
     /* 如果此时写了2em 则是缩进当前元素 2个文字大小的距离  */
-    text-indent: 2em;  
+    text-indent: 2em;
 
     line-height: 25px;
 }
@@ -89,6 +107,4 @@ input:focus {
     color: red;
 }
 
-#css_waiguan {
-
-}
+#css_waiguan {}
