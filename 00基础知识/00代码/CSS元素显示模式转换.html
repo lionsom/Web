@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS元素显示模式转换</title>
+
+    <style>
+        a {
+            width: 150px;
+            height: 50px;
+            background-color: gray;
+            /* 把行内元素 a 转换为 块元素 */
+            display: block;
+        }
+
+        div {
+            /* 转换为行内元素后，行内元素宽高无效 */
+            width: 300px; 
+            height: 150px;   
+            background-color: green;
+            /* 把块元素div 转换为 行内元素 */
+            display: inline;
+        }
+
+        span {
+            /* 转化为行内块元素后，行内块元素宽高有效 */
+            width: 400px;
+            height: 70px;
+            background-color: pink;
+            /* 把行内元素span 转换为 行内块元素 */
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- a为行内元素，默认在一行显示，无法修改宽高 -->
+    <a href="#">今天天气不错</a>
+    <a href="#">今天天气不错</a>
+    <a href="#">今天天气不错</a>
+
+    <!-- div为块元素 -->
+    <div>我是块元素</div>
+    <div>我是块元素</div>
+    <div>我是块元素</div>
+
+    <!-- span为行元素 -->
+    <span>我是行元素</span>
+    <span>我是行元素</span>
+    <span>我是行元素</span>
+
+</body>
+
+</html>

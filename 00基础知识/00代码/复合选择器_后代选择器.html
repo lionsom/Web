@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 我想把ol中的li文本改为红色 */
+        ol li {
+            color: red;
+        }
+
+        /* 我想把ol中的孙子a改为绿色 */
+        ol a {
+            color: green;
+        }
+
+        /* 同上 */
+        ol li a {
+            color: orange
+        }
+
+        /* 相同标签使用class区分 */
+        .navi li a {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <ol>
+        <li>我是ol的孩子</li>
+        <li>我是ol的孩子</li>
+        <li>我是ol的孩子</li>
+        <li><a href="AAAA">我是ol孙子</li>
+    </ol>
+
+    <ul>
+        <li>我是ul的孩子</li>
+        <li>我是ul的孩子</li>
+        <li>我是ul的孩子</li>
+        <li><a href="BBBB">我是ul孙子</li>
+        <li><a href="BBBB">我是ul孙子</li>
+    </ul>
+
+    <ul class="navi">
+        <li>我是ul的孩子</li>
+        <li>我是ul的孩子</li>
+        <li>我是ul的孩子</li>
+        <li><a href="BBBB">我是ul孙子</li>
+        <li><a href="BBBB">我是ul孙子</li>
+    </ul>
+
+</body>
+
+</html>

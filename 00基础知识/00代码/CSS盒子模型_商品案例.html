@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型 - 产品模块</title>
+
+
+    <style>
+        /* CSS第一步：清除默认边距 */
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            width: 298px;
+            height: 415px;
+
+            background-color: #fff;
+
+            border: 1px;
+            border-radius: 5px;
+            border-color: aqua;
+
+            /* 块级元素水平居中 */
+            /*
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            */
+            margin: 100px auto;
+        }
+
+        .box img {
+            width: 100%;
+        }
+
+        .review {
+            font-size: 14px;
+
+            /* 因为这个段落没有 width属性 所有 padding不会撑开盒子的宽度 */
+            padding: 0 28px;
+
+            margin-top: 30px;
+        }
+
+        .appraise {
+            font-size: 12px;
+            
+            color: gray;
+
+            margin-top: 20px;
+
+            padding: 0 28px;
+        }
+
+        .info .title {
+            font-size: large;
+
+            margin-top: 20px;
+
+            padding: 0 28px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <img class="topImage" src="../黑马pink课件/html_css_material-master/第五天/images/img.jpg" alt="头像">
+
+        <p class="review">快递牛，整体不错蓝牙可以说秒连。红米给力</p>
+        
+        <p class="appraise">来自于1323154645的评价</p>
+
+        <div class="info">
+            <p class="title">Redmi AirDots真无线蓝...</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

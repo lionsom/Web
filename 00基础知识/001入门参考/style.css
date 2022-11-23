@@ -1,0 +1,94 @@
+/* 通配符选择器 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 标签选择器 */
+p {
+    color: black;
+}
+
+/* id选择器 */
+#id_test {
+    color: red;
+}
+
+/* 类选择器 */
+.class_test {
+    color: purple;
+}
+
+.font35 {
+    font-size: 25px;
+}
+
+/* 子选择器 */
+/* h2 > p {
+    color: green;
+} */
+
+
+div p {
+    color: blue;
+}
+
+/* CSS字体属性、外观 */
+#text_test {
+    /* 
+    font-style: italic;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Microsoft yahei'; 
+     */
+
+    /* 复合属性: 简写的方式  节约代码 */
+    /* font: font-style  font-weight  font-size/line-height  font-family; */
+    font: italic 700 16px 'Microsoft yahei';
+
+    text-align: left;
+
+    /* 下划线 */
+    text-decoration: underline;
+    /* 删除线 */
+    text-decoration: line-through;
+    /* 上划线 */
+    text-decoration: overline;
+
+    color: green;
+
+    /* 文本的第一行首行缩进 多少距离  */
+    text-indent: 20px;
+    /* 如果此时写了2em 则是缩进当前元素 2个文字大小的距离  */
+    text-indent: 2em;  
+
+    line-height: 25px;
+}
+
+a {
+    /* 取消a默认的下划线 */
+    text-decoration: none;
+    color: red;
+}
+
+/* 伪类选择器 */
+a:hover {
+    color: green;
+}
+
+a:hover {
+    color: aquamarine;
+}
+
+a:active {
+    color: orange;
+}
+
+input:focus {
+    background-color: pink;
+    color: red;
+}
+
+#css_waiguan {
+
+}

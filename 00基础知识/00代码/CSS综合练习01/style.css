@@ -1,0 +1,50 @@
+
+/* 标签选择器 */
+body {
+    font: 20px/28px 'Miscrosoft YaHei';
+}
+
+h1 {
+    /* 不加粗 */
+    font-weight: 400; 
+    /* 居中 */
+    text-align: center;
+}
+
+p {
+    /* 首行缩进2个字符 */
+    text-indent: 2em;
+}
+
+a {
+    /* 取消下划线 */
+    text-decoration: none;
+}
+
+/* 类选择器 */
+.gray {
+    color: #888888;
+    font-size: 12px;
+    text-align: center;
+}
+
+.btn {
+    width: 60px;
+    height: 30px;
+}
+
+.pic {
+    /* 图片居中对其，是对其父亲进行操作 */
+    text-align: center;
+}
+
+.footer {
+    color: #666;
+    font-size: 12px;
+}
+
+/* id选择器 */
+#gggray {
+    color: rgb(213, 50, 50);
+    width: 170px;
+}
