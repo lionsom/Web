@@ -3,20 +3,21 @@
     padding: 0;
 }
 
-.w {
-    width: 1200px;
-    margin: auto;
-}
-
 /* 去除点 */
 li {
     list-style: none;
 }
 
+/* 版心 */
+.w {
+    width: 1200px;
+    margin: auto;
+}
+
 .header {
     background-color: pink;
     height: 42px;
-    /*  */
+    /* 注意：此处会层叠w里面的margin */
     margin: 30px auto;
 }
 
@@ -30,7 +31,24 @@ li {
 .nav {
     float: left;
     margin-left: 60px;
-    width: 300px;
     height: 42px;
-    background-color: darkblue;
+    background-color: green;
+}
+
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    display: block;
+    padding: 0 10px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+
+.nav ul li a:hover {
+    border-bottom: 2px solid #00a4ff;
 }
