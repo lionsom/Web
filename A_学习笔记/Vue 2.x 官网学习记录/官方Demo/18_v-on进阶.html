@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app-18">
+      <!--  -->
+      <button v-on:click="counter += 1">Add 1</button>
+      <p>The button above has been clicked {{ counter }} times.</p>
+
+      <!-- 函数 -->
+      <button v-on:click="greet">Greet</button>
+
+      <!-- 自定义参数 -->
+      <button v-on:click="say('hi')">Say hi</button>
+
+      <!-- 传递原生事件对象 -->
+      <input
+        type="checkbox"
+        value=""
+        v-on:click="warn('Form cannot be submitted yet.', $event)"
+      />
+      <br />
+
+      <!-- 事件修饰符 -->
+      <a v-on:click="doThis">点击我，我没有被事件修饰符.stop阻止</a> <br />
+      <!-- 阻止单击事件继续传播 -->
+      <a v-on:click.stop="doThis">点击我，我被事件修饰符.stop阻止</a> <br />
+      <!-- 点击事件将只会触发一次 -->
+      <a v-on:click.once="doThis">once修饰符，只响应一次</a>
+
+      <!-- 按键修饰符 -->
+      <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+      <input v-on:keyup.enter="doThis" />
+      <input v-on:keyup.page-down="doThis" />
+
+      <!-- 系统修饰键 -->
+      <div v-on:click.ctrl="doThis1">Do something</div>
+
+      <!-- .exact 修饰符 -->
+      <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+      <button v-on:click.ctrl="doThis">A</button>
+      <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+      <button v-on:click.ctrl.exact="doThis">A</button>
+      <!-- 没有任何系统修饰符被按下的时候才触发 -->
+      <button v-on:click.exact="doThis">A</button>
+
+      <!-- 鼠标按钮修饰符 -->
+      <button v-on:click.right="doThis">A</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script type="text/javascript">
+      var app18 = new Vue({
+        el: "#app-18",
+        data: {
+          counter: 0,
+          name: "helloooo",
+        },
+        methods: {
+          greet: function (event) {
+            alert("Hello " + this.name + "!");
+            // `event` 是原生 DOM 事件
+            if (event) {
+              alert(event.target.tagName);
+            }
+          },
+          say: function (message) {
+            alert(message);
+          },
+          warn: function (message, event) {
+            if (event) {
+              // 现在我们可以访问原生事件对象
+              // 本来checkbox是被勾选的，现在阻止了，没有勾选
+              event.preventDefault();
+            } else {
+              alert(message);
+            }
+          },
+          doThis: function () {
+            console.log("doThis");
+          },
+          doThis1: function () {
+            console.log("doThis1");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

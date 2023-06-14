@@ -1,0 +1,88 @@
+# PNPM
+
+* [pnpm官网](https://pnpm.io/)
+    * [Installation](https://pnpm.io/installation)
+    * [Uninstalling pnpm](https://pnpm.io/uninstall)
+
+> pnpm: performant npm，是node.js的包管理工具。
+
+
+
+前提：
+
+* Node.js
+* npm
+
+```shell
+# 安装，需要Node.js才能运行。
+$ npm install -g pnpm
+
+# or
+$ brew install pnpm
+
+# 验证
+$ pnpm --version
+6.35.1
+
+$ which pnpm
+/Users/qiyeyun/.nvm/versions/node/v18.16.0/bin/pnpm
+```
+
+![](./images/pnpm_Nodejs.jpg)
+
+
+
+# 心得
+
+**pnmp 安装是跟着当前的node走的**
+
+```shell
+# 查看当前安装的 node 版本
+$ nvm list
+->    v12.22.12
+       v18.16.0
+       
+# 查看pnpm版本 
+$ pnpm -v
+6.35.1
+# 查看pnpm路径
+$ which pnpm
+/Users/qiyeyun/.nvm/versions/node/v12.22.12/bin/pnpm
+
+
+# 切换node
+$ nvm use 18
+Now using node v18.16.0 (npm v9.5.1)
+
+# 再次查看pnpm版本
+$ pnpm -v
+8.4.0
+# 查看pnpm路径
+$ which pnpm
+/Users/qiyeyun/.nvm/versions/node/v18.16.0/bin/pnpm
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

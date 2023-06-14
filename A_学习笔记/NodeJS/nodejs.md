@@ -1,0 +1,148 @@
+# [什么是Node.js](https://vue3.chengpeiquan.com/engineering.html#什么是-node-js)
+
+* [node.js官网](https://nodejs.org)
+
+> Node.js是一个开源、跨平台的 JavaScript 运行时环境。
+>
+> Node.js （简称 Node ） 是一个基于 Chrome V8 引擎构建的 JS 运行时（ JavaScript Runtime ）。
+>
+> 它让 JavaScript 代码不再局限于网页上，还可以跑在客户端、服务端等场景，极大的推动了前端开发的发展，现代的前端开发几乎都离不开 Node 。
+
+
+
+# [什么是 Runtime](https://vue3.chengpeiquan.com/engineering.html#什么是-runtime)
+
+Runtime ，可以叫它 “运行时” 或者 “运行时环境” ，这个概念是指，项目的代码在哪里运行，哪里就是运行时。
+
+传统的 JavaScript 只能跑在浏览器上，每个浏览器都为 JS 提供了一个运行时环境，可以简单的把浏览器当成一个 Runtime ，明白了这一点，相信就能明白什么是 Node 。
+
+Node 就是一个让 JS 可以脱离浏览器运行的环境，当然，这里并不是说 Node 就是浏览器。
+
+
+
+# 下载和安装 Node
+
+* [Current 版本](https://vue3.chengpeiquan.com/guide.html#current-版本) ：Current 是最新发布版本
+* [LTS 版本](https://vue3.chengpeiquan.com/guide.html#lts-版本) ：全称 Long Time Support ，长期维护版本
+
+> 关于 Node.js 的版本发布时间表可以在官方 GitHub 的 [Release 仓库](https://github.com/nodejs/Release) 查看。
+
+
+
+## 方式一：手动下载安装
+
+点击访问：[Node.js 官网下载](https://nodejs.org/zh-cn/download/)
+
+```shell
+$ node -v
+```
+
+
+
+## 方式二：NVM
+
+点击访问：[NVM 官方](https://github.com/nvm-sh/nvm)
+
+> 详情 看专门文档
+
+```shell
+$ nvm --version
+```
+
+
+
+# [基础的 Node 项目](https://vue3.chengpeiquan.com/guide.html#%E5%9F%BA%E7%A1%80%E7%9A%84-node-%E9%A1%B9%E7%9B%AE)
+
+## npm
+
+我们强烈建议使用像 **nvm** 这样的Node版本管理器来安装Node.js和npm。
+
+注意：安装node.js时，将自动安装npm。
+
+> 详情 看专门文档
+
+```shell
+$ npm -v
+9.6.3
+```
+
+
+
+## npm构建node项目
+
+```shell
+# 初始化一个项目
+$ npm init    
+
+# 可以直接加上 -y 参数，这样会以 Node 推荐的答案帮快速生成项目信息。
+$ npm init -y 
+```
+
+
+
+### 脚本命令的配置
+
+在工作中，会频繁接触到 `npm run dev` 启动开发环境、 `npm run build` 构建打包等操作，这些操作其实是对命令行的一种别名。
+
+它在 package.json 里是存放于 `scripts` 字段，以 `[key: string]: string` 为格式的键值对存放数据（ `key: value` ）。
+
+json
+
+```json
+{
+  "scripts": {
+    // ...
+  }
+}
+```
+
+
+
+Eg:
+
+```json
+{
+  "name": "hello-node",
+  "version": "1.0.0",
+  "description": "npm创建的第一个node项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+
+
+```
+ npm run test
+
+> hello-node@1.0.0 test
+> echo "Error: no test specified" && exit 1
+
+Error: no test specified
+```
+
+
+
+
+
+# 模块化 vs 组件化
+
+* 模块化属于 JavaScript 的概念，但作为一个页面，都知道它是由 HTML + CSS + JS 三部分组成的，既然 JS 代码可以按照不同的功能、需求划分成模块，那么页面是否也可以呢？
+* 组件化：组件就是把一些可复用的 HTML 结构和 CSS 样式再做一层抽离，然后再放置到需要展示的位置。
+
+每个组件都有自己的 “作用域” ， JavaScript 部分利用 [模块化](https://vue3.chengpeiquan.com/guide.html#学习模块化设计) 来实现作用域隔离， HTML 和 CSS 代码则借助 [Style Scoped](https://vue3.chengpeiquan.com/component.html#style-scoped) 来生成独有的 hash ，避免全局污染，这些方案组合起来，使得组件与组件之间的代码不会互相影响。
+
+* 在 Vue ，是通过 Single-File Component （简称 SFC ， `.vue` 单文件组件）来实现组件化开发。
+
+
+
+
+
+
+
+
+
