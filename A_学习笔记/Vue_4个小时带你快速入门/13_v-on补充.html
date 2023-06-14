@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on补充</title>
+</head>
+
+<body>
+    <!-- 
+        v-on补充：
+            1. 传递自定义参数；
+            2. 事件修饰符。
+     -->
+
+    <!-- 2.html结构 -->
+    <div id="app">
+
+        <!-- a.传递自定义参数 -->
+        <input type="button" name="123" value="点击" @click="dddoit(11, '哈哈')">
+
+        <!-- b.事件修饰符 -->
+        <!-- 按回车按钮，触发事件 -->
+        <input type="text" @keyup.enter="sayHi">
+    </div>
+
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- 3.创建Vue实例 -->
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            methods: {
+                dddoit: function(p1, p2) {
+                    console.log(p1)
+                    console.log(p2)
+                },
+                sayHi: function() {
+                    alert('234')
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

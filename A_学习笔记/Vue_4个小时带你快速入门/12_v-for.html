@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for</title>
+</head>
+
+<body>
+    <!-- 
+        v-for: 根据数据生成列表结构
+     -->
+
+    <!-- 2.html结构 -->
+    <div id="app">
+
+        <ul>
+            <li v-for="(item, index) in arr">
+                {{index+1}}. {{item}}地区
+            </li>
+        </ul>
+
+        <h2 v-for="item in vegetables" v-bind:title="item.name">
+            {{item.name}}
+        </h2>
+
+        <button @click="add">点击添加蔬菜</button>
+
+    </div>
+
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- 3.创建Vue实例 -->
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                arr: ["北京", "南京", "上海", "扬州"],
+                vegetables: [
+                    { "name": "西兰花" },
+                    { "name": "西红柿" },
+                    { "name": "土豆" }],
+            },
+            methods: {
+                add: function() {
+                    this.vegetables.push({"name": "大威天龙"})
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

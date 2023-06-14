@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记事本</title>
+
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+</head>
+
+<body>
+    <!-- 2.html结构 -->
+    <section id="todoapp">
+        <!-- 输入框 -->
+        <header class="header">
+            <h1>记事本</h1>
+            <input v-model="inputValue" type="text" placeholder="请输入任务" @keyup.enter="add">
+        </header>
+
+        <!-- 列表区域 -->
+        <section class="main">
+            <ul class="todo-list">
+                <li class="todo" v-for="(item, index) in list">
+                    <div>{{item}}</div>
+                    <button class="destroy" @click="remove(index)">x</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 统计和清空 -->
+        <footer class="footer">
+            <span class="todo-count">
+                <strong>1</strong>
+            </span>
+            <button class="clear-completed" @click="clearAll">
+                Clear
+            </button>
+        </footer>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <p>
+            <a href="http://www.baidu.com/">
+                <img src="./images/black.png" alt="">
+            </a>
+        </p>
+    </footer>
+
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- 3.创建Vue实例 -->
+    <script>
+        var vm = new Vue({
+            el: "#todoapp",
+            data: {
+                list: ["写代码", "吃饭", "睡觉"],
+                inputValue: "good good study, day day up."
+            },
+            methods: {
+                add: function () {
+                    this.list.push(this.inputValue)
+                },
+                remove: function (index) {
+                    this.list.splice(index, 1)
+                },
+                clearAll: function () {
+                    console.log(this.list)
+                    this.list.splice(0, this.list.length)
+                    console.log(this.list)
+
+                    // or
+                    this.list = []
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
