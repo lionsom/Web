@@ -207,6 +207,31 @@
 
 
 
+# 元素居中
+
+```css
+.son {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    /* 方式一：margin */
+    margin-left: -100px;
+    margin-top: -50px;
+
+    /* 方式二：transform */
+    transform: translate(-50%, -50%);
+
+    width: 203px;
+    height: 100px;
+    background-color: pink;          
+}
+```
+
+![](images/元素居中.png)
+
+
+
 # 外边距合并1 - 相邻块级元素垂直外边距合并
 
 ![](images/外边距合并1.png)
@@ -452,13 +477,75 @@ overflow: auto;
 
 
 
+# vertical-align 属性应用
+
+## 应用一：图片、表单和文字对齐
+
+图片、表单都属于行内块元素，默认的 vertical-align 是基线对齐。
+
+```css
+<style>
+    img {
+        /* 让图片和文字垂直居中 */
+        vertical-align: middle;
+    }
+    textarea {
+        vertical-align: middle;
+    }
+</style>
+```
 
 
 
+## 应用二：解决图片底部默认空白缝隙问题
+
+bug：图片底侧会有一个空白缝隙，原因是行内块元素会和文字的基线对齐。
+
+主要解决方法有两种：
+
+1. 给图片添加 vertical-align:middle | top| bottom 等。 （提倡使用的）
+
+2. 把图片转换为块级元素 display: block;
+
+```css
+img {
+    /* 解决方案一： */
+	vertical-align: middle;
+    
+    /* 解决方案二： */
+    display: block;
+}
+```
 
 
 
+# 文本溢出省略号
 
+## 单行文本
+
+```css
+/*1. 先强制一行内显示文本*/
+white-space: nowrap; （ 默认 normal 自动换行）
+/*2. 超出的部分隐藏*/
+overflow: hidden;
+/*3. 文字用省略号替代超出的部分*/
+text-overflow: ellipsis;
+```
+
+## 多行文本
+
+多行文本溢出显示省略号，有较大兼容性问题， 适合于webKit浏览器或移动端（移动端大部分是webkit内核）
+
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+/* 弹性伸缩盒子模型显示 */
+display: -webkit-box;
+/* 限制在一个块元素显示的文本的行数 */
+-webkit-line-clamp: 3;
+/* 设置或检索伸缩盒对象的子元素的排列方式 */
+-webkit-box-orient: vertical;
+```
 
 
 
