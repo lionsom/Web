@@ -1,6 +1,41 @@
+# JavaScript简史
+
+![](images/JS简史.png)
 
 
-# JS基础
+
+# HelloWorld
+
+```
+```
+
+
+
+## JS编写位置
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 一、JS引入
 
