@@ -37,51 +37,7 @@
 
 
 
-
-
-# 二、Sass (推荐)
-
-[Sass](https://sass-lang.com/)
-
-* [Sass中文官网](https://www.sasscss.com/)
-* [Sass香港](https://www.sass.hk/)
-* [Sass练习测试](https://www.sassmeister.com/)
-
-
-
-## 2.1 安装Sass
-
-* [Sass中文官网 - 安装 Sass](https://www.sasscss.com/install)
-
-
-
-
-
-## 2.2 Sass基础
-
-* [Sass中文官网 - Sass Basics](https://www.sasscss.com/guide)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Less
+# 二、Less
 
 * [Less官网](https://less.devjs.cn/)
 * Less相关教程
@@ -107,4 +63,118 @@ $ npm install -g less   # 全局安装
 
 
 
+
+# 三、Sass (推荐)
+
+[Sass](https://sass-lang.com/)
+
+* [Sass中文官网](https://www.sasscss.com/)
+* [Sass香港](https://www.sass.hk/)
+* [Sass练习测试](https://www.sassmeister.com/)
+
+
+
+## 3.1 安装Sass
+
+* [Sass中文官网 - 安装 Sass](https://www.sasscss.com/install)
+
+
+
+
+
+## 3.2 Sass基础
+
+* [Sass中文官网 - Sass Basics](https://www.sasscss.com/guide)
+
+`sass` 基于 `Ruby`语言开发而成，因此安装 `sass` 前需要[安装Ruby](http://rubyinstaller.org/downloads)。
+
+### 1. 安装ruby
+
+省略
+
+### 2. 安装Sass & compass
+
+```shell
+$ gem install sass
+
+$ sass -v
+Ruby Sass 3.7.4
+
+$ where sass
+/Users/qiyeyun/.rbenv/shims/sass
+
+
+$ gem install compass
+
+$ compass -v
+Compass 1.0.3 (Polaris)
+Copyright (c) 2008-2023 Chris Eppstein
+Released under the MIT License.
+Compass is charityware.
+Please make a tax deductable donation for a worthy cause: http://umdf.org/compass
+
+$ where compass
+/Users/qiyeyun/.rbenv/shims/compass
+```
+
+
+
+### 3. 其他命令
+
+```sh
+//更新sass
+$ gem update sass
+
+//查看sass版本
+$ sass -v
+
+//查看sass帮助
+$ sass -h
+```
+
+
+
+### 4. compass
+
+**Compass是什么？**
+
+简单说，Compass是Sass的工具库（toolkit）。
+
+Sass本身只是一个编译器，Compass在它的基础上，封装了一系列有用的模块和模板，补充Sass的功能。它们之间的关系，有点像Javascript和jQuery、Ruby和Rails、python和Django的关系。
+
+
+
+## 3.3 编译sass的几种方式
+
+### 方式一：命令行编译
+
+```shell
+//单文件转换命令
+$ sass input.scss output.css
+
+//单文件监听命令
+$ sass --watch input.scss:output.css
+
+//如果你有很多的sass文件的目录，你也可以告诉sass监听整个目录：
+$ sass --watch app/sass:public/stylesheets
+```
+
+### 方式二：软件方式编译
+
+推荐 [koala](http://koala-app.com/index-zh.html)，koala是一个国产免费前端预处理器语言图形编译工具，支持Less、Sass、Compass、CoffeeScript，帮助web开发者更高效地使用它们进行开发。跨平台运行，完美兼容windows、linux、mac。
+
+* [koala官网](http://koala-app.com/index-zh.html)
+* [LESS/Sass 编译工具Koala介绍](https://www.sass.hk/skill/koala-app.html)
+
+### 方式三：VSCode扩展 - Live Sass编译器
+
+* [Visual Studio Code插件Live Sass Compiler可将Sass或Scss实时编译为CSS](https://www.sass.hk/skill/sass154.html)
+
+
+
+##  3.4 Sass基本使用
+
+SASS文件就是普通的文本文件。
+
+[【Sass初级】开始使用Sass和Compass](https://www.sass.hk/skill/sass71.html)
 

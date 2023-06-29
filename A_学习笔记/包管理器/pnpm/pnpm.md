@@ -34,7 +34,7 @@ $ which pnpm
 
 # 心得
 
-**pnmp 安装是跟着当前的node走的**
+**npm & pnpm 安装是跟着当前的node走的**
 
 ```shell
 # 查看当前安装的 node 版本
