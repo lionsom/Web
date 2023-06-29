@@ -14,3 +14,10 @@ yarn: 解决了npm重复包的问题，
 
 pnpm：先将库拉取到本地仓库，再通过软连接，链接到项目中，这样就不需要每次都拉取全部库了。
 
+
+
+
+
+# 尚硅谷视频 - 包管理器
+
+[尚硅谷2023版Node.js零基础视频教程，nodejs新手到高手](https://www.bilibili.com/video/BV1gM411W7ex?p=16&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)

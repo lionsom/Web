@@ -1,16 +1,23 @@
-# [什么是Node.js](https://vue3.chengpeiquan.com/engineering.html#什么是-node-js)
+
+
+# 一、NodeJS简介
+
+## [什么是Node.js](https://vue3.chengpeiquan.com/engineering.html#什么是-node-js)
 
 * [node.js官网](https://nodejs.org)
 
+> Node.js® is an open-source, cross-platform JavaScript runtime environment.
+>
 > Node.js是一个开源、跨平台的 JavaScript 运行时环境。
 >
 > Node.js （简称 Node ） 是一个基于 Chrome V8 引擎构建的 JS 运行时（ JavaScript Runtime ）。
 >
 > 它让 JavaScript 代码不再局限于网页上，还可以跑在客户端、服务端等场景，极大的推动了前端开发的发展，现代的前端开发几乎都离不开 Node 。
+>
+> 通俗来说：Node.js就是 <font color=red>一款应用程序</font>， 是<font color=red>一款软件</font>，它可以运行 JavaScript。
+>
 
-
-
-# [什么是 Runtime](https://vue3.chengpeiquan.com/engineering.html#什么是-runtime)
+## [什么是 Runtime](https://vue3.chengpeiquan.com/engineering.html#什么是-runtime)
 
 Runtime ，可以叫它 "运行时" 或者 "运行时环境"，这个概念是指，项目的代码在哪里运行，哪里就是运行时。
 
@@ -20,7 +27,7 @@ Node 就是一个让 JS 可以脱离浏览器运行的环境，当然，这里�
 
 
 
-# 下载和安装 Node
+# 二、下载和安装 Node
 
 * [Current 版本](https://vue3.chengpeiquan.com/guide.html#current-版本) ：Current 是最新发布版本
 * [LTS 版本](https://vue3.chengpeiquan.com/guide.html#lts-版本) ：全称 Long Time Support ，长期维护版本
@@ -48,6 +55,136 @@ $ node -v
 ```shell
 $ nvm --version
 ```
+
+
+
+# 三、浏览器中的JavaScript 与 NodeJS中的JavaScript
+
+## 1. 使用node运行js文件
+
+创建一个 `001_helloworld.js` 文件：
+
+```js
+console.log("使用node运行js！！！Hello world！！！")
+```
+
+在终端运行：
+
+```sh
+$ node 001_helloworld.js 
+使用node运行js！！！Hello world！！！
+```
+
+
+
+## 2. Node.js中不能使用BOM、DOM
+
+* 浏览器中的JavaScript，包含：
+    * 核心语法：ECMAScript
+    * Web API：DOM、BOM、AJAX、Storage、console、定时器.....
+* Node.js中的JavaScript，包含：
+    * 核心语法：ECMAScript
+    * Node API：fs、url、http、util、console、定时器......
+
+
+
+**验证下：在node中调用Web API，报错！！**
+
+```js
+// DOM  不支持
+console.log(document);
+// BOM  不支持
+console.log(window);
+// 定时器 支持
+setTimeout(()=> {
+    console.log("i love")
+}, 1000);
+
+
+// 运行 报错
+$ node 002_NodeJS中调用WebAPI.js
+```
+
+
+
+## 3. 顶级对象
+
+* 浏览器中的顶级对象：window
+* Node.js中的顶级对象：global、globalThis
+    * global === globalThis
+
+```js
+// Node.js中的顶级对象
+console.log(global)
+
+// ES2020
+console.log(globalThis)
+
+// true
+console.log(globalThis === global)
+```
+
+
+
+# 四、Buffer（缓冲器）
+
+[Buffer课件](./尚硅谷课件/NodeJS基础课件/01_Buffer.pdf)
+
+![](images/Buffer01.png)
+
+![](images/Buffer02.png)
+
+![](images/Buffer03.png)
+
+
+
+# 五、fs模块
+
+fs 全称为 file system ，称之为 文件系统 ，是 Node.js 中的 **内置模块** ，可以对计算机中的磁盘进行操作。
+
+
+
+## 1. 文件写入
+
+
+
+
+
+
+
+
+
+
+
+# 六、path
+
+
+
+
+
+# 七、http
+
+
+
+
+
+# 八、模块化
+
+
+
+
+
+# 九、express框架
+
+
+
+
+
+# 十、
+
+
+
+
 
 
 
