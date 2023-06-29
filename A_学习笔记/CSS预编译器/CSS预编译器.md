@@ -117,8 +117,6 @@ $ where compass
 /Users/qiyeyun/.rbenv/shims/compass
 ```
 
-
-
 ### 3. 其他命令
 
 ```sh
@@ -131,8 +129,6 @@ $ sass -v
 //查看sass帮助
 $ sass -h
 ```
-
-
 
 ### 4. compass
 
@@ -149,14 +145,16 @@ Sass本身只是一个编译器，Compass在它的基础上，封装了一系列
 ### 方式一：命令行编译
 
 ```shell
-//单文件转换命令
+# 单文件转换命令
 $ sass input.scss output.css
 
-//单文件监听命令
+# 单文件监听命令，每次修改并保存时自动编译：
 $ sass --watch input.scss:output.css
 
-//如果你有很多的sass文件的目录，你也可以告诉sass监听整个目录：
+# 如果你有很多的sass文件的目录，你也可以告诉sass监听整个目录：
 $ sass --watch app/sass:public/stylesheets
+
+# 更多命令的用法请通过 sass --help 获取帮助。
 ```
 
 ### 方式二：软件方式编译
@@ -172,7 +170,54 @@ $ sass --watch app/sass:public/stylesheets
 
 
 
-##  3.4 Sass基本使用
+## 3.4 命令行编译配置选项
+
+```sh
+# 编译格式
+$ sass --watch input.scss:output.css --style compact
+
+# 编译添加调试map
+$ sass --watch input.scss:output.css --sourcemap
+
+# 选择编译格式并添加调试map
+$ sass --watch input.scss:output.css --style expanded --sourcemap
+
+# 开启debug信息
+$ sass --watch input.scss:output.css --debug-info
+```
+
+- `--style` 表示解析后的`css`是什么排版格式，sass内置有四种编译格式：
+    - `nested`
+    - `expanded`
+    - `compact`
+    - `compressed`
+- `--sourcemap` 表示开启 `sourcemap` 调试。开启 `sourcemap` 调试后，会生成一个后缀名为 `.css.map` 文件。
+
+
+
+## 3.5 scss 与 sass 语法格式 (Syntax)
+
+* [Sass香港官网 - 中文文档](https://www.sass.hk/docs/)
+
+Sass 有两种语法格式：scss与sass。
+
+​		首先是 SCSS (Sassy CSS) —— 也是本文示例所使用的格式 —— 这种格式仅在 CSS3 语法的基础上进行拓展，所有 CSS3 语法在 SCSS 中都是通用的，同时加入 Sass 的特色功能。此外，SCSS 也支持大多数 CSS hacks 写法以及浏览器前缀写法 (vendor-specific syntax)，以及早期的 IE 滤镜写法。这种格式以 `.scss` 作为拓展名。
+
+​		另一种也是最早的 Sass 语法格式，被称为缩进格式 (Indented Sass) 通常简称 "Sass"，是一种简化格式。它使用 “缩进” 代替 “花括号” 表示属性属于某个选择器，用 “换行” 代替 “分号” 分隔属性，很多人认为这样做比 SCSS 更容易阅读，书写也更快速。缩进格式也可以使用 Sass 的全部功能，只是与 SCSS 相比个别地方采取了不同的表达方式，具体请查看 [the indented syntax reference](http://sass-lang.com/docs/yardoc/file.INDENTED_SYNTAX.html)。这种格式以 `.sass` 作为拓展名。
+
+​		任何一种格式可以直接 [导入 (@import)](https://www.sass.hk/docs/#t7-1) 到另一种格式中使用，或者通过 `sass-convert` 命令行工具转换成另一种格式：
+
+```sh
+# Convert Sass to SCSS
+$ sass-convert style.sass style.scss
+
+# Convert SCSS to Sass
+$ sass-convert style.scss style.sass
+```
+
+
+
+##  3.6 Sass基本使用
 
 SASS文件就是普通的文本文件。
 
