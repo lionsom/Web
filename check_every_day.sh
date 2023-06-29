@@ -21,7 +21,8 @@ read_dir() {
 check_suffix() {
     file=$1
 
-    if [ "${file##*.}"x = "${fileType}"x ]; then
+    #    if [ "${file##*.}"x = "${fileType}"x ]; then
+    if [ "${file##*.}"x = "${fileType1}"x ] || [ "${file##*.}"x = "${fileType2}"x ]; then
         # echo $file
         # filePathArray.add
         filePathArray[${#filePathArray[*]}]=$file
@@ -36,11 +37,19 @@ function rand() {
     echo $(($num % $max + $min))
 }
 
+# 遍历输出数组
+function showArray() {
+    for element in ${filePathArray[@]}; do #也可以写成for element in ${array[*]}
+        echo $element
+    done
+}
+
 #############################
 #############################
 filePathArray=()
 
-fileType='md'
+fileType1='md'
+fileType2='pdf'
 
 read_dir $1
 
@@ -49,13 +58,17 @@ echo "=======遍历完成======="
 # 打印数组所有元素
 # echo ${filePathArray[*]}
 
-# 获取数组长度
+# 遍历数组
+# showArray
+
+# # 获取数组长度
 maxNum=${#filePathArray[*]}
 echo "数组元素个数为: $maxNum"
 
 # 生成随机数
 randNum=$(rand 0 $maxNum-1)
-echo $randNum
+echo "随机数取第 $randNum 个" 
 
 # 打开随机文档学习
 open ${filePathArray[$randNum]}
+echo "当前打开的文件路径：${filePathArray[$randNum]}"
