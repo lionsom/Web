@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 一个参数
+        function getSum1(end) {
+            let sum = 0
+            for (let index = 1; index <= end; index++) {
+                sum += index
+            }
+            console.log(sum);
+        }
+
+        // 调用
+        getSum1(20)
+
+
+        // 2. 两个参数
+        function getSum2(start, end = 5) {
+            let sum = 0
+            for (let index = start; index <= end; index++) {
+                sum += index
+            }
+            console.log(sum);
+        }
+
+        // 调用
+        getSum2(10, 20)
+
+        getSum2(2)
+
+    </script>
+</body>
+
+</html>

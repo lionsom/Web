@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name: 'pink',
+            'last-name': 'jack',
+            age: 20,
+            gender: '女',
+
+            // 方法
+            song: function() {
+                console.log('sing 冰雨')
+            },
+
+            song2: function(x, y) {
+                console.log(`sing = ${x} + ${y}`)
+            }
+        }
+        console.log(person);
+
+        // 查总结：
+        // (1) 对象名.属性名  obj.name
+        console.log(person.name);
+        // (2) 对象名['属性名']  obj['name']
+        console.log(person['last-name'])
+        
+        // 改
+        person.age = 22
+        console.log(person)
+
+        // 增加
+        person.hhhhhh = '新增属性'
+        console.log(person);
+
+        // 删除
+        delete person.age
+        console.log(person);
+
+        // 方法
+        person.song()
+
+        person.song2(1, 2)
+
+    </script>
+</body>
+</html>

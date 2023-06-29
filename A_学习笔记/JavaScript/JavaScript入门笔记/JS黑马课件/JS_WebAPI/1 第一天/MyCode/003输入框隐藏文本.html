@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input {
+            margin: 100px auto;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="text" name="" id="input_search" value="手机">
+
+    <script>
+        let input = document.getElementById('input_search')
+
+        input.onfocus = function() {
+            console.log("聚焦")
+            input.value = ""
+
+            this.style.color = '#333'
+        }
+
+        input.onblur = function() {
+            console.log("失去焦点")
+            input.value = '手机'
+
+            this.style.color = '#999'
+        }
+    </script>
+</body>
+</html>

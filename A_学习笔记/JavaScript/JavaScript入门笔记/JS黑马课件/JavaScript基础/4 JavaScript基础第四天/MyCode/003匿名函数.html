@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 一.匿名函数 - 函数表达式
+        // 1. 具名函数的调用可以写到任何位置
+        // 2. 函数表达式，必须先声明函数表达式，后调用
+        let fn = function () {
+            console.log(234);
+        }
+        fn()
+
+        let fn2 = function (x, y) {
+            console.log(x + y)
+        }
+        fn2(2, 3);
+
+        // 二、匿名函数 - 立即执行函数
+        // 场景：避免全局变量之间的污染
+        // 不需要调用，立即执行，其实本质已经调用了
+        // 注意多个立即执行函数之间用分号隔开
+
+        // 写法一
+        (function(){
+            console.log(11111)
+        })();
+
+        // 写法二
+        (function(){console.log(22222)}());
+
+
+    </script>
+</body>
+
+</html>

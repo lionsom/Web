@@ -1,0 +1,25 @@
+.box {
+    position: relative;
+    width: 400px;
+    border-bottom: 1px solid red;
+    margin: 100px auto;
+}
+
+.box input {
+    width: 350px;
+    height: 30px;
+    border: none;
+    /* 输入框被选择样式 */
+    outline: none;
+}
+
+.box img {
+    /* 子绝父相 */
+    position: absolute;  
+    top: 6px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+}
+
+

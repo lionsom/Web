@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // for-in 遍历数组 - 不推荐，因为k是字符串类型，而不是number
+        let arr = ['jack', 'pink', 'rose']
+        for (let key in arr) {
+            console.log(key);  // 数组下标，注意是字符串类型
+            console.log(arr[key]); // 打印
+        }
+
+        // for-in 遍历对象
+        let person = {
+            name: 'pink',
+            'last-name': 'jack',
+            age: 20,
+            gender: '女',
+        }
+
+        for (let key in person) {
+            console.log(key)  // 属性名 'name' 'age' 'gender'  带引号的字符串
+
+            console.log(person.key)  // undefined
+
+            console.log(person[key]) // pink 20 女
+        }
+
+    </script>
+
+</body>
+
+</html>
