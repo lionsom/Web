@@ -12,7 +12,7 @@
 
 # [什么是 Runtime](https://vue3.chengpeiquan.com/engineering.html#什么是-runtime)
 
-Runtime ，可以叫它 “运行时” 或者 “运行时环境” ，这个概念是指，项目的代码在哪里运行，哪里就是运行时。
+Runtime ，可以叫它 "运行时" 或者 "运行时环境"，这个概念是指，项目的代码在哪里运行，哪里就是运行时。
 
 传统的 JavaScript 只能跑在浏览器上，每个浏览器都为 JS 提供了一个运行时环境，可以简单的把浏览器当成一个 Runtime ，明白了这一点，相信就能明白什么是 Node 。
 
@@ -59,8 +59,6 @@ $ nvm --version
 
 注意：安装node.js时，将自动安装npm。
 
-> 详情 看专门文档
-
 ```shell
 $ npm -v
 9.6.3
@@ -96,8 +94,6 @@ json
 }
 ```
 
-
-
 Eg:
 
 ```json
@@ -116,8 +112,8 @@ Eg:
 
 
 
-```
- npm run test
+```sh
+$ npm run test
 
 > hello-node@1.0.0 test
 > echo "Error: no test specified" && exit 1
