@@ -46,7 +46,17 @@ $ node -v
 
 
 
-## 方式二：NVM
+## 方式二：homebrew
+
+使用 brew 命令来安装：
+
+```shell
+$ brew install node
+```
+
+
+
+## 方式三：NVM
 
 点击访问：[NVM 官方](https://github.com/nvm-sh/nvm)
 
@@ -59,6 +69,8 @@ $ nvm --version
 
 
 # 三、浏览器中的JavaScript 与 NodeJS中的JavaScript
+
+![](images/NodeJS_Chrome.png)
 
 ## 1. 使用node运行js文件
 
@@ -181,6 +193,51 @@ fs 全称为 file system ，称之为 文件系统 ，是 Node.js 中的 **内�
 
 
 # 十、
+
+
+
+
+
+
+
+# [npm 使用介绍](https://www.runoob.com/nodejs/nodejs-npm.html)
+
+NPM是随同Node JS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：
+
+- 允许用户从NPM服务器下载别人编写的第三方包到本地使用。
+- 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。
+- 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。
+
+由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同样可以通过输入 **"npm -v"** 来测试是否成功安装。命令如下，出现版本提示表示安装成功:
+
+```shell
+# 查看
+$ npm -v
+2.3.0
+
+# 升级npm
+$ sudo npm install npm -g
+
+# 使用 npm 命令安装模块
+$ npm install <Module Name> 		# 本地安装
+$ npm install <Module Name> -g	# 全局安装
+
+# 备注
+	#本地安装
+1. 将安装包放在 ./node_modules 下（运行 npm 命令时所在的目录），如果没有 node_modules 目录，会在当前执行 npm 命令的目录下生成 node_modules 目录。
+2. 可以通过 require() 来引入本地安装的包。
+	#全局安装
+1. 将安装包放在 /usr/local 下或者你 node 的安装目录。
+2. 可以直接在命令行里使用。
+
+
+```
+
+
+
+
+
+
 
 
 
