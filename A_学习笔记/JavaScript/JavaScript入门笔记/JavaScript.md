@@ -140,49 +140,188 @@
 </body>
 ```
 
+**实战案例**
+
+```js
+<body>
+    <script>
+        let uname = prompt('请输入姓名')
+        let age = prompt('请输入年龄')
+        let gender = prompt('请输入性别')
+        document.write(uname, age, gender)
+    </script>
+</body>
+```
+
 
 
 # 七、JavaScript 变量与常量
 
 [ECMAScript 6 入门 - let](https://es6.ruanyifeng.com/#docs/let)
 
-## 1. var
+## 1. var 与 let
 
-https://www.freecodecamp.org/chinese/news/javascript-var-let-and-const/
+**优化一：var可以先使用，后声明；let没有变量提升**
 
-在ES2015（ES6）出现之前，必须使用 `var` 声明。
-
-作用域
-
-用途
-
-变量提升
-
-## 2.  let
+```js
+// 10
+// 描述：此时num先使用，后声明。
+num = 10;
+console.log(num);
+var num;
 
 
+// Uncaught ReferenceError: Cannot access 'num' before initialization
+// 描述：let解决了此问题
+num = 10;
+console.log(num);
+let num;
+```
 
-## 3. var 与 let
 
-**let 和 var 区别：** 
 
-在较旧的JavaScript，使用关键字 var 来声明变量 ，而不是 let。 
+**优化二：var可以重复声明同名变量；let变量不能重复声明**
 
-var 现在开发中一般不再使用它，只是我们可能再老版程序中看到它。 
+```js
+// 20
+// 描述：var重复声明变量，取最后一个。
+var num = 10
+var num = 20
+console.log(num)
 
-let 为了解决 var 的一些问题。 
 
-var 声明: 
+// Uncaught SyntaxError: Identifier 'num' has already been declared
+// 描述：let不支持重复声明同名变量
+let num = 10
+let num = 20
+console.log(num)
+```
 
-Ø 可以先使用 在声明 (不合理) 
 
-Ø var 声明过的变量可以重复声明(不合理) 
 
-Ø 比如变量提升、全局变量、没有块级作用域等等 
+**优化三：var没有块级作用域；let定义块级作用域变量**
 
-**结论：** 
+在ES6之前，我们都是用var来声明变量，而且JS只有 **函数作用域** 和 **全局作用域**，没有 **块级作用域**，所以`{}`限定不了var声明变量的访问范围。
 
-var 就是个bug，别迷恋它了，以后声明变量我们统一使用 let
+在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为 **“暂时性死区”**（temporal dead zone，简称 TDZ）。
+
+```js
+// 9
+// 描述：var没有块级作用域
+{
+		var i = 9;
+}
+console.log(i);
+
+
+// Uncaught ReferenceError: i is not defined
+// 描述：let有块级作用域
+{
+		let i = 9;  // i变量只在 花括号内有效！！！
+}
+console.log(i);
+```
+
+
+
+## 2. 变量提升 
+
+> 声明提升（hoisting）：函数声明和变量声明总是会被解释器悄悄地被"提升"到方法体的最顶部。
+
+### a. 声明提升，初始化不会提升
+
+[runoob - JavaScript 声明提升](https://www.runoob.com/js/js-hoisting.html)
+
+**声明提升**
+
+```js
+// 声明提升
+x = 5; // 变量 x 设置为 5
+console.log(a);
+var x; // 声明 x
+
+// 输出
+5
+```
+
+**初始化提升（不支持）**
+
+```js
+ // 初始化提升，失败
+var x = 5; // 初始化 x
+console.log(x);
+console.log(y);
+var y = 7; // 初始化 y
+
+// 输出
+5
+undefined
+```
+
+```js
+var x = 5; // 初始化 x
+var y;     // 声明 y
+console.log(x);
+console.log(y);
+y = 7;    // 设置 y 为 7
+
+// 输出
+5
+undefined
+```
+
+
+
+### b. 面试题
+
+在ES6之前，我们都是用var来声明变量，而且JS只有 **函数作用域** 和 **全局作用域**。
+
+```js
+// 常见面试题目1：
+var a = 99;            // 全局变量a
+f();                   // f是函数，虽然定义在调用的后面，但是函数声明会提升到作用域的顶部。 
+console.log(a);        // a=>99,  此时是全局变量的a
+function f() {
+  console.log(a);      // 当前的a变量是下面变量a声明提升后，默认值undefined
+  var a = 10;
+  console.log(a);      // a => 10
+}
+
+// 输出结果：
+undefined
+10
+99
+```
+
+
+
+## 3. let 配合for循环的独特应用
+
+`let`非常适合用于 `for`循环内部的块级作用域。JS中的for循环体比较特殊，每次执行都是一个全新的独立的块作用域，用let声明的变量传入到 for循环体的作用域后，不会发生改变，不受外界的影响。看一个常见的面试题目：
+
+```js
+for (var i = 0; i <10; i++) {  
+  	setTimeout(function() {  // 同步注册回调函数到 异步的 宏任务队列。
+    		console.log(i);      // 执行此代码时，同步代码for循环已经执行完成
+  	}, 0);
+}
+// 输出结果
+10   共10个
+// 这里面的知识点： JS的事件循环机制，setTimeout的机制等
+```
+
+如果把 `var`改成 `let`声明：
+
+```js
+// i虽然在全局作用域声明，但是在for循环体局部作用域中使用的时候，变量会被固定，不受外界干扰。
+for (let i = 0; i < 10; i++) { 
+  setTimeout(function() {
+    console.log(i);    //  i 是循环体内局部作用域，不受外界影响。
+  }, 0);
+}
+// 输出结果：
+0  1  2  3  4  5  6  7  8  9
+```
 
 
 
@@ -198,42 +337,431 @@ var 就是个bug，别迷恋它了，以后声明变量我们统一使用 let
 /*
 	声明一个常量π
 */
-const pi = 3.1415926;
+const PI = 3.1415926;  
+
+PI = 2.111; // ERROR: 1.常量不允许更改值
+
+const PI1; // ERROR: 2.常量声明的时候必须赋值
 ```
-
-
-
-
 
 
 
 # 八、JavaScript 数据类型
 
-JavaScript中一共有5种基本数据类型：
+* 5种基本数据类型：
+    * 字符串型（String） 
+    * 数值型（Number） 
+    * 布尔型（Boolean） 
+    * null型（Null） 
+    * undefined型（Undefined）
 
-– 字符串型（String） 
+* 引用数据类型：
+    * 对象（Object）
 
-– 数值型（Number） 
-
-– 布尔型（Boolean） 
-
-– null型（Null） 
-
-– undefined型（Undefined）
-
-• 这5种之外的类型都称为Object，所以总的来看JavaScript中共有六种数
+![](images/js弱数据类型.png)
 
 
 
+## 类型判断 - typeof
+
+```js
+/*
+  可以使用一个运算符 typeof
+  来检查一个变量的类型
+  语法：typeof 变量	
+  检查字符串时，会返回string
+  检查数值时，会返回number
+*/
+typeof "123"  		// string
+typeof 10					// number
+typeof Infinity  	// number
+typeof NaN  			// number
+typeof false 			// boolean
+typeof undefined	// undefined
+```
 
 
 
+## 标识符
+
+```js
+/*
+ * 标识符
+ * 	- 在JS中所有的可以由我们自主命名的都可以称为是标识符
+ * 	- 例如：变量名、函数名、属性名都属于标识符
+ * 	- 命名一个标识符时需要遵守如下的规则：
+ * 		1.标识符中可以含有字母、数字、_、$
+ * 		2.标识符不能以数字开头
+ * 		3.标识符不能是ES中的关键字或保留字
+ * 		4.标识符一般都采用驼峰命名法
+ * 			- 首字母小写，每个单词的开头字母大写，其余字母小写
+ * 			helloWorld xxxYyyZzz
+ * 
+ * 	- JS底层保存标识符时实际上是采用的Unicode编码，
+ * 		所以理论上讲，所有的utf-8中含有的内容都可以作为标识符
+ */
+```
 
 
 
+## 1. 字符串 String
+
+### a. 转义字符
+
+```js
+/*
+  在字符串中我们可以使用\作为转义字符，
+    当表示一些特殊符号时可以使用\进行转义
+
+    \" 表示 "
+    \' 表示 '
+    \n 表示换行
+    \t 制表符
+    \\ 表示\
+*/
+str = "我说:\"今天\t天气真不错！\"";  
+str = "\\\\\\"; 
+
+// 我说:"今天	天气真不错！"
+// \\\
+```
 
 
 
+### b. 模板字符串
+
+```js
+// 模板字符串 外面用`` 里面 ${变量名}
+let age = 20
+document.write(`我今年${age}岁了`)
+```
+
+
+
+## 2.数值 Number
+
+* 在JS中所有的数值都是Number类型，包括 **整数** 和 **浮点数**（小数）
+
+* JS中可以表示的数字的最大值、最小值
+     * 最大值：Number.MAX_VALUE
+        * 1.7976931348623157e+308
+     * 大于0的最小值：Number.MIN_VALUE
+        * 5e-324
+
+* 如果使用Number表示的数字超过了最大值，则会返回一个
+       *      Infinity表示：正无穷
+       *      -Infinity表示：负无穷
+       *      使用 `typeof` 检查 `Infinity` 也会返回number
+* `NaN` 是一个特殊的数字，表示：Not A Number
+    * 使用`typeof` 检查一个 `NaN` 也会返回number
+
+
+
+### a. Infinity
+
+```js
+// 两个很大的数相乘
+a = -Number.MAX_VALUE * Number.MAX_VALUE;
+console.log(a);
+
+// -Infinity
+```
+
+
+
+### a. NaN
+
+* `NaN` 是一个特殊的数字，表示：Not A Number
+
+* 使用`typeof` 检查一个 `NaN` 也会返回number
+
+```js
+// 两个字符串相乘
+console.log("abc" * "bcd");	 // NaN
+console.log('pink老师' - 2);  // NaN
+console.log(NaN - 2);	// NaN
+console.log(NaN + 2);	// NaN
+console.log(NaN / 2);	// NaN
+console.log(NaN === NaN);	// false
+```
+
+
+
+### b. 浮点运算不精确
+
+```js
+/*
+ * 如果使用JS进行浮点运算，可能得到一个不精确的结果
+ * 所以千万不要使用JS进行对精确度要求比较高的运算	
+ */
+var c = 0.1 + 0.2;
+console.log(c);
+
+// 0.30000000000000004
+```
+
+
+
+## 3.布尔值 - Boolean
+
+```js
+/*
+ * Boolean 布尔值
+ * 	布尔值只有两个，主要用来做逻辑判断
+ * 	true
+ * 		- 表示真
+ * 	false
+ * 		- 表示假
+ * 
+ * 使用typeof检查一个布尔值时，会返回boolean
+ */
+var bool = false;			
+console.log(typeof bool);
+console.log(bool);
+
+// boolean
+// false
+```
+
+
+
+## 4. 空值 - Null
+
+Javaseript 中的nul1 仅仅是一个代表“无”、“空”或“值未知”的特殊值。
+
+**null工作中的使用场景：**
+
+* 官方解释：把nul1 作为尚未创建的对象。
+* 大白话：将来有个变量里面存放的是一个对象，但是对象还没创建好，可以先给个null。
+
+```js
+/*
+ * Null（空值）类型的值只有一个，就是null
+ * null这个值专门用来表示一个为空的对象
+ * 使用typeof检查一个null值时，会返回object
+ */
+var a = null;
+console.log(typeof a);
+
+// object
+```
+
+
+
+## 5. 未定义 - Undefine
+
+只声明变量，不赋值的情况下，变量的默认值为 undefined，一般很少【直接】为某个变量赋值为 undefined.
+
+**Undefine工作中的使用场景：**
+
+* 我们开发中经常声明一个变量，等待传送过来的数据。
+* 如果我们不知道这个数据是否传递过来，此时我们可以通过检测这个变量是不是undefined，就判断用户是否有数据传递过来。
+
+```js
+/*
+ * Undefined（未定义）类型的值只有一个，就undefind
+ * 	当声明一个变量，但是并不给变量赋值时，它的值就是undefined
+ * 	使用typeof检查一个undefined时也会返回undefined
+ */
+var b = undefined;
+console.log(typeof b);
+
+// undefined
+```
+
+**null 和 undefined 区别：**
+
+- ﻿﻿undefined 表示没有赋值
+- ﻿﻿null 表示赋值了，但是内容为空
+
+
+
+# 九、类型转换
+
+* 强制类型转换
+     * 	指将一个数据类型强制转换为其他的数据类型
+     * 	类型转换主要指，将其他的数据类型，转换为：`String` `Number` `Boolean`
+
+
+
+## 1. 转换为String
+
+### a. 方式一：toString()
+
+```js
+/*
+ * 将其他的数据类型转换为String
+ * 	方式一：
+ * 		- 调用被转换数据类型的toString()方法
+ * 		- 该方法不会影响到原变量，它会将转换的结果返回
+ * 		- 但是注意：null和undefined这两个值没有toString()方法，
+ * 			如果调用他们的方法，会报错
+ */
+var a = 123;
+a = a.toString();
+
+a = true;
+a = a.toString();
+
+a = null;
+a = a.toString(); //报错
+
+a = undefined;
+a = a.toString(); //报错
+```
+
+
+
+### b. 方式二：String()
+
+```js
+/*
+ * 将其他的数据类型转换为String 
+ *  方式二：
+ * 		- 调用String()函数，并将被转换的数据作为参数传递给函数
+ * 		- 使用String()函数做强制类型转换时，
+ * 			对于Number和Boolean实际上就是调用的toString()方法
+ * 			但是对于null和undefined，就不会调用toString()方法
+ * 				它会将 null 直接转换为 "null"
+ * 				将 undefined 直接转换为 "undefined"
+ */
+var a = 123;
+a = String(a);	// "123"
+
+a = null;
+a = String(a);  // "null"
+typeof a				// string
+
+a = undefined;
+a = String(a);  // "undefined"
+typeof a				// string
+```
+
+
+
+## 2. 转换为Number
+
+* 有三个函数可以把非数值转换为数值：Number()、parseInt() 、parseFloat()
+    * `Number()` 可以用来转换任意类型的数据，而后两者只能用于转换字符串
+    * `parseInt()` 只会将字符串转换为整数
+    * `parseFloat()` 可以转换为浮点数
+
+
+
+### a. 字符串 --> 数字
+
+**方式一： Number()函数**
+
+* 1.如果是纯数字的字符串，则直接将其转换为数字
+* 2.如果字符串中有非数字的内容，则转换为 `NaN`
+* 3.如果字符串是一个空串或者是一个全是空格的字符串，则转换为0
+
+**方式二：parseInt() 函数 与parseFloat() 函数**
+
+* parseInt() 把一个字符串转换为一个整数
+* parseFloat() 把一个字符串转换为一个浮点数
+
+```js
+//调用Number()函数来将a转换为Number类型
+var a = "123";
+a = Number(a);
+
+/*
+ * parseInt()可以将一个字符串中的有效的整数内容去出来，
+ * 	然后转换为Number
+ */
+a = parseInt(a);
+
+/*
+ * parseFloat()作用和parseInt()类似，不同的是它可以获得有效的小数
+ */
+a = "123.456.789px";
+a = parseFloat(a);
+```
+
+**非String使用parseInt()或parseFloat()**
+
+```js
+/*
+ * 如果对非String使用parseInt()或parseFloat()
+ * 	它会先将其转换为String然后在操作
+ */
+a = true;
+a = parseInt(a);
+
+a = 198.23;
+a = parseInt(a);
+
+console.log(typeof a);
+console.log(a);
+```
+
+
+
+### b. 布尔 --> 数字
+
+```js
+/*
+  true 转成 1
+	false 转成 0
+*/
+a = false;
+a = Number(a);
+```
+
+
+
+### c. null --> 数字
+
+```js
+// null --> 数字     0
+a = null;
+a = Number(a);  // 0
+```
+
+
+
+### d. undefined --> 数字
+
+```js
+// undefined --> 数字 NaN
+a = undefined;
+a = Number(a);  // NaN
+```
+
+
+
+## 3. 转换为Boolean
+
+**记忆**： **空串、0、NaN、null、undefined 转换为布尔值后都是false, 其余则为 true** 
+
+```js
+/*
+ * 将其他的数据类型转换为Boolean
+ * 	- 使用Boolean()函数
+ * 		- 数字 ---> 布尔
+ * 			- 除了0和NaN，其余的都是true
+ * 
+ * 		- 字符串 ---> 布尔
+ * 			- 除了空串，其余的都是true
+ * 
+ * 		- null和undefined都会转换为false
+ * 
+ * 		- 对象也会转换为true
+ * 		
+ */
+
+Boolean("")	//false
+Boolean(0)	//false
+Boolean(NaN)	//false
+Boolean(null)	//false
+Boolean(undefined)	//false
+
+// 其他都是true
+Boolean(123)	//true
+Boolean(-123)	//true
+Boolean(Infinity)	//true
+```
 
 
 
