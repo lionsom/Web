@@ -469,7 +469,7 @@ console.log(a);
 
 
 
-### a. NaN
+### b. NaN
 
 * `NaN` 是一个特殊的数字，表示：Not A Number
 
@@ -487,7 +487,7 @@ console.log(NaN === NaN);	// false
 
 
 
-### b. 浮点运算不精确
+### c. 浮点运算不精确
 
 ```js
 /*
@@ -498,6 +498,44 @@ var c = 0.1 + 0.2;
 console.log(c);
 
 // 0.30000000000000004
+```
+
+
+
+### d. 二、八、十六进制的数字
+
+```js
+/*
+ * 在js中，如果需要表示16进制的数字，则需要以0x开头
+ * 			  如果需要表示8进制的数字，则需要以0开头
+ * 			  如果要要表示2进制的数字，则需要以0b开头
+ * 				但是不是所有的浏览器都支持
+ * 	
+ */
+
+//十六进制
+a = 0x10;  	// number 16
+a = 0xff;		// number 255
+a = 0xCafe;	// number 51966
+
+//八进制数字
+a = 070;	// number 56
+
+//二进制数字
+a = 0b10;	// number 2
+
+//向"070"这种字符串，有些浏览器会当成8进制解析，有些会当成10进制解析
+a = "070";
+
+//可以在parseInt()中传递一个第二个参数，来指定数字的进制
+a = "0101";
+a = parseInt(a, 2); // 2
+a = parseInt(a, 8); // 65
+a = parseInt(a, 10); // 101
+a = parseInt(a, 16); // 257
+
+console.log(typeof a);
+console.log(a);
 ```
 
 
@@ -574,9 +612,50 @@ console.log(typeof b);
 - ﻿﻿undefined 表示没有赋值
 - ﻿﻿null 表示赋值了，但是内容为空
 
+* undefined值实际上是由null值衍生出来的，所以如果比较undefined和null是否相等，会返回true；
+
+```js
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
+```
 
 
-# 九、类型转换
+
+## 6. 对象 - Object
+
+```js
+/*
+ * 对象的分类：
+ * 	1.内建对象
+ * 		- 由ES标准中定义的对象，在任何的ES的实现中都可以使用
+ * 		- 比如：Math String Number Boolean Function Object....
+ * 
+ * 	2.宿主对象
+ * 		- 由JS的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+ * 		- 比如 BOM DOM
+ * 
+ * 	3.自定义对象
+ * 		- 由开发人员自己创建的对象
+ */
+ 
+ 
+// 创建对象
+/*
+ * 使用new关键字调用的函数，是构造函数constructor
+ * 	构造函数是专门用来创建对象的函数
+ * 使用typeof检查一个对象时，会返回object
+ */
+var obj = new Object();
+			
+```
+
+
+
+
+
+
+
+# 九、类型转换 - 显示转换
 
 * 强制类型转换
      * 	指将一个数据类型强制转换为其他的数据类型
@@ -688,12 +767,13 @@ a = parseFloat(a);
  */
 a = true;
 a = parseInt(a);
+console.log(typeof a);  // number
+console.log(a);	// NaN
 
 a = 198.23;
 a = parseInt(a);
-
-console.log(typeof a);
-console.log(a);
+console.log(typeof a); // number
+console.log(a); // 198
 ```
 
 
@@ -762,6 +842,126 @@ Boolean(123)	//true
 Boolean(-123)	//true
 Boolean(Infinity)	//true
 ```
+
+
+
+# 十、类型转换 - 隐式转换
+
+```js
+console.log(1 + 1)	// 2
+console.log('pink' + 1)	// pink1
+
+console.log(2 + 2)	// 4
+console.log(2 + '2') // 22
+
+console.log(2 - 2)	// 0
+console.log(2 - '2')  // 0  
+
+console.log(+12)	// 12
+console.log(+'123')  // 123
+```
+
+
+
+# 十一、Unicode编码
+
+```html
+<script type="text/javascript">
+  /*
+   * 在字符串中使用转义字符输入Unicode编码
+   * 	\u四位编码，十六进制
+   */
+  console.log("\u2620");
+</script>
+
+
+<body>
+		<!--在网页中使用Unicode编码
+			&#编码; 这里的编码需要的是十进制
+		-->
+		<h1 style="font-size: 200px;">&#9760;</h1>
+		<h1 style="font-size: 200px;">&#9856;</h1>
+	</body>
+```
+
+
+
+# 十二、运算符（简单 省略）
+
+## 1. 比较运算符
+
+```js
+// 比较运算符有隐式转换 把'2' 转换为 2  双等号 只判断值
+console.log(2 == '2')  // true
+console.log(undefined === null) // false
+// === 全等 判断 值 和 数据类型都一样才行
+// 以后判断是否相等 请用 ===  
+console.log(2 === '2')
+console.log(NaN === NaN) // NaN 不等于任何人，包括他自己
+console.log(2 !== '2')  // true  
+console.log(2 != '2') // false 
+console.log('-------------------------')
+console.log('a' < 'b') // true
+console.log('aa' < 'ab') // true
+console.log('aa' < 'aac') // true
+console.log('-------------------------')
+```
+
+
+
+# 十三、流程控制语句（简单省略）
+
+## 1. if - else 
+
+```js
+if(条件表达式) {
+		语句...
+} else {
+		语句...
+}
+```
+
+## 2. Switch
+
+```js
+switch(条件表达式){
+		case 表达式:
+				语句...
+				break;
+		case 表达式:
+				语句...
+			 	break;
+		default:
+				语句...
+				break;
+}
+```
+
+## 3. for
+
+```js
+for(var i = 0 ; i < 10 ; i++ ){
+		alert(i);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
