@@ -623,6 +623,8 @@ console.log(null === undefined); // false
 
 ## 6. 对象 - Object
 
+### a. 对象分类 + 新增、修改、删除属性
+
 ```js
 /*
  * 对象的分类：
@@ -646,10 +648,130 @@ console.log(null === undefined); // false
  * 使用typeof检查一个对象时，会返回object
  */
 var obj = new Object();
-			
+
+/*
+ * 在对象中保存的值称为属性
+ * 向对象添加属性
+ * 	语法：对象.属性名 = 属性值;
+ */
+
+//向obj中添加一个name属性
+obj.name = "孙悟空";
+//向obj中添加一个gender属性
+obj.gender = "男";
+//向obj中添加一个age属性
+obj.age = 18;
+
+/*
+ * 读取对象中的属性
+ * 	语法：对象.属性名
+ * 
+ * 如果读取对象中没有的属性，不会报错而是会返回undefined
+ */
+
+console.log(obj.gender);
+console.log(obj.hello);
+
+/*
+ * 修改对象的属性值
+ * 	语法：对象.属性名 = 新值
+ */
+obj.name = "tom";
+
+/*
+ * 删除对象的属性
+ * 	语法：delete 对象.属性名
+ */
+delete obj.name;
 ```
 
 
+
+### b. 属性名 + 属性值
+
+```js
+/*
+ * 向对象中添加属性
+ * 属性名：
+ * 	- 对象的属性名不强制要求遵守标识符的规范
+ * 		什么乱七八糟的名字都可以使用
+ * 	- 但是我们使用是还是尽量按照标识符的规范去做
+ * 
+ */
+obj.name = "孙悟空";
+
+//obj.var = "hello";
+
+/*
+ * 如果要使用特殊的属性名，不能采用.的方式来操作
+ * 	需要使用另一种方式：
+ * 		语法：对象["属性名"] = 属性值
+ * 	读取时也需要采用这种方式
+ * 
+ * 使用[]这种形式去操作属性，更加的灵活，
+ * 	在[]中可以直接传递一个变量，这样变量值是多少就会读取那个属性
+ * 
+ */
+obj["123"] = 789;
+obj["nihao"] = "你好";
+var n = "nihao";
+console.log(obj["123"]);
+
+/*
+ * 属性值
+ * 	JS对象的属性值，可以是任意的数据类型
+ * 		甚至也可以是一个对象
+ */
+
+obj.test = true;
+obj.test = null;
+obj.test = undefined;
+
+//创建一个对象
+var obj2 = new Object();
+obj2.name = "猪八戒";
+
+//将obj2设置为obj的属性
+obj.test = obj2;
+
+
+/*
+ * in 运算符
+ * 	- 通过该运算符可以检查一个对象中是否含有指定的属性
+ * 		如果有则返回true，没有则返回false
+ *  - 语法：
+ * 		"属性名" in 对象
+ */
+//检查obj中是否含有test2属性
+console.log("test2" in obj);
+console.log("test" in obj);
+console.log("name" in obj);
+```
+
+
+
+### c. 对象字面量
+
+```js
+/*
+ * 使用对象字面量，可以在创建对象时，直接指定对象中的属性
+ * 语法：{属性名:属性值,属性名:属性值....}
+ * 	对象字面量的属性名可以加引号也可以不加，建议不加,
+ * 	如果要使用一些特殊的名字，则必须加引号
+ * 
+ * 属性名和属性值是一组一组的名值对结构，
+ * 	名和值之间使用:连接，多个名值对之间使用,隔开
+ * 	如果一个属性之后没有其他的属性了，就不要写,
+ */
+var obj2 = {
+
+    name:"猪八戒",
+    age:13,
+    gender:"男",
+    test:{name:"沙僧"}
+
+};
+```
 
 
 
@@ -876,12 +998,12 @@ console.log(+'123')  // 123
 
 
 <body>
-		<!--在网页中使用Unicode编码
-			&#编码; 这里的编码需要的是十进制
-		-->
-		<h1 style="font-size: 200px;">&#9760;</h1>
-		<h1 style="font-size: 200px;">&#9856;</h1>
-	</body>
+    <!--在网页中使用Unicode编码
+        &#编码; 这里的编码需要的是十进制
+    -->
+    <h1 style="font-size: 200px;">&#9760;</h1>
+    <h1 style="font-size: 200px;">&#9856;</h1>
+</body>
 ```
 
 
@@ -947,11 +1069,113 @@ for(var i = 0 ; i < 10 ; i++ ){
 
 
 
+# 十四、函数 - function
+
+函数 function
+
+* 函数也是一个对象
+
+* 使用typeof检查一个函数对象时，会返回function
 
 
 
+## 1. 创建函数
+
+### a. 使用"构造函数"来创建一个函数对象
+
+```js
+var fun = new Function("console.log('Hello 这是我的第一个函数');");
+```
 
 
+
+### b. 使用 "函数声明" 来创建一个函数
+
+```js
+function fun2() {
+    console.log("这是我的第二个函数~~~");
+}
+```
+
+
+
+### c. 使用 "函数表达式" 来创建一个函数
+
+```js
+var fun3 = function(){
+	console.log("我是匿名函数中封装的代码");
+};
+```
+
+
+
+## 2. 函数的参数
+
+```js
+function sum(a,b){
+    console.log(a+b);
+}
+
+/*
+ * 调用函数时解析器不会检查实参的类型,
+ * 	所以要注意，是否有可能会接收到非法的参数，如果有可能则需要对参数进行类型的检查
+ *  函数的实参可以是任意的数据类型
+ */
+sum(123,"hello");
+sum(true , false);
+
+/*
+ * 调用函数时，解析器也不会检查实参的数量
+ * 	多余实参不会被赋值
+ *  如果实参的数量少于形参的数量，则没有对应实参的形参将是undefined
+ * 
+ */
+sum(123,456,"hello",true,null);
+sum(123);
+```
+
+
+
+## 3. 函数返回值
+
+```js
+/*
+ * 	如果return语句后不跟任何值就相当于返回一个undefined，
+ * 	如果函数中不写return，则也会返回undefined
+ * 
+ * 	return后可以跟任意类型的值
+ */
+function sum(a , b , c) {
+    var d = a + b + c;
+    return d;
+}
+
+//调用函数
+//变量result的值就是函数的执行结果
+//函数返回什么result的值就是什么
+var result = sum(4,7,8);
+
+
+
+/*
+ * 返回值可以是任意的数据类型
+ * 	也可以是一个对象，也可以是一个函数
+ */
+function fun2(){
+    //返回一个对象
+    return {name:"沙和尚"};
+}
+
+function fun3(){
+    //在函数内部再声明一个函数
+    function fun4(){
+        alert("我是fun4");
+    }
+    
+    //将fun4函数对象作为返回值返回
+    return fun4;
+}
+```
 
 
 
