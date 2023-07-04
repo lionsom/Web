@@ -874,9 +874,76 @@ for(var n in obj){
 
 ### f. 创建对象
 
+#### 方式一：对象字面量
+
+```js
+var obj2 = {
+    name:"猪八戒",
+    age:13,
+    gender:"男",
+    test:{name:"沙僧"}
+};
+```
+
+#### 方式二：工厂方法
+
+```js
+/*
+ * 使用工厂方法创建对象
+ * 	通过该方法可以大批量的创建对象
+ */
+function createPerson(name , age ,gender){
+    //创建一个新的对象 
+    var obj = new Object();
+    //向对象中添加属性
+    obj.name = name;
+    obj.age = age;
+    obj.gender = gender;
+    obj.sayName = function(){
+      alert(this.name);
+    };
+    //将新的对象返回
+  	return obj;
+}
+
+var obj2 = createPerson("猪八戒",28,"男");
+var obj3 = createPerson("白骨精",16,"女");
+var obj4 = createPerson("蜘蛛精",18,"女");
+```
+
+**工厂方法的弊端**
+
+```js
+/*
+ * 用来创建狗的对象
+ */
+function createDog(name , age){
+    var obj = new Object();
+    obj.name = name;
+    obj.age = age;
+    obj.sayHello = function(){
+      	alert("汪汪~~");
+    };
+    return obj;
+}
+/*
+ * 使用工厂方法创建的对象，使用的构造函数都是Object
+ * 	所以创建的对象都是Object这个类型，
+ * 	就导致我们无法区分出多种不同类型的对象
+ */
+//创建一个狗的对象
+var dog = createDog("旺财",3);
+
+console.log(dog);
+console.log(obj4);
+```
 
 
 
+### 方式三：构造方法
+
+* 十四、函数
+    * 6. 构造函数
 
 
 
@@ -1328,6 +1395,180 @@ fun();
 ```
 
 
+
+## 6. 构造函数
+
+```js
+/*
+ * 创建一个构造函数，专门用来创建Person对象的
+ * 	构造函数就是一个普通的函数，创建方式和普通函数没有区别,
+ * 	不同的是构造函数习惯上首字母大写
+ * 
+ * 构造函数和普通函数的区别就是调用方式的不同
+ * 	普通函数是直接调用，而构造函数需要使用new关键字来调用
+ * 
+ * 构造函数的执行流程：
+ * 	1.立刻创建一个新的对象
+ * 	2.将新建的对象设置为函数中this,在构造函数中可以使用this来引用新建的对象
+ * 	3.逐行执行函数中的代码
+ * 	4.将新建的对象作为返回值返回
+ * 
+ * 使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数称为一个类。
+ * 	我们将通过一个构造函数创建的对象，称为是该类的实例
+ * 
+ * this的情况：
+ * 	1.当以函数的形式调用时，this是window
+ * 	2.当以方法的形式调用时，谁调用方法this就是谁
+ * 	3.当以构造函数的形式调用时，this就是新创建的那个对象
+ * 
+ */
+function Person(name , age , gender){
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+    this.sayName = function(){
+      	alert(this.name);
+    };
+}
+
+var per = new Person("孙悟空",18,"男");
+var per2 = new Person("玉兔精",16,"女");
+var per3 = new Person("奔波霸",38,"男");
+```
+
+
+
+### a. instanceof
+
+```js
+/*
+ * 使用instanceof可以检查一个对象是否是一个类的实例
+ * 	语法：
+ * 		对象 instanceof 构造函数
+ * 如果是，则返回true，否则返回false
+ */
+console.log(per instanceof Person);
+console.log(dog instanceof Person);
+
+/*
+ * 所有的对象都是Object的后代，
+ * 	所以任何对象和Object左instanceof检查时都会返回true
+ */
+console.log(dog instanceof Object);
+```
+
+
+
+## 7. 原型 - prototype
+
+### a. 为什么引入原型？
+
+> 解决多个对象公用一个方法，减少内存。
+
+**原方案：在构造方法中增加方法 	**
+
+```js
+/*
+ * 创建一个Person构造函数
+ * 	- 在Person构造函数中，为每一个对象都添加了一个sayName方法，
+ * 		目前我们的方法是在构造函数内部创建的，
+ * 			也就是构造函数每执行一次就会创建一个新的sayName方法
+ * 		也是所有实例的sayName都是唯一的。
+ * 		这样就导致了构造函数执行一次就会创建一个新的方法，
+ * 			执行10000次就会创建10000个新的方法，而10000个方法都是一摸一样的
+ * 			这是完全没有必要，完全可以使所有的对象共享同一个方法
+ */
+function Person(name , age , gender){
+  this.name = name;
+  this.age = age;
+  this.gender = gender;
+  //向对象中添加一个方法
+  this.sayName = fun;
+}
+
+var per = new Person("孙悟空",18,"男");   // 每个对象都有一个新方法sayName()
+var per2 = new Person("玉兔精",16,"女");	// 每个对象都有一个新方法sayName()
+var per3 = new Person("奔波霸",38,"男");  // 每个对象都有一个新方法sayName()
+```
+
+**将sayName方法在全局作用域中定义（不推荐）**
+
+```js
+//将sayName方法在全局作用域中定义
+/*
+ * 将函数定义在全局作用域，污染了全局作用域的命名空间
+ * 	而且定义在全局作用域中也很不安全
+ */
+function fun(){
+  alert("Hello大家好，我是:"+this.name);
+};
+```
+
+**新方案：原型**
+
+```js
+//向原型中添加sayName方法
+Person.prototype.sayName = function(){
+  	alert("Hello大家好，我是:"+this.name);
+};
+
+//创建一个Person的实例
+var per = new Person("孙悟空",18,"男");
+var per2 = new Person("猪八戒",28,"男");
+per.sayName();
+per2.sayName();
+```
+
+
+
+### b. 原型的基本原理
+
+```js
+/*
+ * 原型 prototype
+ * 
+ * 	我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype
+ * 		这个属性对应着一个对象，这个对象就是我们所谓的原型对象
+ * 	如果函数作为普通函数调用prototype没有任何作用
+ * 	当函数以构造函数的形式调用时，它所创建的对象中都会有一个隐含的属性，
+ * 		指向该构造函数的原型对象，我们可以通过__proto__来访问该属性
+ * 
+ * 	原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，
+ * 		我们可以将对象中共有的内容，统一设置到原型对象中。
+ * 
+ * 当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用，
+ * 	如果没有则会去原型对象中寻找，如果找到则直接使用
+ * 
+ * 以后我们创建构造函数时，可以将这些对象共有的属性和方法，统一添加到构造函数的原型对象中，
+ * 	这样不用分别为每一个对象添加，也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法了
+ */
+
+function MyClass(){
+
+}
+
+//向MyClass的原型中添加属性a
+MyClass.prototype.a = 123;
+
+//向MyClass的原型中添加一个方法
+MyClass.prototype.sayHello = function(){
+  alert("hello");
+};
+
+var mc = new MyClass();
+
+var mc2 = new MyClass();
+
+//console.log(MyClass.prototype);
+//console.log(mc2.__proto__ == MyClass.prototype);
+
+//向mc中添加a属性
+mc.a = "我是mc中的a";
+
+//console.log(mc2.a);
+
+mc.sayHello();
+```
 
 
 
