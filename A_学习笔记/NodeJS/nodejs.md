@@ -433,12 +433,6 @@ console.log(path.extname(pathname));
 
 
 
-
-
-
-
-
-
 # 七、http
 
 
