@@ -1,5 +1,7 @@
-//导入模块
-const tiemo = require("./me.js");
+//声明函数
+function tiemo() {
+    console.log("贴膜....");
+}
 
-//调用函数
-tiemo();
+//暴露数据
+module.exports = tiemo;
