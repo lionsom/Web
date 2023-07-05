@@ -1,5 +1,3 @@
-
-
 # 一、NodeJS简介
 
 ## [什么是Node.js](https://vue3.chengpeiquan.com/engineering.html#什么是-node-js)
@@ -154,21 +152,288 @@ console.log(globalThis === global)
 
 fs 全称为 file system ，称之为 文件系统 ，是 Node.js 中的 **内置模块** ，可以对计算机中的磁盘进行操作。
 
-
-
 ## 1. 文件写入
 
+**同步VS异步**
+
+> Node.js 中的磁盘操作是由 **其他线程** 完成的，结果的处理有两种模式：
+>
+> * 同步处理 JavaScript 主线程 **会等待** 其他线程的执行结果，然后再继续执行主线程的代码，效率较低
+>
+> * 异步处理 JavaScript 主线程 **不会等待** 其他线程的执行结果，直接执行后续的主线程代码，效率较好 
+
+### a. **writeFile** 异步写入
+
+```js
+// 1. 导入 fs 模块
+// require 是 Node.js 环境中的'全局'变量，用来导入模块
+const fs = require('fs');
+
+fs.writeFile('./座右铭.txt', '我是你大爷', err => {
+    //如果写入失败，则回调函数调用时，会传入错误对象，如写入成功，会传入 null
+    if (err) {
+        console.log('写入失败！！！');
+        return;
+    } else {
+        console.log('写入成功！！！');
+    }
+})
+```
+
+### b. writeFileSync 同步写入
+
+```js
+try {
+  	fs.writeFileSync("./座右铭.txt", "三人行，必有我师焉。");
+} catch (e) {
+  	console.log(e);
+}
+```
+
+### c. appendFile 异步追加写入
+
+```js
+fs.appendFile("./座右铭.txt", "择其善者而从之，其不善者而改之。", (err) => {
+  	if (err) throw err;
+  	console.log("追加成功");
+});
+```
+
+### d. appendFileSync 同步追加写入
+
+```js
+try {
+	fs.appendFileSync("./座右铭.txt", "\r\n温故而知新, 可以为师矣");
+} catch (e) {
+  	console.log(e);
+}
+```
+
+### e. createWriteStream 流式写入
+
+> 程序打开一个文件是需要消耗资源的 ，流式写入可以减少打开关闭文件的次数。
+>
+> 流式写入方式适用于 大文件写入或者频繁写入 的场景, writeFile 适合于 写入频率较低的场景。
+
+```js
+let ws = fs.createWriteStream("./观书有感.txt");
+ws.write("半亩方塘一鉴开\r\n");
+ws.write("天光云影共徘徊\r\n");
+ws.write("问渠那得清如许\r\n");
+ws.write("为有源头活水来\r\n");
+ws.end();
+```
+
+
+
+## 2. 文件读取
+
+### a. readFile异步读取
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+fs.readFile("./座右铭.txt", (err, data) => {
+  	if (err) throw err;
+  	console.log(data);
+});
+
+fs.readFile("./座右铭.txt", "utf-8", (err, data) => {
+  	if (err) throw err;
+  	console.log(data);
+});
+```
+
+### b. readFileSync 同步读取
+
+```js
+let data = fs.readFileSync('./座右铭.txt'); 
+let data2 = fs.readFileSync('./座右铭.txt', 'utf-8');
+```
+
+### c. createReadStream 流式读取
+
+```js
+//创建读取流对象
+let rs = fs.createReadStream("./观书有感.txt");
+//每次取出 64k 数据后执行一次 data 回调
+rs.on("data", (data) => {
+  	console.log(data);
+  	console.log(data.length);
+}); 
+//读取完毕后, 执行 end 回调
+rs.on("end", () => {
+  	console.log("读取完成");
+});
+```
+
+
+
+## 3. 文件移动与重命名
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+fs.rename("./观书有感.txt", "./论语/观书有感.txt", (err) => {
+  if (err) throw err;
+  console.log("移动完成");
+});
+
+fs.renameSync("./座右铭.txt", "./论语/我的座右铭.txt");
+```
+
+
+
+## 4. 文件删除
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+fs.unlink("./test.txt", (err) => {
+  if (err) throw err;
+  console.log("删除成功");
+});
+
+fs.unlinkSync("./test2.txt");
+```
+
+
+
+## 5. 文件夹操作
+
+### a. mkdir / mkdirSync 创建文件夹
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+//异步创建文件夹
+fs.mkdir("./page", (err) => {
+  if (err) throw err;
+  console.log("创建成功");
+});
+
+//递归异步创建
+fs.mkdir("./1/2/3", { recursive: true }, (err) => {
+  if (err) throw err;
+  console.log("递归创建成功");
+});
+
+//递归同步创建文件夹
+fs.mkdirSync("./x/y/z", { recursive: true });
+
+```
+
+### b. **readdir** **读取文件夹** 
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+//异步读取
+fs.readdir("./论语", (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+//同步读取
+let data = fs.readdirSync("./论语");
+console.log(data);
+```
+
+### c.  rmdir 删除文件夹
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+//异步删除文件夹
+fs.rmdir("./page", (err) => {
+  if (err) throw err;
+  console.log("删除成功");
+});
+
+//异步递归删除文件夹
+fs.rmdir("./1", { recursive: true }, (err) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log("递归删除");
+});
+
+//同步递归删除文件夹
+fs.rmdirSync("./x", { recursive: true });
+```
+
+
+
+## 6. 查看资源状态
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+//异步获取状态
+fs.stat("./data.txt", (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+//同步获取状态
+let data = fs.statSync("./data.txt");
+```
+
+
+
+## 7. __dirname 
+
+* `__dirname` 与 `require` 类似，都是 Node.js 环境中的'全局'变量
+* `__dirname` 保存着 当前文件 **所在目录的绝对路径** ，可以使用 `__dirname` 与文件名拼接成 **绝对路径**
+* 使用 fs 模块的时候，尽量使用 `__dirname` 将路径转化为绝对路径，这样可以避免相对路径产生的Bug 
+
+```js
+//导入 fs 模块
+const fs = require("fs");
+
+console.log(__dirname);
+```
+
+
+
+# 六、path模块
+
+path 模块提供了 **操作路径** 的功能，我们将介绍如下几个较为常用的几个 API：
+
+![](images/path_API.png)
+
+```js
+const path = require("path");
+
+//拼接绝对路径（用的最多）
+console.log(path.resolve(__dirname, "test"));
+
+//获取路径分隔符
+console.log(path.sep);
+
+//解析路径
+let pathname = "D:/program file/nodejs/node.exe";
+console.log(path.parse(pathname));
+
+//获取路径基础名称
+console.log(path.basename(pathname));
+
+//获取路径的目录名
+console.log(path.dirname(pathname));
+
+//获取路径的扩展名
+console.log(path.extname(pathname));
+```
 
 
 
 
-
-
-
-
-
-
-# 六、path
 
 
 
