@@ -1,4 +1,6 @@
-[依赖包和插件](https://vue3.chengpeiquan.com/guide.html#%E4%BE%9D%E8%B5%96%E5%8C%85%E5%92%8C%E6%8F%92%E4%BB%B6)
+[Vue3入门指南与实战案例 - 依赖包和插件](https://vue3.chengpeiquan.com/guide.html#%E4%BE%9D%E8%B5%96%E5%8C%85%E5%92%8C%E6%8F%92%E4%BB%B6)
+
+[Vue3入门指南与实战案例 - 如何使用包](https://vue3.chengpeiquan.com/guide.html#如何使用包)
 
 
 
@@ -22,9 +24,9 @@ NPM由三个不同的组成部分组成：
 
 使用[网站](https://www.npmjs.com/)来发现软件包，设置配置文件并管理NPM体验的其他方面。例如，您可以设置组织来管理对公共或私人软件包的访问。
 
-[CLI](https://docs.npmjs.com/cli/v9/commands/npm)从终端运行，这是大多数开发人员与NPM互动的方式。
+[CLI](https://docs.npmjs.com/cli/v9/commands/npm) 从终端运行，这是大多数开发人员与NPM互动的方式。
 
-[注册表](https://docs.npmjs.com/cli/v9/using-npm/registry)是一个大型公共数据库，及其围绕它的元信息。
+[注册表](https://docs.npmjs.com/cli/v9/using-npm/registry) 是一个大型公共数据库，及其围绕它的元信息。
 
 
 
@@ -64,7 +66,6 @@ https://registry.npmjs.org/
 
 ```
 $ npm config set registry https://registry.npmmirror.com
-
 ```
 
 再次查看：
@@ -229,7 +230,9 @@ $ npm uninstall --global <package-name>
 
 
 
-# [如何使用包](https://vue3.chengpeiquan.com/guide.html#如何使用包)
+# 如何使用包
+
+[Vue3入门指南与实战案例 - 如何使用包](https://vue3.chengpeiquan.com/guide.html#如何使用包)
 
 ```shell
 # 创建新项目
