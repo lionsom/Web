@@ -36,6 +36,8 @@ $ which pnpm
 
 **npm & pnpm 安装是跟着当前的node走的**
 
+使用nvm切换node不同的版本，pnmp也会变化。
+
 ```shell
 # 查看当前安装的 node 版本
 $ nvm list
