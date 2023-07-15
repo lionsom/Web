@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+      #app {
+        padding: 10px 20px;
+      }
+      .query {
+        margin: 10px 0;
+      }
+      .box {
+        display: flex;
+      }
+      textarea {
+        width: 300px;
+        height: 160px;
+        font-size: 18px;
+        border: 1px solid #dedede;
+        outline: none;
+        resize: none;
+        padding: 10px;
+      }
+      textarea:hover {
+        border: 1px solid #1589f5;
+      }
+      .transbox {
+        width: 300px;
+        height: 160px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: none;
+      }
+      .tip-box {
+        width: 300px;
+        height: 25px;
+        line-height: 25px;
+        display: flex;
+      }
+      .tip-box span {
+        flex: 1;
+        text-align: center;
+      }
+      .query span {
+        font-size: 18px;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+      .input-wrap span {
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        font-size: 12px;
+      }
+      .input-wrap i {
+        font-size: 20px;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 条件选择框 -->
+      <div class="query">
+        <span>翻译成的语言：</span>
+        <select>
+          <option value="italy">意大利</option>
+          <option value="english">英语</option>
+          <option value="german">德语</option>
+        </select>
+      </div>
+
+      <!-- 翻译框 -->
+      <div class="box">
+        <div class="input-wrap">
+          <textarea v-model="words"></textarea>
+          <span><i>⌨️</i>文档翻译</span>
+        </div>
+        <div class="output-wrap">
+          <div class="transbox">mela</div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // 接口地址：https://applet-base-api-t.itheima.net/api/translate
+      // 请求方式：get
+      // 请求参数：
+      // （1）words：需要被翻译的文本（必传）
+      // （2）lang： 需要被翻译成的语言（可选）默认值-意大利
+      // -----------------------------------------------
+      
+      const app = new Vue({
+        el: '#app',
+        data: {
+          words: ''
+        },
+        // 具体讲解：(1) watch语法 (2) 具体业务实现
+      })
+    </script>
+  </body>
+</html>
