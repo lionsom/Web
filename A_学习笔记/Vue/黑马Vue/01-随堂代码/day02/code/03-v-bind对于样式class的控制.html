@@ -25,6 +25,10 @@
 <body>
 
   <div id="app">
+    <!-- html固定写法 -->
+    <div class="box pink big">黑马程序员</div>
+
+    <!-- Vue动态写法 -->
     <div class="box" :class="{ pink: true, big: true }">黑马程序员</div>
     <div class="box" :class="['pink', 'big']">黑马程序员</div>
   </div>
