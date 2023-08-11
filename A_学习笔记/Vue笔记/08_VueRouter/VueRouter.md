@@ -432,9 +432,9 @@ export default {
 
 ## 一、编程式导航 - 两种路由跳转方式
 
-### 1. path 路径跳转 
+### 1. path路径跳转 
 
-特点：简易方便
+**特点：简易方便**
 
 ```js
 //简单写法
@@ -469,18 +469,89 @@ export default {
 
 
 
-### 2. name 命名路由跳转 
+### 2. name命名路由跳转 
+
+**特点：适合 path 路径长的场景**
+
+语法：
+
+- 路由规则，必须配置name配置项
+
+    ```js
+    { name: '路由名', path: '/path/xxx', component: XXX },
+    ```
+
+- 通过name来进行跳转
+
+    ```js
+    this.$router.push({
+      name: '路由名'
+    })
+    ```
 
 
 
-### 3. path路径跳转 VS name命名路由跳转 
+## 二、path路径跳转传参
 
-- path 路径跳转（简易方便）
-- name 命名路由跳转（适合 path 路径长的场景）
+### 1. query传参
+
+```js
+//简单写法
+this.$router.push('/路径?参数名1=参数值1&参数2=参数值2')
+//完整写法
+this.$router.push({
+  path: '/路径',
+  query: {
+    参数名1: '参数值1',
+    参数名2: '参数值2'
+  }
+})
+```
+
+**接受参数的方式依然是：`$route.query.参数名`**
+
+### 2. 动态路由传参
+
+```js
+// 简单写法
+this.$router.push('/路径/参数值')
+
+// 完整写法
+this.$router.push({
+  path: '/路径/参数值'
+})
+```
+
+**接受参数的方式依然是：`$route.params.参数值`**
+
+**注意：**path不能配合params使用
 
 
 
+## 三、name命名路由传参
 
+### 1.  query传参
+
+```js
+this.$router.push({
+  name: '路由名字',
+  query: {
+    参数名1: '参数值1',
+    参数名2: '参数值2'
+  }
+})
+```
+
+### 2. 动态路由传参
+
+```js
+this.$router.push({
+  name: '路由名字',
+  params: {
+    参数名: '参数值',
+  }
+})
+```
 
 
 
