@@ -1,4 +1,4 @@
-## 一、[Vuex](https://vuex.vuejs.org/zh/) 概述 
+##  一、[Vuex](https://vuex.vuejs.org/zh/) 概述 
 
 目标：明确[Vuex](https://vuex.vuejs.org/zh/)是什么，应用场景以及优势
 
