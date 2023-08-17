@@ -98,6 +98,44 @@ Vue生命周期过程中，会**自动运行一些函数**，被称为【**生�
 
 
 
+```js
+  // 1. 创建阶段（准备数据）
+  beforeCreate() {
+    console.log('beforeCreate');
+  },
+  created() {
+    console.log('created');
+  },
+
+  // 2. 挂载阶段（渲染模板）
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  mounted() {
+    console.log('mounted');
+  },
+
+  // 3. 更新阶段(修改数据 → 更新视图)
+  beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  updated() {
+    console.log('updated');
+  },
+
+  // 4. 卸载阶段
+  beforeDestroy () {
+    console.log('beforeDestroy');
+  },
+  destroyed() {
+    console.log('destroyed');
+  },
+```
+
+
+
+
+
 ## 四、生命周期钩子小案例
 
 ### 1.在created中发送数据
