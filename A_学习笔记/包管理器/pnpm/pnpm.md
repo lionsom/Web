@@ -66,7 +66,34 @@ $ which pnpm
 
 
 
+# 日常使用
 
+
+
+## pnpm升级
+
+```bash
+   ╭──────────────────────────────────────────────────────────────────╮
+   │                                                                  │
+   │                Update available! 6.35.1 → 8.6.12.                │
+   │   Changelog: https://github.com/pnpm/pnpm/releases/tag/v8.6.12   │
+   │                Run "pnpm add -g pnpm" to update.                 │
+   │                                                                  │
+   │      Follow @pnpmjs for updates: https://twitter.com/pnpmjs      │
+   │                                                                  │
+   ╰──────────────────────────────────────────────────────────────────╯
+   
+$ pnpm add -g pnpm
+$ pnpm -v
+```
+
+
+
+## 安装库
+
+```sh
+$ pnpm add axios
+```
 
 
 
