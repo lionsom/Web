@@ -55,6 +55,10 @@ $ which pnpm
 # 切换node
 $ nvm use 18
 Now using node v18.16.0 (npm v9.5.1)
+# 查看node路径
+$ which node
+/Users/qiyeyun/.nvm/versions/node/v18.16.0/bin/node
+
 
 # 再次查看pnpm版本
 $ pnpm -v
