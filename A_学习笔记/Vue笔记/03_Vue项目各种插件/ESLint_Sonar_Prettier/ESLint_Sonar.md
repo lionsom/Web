@@ -1,6 +1,10 @@
-# 一、ESlint代码规范
 
-## JavaScript Standard Style 规范说明
+
+# ESLint
+
+## 一、ESlint代码规范
+
+### JavaScript Standard Style 规范说明
 
 ESLint:是一个代码检查工具，用来检查你的代码是否符合指定的规则(你和你的团队可以自行约定一套规则)。在创建项目时，我们使用的是 [JavaScript Standard Style](https://standardjs.com/readme-zhcn.html) 代码风格的规则。
 
@@ -19,7 +23,34 @@ ESLint:是一个代码检查工具，用来检查你的代码是否符合指定�
 
 
 
-# 二、代码规范错误
+### 库
+
+```
+2022年10月11日18:21
+
++ prettier 2.7.1：prettier核心代码库
+
++ eslint 8.25.0 ：ESlint核心代码库
++ eslint-config-airbnb-base 15.0.0 ：airbnb的代码规范（依赖eslint-plugin-import ）
++ eslint-config-prettier 8.5.0 ：eslint 结合prettier的格式化
++ eslint-plugin-import 2.26.0 ：项目里支持eslint
++ eslint-plugin-prettier 4.2.1 ： 将prettier结合进入eslint的插件
++ eslint-plugin-vue 9.6.0 ：eslint在vue里的代码规范
+
++ @types/eslint 8.4.6
++ @types/node 18.8.4
++ @typescript-eslint/eslint-plugin 5.40.0 ：ESLint插件，包含各类定义好的检测ts代码的规范
++ @typescript-eslint/parser 5.40.0 : ESLint的解析器，用于解析ts，从而检查和规范ts代码
++ eslint-import-resolver-alias 1.1.2 ：让我们在import的时候可以使用@别名
+
+2022年10月11日 20:19
+
+发现还需要安装一个包 ：eslint/create-config
+```
+
+
+
+## 二、代码规范错误
 
 ## 1. 模拟错误
 
@@ -80,7 +111,41 @@ new Vue ( {
 
 
 
- 
+
+
+#sonarlint安装
+
+**VSCode中安装插件之后直接就可以生效使用**
+
+1. 安装插件sonarlint，安装链接 https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
+
+2. 要求本地安装node>14.17及以上版本，推荐使用nvm安装，sonarlint会自动使用nvm的安装路径
+
+```
+nvm install 14.17.0
+```
+
+
+
+## 配置node路径
+
+如果vscode没有自动检测到node，需要手动配置一下node路径（注意版本>=14.17.0）
+
+在设置界面中搜索：`sonarlint` 或 `sonarlint.pathToNodeExecutable`
+
+找到如下配置，将 `/Users/${user}/.nvm/versions/node/${version}/bin/node` 填入
+
+示例：`/Users/weilei/.nvm/versions/node/v14.20.0/bin/node`
+
+![](/Users/qiyeyun/Study/Web/A_学习笔记/Vue笔记/10_Vue项目各种插件/ESLint_Sonar_Prettier/images/101.png)
+
+
+
+## 配置JAVA路径
+
+在设置界面中搜索：`sonarlint` 或 `sonarlint.ls.javaHome`
+
+![](/Users/qiyeyun/Study/Web/A_学习笔记/Vue笔记/10_Vue项目各种插件/ESLint_Sonar_Prettier/images/102.png) 
 
 
 
