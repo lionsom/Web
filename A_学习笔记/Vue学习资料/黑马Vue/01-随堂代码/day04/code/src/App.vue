@@ -29,7 +29,6 @@ export default {
       //   console.log(this.$refs.inp)
       //   this.$refs.inp.focus()
       // })
-
       setTimeout(() => {
         this.$refs.inp.focus()
       }, 0)
