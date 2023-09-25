@@ -207,7 +207,7 @@ Command + Shift + H
 ## 1. 折叠全部代码
 
 ```
-Command + k + o
+Command + k + 0      // 数字0
 ```
 
 
