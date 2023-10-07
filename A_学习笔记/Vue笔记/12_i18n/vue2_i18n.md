@@ -1,6 +1,6 @@
 
 
-[Vue I18n](https://kazupon.github.io/vue-i18n/zh/)
+# [Vue I18n官网](https://kazupon.github.io/vue-i18n/zh/)
 
 
 
@@ -64,6 +64,8 @@ export default en
 # main.js注册
 
 ```js
+import myI18n from '@/utils/i18n-usage'
+
 new Vue({
   router,
   store,
@@ -105,8 +107,8 @@ eg:
 
 ```js
 <van-action-sheet
-    :description="$t('message.changeLang')"     // 正确
-    description="$t('message.changeLang')"		// 错误
+    :description="$t('message.changeLang')"     // 输出：切换语言
+    description="$t('message.changeLang')"		// 输出：$t('message.changeLang')
 />
 ```
 
