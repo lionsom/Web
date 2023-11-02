@@ -71,9 +71,9 @@ Now if you go to http://localhost:3000/posts/1, you'll get
 
 
 
+## 实操
 
-
-
+![](images/001.png)
 
 ```shell
 $ json-server --watch db.json

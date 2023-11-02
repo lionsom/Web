@@ -142,9 +142,7 @@ export default {
 
 
 
-
-
-# VueRouter + Vuex目录结构
+# 组件目录
 
 ## 1.组件分类
 
@@ -168,6 +166,25 @@ export default {
     复用组件 - 展示数据 - 常用于复用
 
 
+
+
+
+# 文件说明⭐️
+
+## jsconfig.json
+
+* [官网 - jsconfig.json](https://code.visualstudio.com/docs/languages/jsconfig)
+    * [中文翻译参考](https://juejin.cn/post/6930549887402672135)
+
+* 目录中存在`jsconfig.json`文件时，表明该目录是 JavaScript 项目的根目录。
+* 如果不使用 JavaScript，那么无需关心`jsconfig.json`
+* `jsconfig.json`源于 TypeScript 的配置文件 [tsconfig.json](https://link.juejin.cn/?target=https%3A%2F%2Fwww.typescriptlang.org%2Fdocs%2Fhandbook%2Ftsconfig-json.html)。相当于`tsconfig.json`的`allowJs`属性设置为`true`
+
+
+
+## tsconfig.json
+
+* [官网 - tsconfig.json](https://link.juejin.cn/?target=https%3A%2F%2Fwww.typescriptlang.org%2Fdocs%2Fhandbook%2Ftsconfig-json.html)
 
 
 
