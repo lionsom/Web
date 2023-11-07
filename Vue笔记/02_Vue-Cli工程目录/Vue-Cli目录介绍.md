@@ -190,9 +190,11 @@ export default {
 
 
 
+## vue.config.js
 
+[官网介绍](https://cli.vuejs.org/zh/config/#vue-config-js)
 
-
+调整 webpack 配置最简单的方式就是在 `vue.config.js` 中的 `configureWebpack` 选项提供一个对象：
 
 
 
