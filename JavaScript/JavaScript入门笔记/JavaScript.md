@@ -59,7 +59,7 @@
     * 内部 JavaScript 
     * 外部 JavaScript （推荐）
 
-**行内 JavaScript **
+**行内 JavaScript**
 
 ```html
 <body>
@@ -82,7 +82,7 @@
 </body>
 ```
 
-**内部 JavaScript **
+**内部 JavaScript**
 
 ```html
 <!--
@@ -111,7 +111,7 @@
 </script>
 ```
 
-**注意事项： **
+**注意事项：**
 
 * 书写的位置尽量写到文档末尾 </body> 前面 
 
