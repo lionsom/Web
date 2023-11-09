@@ -1,6 +1,8 @@
 * [TypeScript官网](https://www.tslang.cn/docs/home.html)
+* [Vue3 入门指南与实战案例](https://vue3.chengpeiquan.com/)
+    * [快速上手 TypeScript](https://vue3.chengpeiquan.com/typescript.html#快速上手-typescript)
 
-
+* [Vue官网 - 搭配 TypeScript 使用 Vue](https://cn.vuejs.org/guide/typescript/overview.html)
 
 
 
@@ -149,16 +151,6 @@ $ npm install -D typescript ts-node
 ```
 
 > 请注意， `dev:ts` 这个 script 是用了 `ts-node` 来代替原来在用的 `node` ，因为使用 `node` 无法识别 TypeScript 语言。
-
-
-
-
-
-
-
-
-
-
 
 
 
