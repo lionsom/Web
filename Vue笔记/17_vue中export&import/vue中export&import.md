@@ -89,3 +89,44 @@ import utils from "./utils.js"
 utils.helloWorld();
 utils.test();
 ```
+
+
+
+# 四、局部使用 + 全局使用
+
+## 4.1 局部使用
+
+在上面的例子中，都是在当前页面调用，直接http.get或http.post就行，在此不再赘述
+
+## 4.2 全局变量
+
+更多的是全局变量，比如封装的get或post请求方法等
+
+```js
+import http from './utils/http';
+// 挂载至全局
+Vue.prototype.http = http
+```
+
+引入之后，借助Vue的prototype属性将变量挂载到全局中，这样在任何.vue页面中，直接用this.http.get或this.http.post即可，别忘了this，注意this作用域。
+
+
+
+# 五、备注
+
+* 当import 引入依赖包的时候，不需要相对路径，直接引入包名即可，形如：`import axios from ‘axios’;`
+
+* 一个js文件中可以有多个export，但只能有一个 `export default`
+
+
+
+
+
+
+
+
+
+
+
+
+
