@@ -53,35 +53,6 @@ $ nvm use 19
 
 
 
-# npm配置镜像源
-
-查看当前的 npm 配置：
-
-```shell
-$ npm config get registry
-https://registry.npmjs.org/
-```
-
-更换 [npm Mirror 中国镜像站](https://npmmirror.com/) ：
-
-```
-$ npm config set registry https://registry.npmmirror.com
-```
-
-再次查看：
-
-```shell
-$ npm config get registry
-```
-
-如果需要删除自己配置的镜像源，可以输入以下命令进行移除，移除后会恢复默认设置：
-
-```shell
-$ npm config rm registry
-```
-
-
-
 # [npm更新版本](https://docs.npmjs.com/about-npm-versions)
 
 - [latest release](https://docs.npmjs.com/about-npm-versions#the-latest-release-of-npm): the most recent stable version.

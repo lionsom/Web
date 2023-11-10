@@ -11,6 +11,8 @@
 
 ## create-vue创建Vue3
 
+[github - create-vue](https://github.com/vuejs/create-vue)
+
 * 前提环境条件：已安装 16.0 或更高版本的 Node.js
     * `node -v`
 
