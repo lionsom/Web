@@ -7,6 +7,25 @@
 
 
 
+```bash
+# Vue CLI 创建Vue2项目
+$ vue create hello-world
+
+# create-vue 创建Vue3项目
+$ npm create vue@latest
+# Or, if you need to support IE11, you can create a Vue 2 project with:
+$ npm create vue@legacy
+```
+
+
+
+```bash
+# 创建Vue3项目
+$ pnpm create vue
+```
+
+
+
 ## create-vue创建Vue3
 
 [github - create-vue](https://github.com/vuejs/create-vue)
