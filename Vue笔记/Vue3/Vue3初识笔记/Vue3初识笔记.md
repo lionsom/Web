@@ -521,15 +521,76 @@ defineOptions({
 
 
 
-# Vue3.3新特性-defineModel
+# Vue3.3新特性-defineModel（试验中...）
+
+* 试验特性，需要开启权限
+
+![](images/20.png)
 
 
 
+## 原始 v-model 写法
+
+```vue
+<script setup>
+
+import myInput from '@/12-my-input.vue'
+import { ref } from 'vue'
+
+const txt = ref('1111')
+
+</script>
+
+<template>
+
+<myInput v-model="txt"></myInput>
+
+{{ txt }}
+
+</template>
+```
+
+```vue
+<script setup>
+
+defineProps({
+  modelValue: String
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="modelValue"
+    @input="e => emit('update:modelValue', e.target.value)"
+  />
+</template>
+```
 
 
 
+## defineModel 写法
 
+```vue
+<script setup>
 
+import { defineModel } from 'vue'
+
+const modelValue = defineModel()
+
+</script>
+
+<template>
+  <input 
+    type="txt"
+    :value="modelValue"
+    @input="e => modelValue = e.target.value"
+  >
+</template>
+```
 
 
 
