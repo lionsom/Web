@@ -51,6 +51,23 @@ TypeScript 的出现，在编译的时候就可以执行检查来避免掉这些
 
 
 
+# js VS ts
+
+> TypeScript is a syntactic sugar for JavaScript. TypeScript syntax is a superset of ECMAScript 2015 (ES2015) syntax. Every JavaScript program is also a TypeScript program.
+
+- 语言层面：JavaScript和TypeScript都是ECMAScript（ECMA-262）的具体实现。
+- 执行环境层面：浏览器引擎和Node.js都能够直接运行JavaScript，但无法直接运行TypeScript。
+- 时序层面：TypeScript被真正执行前，会通过编译转换生成JavaScript，之后才能被解释执行。
+- 厂商层面：JavaScript由Netscape率先推出，现在主要由各大浏览器厂商实现。而TypeScript is a trademark of Microsoft Corporation，目前由微软进行设计和维护。
+
+TypeScript是ECMAScript 2015的语法超集，是JavaScript的语法糖。JavaScript程序可以直接移植到TypeScript，TypeScript需要编译（语法转换）生成JavaScript才能被浏览器执行。一图胜千言：
+
+![](images/01.webp)
+
+
+
+
+
 # typescript安装 + 编译
 
 [官网 - 安装](https://www.tslang.cn/index.html#download-links)
