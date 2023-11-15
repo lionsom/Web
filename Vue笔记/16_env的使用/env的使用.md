@@ -4,12 +4,6 @@
 
 
 
-
-
-
-
-
-
 ## .env文件的作用
 
 * .env 后缀的文件是全局默认配置文件，不论什么环境都会加载并合并。
@@ -19,10 +13,6 @@
 * .env.production 是生产环境下的配置文件（也就是正式环境），仅在生产环境加载。
 
 以上三个命名不能变动，除此之外，可以另外自定义加上`.env.test`文件，也就是测试环境，或者`.env.beta`，也就是内部测试版，等等…
-
-
-
-
 
 
 
@@ -48,21 +38,15 @@
     "test": "vue-cli-service build --mode test",
     "all": "vue-cli-service build && vue-cli-service build --mode test"
   }
-
-1234567
 ```
 
 每一行说明如下：
 
-`1`，npm run serve，启动项目，并且加载.env和.env.development文件
-
-`2`，npm run serve-test，启动项目，并且加载.env和.env.test文件
-
-`3`，npm run build，生产环境打包，其中.env和.env.production文件会加载
-
-`4`，npm run test，测试环境打包，其中.env和.env.test文件会加载
-
-`5`，npm run all，生产环境和测试环境同时打包，加载不同的.env文件
+1. npm run serve，启动项目，并且加载.env和.env.development文件
+2. npm run serve-test，启动项目，并且加载.env和.env.test文件
+3. npm run build，生产环境打包，其中.env和.env.production文件会加载
+4. npm run test，测试环境打包，其中.env和.env.test文件会加载
+5. npm run all，生产环境和测试环境同时打包，加载不同的.env文件
 
 
 
@@ -74,11 +58,7 @@
 
 
 
-
-
-
-
-# 问题
+# Error
 
 ```bash
  warning  
