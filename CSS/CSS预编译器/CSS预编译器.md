@@ -2,6 +2,7 @@
     * [Sass中文官网](https://www.sasscss.com/)
     * [Sass香港](https://www.sass.hk/)
     * [Sass练习测试](https://www.sassmeister.com/)
+    * [What's the difference between SCSS and Sass?](https://stackoverflow.com/questions/5654447/whats-the-difference-between-scss-and-sass)
 * [Less](https://lesscss.org/)
     * [Less中文官网](https://less.devjs.cn/)
 * [Stylus](http://www.stylus.org/)
@@ -77,8 +78,6 @@ $ npm install -g less   # 全局安装
 ## 3.1 安装Sass
 
 * [Sass中文官网 - 安装 Sass](https://www.sasscss.com/install)
-
-
 
 
 
