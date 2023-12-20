@@ -202,20 +202,28 @@ Command + Shift + H
 
 
 
-# 23. 折叠代码
+# 23. 折叠（展开）代码
 
-## 1. 折叠全部代码
+## 1. 折叠（展开）全部代码
 
-```
+```bash
+# 折叠
 Command + k + 0      // 数字0
+
+# 展开
+Command + k + j
 ```
 
 
 
 ## 2. 折叠鼠标所在位置的代码
 
-```
-Command + Alt + [ / ]
+```bash
+# 折叠
+Command + Alt + [
+
+# 展开
+Command + Alt + ]
 ```
 
 
