@@ -4,6 +4,8 @@
 
 * [Vue官网 - 搭配 TypeScript 使用 Vue](https://cn.vuejs.org/guide/typescript/overview.html)
 
+* [尚硅谷 - Vue3+TS 快速上手](https://24kcs.github.io/vue3_study/)
+
 
 
 # typescript是什么
