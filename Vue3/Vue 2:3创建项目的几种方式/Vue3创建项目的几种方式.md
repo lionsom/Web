@@ -42,7 +42,7 @@ $ vue ui
 
 
 
-## 3. create-vue - Vite + Vue2
+## 3. create-vue（Vue 官方）- Vite + Vue2
 
 [create-vue](https://github.com/vuejs/create-vue)
 
@@ -144,7 +144,7 @@ $ vue ui
 
 
 
-## 3. create-vue - Vite + Vue3
+## 3. create-vue（Vue 官方）- Vite + Vue3
 
 [create-vue](https://github.com/vuejs/create-vue) 是 Vue 官方推出的一个新脚手架，用以代替基于 Webpack 的 Vue CLI ，它可以创建基于 Vite 的 Vue 基础模板。
 
@@ -248,7 +248,7 @@ Done. Now run:
 
 
 
-## 4. [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)
+## 4. [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) - Vite 官方推荐
 
 [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) 是 Vite 官方推荐的一个脚手架工具，可以创建基于 Vite 的不同技术栈基础模板。
 
@@ -292,7 +292,7 @@ Done. Now run:
 
 
 
-## 5. 其他脚手架 - Create Preset
+## 5. 其他脚手架 - Create Preset（Awesome Starter推荐）
 
 [Vue3入门指南与实战案例 - Create Preset](https://vue3.chengpeiquan.com/upgrade.html#create-preset)
 
