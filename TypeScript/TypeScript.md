@@ -173,29 +173,45 @@ $ npm install -D typescript ts-node
 
 
 
-# tsconfig.json
-
-* [了解 tsconfig.json](https://vue3.chengpeiquan.com/typescript.html#%E4%BA%86%E8%A7%A3-tsconfig-json)
 
 
+# [TypeScript 如何编译为 JavaScript 代码](https://vue3.chengpeiquan.com/typescript.html#如何编译为-javascript-代码)
 
 
 
+## 编译单个文件
+
+package.json
+
+```json
+{
+  "scripts": {
+    "dev:ts": "ts-node src/ts/index.ts",
+    "build": "tsc src/ts/index.ts --outDir dist",
+  },
+  "devDependencies": {
+    "@types/md5": "^2.3.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
+```
+
+​		这样在命令行运行 `npm run build` 的时候，就会把 `src/ts/index.ts` 这个 TS 文件编译，并输出到项目下与 src 文件夹同级的 dist 目录下。
+
+​		其中 `tsc` 是 TypeScript 用来编译文件的命令， `--outDir` 是它的一个选项，用来指定输出目录，如果不指定，则默认生成到源文件所在的目录下面。
+
+
+
+## [编译多个模块](https://vue3.chengpeiquan.com/typescript.html#编译多个模块)
+
+
+
+## [修改编译后的 JS 版本](https://vue3.chengpeiquan.com/typescript.html#修改编译后的-js-版本)
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# [了解 tsconfig.json](https://vue3.chengpeiquan.com/typescript.html#%E4%BA%86%E8%A7%A3-tsconfig-json)
 
