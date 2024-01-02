@@ -35,7 +35,8 @@ $ nvm -h
 ```bash
 $ nvm install node # "node" is an alias for the latest version
 $ nvm install 14.7.0 # or 16.3.0, 12.22.1, etc
-
+$ nvm install 16 # 安装最新版的16.xx.xx
+ 
 $ node -v # 查看是否安装成功
 
 $ nvm ls # 安装了哪些版本
