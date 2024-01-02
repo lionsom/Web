@@ -5,7 +5,7 @@
     <button @click="changePerson">修改Person</button>
 
     <br>
-    <h2>姓名：{{brand}}</h2>
+    <h2>姓名：{{brand}} {{ xm }}</h2>
     <h2>年龄：{{price}}</h2>
     <button @click="changeCar">修改Car</button>
   </div>
@@ -57,5 +57,6 @@
   box-shadow: 0 0 10px; 
   border-radius: 10px; 
   padding: 20px;
+  margin-top: 10px;
 }
 </style>

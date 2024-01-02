@@ -10,6 +10,7 @@
     <Person7/>
     <Person8/>
     <Person9/>
+    <Person10/>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import Person6 from './setup-demo/06person-ref-object.vue'
 import Person7 from './setup-demo/07person-reactive-object.vue'
 import Person8 from './setup-demo/08person-ref-vs-reactive.vue'
 import Person9 from './setup-demo/09toRefs-toRef.vue'
+import Person10 from './setup-demo/10computed.vue'
 
 export default {
   name: 'App',  //组件名
@@ -38,7 +40,8 @@ export default {
     Person6,
     Person7,
     Person8,
-    Person9
+    Person9,
+    Person10
   } 
 }
 
