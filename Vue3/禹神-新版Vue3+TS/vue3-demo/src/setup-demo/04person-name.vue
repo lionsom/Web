@@ -1,8 +1,6 @@
 <template>
   <div class="person3">
     组件名字
-    <h2>姓名：{{name}}</h2>
-    <button @click="changeName">修改名字</button>
   </div>
 </template>
 
@@ -28,15 +26,8 @@
     ],
   })
  -->
-<script lang="ts" setup name="Person444444">
-  import { ref } from 'vue'
-  
-  const name = ref('张三')
+<script lang="ts" setup name="Person4444444444444444">
 
-  const changeName = () => {
-    name.value = 'zhang-san'
-    console.log(name.value);
-  }
 </script>
 
 <style scoped>

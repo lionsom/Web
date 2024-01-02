@@ -1,5 +1,6 @@
 <template>
   <div class="person3">
+    ref - base
     <h2>姓名：{{name}}</h2>
     <button @click="changeName">修改名字</button>
   </div>
