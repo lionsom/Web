@@ -63,7 +63,7 @@ utils.test(); 	// 执行utils.js中的test方法
 
 ## 3.1 全部导出
 
-*需要注意的是:一个js文件中可以有多个export，但只能有一个export default*
+**需要注意的是:一个js文件中可以有多个export，但只能有一个export default**
 
 ```JS
 var helloWorld=function(){

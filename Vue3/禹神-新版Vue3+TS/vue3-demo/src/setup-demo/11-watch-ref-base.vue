@@ -1,11 +1,8 @@
 <template>
   <div class="person3">
-    姓：<input type="text" v-model="firstName"> <br>
-    名：<input type="text" v-model="lastName">
-    <h2>姓名：{{ fullName }}</h2>
-    <h2>姓名：{{ fullName }}</h2>
-
-    <button @click="changeFirstName">改 姓</button>
+    <h1>情况一：监视【ref】定义的【基础类型】数据</h1>
+    <h2>当前求和：{{ sum }}</h2>
+    <button @click="addSum">+++1</button>
   </div>
 </template>
 
@@ -21,26 +18,38 @@
   •特点：vue3 中的watch 只能监视以下四种数据：
     1. ref 定义的数据。
     2. reactive 定义的数据。
-    3. 函数返回一个值（getter 西数）。
+    3. 函数返回一个值（getter函数）。
     4. 一个包含上述内容的数组。
   
   我们在 vue3 中使用watch 的时候，通常会遇到以下几种情况： 
   (1).监视ref 定义的【基木类型】数据：直按写数据名即可，监视的是其value 值的改变。
 -->
 <script lang="ts" setup>
-  import { ref, computed } from 'vue'
+  import { ref, watch } from 'vue'
 
-  let firstName = ref('zhang')
-  let lastName = ref('san')
+  let sum = ref(0)
 
-  let fullName = computed(() => {
-    console.log('计算属性触发了嘛');
-    return `${firstName.value} ${lastName.value}`
+  function addSum() {
+    sum.value += 1
+  }
+
+  // 监视 watch 
+  // watch(谁？, 回调函数)
+  watch(sum, (newVal) => {
+    console.log('sum 值改变了，新的值是：', newVal)
+  })
+  watch(sum, (newVal, oldVal) => {
+    console.log('sum 值改变了，新的值是：', newVal, '，旧值：', oldVal)
   })
 
-  function changeFirstName() {
-    firstName.value = 'li'
-  }
+  // 关闭监视
+  const stopWatch = watch(sum, (newVal) => {
+    console.log('sum 值改变了，新的值是：', newVal, '新值大于10停止！！！')
+    if (newVal > 10) {
+      stopWatch()
+    }
+  })
+
 </script>
 
 <style scoped>
