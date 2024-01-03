@@ -75,12 +75,6 @@ createApp(App).mount('#app')
 
 
 
-# vue2 vs Vue3
-
-
-
-
-
 
 
 
