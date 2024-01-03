@@ -19,7 +19,11 @@
 
 </script>
 
-<style>
+<style scoped>
+  .app {
+    background-color: green;
+  }
+
     /* App */
   .title {
     text-align: center;

@@ -5,7 +5,7 @@
       <RouterDemo />
     </div> 
 
-    <div v-show="true">
+    <div v-show="false">
       <Person2/>
       <Person3/>
       <Person23/>
@@ -93,7 +93,7 @@ export default {
 <style scoped>
 .app {
   width: 80vw;
-  background-color: #ddd; 
+  background-color: orange; 
   box-shadow: 0 0 10px; 
   border-radius: 10px; 
   padding: 20px;
