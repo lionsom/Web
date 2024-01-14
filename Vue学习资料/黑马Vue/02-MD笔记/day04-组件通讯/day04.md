@@ -949,9 +949,7 @@ export default {
 
 ### 5.v-model使用在其他表单元素上的原理
 
-不同的表单元素， v-model在底层的处理机制是不一样的。比如给checkbox使用v-model
-
-底层处理的是 checked属性和change事件。
+不同的表单元素， v-model在底层的处理机制是不一样的。比如给checkbox使用v-model，底层处理的是 checked属性和change事件。
 
 **不过咱们只需要掌握应用在文本框上的原理即可**
 
