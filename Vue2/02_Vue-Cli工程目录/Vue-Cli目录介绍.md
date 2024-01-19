@@ -188,8 +188,6 @@ export default {
 
 
 
-
-
 ## vue.config.js
 
 [官网介绍](https://cli.vuejs.org/zh/config/#vue-config-js)
@@ -198,15 +196,78 @@ export default {
 
 
 
+## .npmrc
+
+https://juejin.cn/post/6983522411647860766
+
+```sh
+engine-strict=true
+always-auth=true
+@ay:registry=https://open-npm.qpaas.com/
+@aytc:registry=https://open-npm.qpaas.com/
+@qycloud:registry=https://open-npm.qpaas.com/
+@qpaas:registry=https://open-npm.qpaas.com/
+@formbox:registry=https://open-npm.qpaas.com/
+@commonbox:registry=https://open-npm.qpaas.com/
+host=https://npmmirror.com
+registry=https://registry.npmmirror.com/
+disturl=https://npmmirror.com/dist
+sass_binary_site=https://cdn.npmmirror.com/binaries/node-sass/
+phantomjs_cdnurl=https://cdn.npmmirror.com/binaries/phantomjs/
+sharp_dist_base_url=https://cdn.npmmirror.com/binaries/sharp-libvips/v8.7.4/
+canvas_binary_host_mirror=https://cdn.npmmirror.com/binaries/node-canvas-prebuilt/
+home=https://npmmirror.com
+unsafe-perm=true
+```
 
 
 
+**.npmrc 介绍**
+
+.npmrc，可以理解成npm running cnfiguration, 即npm运行时配置文件。
+
+npmrc 文件是 npm 的配置文件，用于在全局或特定用户的 npm 环境中存储不同的配置选项。这些配置选项可以针对 npm 包的下载源、镜像、认证等方面进行设置。
+
+我们知道，npm最大的作用就是帮助开发者安装需要的依赖包，但是要从哪里下载？下载哪一个版本的包，把包下载到电脑的哪个路径下？
+
+这些都可以在.npmrc中进行配置。
+
+在设置.npmrc之前，我们需要知道：在你的电脑上，不止存在一个.npmrc文件，而是有多个。在我们安装包的时候，npm按照如下顺序读取这些配置文件：
+
+1. 项目配置文件：你可以在项目的根目录下创建一个.npmrc文件，只用于管理这个项目的npm安装。
+2. 用户配置文件：在你使用一个账号登陆的电脑的时候，可以为当前用户创建一个.npmrc文件，之后用该用户登录电脑，就可以使用该配置文件。可以通过 **npm config get userconfig** 来获取该文件的位置。
+3. 全局配置文件： 一台电脑可能有多个用户，在这些用户之上，你可以设置一个公共的.npmrc文件，供所有用户使用。该文件的路径为：**$PREFIX/etc/npmrc**，使用 **npm config get prefix** 获取$PREFIX。如果你不曾配置过全局文件，该文件不存在。
+4. npm内嵌配置文件：最后还有npm内置配置文件，基本上用不到，不用过度关注。
 
 
 
+**1. 设置项目配置文件 .npmrc**
+
+比如要把npm的源配置为淘宝源，可以参考一下代码：
+
+```sh
+registry=https://registry.npm.taobao.org
+```
+
+**2. 设置用户配置文件**
+
+```sh
+# 命令找到该文件的路径
+$ npm config get userconfig 
+
+/Users/qiyeyun/.npmrc
+```
 
 
 
+**常用的npm设置命令，有兴趣的话，可以了解一下，挺好玩的：**
 
-
-
+```bash
+npm config set <key> <value> [-g|--global]  //给配置参数key设置值为value；
+npm config get <key>          //获取配置参数key的值；
+npm config delete <key>       //删除置参数key及其值；
+npm config list [-l]      //显示npm的所有配置参数的信息；
+npm config edit     //编辑配置文件
+npm get <key>     //获取配置参数key的值；
+npm set <key> <value> [-g|--global]    //给配置参数key设置值为value；
+```
