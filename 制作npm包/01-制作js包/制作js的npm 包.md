@@ -9,9 +9,37 @@ https://juejin.cn/post/7105696184375164935
 
 https://www.npmjs.com
 
+
+
+对应Demo：
+
+
+
 # 一、创建项目
 
+```sh
+# 创建package.json
+$ npm init 
 
+# 自动构建
+$ npm init -y
+```
+
+package.json
+
+```json
+{
+  "name": "lx-utils-only-js",
+  "version": "1.0.0",
+  "description": "只有js的工具库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
 
 
 
