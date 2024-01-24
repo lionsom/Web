@@ -1,17 +1,12 @@
-* [从零开始撸一个Vue2.0组件库-并上传到NPM上](https://blog.csdn.net/weixin_42950333/article/details/120415621)
+* https://www.npmjs.com
 
-* [Vue2封装一个全局通知组件并发布到NPM](https://blog.csdn.net/m0_53321320/article/details/131259961)
-* [Vue封装组件并发布到npm仓库](https://zhuanlan.zhihu.com/p/459284053)
+* 对应Demo：
 
-https://juejin.cn/post/7105696184375164935
+    * [lx-js-cjs](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm/lx-js-cjs)
 
-
-
-https://www.npmjs.com
+    * [lx-js-esm](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm/lx-js-esm)
 
 
-
-对应Demo：
 
 # 一、大致流程
 
