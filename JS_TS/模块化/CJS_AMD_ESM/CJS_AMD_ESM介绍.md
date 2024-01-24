@@ -473,7 +473,7 @@ Hello World from bar.
 
 
 
-### 3. ESM与CJS的一些区别
+## 3. ESM与CJS的一些区别
 
 ```js
 // 区别一
