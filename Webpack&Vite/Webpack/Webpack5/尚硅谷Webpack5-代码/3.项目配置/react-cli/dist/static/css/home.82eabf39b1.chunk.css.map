@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/home.82eabf39b1.chunk.css","mappings":"AAAA,YACE,aACF","sources":["webpack://react-cli/./src/pages/Home/index.less"],"sourcesContent":[".home-title{\n  color: deeppink\n}\n@primary-color: #1DA57A;"],"names":[],"sourceRoot":""}
