@@ -34,6 +34,8 @@ Vue.component('loading', Loading);
 3. 插件的install方法将接收两个参数，第一个是参数是Vue，第二个参数是配置项options。
 4. 在install方法内部可以添加全局方法或者属性、全局指令、mixin混入、添加实例方法、使用Vue.component()注册组件等。
 
+
+
 ### 使用`Vue.component()`注册插件。
 
 1. 使用`Vue.component()`方法注册全局组件。

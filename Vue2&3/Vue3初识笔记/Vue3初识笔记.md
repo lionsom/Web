@@ -1,5 +1,9 @@
 * [尚硅谷 - Vue3+TS 快速上手](https://24kcs.github.io/vue3_study/)
 
+* Vue 3版本：在 npmjs 网站 [Vue 主页的版本列表](https://www.npmjs.com/package/vue?activeTab=versions)
+
+* 确保你安装了最新版本的 [Node.js](https://nodejs.org/)
+
 
 
 # 脚手架
@@ -612,7 +616,6 @@ const modelValue = defineModel()
   >
 </template>
 ```
-
 
 
 

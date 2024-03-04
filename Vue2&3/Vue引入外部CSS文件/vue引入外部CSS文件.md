@@ -4,6 +4,8 @@
 
 在项目的src文件下，新建一个style文件夹，存放css文件。
 
+
+
 ## 1. 全局引入
 
 将外部的css文件放到style文件下，引入外部文件只需在main.js文件中
@@ -14,6 +16,8 @@ import '@/style/reset.css'
 
 我引入的是清除默认样式的css文件
 
+
+
 ## 2. 局部引入相对路径
 
 ```javascript
@@ -21,6 +25,8 @@ import '@/style/reset.css'
   @import '../../assets/iconfont/iconfont.css';   // 这个分号一定要写，要不会报错
 </style>
 ```
+
+
 
 ## 3. 局部引入绝对路径
 

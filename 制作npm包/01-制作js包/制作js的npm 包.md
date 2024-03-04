@@ -2,9 +2,8 @@
 
 * 对应Demo：
 
-    * [lx-js-cjs](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm/lx-js-cjs)
-
-    * [lx-js-esm](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm/lx-js-esm)
+    * [lx-js-cjs](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm)
+* [lx-js-esm](https://github.com/lionsom/Vue_Projects/tree/main/04-my-npm)
 
 
 

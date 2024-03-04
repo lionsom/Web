@@ -1,6 +1,4 @@
-
-
-# 创建
+#  创建Vue3
 
 ```bash
 $ npm create vue@latest
