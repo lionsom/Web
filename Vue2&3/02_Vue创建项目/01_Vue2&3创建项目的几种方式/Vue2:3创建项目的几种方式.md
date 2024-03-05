@@ -144,7 +144,7 @@ $ vue ui
 
 
 
-## 3. create-vue（Vue 官方）- Vite + Vue3
+## 3. ⭐️create-vue（Vue 官方）- Vite + Vue3
 
 [create-vue](https://github.com/vuejs/create-vue) 是 Vue 官方推出的一个新脚手架，用以代替基于 Webpack 的 Vue CLI ，它可以创建基于 Vite 的 Vue 基础模板。
 
