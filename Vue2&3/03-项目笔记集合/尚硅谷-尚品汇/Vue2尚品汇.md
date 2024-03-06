@@ -109,7 +109,7 @@ sh: vue-cli-service: command not found
 ```json
 // 在package.json文件中
 "scripts": {
-		"serve": "vue-cli-service serve --open",  // 命令最后加上 --open 打开
+	"serve": "vue-cli-service serve --open",  // 命令最后加上 --open 打开
   	"build": "vue-cli-service build",
   	"lint": "vue-cli-service lint"
 },
