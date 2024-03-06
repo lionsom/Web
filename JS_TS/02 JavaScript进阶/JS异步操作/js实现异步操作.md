@@ -1,3 +1,82 @@
+# 一、JS异步操作的实现
+
+JavaScript 中实现异步操作有多种方式，以下是常见的几种方法：
+
+## 1. 回调函数
+
+通过将一个函数作为参数传递给异步操作，当异步操作完成时调用这个函数，这个函数就是回调函数。回调函数是最早也是最常见的异步编程模式，例如：
+
+```js
+function fetchData(callback) {
+    // 模拟异步操作
+    setTimeout(() => {
+        const data = '异步数据';
+        callback(data);
+    }, 1000);
+}
+
+fetchData((data) => {
+    console.log(data);
+});
+```
+
+
+
+## 2. Promise
+
+Promise 是一种用于处理异步操作的对象，通过 Promise 可以更加清晰地处理异步操作成功、失败和异常的情况。例如：
+
+```js
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        // 模拟异步操作
+        setTimeout(() => {
+            const data = '异步数据';
+            resolve(data);
+        }, 1000);
+    });
+}
+
+fetchData()
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+```
+
+
+
+## 3. async/await：
+
+async/await 是基于 Promise 的异步编程语法糖，可以使异步代码看起来像同步代码。使用 async/await 可以在函数前加上 async 关键字，使其成为一个异步函数，并且在异步操作前使用 await 关键字等待异步操作的结果。例如：
+
+```js
+async function fetchData() {
+    return new Promise((resolve, reject) => {
+        // 模拟异步操作
+        setTimeout(() => {
+            const data = '异步数据';
+            resolve(data);
+        }, 1000);
+    });
+}
+
+async function handleData() {
+    const data = await fetchData();
+    console.log(data);
+}
+
+handleData();
+```
+
+
+
+
+
+# 二、概念补充
+
 ## 1. 并发与并行
 
 ### 1.1 并发(concurrent)
@@ -46,29 +125,6 @@
 并发（concurrency）：把任务在不同的时间点交给处理器进行处理。在同一时间点，任务并不会同时运行。
 
 并行（parallelism）：把每一个任务分配给每一个处理器独立完成。在同一时间点，任务一定是同时运行。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

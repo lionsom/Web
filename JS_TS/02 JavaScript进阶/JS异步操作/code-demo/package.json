@@ -1,0 +1,15 @@
+{
+  "name": "code-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:callback": "node 0-callback.js",
+    "dev:promise": "node 02-promise.js",
+    "dev:async-await": "node 03-async-await.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

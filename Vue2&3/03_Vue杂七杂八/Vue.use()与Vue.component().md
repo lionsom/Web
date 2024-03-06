@@ -6,7 +6,7 @@
 
 ```js
 // main.js
-import {Button } from 'Element-ui';
+import { Button } from 'Element-ui';
 
 Vue.use(Button);
 ```

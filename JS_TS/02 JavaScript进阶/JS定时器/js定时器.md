@@ -1,5 +1,3 @@
-# 参考
-
 - JavaScript 定时器教程: https://www.w3schools.com/js/js_timing.asp
 - MDN Web Docs - setTimeout(): [https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
 - MDN Web Docs - setInterval(): [https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
@@ -15,7 +13,7 @@ JavaScript 提供了两个内置的定时器函数：
 
 
 
-# setTimeout()
+# setTimeout() - 延迟执行
 
 `setTimeout()` 函数用于指定某个函数或某段代码，在多少毫秒之后执行。它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。
 
@@ -32,9 +30,7 @@ setTimeout(function() {
 }, 5000);
 ```
 
-
-
-## clearTimeout
+* clearTimeout() - 清除timeout定时器
 
 ```js
 // 清除timeout定时器
@@ -43,7 +39,7 @@ clearTimeout(timeoutBox);
 
 
 
-# setInterval()
+# setInterval() - 重复执行
 
 `setInterval()` 函数用于按照指定的周期（以毫秒计）来调用函数或计算表达式。方法会不停地调用函数，直到 `clearInterval()` 被调用或窗口被关闭。
 
@@ -60,9 +56,7 @@ setTimeout(function() {
 }, 5000);
 ```
 
-
-
-## clearInterval
+* clearInterval() - 清除interval定时器
 
 ```js
 // 清除interval定时器

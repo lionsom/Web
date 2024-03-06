@@ -1,3 +1,15 @@
+* [阮一峰 - Javascript模块化编程（一）：模块的写法](https://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
+
+* [阮一峰 - Javascript模块化编程（二）：AMD规范](https://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
+
+* [阮一峰 - Javascript模块化编程（三）：require.js的用法](https://www.ruanyifeng.com/blog/2012/11/require_js.html)
+
+
+
+[《Vue3入门指南与实战案例》- 学习模块化设计](https://vue3.chengpeiquan.com/guide.html#%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%BE%E8%AE%A1)
+
+
+
 
 
 # 一、CJS 与 AMD 的由来
@@ -276,7 +288,6 @@ ES Module 是新一代的模块化标准，它是在 ES6（ ECMAScript 2015 ）�
 >
 > 另外，在实际项目中，可能不需要做这些处理，因为很多工作脚手架已经帮处理过了，比如的 Vue3 项目。
 >
-> 
 
 ```sh
 hello-node
