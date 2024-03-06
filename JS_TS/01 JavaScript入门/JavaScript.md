@@ -403,10 +403,10 @@ console.log(window.a);
   检查数值时，会返回number
 */
 typeof "123"  		// string
-typeof 10					// number
+typeof 10			// number
 typeof Infinity  	// number
-typeof NaN  			// number
-typeof false 			// boolean
+typeof NaN  		// number
+typeof false 		// boolean
 typeof undefined	// undefined
 ```
 
@@ -811,7 +811,11 @@ console.log(typeof b);
 // undefined
 ```
 
-**null 和 undefined 区别：**
+
+
+### a. null 和 undefined 区别：
+
+详细文档：《JS中undefined与null》
 
 - ﻿﻿undefined 表示没有赋值
 - ﻿﻿null 表示赋值了，但是内容为空
