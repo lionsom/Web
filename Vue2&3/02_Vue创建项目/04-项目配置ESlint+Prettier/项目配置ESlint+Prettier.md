@@ -6,6 +6,10 @@
 
 # npm包 与 vscode插件
 
+
+
+## ESLint的npm包
+
 全局安装eslint
 
 ```sh
@@ -129,7 +133,7 @@ var a = 1;
 
 
 
-## 为什么需要 eslint的vscode插件
+## 为什么需要eslint的vscode插件
 
 我们每次做项目的时候，都要先`eslint . --fix`统一格式，再push提交代码。或者是把指令添加到package.json文件中，执行`npm run lint`，再push。这样就很麻烦，并且也不够直观，因为错误问题只有在你执行了指令之后才能看到。
 **那么我想在我一边写代码的时候就能直接看到错误，然后就能直接随手改正错误，这要怎么做呢？** 这时eslint的vscode插件诞生了。
@@ -152,3 +156,10 @@ src/three/libs
 src/three/utils
 ```
 
+
+
+## 既然有vscode插件，那么还装eslint的npm包吗？
+
+要装。虽然vscode插件也可以单独配置格式，但是如果项目中有`.eslintrc.js`文件，那么eslint插件会优先执行`.eslintrc.js`文件的配置。
+并且不是每个人都会装eslint的vscode插件。此时eslint的npm包就作为一个保障，并且里面的`.eslintrc.js`配置就作为标准配置。
+**装vscode插件只是为了方便自己开发而已。**
