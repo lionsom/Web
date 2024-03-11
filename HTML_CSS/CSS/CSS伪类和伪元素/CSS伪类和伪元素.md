@@ -180,3 +180,60 @@ a: hover {
 | ::selection    | p::selection       | 匹配用户选择的元素部分                                |
 | ::placeholder  | input::placeholder | 匹配每个表单输入框（例如 <input>）的 placeholder 属性 |
 
+
+
+
+
+# GPT
+
+CSS中的伪类和伪元素都是用来选择HTML元素的特定部分或状态的方法，但它们有一些区别。
+
+1. 伪类（Pseudo-classes）：
+
+    - 伪类用于选择元素的特定状态，比如:hover（鼠标悬停状态）、:active（激活状态）、:first-child（第一个子元素）等。
+    - 伪类在选择器的最后使用，以冒号（:）开头。
+    - 伪类通常用于根据用户的交互或元素的状态来改变样式。
+
+    示例：
+
+    ```css
+    a:hover {
+      color: red;
+    }
+    
+    li:first-child {
+      font-weight: bold;
+    }
+    
+    input:valid {
+      border-color: green;
+    }
+    ```
+
+2. 伪元素（Pseudo-elements）：
+
+    - 伪元素用于选择元素的特定部分，比如::before（在元素内容之前插入内容）、::after（在元素内容之后插入内容）等。
+    - 伪元素在选择器的最后使用，以双冒号（::）开头。
+    - 伪元素用于在元素的特定位置插入内容，而不是选择元素的状态。
+
+    示例：
+
+    ```css
+    p::before {
+      content: "前缀：";
+    }
+    
+    button::after {
+      content: "点击我";
+    }
+    
+    li::first-letter {
+      font-size: 2em;
+    }
+    ```
+
+总结：
+
+- 伪类用于选择元素的特定状态，而伪元素用于选择元素的特定部分。
+- 伪类以冒号（:）开头，而伪元素以双冒号（::）开头。
+- 伪类常用于根据用户的交互或元素的状态来改变样式，而伪元素用于在元素的特定位置插入内容。

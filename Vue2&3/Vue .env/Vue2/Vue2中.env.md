@@ -18,35 +18,32 @@
 
 ## 配置.env文件
 
-------
-
 变量命名必须以`VUE_APP_`开头，比如`VUE_APP_URL`，`VUE_APP_PWD`
 
 
 
 ## 配置启动命令
 
-------
-
 在vue项目根目录下，找到package.json文件，其中scripts对象是配置的vue启动命令，比如npm run dev，配置如下：
 
 ```javascript
-  "scripts": {
+"scripts": {
+    // 启动项目，并且加载.env和.env.development文件
     "serve": "vue-cli-service serve",
+
+    // 启动项目，并且加载.env和.env.test文件
     "serve-test": "vue-cli-service serve --mode test",
+
+    // 生产环境打包，其中.env和.env.production文件会加载
     "build": "vue-cli-service build",
+
+    // 测试环境打包，其中.env和.env.test文件会加载
     "test": "vue-cli-service build --mode test",
+
+    // 生产环境和测试环境同时打包，加载不同的.env文件
     "all": "vue-cli-service build && vue-cli-service build --mode test"
-  }
+}
 ```
-
-每一行说明如下：
-
-1. npm run serve，启动项目，并且加载.env和.env.development文件
-2. npm run serve-test，启动项目，并且加载.env和.env.test文件
-3. npm run build，生产环境打包，其中.env和.env.production文件会加载
-4. npm run test，测试环境打包，其中.env和.env.test文件会加载
-5. npm run all，生产环境和测试环境同时打包，加载不同的.env文件
 
 
 
