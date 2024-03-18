@@ -93,7 +93,7 @@ npm init vue@latest
   }
 </script>
 ```
-## 3. <script setup>语法糖
+## 3. `<script setup>`语法糖
 > script标签添加 setup标记，不需要再写导出语句，默认会添加导出语句
 
 ```vue
