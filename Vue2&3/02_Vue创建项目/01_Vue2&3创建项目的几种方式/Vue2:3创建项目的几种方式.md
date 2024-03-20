@@ -1,6 +1,7 @@
 * [Vue3 - 官方 - 工具链](https://cn.vuejs.org/guide/scaling-up/tooling.html)
 * [Vite 官方中文文档](https://cn.vitejs.dev/)
 * [Vue3入门指南与实战案例 - 脚手架](https://vue3.chengpeiquan.com/upgrade.html#create-vite)
+* [已迁移-Vue - 创建vue2和vue3项目的那些命令](https://www.cnblogs.com/Neeo/articles/17311392.html)
 * Vue2 -> [Vue CLI](https://cli.vuejs.org/zh/#%E8%B5%B7%E6%AD%A5) -> Webpack
 * Vue3 -> [create-vue](https://cn.vuejs.org/guide/scaling-up/tooling.html#project-scaffolding)  -> Vite
 
