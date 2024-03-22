@@ -4,7 +4,7 @@
 
 
 
-# npm是什么？
+# 一、npm是什么？
 
 * [npm官方文档](https://docs.npmjs.com/)
 
@@ -30,7 +30,7 @@ NPM由三个不同的组成部分组成：
 
 
 
-# [npm的安装](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+# 二、[npm的安装](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 我们强烈建议使用像 **nvm** 这样的Node版本管理器来安装Node.js和npm。
 
@@ -53,11 +53,112 @@ $ nvm use 19
 
 
 
-# [npm更新版本](https://docs.npmjs.com/about-npm-versions)
+## a. [npm更新版本](https://docs.npmjs.com/about-npm-versions)
 
 - [latest release](https://docs.npmjs.com/about-npm-versions#the-latest-release-of-npm): the most recent stable version.
 
 * `npm install npm@latest -g` 安装最新版npm
+
+
+
+# 三、npm基本使用
+
+## 1. 查看已安装的所有包列表
+
+### a. 查看全局已安装
+
+查看全局已安装（`-g` 的意思是 `global` 全局的意思）
+
+```sh
+$ npm ls -g
+```
+
+会发现，会把包的所有依赖也显示出来
+
+加上层级控制显示[深度](https://link.segmentfault.com/?enc=viZhmkPR9%2FeR1rc2U7iquA%3D%3D.Qrsl6KBRhzNONqshjKu1KxySbwxQ9OsOWr0gaithSuGEIwQtvFHFUshirA2gjfmzP70W8R7ZM9Z9rYoOCcsa46IzyV7Sl8q%2BPMg%2Fz0YtHv8%3D)：`--depth 0`
+
+```sh
+$ npm ls -g --depth 0
+```
+
+这样就只会查到安装的包，并不会查到包的依赖。
+
+
+
+### b. 查看项目中已安装
+
+查看当前项目已安装包（项目跟目录必须有 package.json 文件）
+
+```sh
+$ npm ls
+```
+
+同样也是会把所有包的依赖显示出来。同上，加上 `--depth 0` 就好了。
+
+```sh
+$ npm ls --depth 0
+```
+
+如果只想显示生产环境依赖的包
+
+```sh
+$ npm ls --depth 0 --prod
+# npm WARN config production Use `--omit=dev` instead.
+$ npm ls --depth 0 --omit=dev
+```
+
+只显示开发环境依赖的包
+
+```sh
+$ npm ls --depth 0 --dev
+# npm WARN config dev Please use --include=dev instead.
+$ npm ls --depth 0 --include=dev
+```
+
+
+
+## 2. 查看包信息
+
+### a. 查看包在 npm 服务器的版本
+
+```sh
+# 查看npmjs服务器上包pkg的最新的版本信息
+$ npm view lodash version
+
+# 查看npmjs服务器上包pkg的所有的版本信息
+$ npm view lodash versions
+
+# npmjs服务器上包pkg的最新的版本信息，内容更丰富
+$ npm info lodash
+```
+
+
+
+### b. 查看包在本地安装的版本
+
+* 查看某个项目下包pkg的版本信息，注意该命令需要在某个项目下执行
+
+    ```sh
+    $ npm ls lodash
+    ```
+
+* 查看本地全局安装的pkg版本
+
+    ```sh
+    $ npm ls lodash -g
+    ```
+
+    
+
+
+
+
+
+
+
+
+
+
 
 
 

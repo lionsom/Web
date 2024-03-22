@@ -23,10 +23,11 @@ $ npm config rm registry
 
 ```bash
 $ npm config list
+# 显示全部配置
+$ npm config ls -l
 
 # 其他查看配置的方式
 $ npm config get globalconfig
-$ npm config ls -l
 ```
 
 
