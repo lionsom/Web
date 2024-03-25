@@ -36,6 +36,12 @@ NPM由三个不同的组成部分组成：
 
 注意：安装node.js时，将自动安装npm。
 
+* Node 包括
+
+    * npm（Node 程序包管理器）
+
+	* npx（Node 程序包运行器）
+
 ```bash
 $ nvm install node
 
@@ -119,7 +125,7 @@ $ npm ls --depth 0 --include=dev
 
 ## 2. 查看包信息
 
-### a. 查看包在 npm 服务器的版本
+### a. 查看包在 npmjs 服务器的版本
 
 ```sh
 # 查看npmjs服务器上包pkg的最新的版本信息
@@ -131,7 +137,6 @@ $ npm view lodash versions
 # npmjs服务器上包pkg的最新的版本信息，内容更丰富
 $ npm info lodash
 ```
-
 
 
 ### b. 查看包在本地安装的版本
@@ -148,25 +153,75 @@ $ npm info lodash
     $ npm ls lodash -g
     ```
 
-    
+
+
+## 3. 本地安装
+
+项目的依赖建议优先选择本地安装，这是因为本地安装可以把依赖列表记录到 package.json 里，多人协作的时候可以减少很多问题出现，特别是当本地依赖与全局依赖版本号不一致的时候。
+
+### a. 开发依赖
+
+执行 `npm install` 的时候，如果添加 `--save-dev` 或者 `-D` 选项，可以将依赖安装到本地，并写入开发依赖里。
+
+```shell
+# 安装至package.js的 devDependencies目录
+$ npm install --save-dev <package-name>
+$ npm install -D <package-name>
+```
+
+### b. 生产依赖
+
+执行 `npm install` 的时候，添加 `--save` 或者 `-S` 选项可以将依赖安装到本地，并列为生产依赖。
+
+> 需要提前在命令行 `cd` 到的项目目录下再执行安装。
+>
+> 另外， `--save` 或者 `-S` 选项在实际使用的时候可以省略，因为它是默认选项。
+
+```shell
+# 安装至package.js的 dependencies目录
+$ npm install --save <package-name>
+$ npm install -S <package-name>
+```
+
+### c. 开发依赖 VS 生产依赖
+
+> 相同点：
+>
+> * 开发依赖包也是会被安装到项目根目录下的 `node_modules` 目录里。
+>
+> 不同点：
+>
+> * 开发依赖和生产依赖包不同的点在于，只在开发环境生效，构建部署到生产环境时可能会被抛弃，一些只在开发环境下使用的包，就可以安装到开发依赖里，比如检查代码是否正确的 `ESLint` 就可以用这个方式安装。
+> * `npm -S`：把安装包的名称和版本号存到到 `dependencie`
+> * `npm -D`：把安装包的名称和版本号存到 `devDependencies`
 
 
 
+## 4. 全局安装
+
+执行 `npm install` 的时候，如果添加 `--global` 或者 `-g` 选项，可以将依赖安装到全局，它们将被安装在 [配置环境变量](https://vue3.chengpeiquan.com/guide.html#配置环境变量) 里配置的全局资源路径里。
+
+> Mac 用户需要使用 `sudo` 来提权才可以完成全局安装。
+
+```shell
+$ npm install --global <package-name>
+$ npm install -g <package-name>
+```
+
+### a. 全局包的安装路径
+
+```shell
+$ npm root -g
+/Users/qiyeyun/.nvm/versions/node/v18.16.0/lib/node_modules
+```
 
 
 
-
-
-
-
-
-
-
-# npm全局安装与本地安装区别
+## 5. 全局安装与本地安装区别
 
 ```bash
-npm install express          # 本地安装
-npm install express -g       # 全局安装
+$ npm install express          # 本地安装
+$ npm install express -g       # 全局安装
 ```
 
 **1. 安装位置**
@@ -183,80 +238,7 @@ npm install express -g       # 全局安装
 
 
 
-## 本地安装
-
-> 项目的依赖建议优先选择本地安装，这是因为本地安装可以把依赖列表记录到 package.json 里，多人协作的时候可以减少很多问题出现，特别是当本地依赖与全局依赖版本号不一致的时候。
-
-
-
-### 开发依赖
-
-执行 `npm install` 的时候，添加 `--save` 或者 `-S` 选项可以将依赖安装到本地，并列为生产依赖。
-
-> 需要提前在命令行 `cd` 到的项目目录下再执行安装。
->
-> 另外， `--save` 或者 `-S` 选项在实际使用的时候可以省略，因为它是默认选项。
-
-```shell
-$ npm install --save <package-name>
-```
-
-
-
-### 生产依赖
-
-执行 `npm install` 的时候，如果添加 `--save-dev` 或者 `-D` 选项，可以将依赖安装到本地，并写入开发依赖里。
-
-```shell
-$ npm install --save-dev <package-name>
-```
-
-
-
-### 开发依赖 VS 生产依赖
-
-```shell
-$ npm install --save <package-name>
-$ npm install -S <package-name>
-
-$ npm install --save-dev <package-name>
-$ npm install -D <package-name>
-```
-
-> 相同点：
->
-> * 开发依赖包也是会被安装到项目根目录下的 `node_modules` 目录里。
->
-> 不同点：
->
-> * 开发依赖和生产依赖包不同的点在于，只在开发环境生效，构建部署到生产环境时可能会被抛弃，一些只在开发环境下使用的包，就可以安装到开发依赖里，比如检查代码是否正确的 `ESLint` 就可以用这个方式安装。
-> * `npm -S`：把安装包的名称和版本号存到到 `dependencie`
-> * `npm -D`：把安装包的名称和版本号存到 `devDependencies`
-
-
-
-## 全局安装
-
-执行 `npm install` 的时候，如果添加 `--global` 或者 `-g` 选项，可以将依赖安装到全局，它们将被安装在 [配置环境变量](https://vue3.chengpeiquan.com/guide.html#配置环境变量) 里配置的全局资源路径里。
-
-> Mac 用户需要使用 `sudo` 来提权才可以完成全局安装。
-
-```shell
-$ npm install --global <package-name>
-```
-
-
-
-### 全局包的安装路径
-
-```shell
-$ npm root -g
-/Users/qiyeyun/.nvm/versions/node/v18.16.0/lib/node_modules
-```
-
-
-
-# npm包版本控制
+## 6. 包版本控制
 
 语法如下，在包名后面紧跟 `@` 符号，再紧跟版本号或者 Tag 名称：
 
@@ -270,7 +252,7 @@ $ npm install vue@legacy
 
 
 
-# npm包版本升级
+## 7. 包版本升级
 
 更新全部的包：
 
@@ -286,7 +268,7 @@ $ npm update <package-name>
 
 
 
-# npm包卸载
+## 8. 包卸载
 
 本地卸载：
 
@@ -302,7 +284,7 @@ $ npm uninstall --global <package-name>
 
 
 
-# 如何使用包
+# 四、如何使用包
 
 [Vue3入门指南与实战案例 - 如何使用包](https://vue3.chengpeiquan.com/guide.html#如何使用包)
 
@@ -318,9 +300,9 @@ found 0 vulnerabilities
 
 
 
-# 发布 npm 包
+# 五、发布 npm 包
 
-##  npm view
+##  1. 查询包名是否重复 - npm view 
 
  `npm view <package-name>` 命令查询包名是否已存在
 
@@ -337,6 +319,81 @@ keywords: vue
 ```
 
 
+
+## 2. npm使用官方源
+
+登录 [npm官网](https://www.npmjs.com/)
+
+```shell
+# 查看 npm 配置
+$ npm config list
+
+# 查看源
+$ npm config get registry
+
+# 临时修改
+$ npm --registry https://registry.npmmirror.com install any-touch
+
+# 持久修改
+$ npm config set registry https://registry.npmmirror.com
+
+# 还原 - 官方源
+$ npm config set registry https://registry.npmjs.org
+
+# 删除
+$ npm config rm registry
+```
+
+![](images/publish001.png)
+
+
+
+## 3. 登录npm
+
+```sh
+# 终端登录
+$ npm login
+
+# 查看当前用户
+$ npm whoami
+```
+
+![](images/publish002.png)
+
+
+
+## 4. 修改版本
+
+```sh
+$ npm version patch  # 补丁版本，最后一位+1
+
+$ npm version minor  # 增加新功能，中间一位+1
+
+$ npm version major  # 大版本，第一位+1
+```
+
+
+
+## 5. 发布
+
+```sh
+# 发布
+$ npm publish
+```
+
+![](images/publish003.png)
+
+
+
+## 6. 发布成功
+
+* 收到邮件
+
+![](images/publish004.png)
+
+* npm官网查看
+
+![](images/publish005.png)
 
 
 
