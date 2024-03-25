@@ -1,10 +1,4 @@
-
-
-
-
 # 基本概念
-
-
 
 ##React 和 React Native 对比 - GPT
 
@@ -22,8 +16,6 @@ React 和 React Native 之间有着密切的关系，同时也存在一些区别
 3. API 差异：React 提供了一些用于处理 Web 应用的特定 API，而 React Native 则提供了一套用于处理移动应用的 API，如处理原生控件、访问设备功能等。
 
 总之，React 是用于构建 Web 应用程序的用户界面的 JavaScript 库，而 React Native 是建立在 React 基础之上的框架，专注于构建原生移动应用。它们的核心思想都是组件化，但在目标平台、渲染机制和提供的 API 等方面存在一些差异。
-
-
 
 
 
@@ -76,15 +68,13 @@ React 是一个用于构建用户界面的JavaScript库，而不是一个完整�
 
 
 
-
-
 # React
+
+* [MDN - React入门](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started)
 
 ## React是什么
 
 [React](https://reactjs.org/) 是一个用于构建用户界面的库。React 不是一个框架——它的应用甚至不局限于 Web 开发，它可以与其他库一起使用以渲染到特定环境。例如，[React Native](https://reactnative.dev/) 可用于构建移动应用程序；[React 360](https://facebook.github.io/react-360/) 可用于构建虚拟现实应用程序……
-
-
 
 
 
@@ -97,24 +87,6 @@ JSX 代表 `JavaScript XML`。JSX 允许我们在 React 中编写 HTML。JSX 使
 * [MDN - React 如何使用 JavaScript?](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started#react_如何使用_javascript)
 
 * [JSX In Depth](https://reactjs.org/docs/jsx-in-depth.html)
-
-
-
-# React demo
-
-* [FaceBook - create-react-app](https://create-react-app.dev/)
-* [Create React App 中文文档](https://create-react-app.bootcss.com/)
-
-
-
-## 环境要求
-
-* 你需要安装 [Node.js](https://nodejs.org/en/)。建议你使用长期支持（LTS）版本。
-* Node 包括 
-    * npm（Node 程序包管理器）
-    * npx（Node 程序包运行器）
-
-
 
 
 
