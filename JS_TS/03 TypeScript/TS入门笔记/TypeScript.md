@@ -8,7 +8,7 @@
 
 
 
-# typescript是什么
+# 一、TypeScript是什么
 
 ​		TypeScript 简称 TS ，既是一门新语言，也是 JS 的一个超集，它是在 JavaScript 的基础上增加了一套类型系统，它支持所有的 JS 语句，为工程化开发而生，最终在编译的时候去掉类型和特有的语法，生成 JS 代码。
 
@@ -26,7 +26,7 @@
 
 
 
-# 为什么需要typescript
+# 二、为什么需要TypeScript
 
 要想知道自己为什么要用 TypeScript ，得先从 JavaScript 有什么不足说起，举一个非常小的例子：
 
@@ -53,7 +53,7 @@ TypeScript 的出现，在编译的时候就可以执行检查来避免掉这些
 
 
 
-# js VS ts
+# 三、JS vs TS
 
 > TypeScript is a syntactic sugar for JavaScript. TypeScript syntax is a superset of ECMAScript 2015 (ES2015) syntax. Every JavaScript program is also a TypeScript program.
 
@@ -66,11 +66,7 @@ TypeScript是ECMAScript 2015的语法超集，是JavaScript的语法糖。JavaSc
 
 ![](images/01.webp)
 
-
-
-
-
-## GPT回答
+## 1. GPT
 
 JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言。以下是它们之间的一些主要区别和比较：
 
@@ -92,9 +88,7 @@ JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言�
 
 
 
-
-
-# typescript安装 + 编译
+# 四、TypeScript 安装 + 编译
 
 [官网 - 安装](https://www.tslang.cn/index.html#download-links)
 
@@ -118,11 +112,9 @@ JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言�
 
 
 
+# 五、ts-node
 
-
-# ts-node
-
-## ts-node是什么
+## 1. ts-node是什么
 
 **ts-node 是一个 Node.js 的执行环境，它可以让你在 Node.js 环境中直接运行 TypeScript 代码。**
 
@@ -130,7 +122,7 @@ JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言�
 
 
 
-## ts-node安装
+## 2. ts-node安装
 
 ts-node 可以通过 npm 包管理器安装，在命令行中使用以下命令即可安装：
 
@@ -140,7 +132,7 @@ $ npm install -g ts-node
 
 
 
-## 运行typescript
+## 3. 运行typescript
 
 在安装完成后，你就可以在命令行中使用 `ts-node` 命令来运行 TypeScript 代码了。例如，你可以在命令行中输入以下命令来运行 TypeScript 文件：
 
@@ -150,9 +142,12 @@ $ ts-node myFile.ts
 
 
 
-# [Hello TypeScript](https://vue3.chengpeiquan.com/typescript.html#hello-typescript)
+# 六、快速上手 TypeScript
+
+## 1. Hello TypeScript
 
 * [Vue3 入门指南与实战案例](https://vue3.chengpeiquan.com/)
+    * [快速上手 TypeScript](https://vue3.chengpeiquan.com/typescript.html)
 
 安装 TypeScript 开发的两个主要依赖包：
 
@@ -195,15 +190,18 @@ $ npm install -D typescript ts-node
 
 
 
+## 2. 如何编译为 JavaScript 代码
 
+* [TypeScript 如何编译为 JavaScript 代码](https://vue3.chengpeiquan.com/typescript.html#如何编译为-javascript-代码)
+    * [编译单个文件](https://vue3.chengpeiquan.com/typescript.html#%E7%BC%96%E8%AF%91%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6)
+    * [编译多个模块](https://vue3.chengpeiquan.com/typescript.html#编译多个模块)
+    * [修改编译后的 JS 版本](https://vue3.chengpeiquan.com/typescript.html#%E4%BF%AE%E6%94%B9%E7%BC%96%E8%AF%91%E5%90%8E%E7%9A%84-js-%E7%89%88%E6%9C%AC)
+    * [其他事项](https://vue3.chengpeiquan.com/typescript.html#%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9)
 
-# [TypeScript 如何编译为 JavaScript 代码](https://vue3.chengpeiquan.com/typescript.html#如何编译为-javascript-代码)
-
-## 编译单个文件
-
-package.json
+### a. 编译单个文件
 
 ```json
+// 先在 package.json 里增加一个 build script ：
 {
   "scripts": {
     "dev:ts": "ts-node src/ts/index.ts",
@@ -217,21 +215,8 @@ package.json
 }
 ```
 
-​		这样在命令行运行 `npm run build` 的时候，就会把 `src/ts/index.ts` 这个 TS 文件编译，并输出到项目下与 src 文件夹同级的 dist 目录下。
+这样在命令行运行 `npm run build` 的时候，就会把 `src/ts/index.ts` 这个 TS 文件编译，并输出到项目下与 src 文件夹同级的 dist 目录下。
 
-​		其中 `tsc` 是 TypeScript 用来编译文件的命令， `--outDir` 是它的一个选项，用来指定输出目录，如果不指定，则默认生成到源文件所在的目录下面。
+其中 `tsc` 是 TypeScript 用来编译文件的命令， `--outDir` 是它的一个选项，用来指定输出目录，如果不指定，则默认生成到源文件所在的目录下面。
 
-
-
-## [编译多个模块](https://vue3.chengpeiquan.com/typescript.html#编译多个模块)
-
-
-
-## [修改编译后的 JS 版本](https://vue3.chengpeiquan.com/typescript.html#修改编译后的-js-版本)
-
-
-
-
-
-# [了解 tsconfig.json](https://vue3.chengpeiquan.com/typescript.html#%E4%BA%86%E8%A7%A3-tsconfig-json)
 

@@ -378,15 +378,23 @@ console.log(window.a);
 
 # 八、JavaScript 数据类型
 
-* 5种基本数据类型：
-    * 字符串型（String） 
-    * 数值型（Number） 
-    * 布尔型（Boolean） 
-    * null型（Null） 
-    * undefined型（Undefined）
+**原始值（*[Primitive](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive)*）/ 值类型 / 基本数据类型**，JavaScript 中有 7 种：
 
-* 引用数据类型：
-    * 对象（Object）
+1. **Undefined**：表示一个未定义的值。
+2. **Null**：表示空值或者没有值。
+3. **Boolean**：表示逻辑上的 true 或 false。
+4. **Number**：表示数字，包括整数和浮点数。
+5. **String**：表示文本数据，用单引号或双引号表示。
+6. **Symbol**：表示独一无二的值，ES6 新增（ES2015）。
+7. **BigInt**：表示任意精度的整数，ES11 新增（ES2020）。
+
+**引用数据类型（对象类型）**：
+
+1. **Object**：对象
+2. **Array**：数组
+3. **Function**：函数
+4. **RegExp**：正则
+5. **Date**：日期
 
 ![](images/js弱数据类型.png)
 
