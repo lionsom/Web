@@ -2338,50 +2338,111 @@ const people: Person[] = [
 * https://ts.xcatliu.com/advanced/generics.html
 * https://typescript.bootcss.com/generics.html
 
+
+
 > **泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。** 
 
+## 1. 简单例子
 
+首先，我们来实现一个函数 `createArray`，它可以创建一个指定长度的数组，同时将每一项都填充一个默认值：
 
-因为TypeScript是结构性的类型系统，类型参数只影响使用其做为类型一部分的结果类型。比如，
-
-```
-interface Empty<T> {
-}
-let x: Empty<number>;
-let y: Empty<string>;
-
-x = y;  // okay, y matches structure of x
-```
-
-上面代码里，`x`和`y`是兼容的，因为它们的结构使用类型参数时并没有什么不同。 把这个例子改变一下，增加一个成员，就能看出是如何工作的了：
-
-```
-interface NotEmpty<T> {
-    data: T;
-}
-let x: NotEmpty<number>;
-let y: NotEmpty<string>;
-
-x = y;  // error, x and y are not compatible
-```
-
-在这里，泛型类型在使用时就好比不是一个泛型类型。
-
-对于没指定泛型类型的泛型参数时，会把所有泛型参数当成`any`比较。 然后用结果类型进行比较，就像上面第一个例子。
-
-比如，
-
-```
-let identity = function<T>(x: T): T {
-    // ...
+```ts
+function createArray(length: number, value: any): Array<any> {
+    let result = [];
+    for (let i = 0; i < length; i++) {
+        result[i] = value;
+    }
+    return result;
 }
 
-let reverse = function<U>(y: U): U {
-    // ...
+createArray(3, 'x'); // ['x', 'x', 'x']
+```
+
+这段代码编译不会报错，但是一个显而易见的缺陷是，它并没有准确的定义返回值的类型：
+
+`Array<any>` 允许数组的每一项都为任意类型。但是我们预期的是，数组中每一项都应该是输入的 `value` 的类型。
+
+这时候，泛型就派上用场了：
+
+```ts
+function createArray<T>(length: number, value: T): Array<T> {
+    let result: T[] = [];
+    for (let i = 0; i < length; i++) {
+        result[i] = value;
+    }
+    return result;
 }
 
-identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
+createArray<string>(3, 'x'); // ['x', 'x', 'x']
 ```
+
+上例中，我们在函数名后添加了 `<T>`，其中 `T` 用来指代任意输入的类型，在后面的输入 `value: T` 和输出 `Array<T>` 中即可使用了。
+
+**使用泛型函数**
+
+我们定义了泛型函数后，可以用两种方法使用。
+
+* 第一种是，传入所有的参数，包含类型参数：
+
+```ts
+let output = identity<string>("myString");  // type of output will be 'string'
+```
+
+这里我们明确的指定了`T`是`string`类型，并做为一个参数传给函数，使用了`<>`括起来而不是`()`。
+
+* 第二种方法更普遍。利用了*类型推论* – 即编译器会根据传入的参数自动地帮助我们确定T的类型：
+
+```ts
+let output = identity("myString");  // type of output will be 'string'
+```
+
+注意我们没必要使用尖括号（`<>`）来明确地传入类型；编译器可以查看`myString`的值，然后把`T`设置为它的类型。 类型推论帮助我们保持代码精简和高可读性。如果编译器不能够自动地推断出类型的话，只能像上面那样明确的传入T的类型，在一些复杂的情况下，这是可能出现的。
+
+## 2. 类型参数 - 数组
+
+这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。
+
+```ts
+function loggingIdentity<T>(arg: T[]): T[] {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+```
+
+or
+
+```ts
+function loggingIdentity<T>(arg: Array<T>): Array<T> {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+```
+
+## 3. 多个类型参数[§](https://ts.xcatliu.com/advanced/generics.html#多个类型参数)
+
+定义泛型的时候，可以一次定义多个类型参数：
+
+```ts
+function swap<T, U>(tuple: [T, U]): [U, T] {
+    return [tuple[1], tuple[0]];
+}
+
+swap([7, 'seven']); // ['seven', 7]
+```
+
+上例中，我们定义了一个 `swap` 函数，用来交换输入的元组。
+
+## 4. 泛型约束[§](https://ts.xcatliu.com/advanced/generics.html#泛型约束)
+
+
+
+泛型类型
+
+
+
+泛型类
+
+
 
 
 
