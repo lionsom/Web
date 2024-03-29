@@ -48,7 +48,7 @@ fetchData()
 
 
 
-## 3. async/await：
+## 3. async / await
 
 async/await 是基于 Promise 的异步编程语法糖，可以使异步代码看起来像同步代码。使用 async/await 可以在函数前加上 async 关键字，使其成为一个异步函数，并且在异步操作前使用 await 关键字等待异步操作的结果。例如：
 
@@ -125,7 +125,6 @@ handleData();
 并发（concurrency）：把任务在不同的时间点交给处理器进行处理。在同一时间点，任务并不会同时运行。
 
 并行（parallelism）：把每一个任务分配给每一个处理器独立完成。在同一时间点，任务一定是同时运行。
-
 
 
 

@@ -149,6 +149,40 @@ $ ts-node myFile.ts
 * [Vue3 入门指南与实战案例](https://vue3.chengpeiquan.com/)
     * [快速上手 TypeScript](https://vue3.chengpeiquan.com/typescript.html)
 
+### a. 新建Node.js项目 - `npm init`
+
+`npm init` 是用于初始化一个新的 Node.js 项目的命令，它会创建一个 `package.json` 文件，其中包含项目的基本信息和依赖管理。
+
+要使用 `npm init` 命令，您只需在命令行中进入您的项目目录，然后运行：
+
+```sh
+$ npm init
+```
+
+在运行该命令后，npm 将会开始与您交互，询问您关于项目的一些信息，比如项目名称、版本、描述、入口文件、作者等。您可以根据提示输入相应的信息，也可以直接按回车键使用默认值。
+
+完成后，npm 将会生成一个 `package.json` 文件，并将其保存在当前目录中。这个文件将包含您提供的信息以及其他默认值，如下所示：
+
+```sh
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}
+```
+
+您可以根据需要编辑 `package.json` 文件中的信息，如添加依赖、调整脚本等。完成后，您的项目就已经初始化完成了。
+
+
+
+### b. 安装必备依赖
+
 安装 TypeScript 开发的两个主要依赖包：
 
 1. [typescript](https://www.npmjs.com/package/typescript) 这个包是用 TypeScript 编程的语言依赖包
@@ -190,6 +224,28 @@ $ npm install -D typescript ts-node
 
 
 
+### c. 生成tsconfig.json - `tsc --init` 
+
+在命令行输入 `tsc --init` ，这是 TypeScript 提供的初始化功能，会生成一个默认的 tsconfig.json 文件。
+
+```sh
+$ tsc --init
+
+Created a new tsconfig.json with:
+                                                                             TS
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+
+
+You can learn more at https://aka.ms/tsconfig
+```
+
+
+
 ## 2. 如何编译为 JavaScript 代码
 
 * [TypeScript 如何编译为 JavaScript 代码](https://vue3.chengpeiquan.com/typescript.html#如何编译为-javascript-代码)
@@ -218,5 +274,4 @@ $ npm install -D typescript ts-node
 这样在命令行运行 `npm run build` 的时候，就会把 `src/ts/index.ts` 这个 TS 文件编译，并输出到项目下与 src 文件夹同级的 dist 目录下。
 
 其中 `tsc` 是 TypeScript 用来编译文件的命令， `--outDir` 是它的一个选项，用来指定输出目录，如果不指定，则默认生成到源文件所在的目录下面。
-
 

@@ -29,6 +29,8 @@ $ npm install -g typescript
 
 在命令行输入 `tsc --init` ，这是 TypeScript 提供的初始化功能，会生成一个默认的 tsconfig.json 文件。
 
+`tsc --init` 是一个命令，用于在项目中初始化一个 TypeScript 配置文件，文件名为 `tsconfig.json`。该文件包含了 TypeScript 编译器的各种设置和选项。通过初始化这个配置文件，可以更好地控制 TypeScript 项目的编译过程和行为。
+
 ```sh
 $ tsc --init
 

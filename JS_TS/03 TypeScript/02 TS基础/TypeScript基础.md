@@ -5,6 +5,8 @@
 * [TypeScript 入门教程](https://ts.xcatliu.com/)
 * [TypeScript 中文手册](https://typescript.bootcss.com/advanced-types.html)
 
+* [typescript史上最强学习入门文章(2w字)](https://juejin.cn/post/7018805943710253086)
+
 
 
 # 一、JS/TS数据类型
