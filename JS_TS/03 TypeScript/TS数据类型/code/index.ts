@@ -99,3 +99,123 @@ let value1: void; // 定义了一个不可以保存任意类型数据的变量, 
 // 注意点: null和undefined是所有类型的子类型, 所以我们可以将null和undefined赋值给任意类型
 // value1 = null; // 不会报错
 value1 = undefined;// 不会报错
+
+
+
+
+
+abstract class Animal {
+  public name: string;
+  public constructor(name: string) {
+    this.name = name;
+  }
+  printName(): void {
+    console.log('Department name: ' + this.name);
+  }
+  public abstract sayHi(): void;
+}
+
+class Cat extends Animal {
+  constructor(name: string) {
+    super(name);
+    this.name = name + ' cat';
+    console.log('Cat constructor = ', this.name);
+  }
+
+  public sayHi(): void {
+      console.log(`Meow, I am ${this.name}`);
+  }
+
+  public eat() {
+    console.log(`${this.name} is eating.`);
+  }
+}
+
+let cat = new Cat('Tom');
+cat.sayHi();
+cat.printName();
+
+
+let animal: Animal; // 允许创建一个对抽象类型的引用
+// animal = new Animal(); // 错误: 不能创建一个抽象类的实例
+animal = new Cat('Jack'); // 允许对一个抽象子类进行实例化和赋值
+animal.printName();
+animal.sayHi();
+// animal.eat();   //
+
+
+
+
+/**
+ * 单例模式
+ */
+class Single{
+  private static instance:Single; 
+  private constructor(){}
+
+  static getInstance(){
+    if(!this.instance){
+      this.instance = new Single();
+    }
+    return this.instance;
+  }
+}
+// const single1 = new Single();
+// const single2 = new Single();
+
+const single3 = Single.getInstance();
+const single4 = Single.getInstance();
+
+console.log(single3 === single4); //true
+
+
+
+
+
+
+interface A {
+  name: string;
+  age: number;
+}
+
+interface B {
+  sex: string;
+}
+
+interface C extends A, B {
+  height: number;
+}
+
+const uuser: C = {
+  name: 'LBJ',
+  age: 18,
+  sex: 'male',
+  height: 1.88
+}
+console.log('uuser = ', uuser);
+
+
+
+
+
+class Flyable {
+  fly() {
+    console.log("Flying...");
+  }
+}
+
+class Animal2 {
+  name: string = '222';
+}
+
+class Bird2 extends Animal2 {
+  // ...
+
+  // 使用 Flyable mixin
+  fly() {
+    console.log("Flying...");
+  }
+}
+
+let bird = new Bird2();
+bird.fly();

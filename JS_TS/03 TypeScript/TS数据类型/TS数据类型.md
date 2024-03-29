@@ -1064,7 +1064,7 @@ const foo: Foo = { bar: 123, bas: 456 };
 foo.bar = 456; // Error: foo.bar 为仅读属性
 ```
 
-## 3. 修饰数组
+## 3. 修饰数组 - ReadonlyArray
 
 TypeScript提供了`ReadonlyArray<T>`类型来确保数组创建后不会被修改（即不能添加、删除或替换数组中的元素）。
 
@@ -1073,6 +1073,12 @@ let numbers: ReadonlyArray<number> = [1, 2, 3, 4];
 console.log(numbers[0]); // 1
 // numbers.push(5); // 错误: 属性 "push" 不存在于类型 "ReadonlyArray<number>" 上。
 // numbers[2] = 10; // 错误: 类型 "ReadonlyArray<number>" 中的索引签名仅允许读取。
+```
+
+上面代码的最后一行，可以看到就算把整个`ReadonlyArray`赋值到一个普通数组也是不可以的。 但是你可以用类型断言重写：
+
+```ts
+a = ro as number[];
 ```
 
 ## 4. 修饰映射类型
@@ -1207,7 +1213,7 @@ TypeScript 除了实现了所有 ES6 中的类的功能以外，还添加了一�
 
 下面我们先回顾一下 ES6 中类的用法，更详细的介绍可以参考 [ECMAScript 6 入门 - Class](http://es6.ruanyifeng.com/#docs/class)。
 
-### 属性和方法[§](https://ts.xcatliu.com/advanced/class.html#属性和方法)
+### a. 属性和方法[§](https://ts.xcatliu.com/advanced/class.html#属性和方法)
 
 使用 `class` 定义类，使用 `constructor` 定义构造函数。
 
@@ -1228,7 +1234,7 @@ let a = new Animal('Jack');
 console.log(a.sayHi()); // My name is Jack
 ```
 
-### 类的继承[§](https://ts.xcatliu.com/advanced/class.html#类的继承)
+### b. 类的继承[§](https://ts.xcatliu.com/advanced/class.html#类的继承)
 
 使用 `extends` 关键字实现继承，子类中使用 `super` 关键字来调用父类的构造函数和方法。
 
@@ -1247,7 +1253,7 @@ let c = new Cat('Tom'); // Tom
 console.log(c.sayHi()); // Meow, My name is Tom
 ```
 
-### 存取器[§](https://ts.xcatliu.com/advanced/class.html#存取器)
+### c. 存取器[§](https://ts.xcatliu.com/advanced/class.html#存取器)
 
 使用 getter 和 setter 可以改变属性的赋值和读取行为：
 
@@ -1269,7 +1275,7 @@ a.name = 'Tom'; // setter: Tom
 console.log(a.name); // Jack
 ```
 
-### 静态方法[§](https://ts.xcatliu.com/advanced/class.html#静态方法)
+### d. 静态方法[§](https://ts.xcatliu.com/advanced/class.html#静态方法)
 
 使用 `static` 修饰符修饰的方法称为静态方法，它们不需要实例化，而是直接通过类来调用：
 
@@ -1289,7 +1295,7 @@ a.isAnimal(a); // TypeError: a.isAnimal is not a function
 
 ES7 中有一些关于类的提案，TypeScript 也实现了它们，这里做一个简单的介绍。
 
-### 实例属性[§](https://ts.xcatliu.com/advanced/class.html#实例属性)
+### a. 实例属性[§](https://ts.xcatliu.com/advanced/class.html#实例属性)
 
 ES6 中实例的属性只能通过构造函数中的 `this.xxx` 来定义，ES7 提案中可以直接在类里面定义：
 
@@ -1306,7 +1312,7 @@ let a = new Animal();
 console.log(a.name); // Jack
 ```
 
-### 静态属性[§](https://ts.xcatliu.com/advanced/class.html#静态属性)
+### b. 静态属性[§](https://ts.xcatliu.com/advanced/class.html#静态属性)
 
 ES7 提案中，可以使用 `static` 定义一个静态属性：
 
@@ -1350,7 +1356,7 @@ let greeter = new Greeter("world");
 
 ### b. 继承
 
-**简单继承**
+#### 1. 简单继承
 
 ```ts
 class Animal {
@@ -1375,7 +1381,7 @@ dog.bark();
 
 因为`Dog`继承了`Animal`的功能，因此我们可以创建一个`Dog`的实例，它能够`bark()`和`move()`。
 
-**复杂继承**
+#### 2. 复杂继承
 
 ```ts
 class Animal {
@@ -1424,7 +1430,53 @@ Tommy the Palomino moved 34m.
 
 
 
-### c. 访问修饰符：public、private、protected[§](https://ts.xcatliu.com/advanced/class.html#public-private-和-protected)
+### c. 多继承 - 不支持
+
+* TypeScript 一次只能继承一个类，**不支持继承多个类**，但 TypeScript 支持多重继承（A 继承 B，B 继承 C）。
+
+* 多继承的毛病
+
+    - TypeScript 不支持多重继承，这意味着一个类只能继承自一个类，因为他会潜在地增加程序的复杂性。
+
+    - 倘若，在支持多继承的环境下，一个子类所继承的两个父类都拥有一个同名的方法，子类在调用父类方法的时候，哪一个父类的方法被调用是不清楚或者说是有歧义的。
+
+```ts
+// 以下代码为错误代码
+class Bat extends WingeAnimal, Mammal {
+    // ...
+}
+```
+
+#### 1. 模拟多继承 - 接口和交叉类型
+
+可以使用接口和交叉类型来创建具有多个父接口的类。例如：
+
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Mammal {
+  hasFur: boolean;
+}
+
+class Pet implements Animal, Mammal {
+  name: string;
+  hasFur: boolean;
+}
+```
+
+现在，`Pet` 类实现了 `Animal` 和 `Mammal` 接口，并具有这两个接口的所有成员。
+
+#### 2. 模拟多继承 - Mixin（待）
+
+TypeScript 中的 Mixin 是一个类，它提供了一组可以与其他类组合的附加功能。这可以用来模拟多继承，因为一个类可以从多个 Mixin 中获取功能。
+
+// TODO
+
+
+
+### d. 访问修饰符：public、private、protected[§](https://ts.xcatliu.com/advanced/class.html#public-private-和-protected)
 
 TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 `public`、`private` 和 `protected`。
 
@@ -1563,22 +1615,9 @@ let a = new Animal('Jack');
 // index.ts(13,9): TS2674: Constructor of class 'Animal' is protected and only accessible within the class declaration.
 ```
 
-### 参数属性[§](https://ts.xcatliu.com/advanced/class.html#参数属性)
+### e. readonly[§](https://ts.xcatliu.com/advanced/class.html#readonly)
 
-修饰符和`readonly`还可以使用在构造函数参数中，等同于类中定义该属性同时给该属性赋值，使代码更简洁。
-
-```ts
-class Animal {
-  // public name: string;
-  public constructor(public name) {
-    // this.name = name;
-  }
-}
-```
-
-### readonly[§](https://ts.xcatliu.com/advanced/class.html#readonly)
-
-只读属性关键字，只允许出现在属性声明或索引签名或构造函数中。
+你可以使用`readonly`关键字将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。
 
 ```ts
 class Animal {
@@ -1606,13 +1645,131 @@ class Animal {
 }
 ```
 
-### 抽象类[§](https://ts.xcatliu.com/advanced/class.html#抽象类)
+### f. 参数属性[§](https://ts.xcatliu.com/advanced/class.html#参数属性)
 
-`abstract` 用于定义抽象类和其中的抽象方法。
+修饰符和`readonly`还可以使用在构造函数参数中，等同于类中定义该属性同时给该属性赋值，使代码更简洁。
 
-什么是抽象类？
+参数属性可以方便地让我们在一个地方定义并初始化一个成员。
 
-首先，抽象类是不允许被实例化的：
+* before
+
+```ts
+class Animal {
+    private name: string;
+    constructor(theName: string) { 
+        this.name = theName; 
+    }
+}
+```
+
+* after
+
+```ts
+class Animal {
+	constructor(private name: string) {
+    }
+}
+```
+
+注意看我们是如何舍弃了`theName`，仅在构造函数里使用`private name: string`参数来创建和初始化`name`成员。 我们把声明和赋值合并至一处。
+
+参数属性通过给构造函数参数添加一个访问限定符来声明。 使用`private`限定一个参数属性会声明并初始化一个私有成员；对于`public`和`protected`来说也是一样。
+
+### g. 存取器 - set / get
+
+TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。
+
+* before，无存取器，我们可以随意的设置`fullName`，这是非常方便的。
+
+```ts
+class Employee {
+    fullName: string;
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+console.log(employee.fullName);
+```
+
+* after，有存取器
+
+```ts
+let passcode = "secret passcode";
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode && passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+alert(employee.fullName);
+```
+
+* 注意事项
+    * 首先，存取器要求你将编译器设置为输出ECMAScript 5或更高。 不支持降级到ECMAScript 3。 
+    * 其次，只带有`get`不带有`set`的存取器自动被推断为`readonly`。 这在从代码生成`.d.ts`文件时是有帮助的，因为利用这个属性的用户会看到不允许够改变它的值。
+
+### h. 静态属性 / 方法
+
+* 静态属性
+
+我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 
+
+```ts
+class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+```
+
+* 静态方法
+
+使用 `static` 修饰符修饰的方法称为静态方法，它们不需要实例化，而是直接通过类来调用：
+
+```js
+class Animal {
+  static isAnimal(a) {
+    return a instanceof Animal;
+  }
+}
+
+let a = new Animal('Jack');
+Animal.isAnimal(a); // true
+a.isAnimal(a); // TypeError: a.isAnimal is not a function
+```
+
+### i. 抽象类[§](https://ts.xcatliu.com/advanced/class.html#抽象类)
+
+* `abstract`关键字是用于定义抽象类和在抽象类内部定义抽象方法。
+* 抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。 
+* 不同于接口，抽象类可以包含成员的实现细节。
+* 抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。 
+
+1. 首先，抽象类是不允许被实例化的：
 
 ```ts
 abstract class Animal {
@@ -1630,7 +1787,7 @@ let a = new Animal('Jack');
 
 上面的例子中，我们定义了一个抽象类 `Animal`，并且定义了一个抽象方法 `sayHi`。在实例化抽象类的时候报错了。
 
-其次，抽象类中的抽象方法必须被子类实现：
+2. 其次，抽象类中的抽象方法必须被子类实现：
 
 ```ts
 abstract class Animal {
@@ -1652,9 +1809,9 @@ let cat = new Cat('Tom');
 // index.ts(9,7): error TS2515: Non-abstract class 'Cat' does not implement inherited abstract member 'sayHi' from class 'Animal'.
 ```
 
-上面的例子中，我们定义了一个类 `Cat` 继承了抽象类 `Animal`，但是没有实现抽象方法 `sayHi`，所以编译报错了。
+上面的例子中，我们定义了一个类 `Cat` 继承了抽象类 `Animal`，但是没有实现 **抽象方法 `sayHi`**，所以编译报错了。
 
-下面是一个正确使用抽象类的例子：
+3. 下面是一个正确使用抽象类的例子：
 
 ```ts
 abstract class Animal {
@@ -1662,16 +1819,41 @@ abstract class Animal {
   public constructor(name) {
     this.name = name;
   }
-  public abstract sayHi();
+  // 普通方法，可以包含实现细节，这是与inferface的差别
+  printName(): void {
+    console.log('Department name: ' + this.name);
+  }
+  // 抽象方法
+  public abstract sayHi();   // 必须在派生类中实现
 }
 
 class Cat extends Animal {
+  constructor(name: string) {
+    // 在派生类的构造函数中必须调用 super()
+    super(name);
+    this.name = name + ' cat';
+    console.log('Cat constructor = ', this.name);
+  }
+    
   public sayHi() {
     console.log(`Meow, My name is ${this.name}`);
+  }
+    
+  public eat(): void {
+    console.log(`${this.name} is eating.`);
   }
 }
 
 let cat = new Cat('Tom');
+cat.sayHi();
+cat.printName();
+
+let animal: Animal; // 允许创建一个对抽象类型的引用
+animal = new Animal(); // ❎错误: 不能创建一个抽象类的实例
+animal = new Cat(); // 允许对一个抽象子类进行实例化和赋值
+animal.printName();
+animal.sayHi();
+animal.eat(); // ❎错误: 方法在声明的抽象类中不存在
 ```
 
 上面的例子中，我们实现了抽象方法 `sayHi`，编译通过了。
@@ -1707,50 +1889,11 @@ var Cat = (function (_super) {
 var cat = new Cat('Tom');
 ```
 
-## 类的类型[§](https://ts.xcatliu.com/advanced/class.html#类的类型)
-
-给类加上 TypeScript 的类型很简单，与接口类似：
-
-```ts
-class Animal {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
-  sayHi(): string {
-    return `My name is ${this.name}`;
-  }
-}
-
-let a: Animal = new Animal('Jack');
-console.log(a.sayHi()); // My name is Jack
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### j. 对象比较
 
 类与对象字面量和接口差不多，但有一点不同：类有静态部分和实例部分的类型。 比较两个类类型的对象时，只有实例的成员会被比较。 静态成员和构造函数不在比较的范围内。
 
-```
+```ts
 class Animal {
     feet: number;
     constructor(name: string, numFeet: number) { }
@@ -1768,154 +1911,300 @@ a = s;  //OK
 s = a;  //OK
 ```
 
-## 类的私有成员
-
-私有成员会影响兼容性判断。 当类的实例用来检查兼容时，如果目标类型包含一个私有成员，那么源类型必须包含来自同一个类的这个私有成员。 这允许子类赋值给父类，但是不能赋值给其它有同样类型的类。
 
 
+## 4. 单例模式
 
-## 类的属性
+**单例模式可以简单的理解为只生成一个实例**
 
-如果对于类的访问器有疑问的童鞋，还请先移步至`https://juejin.cn/post/7073092815474917413`
+1. **私有化构造函数**：确保不能从类外部通过`new`关键字创建实例。
+2. **静态属性保存实例**：类自身维护一个私有静态属性来保存单例实例。
+3. **公共静态方法获取实例**：通过一个公共的静态方法来获取这个单例实例。如果实例不存在，则在这个方法内部创建实例。
 
-```typescript
-typescript
-复制代码class Person{
-  constructor(private name:string){
+下面是一个TypeScript中单例模式的示例：
 
-  }
+```ts
+class Singleton {
+    private static instance: Singleton;
+
+    // 私有化构造函数，防止外部通过new创建实例
+    private constructor() {}
+
+    // 公共静态方法，用于获取单例实例
+    public static getInstance(): Singleton {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+        return Singleton.instance;
+    }
 }
 
-const person = new Person('kobe');
+// 使用
+const singletonInstance1 = Singleton.getInstance();
+const singletonInstance2 = Singleton.getInstance();
+console.log(singletonInstance1 === singletonInstance2); //true
 ```
-
-看到上面的思考一个问题，如果让`私有属性`对外暴露呢？
-
-#### **1.1-getter:**
-
-那就是现在用提到的`getter`和`setter`
-
-```typescript
-typescript
-复制代码//getter
-class Person1 {
-  constructor(private _name:string){
-  }
-  get name(){
-    return this._name + "in Boston"
-  }
-}
-const allen = new Person1('Ray Allen');
-console.log(allen.name);//注意此处无括号  打印出Ray Allen in Boston能够正常访问
-```
-
-- 这种函数前加`get`关键字就可以完成`对私有private属性的获取`
-- 通常内部私有属性会用一个`_`+`"属性名"`来定义
-- `get`中可以对属性进行`加密保护处理`,这里这时候简单的拼接了一个`in Boston`字符串
-
-#### **1.2-setter:**
-
-上面提到了获取私有属性，那么如果给`私有属性赋值`呢🤔？
-
-```typescript
-typescript
-复制代码//setter
-
-class Person2 {
-  constructor(private _name:string){
-  }
-  get name(){
-    return this._name + " in Boston"
-  }
-  set name(name:string){
-    const realName = name.split(' ')[0];
-    this._name = realName;
-  }
-}
-const allen1 = new Person2('Ray Allen');
-allen1.name = 'Ray Allen';
-console.log(allen1.name); //Ray in Boston
-```
-
-- 这种函数前加`set`关键字就可以完成`对私有private属性的赋值`
-- `set`中也可以对值进行加密
-
-
-
-作者：Geek喜多川海梦
-链接：https://juejin.cn/post/7074080912127819806
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
-
-
-
-## 抽象类：
-
-- `抽象类`只能被`继承`，不能被`实例化`
-- `抽象类`是把类相关的通用的东西抽象出来
-- `接口interface`是把各种对象通用的东西抽象出来
-
-```typescript
-typescript
-复制代码abstract class Gemo{
-  getType(){
-    return '我是抽象类'
-  }
-  abstract getArea():number;
-}
-
-class Circle extends Gemo{
-  getArea(): number {
-      return 24
-  }
-}
-```
-
-
-
-作者：Geek喜多川海梦
-链接：https://juejin.cn/post/7074080912127819806
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
-
-
 
 
 
 # 二十三、接口（interface）
 
+在TypeScript中，接口（Interfaces）用于定义对象的结构，包括对象的属性和方法。
+
+接口运行时的影响为 0。
+
+## 1. 简单例子
+
+```ts
+// 下面两个是等效的声明，示例 A 使用内联注解，示例 B 使用接口形式：
+
+// 示例 A
+declare const myPoint: { x: number; y: number };
+
+// 示例 B
+interface Point {
+  x: number;
+  y: number;
+}
+declare const myPoint: Point;
+```
+
+## 2. 接口合并
+
+示例 B 的好处在于，如果有人创建了一个基于 `myPoint` 的库来添加新成员, 那么他可以轻松将此成员添加到 `myPoint` 的现有声明中:
+
+```ts
+// Lib a.d.ts
+interface Point {
+  x: number,
+  y: number
+}
+declare const myPoint: Point
+
+// Lib b.d.ts
+interface Point {
+  z: number
+}
+
+// Your code
+myPoint.z // Allowed!
+```
+
+## 3. 使用接口
+
+```ts
+// 定义一个接口
+interface Person {
+  name: string;
+  age: number;
+  greet: () => void;
+}
+
+// 使用接口
+const person: Person = {
+  name: 'Alice',
+  age: 30,
+  greet: function() {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+  }
+};
+
+person.greet();
+```
+
+## 4. 可选属性
+
+```ts
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+function createSquare(config: SquareConfig): {color: string; area: number} {
+  let newSquare = {color: "white", area: 100};
+  if (config.color) {
+    newSquare.color = config.color;
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width;
+  }
+  return newSquare;
+}
+
+// 调用
+let mySquare = createSquare({color: "black"});
+```
+
+## 5. 只读属性
+
+一些对象属性**只能在对象刚刚创建的时候修改其值**。 你可以在属性名前用`readonly`来指定只读属性:
+
+```ts
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+```
+
+你可以通过赋值一个对象字面量来构造一个`Point`。 赋值后，`x`和`y`再也不能被改变了。
+
+```ts
+let p1: Point = { x: 10, y: 20 }; // 创建时候可以修改
+p1.x = 5; // error! 赋值后，不能修改
+```
+
+TypeScript具有`ReadonlyArray<T>`类型，它与`Array<T>`相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改：
+
+```ts
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+```
+
+上面代码的最后一行，可以看到就算把整个`ReadonlyArray`赋值到一个普通数组也是不可以的。 但是你可以用类型断言重写：
+
+```ts
+a = ro as number[];
+```
+
+## 6. 接口继承
+
+### a. 继承
+
+```ts
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+```
+
+### b. 多继承
+
+#### 1. extends
+
+```ts
+interface A {
+  name: string;
+  age: number;
+}
+
+interface B {
+  sex: string;
+}
+
+interface C extends A, B {
+  height: number;
+}
+
+const uuser: C = {
+  name: 'LBJ',
+  age: 18,
+  sex: 'male',
+  height: 1.88
+}
+console.log('uuser = ', uuser);
+
+// uuser =  { name: 'LBJ', age: 18, sex: 'male', height: 1.88 }
+```
+
+#### 2. 交叉类型
+
+```ts
+interface A {
+  a: number;
+}
+interface B {
+  b: string;
+}
+
+type C = A & B;
+
+let ab: A & B = {a: 1, b: "string"};
+let c: C = {a: 2, b: "string2"};
+```
+
+现在，Pet 类型继承了 Animal 和 Mammal 接口的所有成员。
 
 
 
+# 二十四、类与接口
+
+## 1. 对比
+
+在TypeScript中，接口（Interfaces）和类（Classes）是两个不同的概念，它们有一些相似之处，也有一些明显的区别。以下是它们之间的异同点：
+
+* 相同点：
+    * **成员定义：** 接口和类都可以定义属性和方法，用于描述对象的结构。
+    * **可继承性：** 接口和类都支持继承，可以扩展已有的接口或类。
+    * **类型检查：** 接口和类都可以用于进行类型检查，帮助捕获编码过程中的潜在错误。
+
+* 不同点：
+    * **实现方式：** 接口主要用于定义对象的结构，而类则用于创建对象的实例。
+    * **实例化：** 接口本身不能被实例化，而类可以被实例化为对象。
+    * **抽象性：** 接口只描述对象的结构，不包含具体实现；类既可以描述对象的结构，又可以包含具体实现。
+    * **继承：** 类支持单继承和多实现，而接口支持多继承。
+    * **访问修饰符：** 类中可以使用访问修饰符（public、private、protected）来限制成员的访问权限，而接口中的成员默认为 public。
+
+综上所述，接口用于定义对象的结构，提供了一种契约，而类用于创建对象的实例，包含了对象的结构和行为。在实际开发中，通常会将接口用于描述对象的形状，而将类用于实现对象的具体功能。
+
+## 2. 类实现接口
+
+与C#或Java里接口的基本作用一样，TypeScript也能够用它来明确的强制一个类去符合某种契约。
+
+你也可以在接口中描述一个方法，在类里实现它，如同下面的`setTime`方法一样：
+
+```ts
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+```
+
+接口描述了类的公共部分，而不是公共和私有两部分。 它不会帮你检查类是否具有某些私有成员。
+
+## 3. 把类当做接口使用
+
+```ts
+class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+```
 
 
 
-
-
-
-
-
-
-# 十、TypeScript定义复杂类型
-
-## 1. `interface`
-
-
-
-## 2. `type`
+# 二十五、接口与类型别名
 
 在 TypeScript 中，`interface` 和 `type` 都可以用来定义数据类型，但它们有一些区别：
 
-### Interface（接口）：
+## 1. Interface（接口）：
 
 1. **声明合约（Contracts）**：接口主要用于声明对象的形状，即对象应该具有哪些属性以及它们的类型。
 2. **扩展和实现**：接口可以被其他接口扩展，也可以由类来实现。
 3. **合并（Merging）**：如果定义了多个同名的接口，它们会自动合并成一个接口。
 4. **限制类型**：接口可以用来限制类、对象、函数等的形状和行为。
+
+### a. 简单类型
 
 ```ts
 interface Person {
@@ -1937,51 +2226,9 @@ function greet(person: Person) {
 }
 ```
 
-### Type（类型别名）：
-
-1. **给类型取别名**：类型别名可以给任何类型取一个新的名字，这对于复杂类型或者联合类型非常有用。
-2. **联合类型和交叉类型**：类型别名可以表示联合类型、交叉类型等复杂的类型组合。
-3. **不能扩展和实现**：类型别名不能被扩展或实现，也不能被合并。
+### b. 复杂嵌套类型
 
 ```ts
-type Person = {
-    name: string;
-    age: number;
-};
-
-type Teacher = Person & {
-    teach(): void;
-};
-
-type Age = number | string;
-
-type Point = {
-    x: number;
-    y: number;
-};
-
-function logPoint(p: Point) {
-    console.log(`x: ${p.x}, y: ${p.y}`);
-}
-```
-
-### 总结：
-
-- 使用接口（`interface`）来定义对象的形状，以及类和对象的行为。
-- 使用类型别名（`type`）来给复杂类型取别名，以及定义联合类型、交叉类型等复杂类型组合。
-- 在选择使用接口还是类型别名时，取决于你的需求和个人偏好。通常情况下，如果你需要声明一个对象的形状，使用接口会更加合适；如果你需要给复杂类型取别名，或者定义联合类型和交叉类型，使用类型别名会更方便。
-
-
-
-
-
-# 定义复杂嵌套类型
-
-在 TypeScript 中，你可以使用数组类型来声明具有复杂嵌套类型的数组。你可以使用接口或类型别名来定义嵌套的复杂类型，然后将其用作数组元素的类型。下面是一个示例：
-
-### 使用接口定义复杂嵌套类型：
-
-```
 // 定义一个嵌套类型的接口
 interface Address {
     city: string;
@@ -2011,9 +2258,39 @@ const people: Person[] = [
 
 在这个例子中，我们首先定义了 `Address` 接口来描述地址的结构，然后定义了 `Person` 接口来描述一个人的结构，其中 `address` 属性的类型为 `Address` 接口。接着，我们声明了一个 `people` 数组，其元素为 `Person` 类型。
 
-### 使用类型别名定义复杂嵌套类型：
+## 2. Type（类型别名）
 
+1. **给类型取别名**：类型别名可以给任何类型取一个新的名字，这对于复杂类型或者联合类型非常有用。
+2. **联合类型和交叉类型**：类型别名可以表示联合类型、交叉类型等复杂的类型组合。
+3. **不能扩展和实现**：类型别名不能被扩展或实现，也不能被合并。
+
+### a. 简单类型
+
+```ts
+type Person = {
+    name: string;
+    age: number;
+};
+
+type Teacher = Person & {
+    teach(): void;
+};
+
+type Age = number | string;
+
+type Point = {
+    x: number;
+    y: number;
+};
+
+function logPoint(p: Point) {
+    console.log(`x: ${p.x}, y: ${p.y}`);
+}
 ```
+
+### b. 复杂嵌套类型
+
+```ts
 // 定义一个嵌套类型的类型别名
 type Address = {
     city: string;
@@ -2045,17 +2322,25 @@ const people: Person[] = [
 
 无论你选择使用接口还是类型别名，都可以声明具有复杂嵌套类型的数组。选择哪种方式取决于你的需求和个人偏好。
 
+## 3. 总结
+
+- 使用接口（`interface`）来定义对象的形状，以及类和对象的行为。
+- 使用类型别名（`type`）来给复杂类型取别名，以及定义联合类型、交叉类型等复杂类型组合。
+- 在选择使用接口还是类型别名时，取决于你的需求和个人偏好。通常情况下，如果你需要声明一个对象的形状，使用接口会更加合适；如果你需要给复杂类型取别名，或者定义联合类型和交叉类型，使用类型别名会更方便。
 
 
 
+# 二十六、泛型（Generics）
+
+* https://jkchao.github.io/typescript-book-chinese/typings/generices.html#%E5%8A%A8%E6%9C%BA%E5%92%8C%E7%A4%BA%E4%BE%8B
+
+* https://juejin.cn/post/7083101542307332104
+* https://ts.xcatliu.com/advanced/generics.html
+* https://typescript.bootcss.com/generics.html
+
+> **泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。** 
 
 
-
-# 泛型
-
-https://jkchao.github.io/typescript-book-chinese/typings/generices.html#%E5%8A%A8%E6%9C%BA%E5%92%8C%E7%A4%BA%E4%BE%8B
-
-https://juejin.cn/post/7083101542307332104
 
 因为TypeScript是结构性的类型系统，类型参数只影响使用其做为类型一部分的结果类型。比如，
 
@@ -2100,49 +2385,9 @@ identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 
 
 
+# 混合
 
-
-# 单例模式
-
-**单例模式可以简单的理解为只生成一个实例**
-
-如果想要只生成一个实例，那么肯定不能使用`new`的形式，所以需要将`constructor`设置为`private`
-
-既然不能通过`new`的形式，那么就需要考虑如何给`Single`上挂方法以及属性了---也就是`static`静态属性
-
-- 使用`static`的属性会挂在`类上`而不是`类的实例上`
-- 声明一个私有的`instance`用来存放`Single`生成的实例
-- 写一个`static`方法`getInstance`,内部通过判断返回`实例`，而因为`static`是针对于类的，所以外面可以通过`Single.getInstance()`来获取实例
-
-```typescript
-typescript
-复制代码// 单例模式ts的实现--只能生成一个实例
-class Single{
-  private static instance:Single; 
-  private constructor(){}
-
-  static getInstance(){
-    if(!this.instance){
-      this.instance = new Single();
-    }
-    return this.instance;
-  }
-}
-// const single1 = new Single();
-// const single2 = new Single();
-
-const single3 = Single.getInstance();
-const single4 = Single.getInstance();
-
-console.log(single3 === single4); //true
-```
-
-
-
-作者：Geek喜多川海梦
-链接：https://juejin.cn/post/7074080912127819806
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://jkchao.github.io/typescript-book-chinese/typings/mixins.html#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0
 
 
 
