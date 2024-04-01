@@ -1475,7 +1475,7 @@ function fun2() {
 ### c. 使用 "函数表达式" 来创建一个函数
 
 ```js
-var fun3 = function(){
+var fun3 = function() {
 	console.log("我是匿名函数中封装的代码");
 };
 ```
@@ -1485,7 +1485,7 @@ var fun3 = function(){
 ## 2. 函数的参数
 
 ```js
-function sum(a,b){
+function sum(a,b) {
     console.log(a+b);
 }
 
