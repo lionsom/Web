@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:callback": "node 0-callback.js",
-    "dev:promise": "node 02-promise.js",
-    "dev:async-await": "node 03-async-await.js",
+    "dev:callback": "node ./01-JS异步操作/01-callback.js",
+    "dev:promise-1": "node ./01-JS异步操作/02-promise-1.js",
+    "dev:promise-2": "node ./01-JS异步操作/02-promise-2.js",
+    "dev:async-await": "node ./01-JS异步操作/03-async-await.js",
+    "dev:setTimeout": "node ./02-setTimeout/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
