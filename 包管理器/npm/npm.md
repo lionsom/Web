@@ -76,6 +76,7 @@ $ nvm use 19
 查看全局已安装（`-g` 的意思是 `global` 全局的意思）
 
 ```sh
+$ npm list -g
 $ npm ls -g
 ```
 
@@ -84,6 +85,7 @@ $ npm ls -g
 加上层级控制显示[深度](https://link.segmentfault.com/?enc=viZhmkPR9%2FeR1rc2U7iquA%3D%3D.Qrsl6KBRhzNONqshjKu1KxySbwxQ9OsOWr0gaithSuGEIwQtvFHFUshirA2gjfmzP70W8R7ZM9Z9rYoOCcsa46IzyV7Sl8q%2BPMg%2Fz0YtHv8%3D)：`--depth 0`
 
 ```sh
+$ npm list -g --depth 0
 $ npm ls -g --depth 0
 ```
 

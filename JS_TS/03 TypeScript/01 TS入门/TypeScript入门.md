@@ -142,6 +142,32 @@ $ ts-node myFile.ts
 
 
 
+## 4. 在Vue项目中临时运行ts文件【记录】
+
+**失败的命令：**
+
+```sh
+$ ts-node test.ts
+```
+
+
+
+原因：
+
+在项目packages.json中 ` "type": "module",` 表示项目使用的模块化是 `ESModule`，而 `ts-node` 默认支持 `CommonJS`。所以需要修改 `ts-node` 支持的模式。
+
+ 
+
+**成功的命令：**
+
+```sh
+$ ts-node test.ts --esm
+```
+
+
+
+
+
 # 六、快速上手 TypeScript
 
 ## 1. Hello TypeScript
