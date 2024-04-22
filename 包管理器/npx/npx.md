@@ -70,13 +70,13 @@ $ npx create-react-app react-test
 
 ## 场景二：执行本地安装的软件包
 
-全局 `ts-node` 无
+全局未安装 `ts-node` 
 
-本地 `ts-node` 有
+项目本地安装了 `ts-node` 
 
-`$ ts-node test.ts` 失败
+此时执行 `$ ts-node test.ts` 失败，因为shell识别不到 `ts-node` 指令,
 
-`$ npx ts-node test.ts` 成功
+实用 npx 就可以识别到了：`$ npx ts-node test.ts` 成功
 
 
 

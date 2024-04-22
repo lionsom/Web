@@ -72,8 +72,6 @@ $ which pnpm
 
 # 日常使用
 
-
-
 ## pnpm升级
 
 ```bash

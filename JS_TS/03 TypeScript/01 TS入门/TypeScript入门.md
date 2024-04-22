@@ -95,6 +95,10 @@ JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言�
 - 安装
 
     ```bash
+    # Locally in your project.
+    $ npm install -D typescript
+    
+    # Or globally with TypeScript.
     $ npm install -g typescript
     ```
 
@@ -127,6 +131,12 @@ JavaScript（JS）和TypeScript（TS）是两种相关但不同的编程语言�
 ts-node 可以通过 npm 包管理器安装，在命令行中使用以下命令即可安装：
 
 ```bash
+# Locally in your project.
+$ npm install -D typescript
+$ npm install -D ts-node
+
+# Or globally with TypeScript.
+$ npm install -g typescript
 $ npm install -g ts-node
 ```
 
@@ -139,32 +149,6 @@ $ npm install -g ts-node
 ```bash
 $ ts-node myFile.ts
 ```
-
-
-
-## 4. 在Vue项目中临时运行ts文件【记录】
-
-**失败的命令：**
-
-```sh
-$ ts-node test.ts
-```
-
-
-
-原因：
-
-在项目packages.json中 ` "type": "module",` 表示项目使用的模块化是 `ESModule`，而 `ts-node` 默认支持 `CommonJS`。所以需要修改 `ts-node` 支持的模式。
-
- 
-
-**成功的命令：**
-
-```sh
-$ ts-node test.ts --esm
-```
-
-
 
 
 
@@ -300,4 +284,112 @@ You can learn more at https://aka.ms/tsconfig
 这样在命令行运行 `npm run build` 的时候，就会把 `src/ts/index.ts` 这个 TS 文件编译，并输出到项目下与 src 文件夹同级的 dist 目录下。
 
 其中 `tsc` 是 TypeScript 用来编译文件的命令， `--outDir` 是它的一个选项，用来指定输出目录，如果不指定，则默认生成到源文件所在的目录下面。
+
+
+
+# 七、单独运行 .ts 文件的两种方法
+
+## 1. ts 转 js
+
+**方法一**：先将 `.ts` 文件编译成 `.js`，再运行 `.js` 文件
+
+① 安装 `typescript`
+
+```bash
+$ npm install -g typescript
+```
+
+② 将 `.ts` 文件编译成 `.js` 文件
+
+```sh
+# 会在当前目录下生成对应的 test.js 文件
+$ tsc test.ts  
+```
+
+③ 运行 `.js` 文件
+
+```sh
+$ node test.js
+```
+
+
+
+## 2. ts-node运行
+
+**方法二**：通过 `ts-node` 直接运行 `.ts` 文件
+
+① 安装 `typescript`、`ts-node`
+
+```bash
+$ npm install -g typescript ts-node
+```
+
+② 直接运行 `.ts` 文件
+
+```bash
+$ ts-node test.ts
+```
+
+③ 若使用的是项目本地安装，在命令行前加 `npx`，如：
+
+```sh
+$ npx tsc test.ts
+
+$ npx ts-node test.ts
+```
+
+
+
+# 八、ts-node的踩坑之旅
+
+[⭐️ts-node官网文档 - CommonJS vs native ECMAScript modules](https://typestrong.org/ts-node/docs/imports)
+
+[参考 - ts-node的踩坑之旅](https://juejin.cn/post/7266663176979103800#heading-2)
+
+但在使用 ts-node 时，常常会遇到一些奇奇怪怪的错误，这些错误主要是由于 Javascript 中的两种模块化规范： Commonjs 与 ESModule 引起的。
+
+[阮一峰 - ES6模块与CommonJS模块的差异](https://es6.ruanyifeng.com/#docs/module-loader#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82)
+
+
+
+## Unknown file extension ".ts"
+
+> TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts"
+
+**失败的命令：**
+
+```sh
+$ ts-node test.ts
+```
+
+**原因：**
+
+在项目packages.json中 ` "type": "module",` 表示项目使用的模块化是 `ESModule`，而 `ts-node` 默认支持 `CommonJS`。所以需要修改 `ts-node` 支持的模式。
+
+​		这是因为通过 `tsc --init` 生成默认 `tsconfig.json` 使用的默认模块规范是：`"module": "commonjs",` 也就是说 Typescript 的默认配置是将代码编译为 `commonjs` 的模块，而非我们在 `package.json` 中声明的 `module` （即 ES module）模块。
+
+**解决方案一：**
+
+修改 `package.json` 中，移除 `"type": "module"`，默认 `"type": "commonjs",` 可写可不写。
+
+```json
+{
+	// "type": "module",
+  	"type": "commonjs",
+}
+```
+
+**解决方案二：**
+
+```sh
+$ ts-node --esm test.ts 
+# or
+$ ts-node-esm test.ts 
+```
+
+**解决方案三：**
+
+Set `"esm": true` in `tsconfig.json`
+`node --loader ts-node/esm`
+`NODE_OPTIONS="--loader ts-node/esm" node`
 
