@@ -65,6 +65,10 @@ Docker version 26.0.0, build 2ae903e
 
 # or
 $ docker info
+
+# 其他
+$ docker-compose --version
+$ docker-machine --version
 ```
 
 
@@ -139,7 +143,33 @@ $ docker rm webserver
 
 
 
-# 三、镜像加速
+# 三、终端命令
+
+```sh
+$ docker --version
+$ docker-compose --version
+$ docker-machine --version
+
+$ docker info
+
+$ docker ps 查看正在运行的容器
+
+$ docker stop 停止正在运行的容器
+
+$ docker start 启动容器
+
+$ docker ps -a 查看终止状态的容器
+
+$ docker rm -f webserver命令来移除正在运行的容器
+
+$ docker list 列出本地镜像
+
+$ docker rmi 删除的镜像
+```
+
+
+
+# 四、镜像加速
 
 * [Docker — 从入门到实践 -- 镜像加速器](https://yeasy.gitbook.io/docker_practice/install/mirror)
 
@@ -186,7 +216,7 @@ Registry Mirrors:
 
 
 
-# 四、创建镜像
+# 五、创建镜像
 
 参考教程：How do I run a container?
 
@@ -218,5 +248,14 @@ cd welcome-to-docker
 
 
 
+# 安装其他软件
+
+## 安装Mysql Docker 容器版
+
+https://www.zhihu.com/question/517679596
 
 
+
+## 安装MongoDB Docker版
+
+https://www.zhihu.com/question/517679596
