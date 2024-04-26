@@ -39,7 +39,7 @@ PuTTY for Mac 有一个图形用户界面 (GUI)，您可以使用它登录而不
 
 # 二、Mac上的ssh
 
-## Mac ssh 与 sshd 区别
+## 1. Mac ssh 与 sshd 区别
 
 **ssh** 和 **sshd** 是两个不同的命令，用于不同的目的：
 
@@ -78,7 +78,7 @@ $ sudo systemctl start sshd
 
 
 
-## MacOS上的SSH客户端
+## 2. MacOS上的SSH客户端
 
 macOS 自带的 SSH 客户端和服务器是 **OpenSSH**。
 
@@ -134,19 +134,19 @@ $ grep PubkeyAuthentication ~/.ssh/config
 
 
 
-## [mac上开启ssh服务器配置](https://www.volcengine.com/theme/1458727-M-7-1)
+## 3. [mac上开启ssh服务器配置](https://www.volcengine.com/theme/1458727-M-7-1)
 
 在Mac中开启SSH服秀器非常简单，只需遵循以下步骤即可完成设置。首先我们要明确一点，SSH是一种安全协议，它通过加密的方式保护您的系统免逍黑容攻击。在某些情况下，可以使用SSH访问远程服為强、编辑文件和执行其他网絡任务。
 
 
 
-### 使用图形界面开启SSH
+### a. 使用图形界面开启SSH
 
 打开**『Apple』->『系统配置』->『共享』->『远程登录』**
 
 
 
-### 使用命令行开启SSH
+### b. 使用命令行开启SSH
 
 **步骤一：**
 
