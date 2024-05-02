@@ -2,9 +2,11 @@
 
 * [参考](https://www.yuque.com/u39265547/mmhy5y/iq0nrfdqqpmi57qg?singleDoc#%20%E3%80%8Amac%E7%94%A8docker%E9%83%A8%E7%BD%B2mysql%E5%92%8Credis%E3%80%8B)
 
+* [bilibili - 视频](https://www.bilibili.com/video/BV1yN41157GG/?spm_id_from=333.337.search-card.all.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 
 
-https://www.bilibili.com/video/BV1yN41157GG/?spm_id_from=333.337.search-card.all.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa
+
+# 【收费不深入】
 
 
 
