@@ -53,6 +53,8 @@ $ brew install --cask docker
 $ brew install --cask --appdir=/Applications docker
 ```
 
+
+
 ### b. 手动下载安装
 
 首先打开Docker官网并下载 [Docker Desktop](https://www.docker.com/products/docker-desktop/)，选择Apple Chip下载。
@@ -130,7 +132,13 @@ Registry Mirrors:
 
 
 
-# 三、简单运行 Nginx
+# 三、Docker Desktop教程中心
+
+![](images/009.png)
+
+
+
+# 四、简单运行 Nginx
 
 ## 1. 命令行操作
 
@@ -206,70 +214,170 @@ $ docker rm webserver
 
 
 
+## 3. 推荐 - 入门镜像
 
+### 1. docker/getting-started
 
-# 四、Docker Desktop教材
+```sh
+$ docker pull docker/getting-started
 
-## 4.1. 创建镜像
-
-参考教程：《How do I run a container?》
-
-![](images/009.png)
-
-### 1. 拉取 welcome-to-docker⁠
-
-Clone the repository at [https://github.com/docker/welcome-to-docker⁠](https://github.com/docker/welcome-to-docker).
-
-```
-git clone https://github.com/docker/welcome-to-docker
+$ docker run -d -p 8081:80 docker/getting-started
 ```
 
-The rest of this guide requires you to run commands in the new project directory. Run the following command before moving on.
+### 2. docker/welcome-to-docker
 
-```
-cd welcome-to-docker
-```
+```sh
+$ docker pull docker/welcome-to-docker
 
-### 2. Verify your Dockerfile
-
-Open the sample application in your IDE. Note that it already has a **Dockerfile**. For your own projects you need to create this yourself.
-
-### 3. Build your first image
-
-You can build an image using the following **docker build** command via a CLI in your project folder.
-
-```
-docker build -t welcome-to-docker .
+$ docker run -d -p 8088:80 --name welcome-to-docker docker/welcome-to-docker
 ```
 
-**Breaking down this command**
-
-The **-t** flag tags your image with a name. (**welcome-to-docker** in this case). And the **.** lets Docker know where it can find the Dockerfile.
-
-### 4. Run your container
-
-Once the build is complete, an image will appear in the **Images** tab. Select the image name to see its details. Select **Run** to run it as a container. In the **Optional settings** remember to specify a port number (something like **8089**).
-
-### 5. View the fronted
-
-You now have a running container. If you don't have a name for your container, Docker provides one. View your container live by selecting the link below the container's name.
 
 
+# 五、常用命令
+
+## 1. 查看基本信息
+
+```sh
+# 查看docker安装路径
+$ whick docker
+/usr/local/bin/docker
+# or
+$ where docker
+/usr/local/bin/docker
+
+# 查看docker版本
+$ docker --version
+Docker version 26.0.0, build 2ae903e
+
+# 查看docker详情
+$ docker info
+```
 
 
 
-# 其他：安装其他软件
+## 2. 镜像操作命令
 
-## 1. 安装Mysql Docker 容器版
+```sh
+# 搜索某个镜像
+$ docker search nginx
+```
 
-https://www.zhihu.com/question/517679596
+```sh
+# 拉取某个镜像
+$ docker pull nginx
+```
+
+```sh
+# 查看本地所有的镜像
+$ docker image ls
+$ docker images   # [缩写]
+REPOSITORY                     TAG       IMAGE ID       CREATED         SIZE
+multi-container-app-todo-app   latest    d02a2230eecb   2 days ago      224MB
+welcome-to-docker111           latest    499823d5df3d   2 days ago      223MB
+welcome-to-docker              latest    3dcfde2d2b73   2 days ago      223MB
+mongo                          6         462e60a3a0cd   9 days ago      660MB
+nginx                          latest    a6ac09e4d8a9   11 days ago     193MB
+docker/welcome-to-docker       latest    648f93a1ba7d   5 months ago    19MB
+docker/getting-started         latest    289dc403af49   16 months ago   46.5MB
+```
+
+```sh
+# 删除某个镜像
+$ docker image rm welcome-to-docker111:latest
+# or
+$ docker rmi welcome-to-docker111:latest
+Untagged: welcome-to-docker111:latest
+Deleted: sha256:499823d5df3d2cd5aea643fed88f6a9024104afccc6f09f6366d6fc4c596190b 
+
+#【注意】：若存在容器使用的镜像，无法删除
+$ docker image rm welcome-to-docker111:latest
+Error response from daemon: conflict: unable to remove repository reference "welcome-to-docker111:latest" (must force) - container 7f4576c676bb is using its referenced image 499823d5df3d
+```
 
 
 
-## 2. 安装MongoDB Docker版
+## 3. 容器操作命令
 
-https://www.zhihu.com/question/517679596
+```sh
+# 查看目前运行的容器
+$ docker ps
+CONTAINER ID   IMAGE          COMMAND                   CREATED      STATUS         PORTS                  NAMES
+7665ea9790bb   nginx:latest   "/docker-entrypoint.…"   2 days ago   Up 3 seconds   0.0.0.0:3355->80/tcp   my-nginx
+```
 
+```sh
+# 查看所有容器
+$ docker ps -a
+....
+```
+
+```sh
+# 创建一个新的容器
+$ docker run --name mynginx -d nginx:latest
+503d71e77a7a6dc60018ddeb9fd683bda39245bf4195663ec63eb65ef6fe1c1a
+```
+
+```sh
+# 删除容器，-f 强制删除正在运行的容器
+$ docker rm -f my-nginx-2
+```
+
+
+
+# 六、Docker 命令大全
+
+## 1. 容器生命周期管理
+
+- [run](https://www.runoob.com/docker/docker-run-command.html)
+- [start/stop/restart](https://www.runoob.com/docker/docker-start-stop-restart-command.html)
+- [kill](https://www.runoob.com/docker/docker-kill-command.html)
+- [rm](https://www.runoob.com/docker/docker-rm-command.html)
+- [pause/unpause](https://www.runoob.com/docker/docker-pause-unpause-command.html)
+- [create](https://www.runoob.com/docker/docker-create-command.html)
+- [exec](https://www.runoob.com/docker/docker-exec-command.html)
+
+## 2. 容器操作
+
+- [ps](https://www.runoob.com/docker/docker-ps-command.html)
+- [inspect](https://www.runoob.com/docker/docker-inspect-command.html)
+- [top](https://www.runoob.com/docker/docker-top-command.html)
+- [attach](https://www.runoob.com/docker/docker-attach-command.html)
+- [events](https://www.runoob.com/docker/docker-events-command.html)
+- [logs](https://www.runoob.com/docker/docker-logs-command.html)
+- [wait](https://www.runoob.com/docker/docker-wait-command.html)
+- [export](https://www.runoob.com/docker/docker-export-command.html)
+- [port](https://www.runoob.com/docker/docker-port-command.html)
+- [stats](https://www.runoob.com/docker/docker-stats-command.html)
+
+## 3. 容器rootfs命令
+
+- [commit](https://www.runoob.com/docker/docker-commit-command.html)
+- [cp](https://www.runoob.com/docker/docker-cp-command.html)
+- [diff](https://www.runoob.com/docker/docker-diff-command.html)
+
+## 4. 镜像仓库
+
+- [login](https://www.runoob.com/docker/docker-login-command.html)
+- [pull](https://www.runoob.com/docker/docker-pull-command.html)
+- [push](https://www.runoob.com/docker/docker-push-command.html)
+- [search](https://www.runoob.com/docker/docker-search-command.html)
+
+## 5. 本地镜像管理
+
+- [images](https://www.runoob.com/docker/docker-images-command.html)
+- [rmi](https://www.runoob.com/docker/docker-rmi-command.html)
+- [tag](https://www.runoob.com/docker/docker-tag-command.html)
+- [build](https://www.runoob.com/docker/docker-build-command.html)
+- [history](https://www.runoob.com/docker/docker-history-command.html)
+- [save](https://www.runoob.com/docker/docker-save-command.html)
+- [load](https://www.runoob.com/docker/docker-load-command.html)
+- [import](https://www.runoob.com/docker/docker-import-command.html)
+
+## 6. info|version
+
+- [info](https://www.runoob.com/docker/docker-info-command.html)
+- [version](https://www.runoob.com/docker/docker-version-command.html)
 
 
 
