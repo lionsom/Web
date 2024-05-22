@@ -17,8 +17,19 @@
                 "file": "包管理器/npm/npm.md"
               }
             }
+          },
+          {
+            "id": "aca1b9132a17796f",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.5.12"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "b4a9b66de3ed3dbb",
@@ -164,7 +175,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f1aaa7c11777ecdb",
+  "active": "aca1b9132a17796f",
   "lastOpenFiles": [
     "包管理器/npx/npx~.md",
     "包管理器/npm/images/publish005.png",

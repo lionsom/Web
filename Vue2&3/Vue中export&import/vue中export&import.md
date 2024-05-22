@@ -19,10 +19,10 @@ export function test(){
 另一种写法，这种方法比较不推荐，因为看起来会比较乱。
 
 ```js
-var helloWorld=function(){
+var helloWorld = function(){
     conselo.log("Hello World");
 }
-var test=function(){
+var test = function(){
     conselo.log("this's test function");
 }
 
@@ -37,7 +37,7 @@ export test
 只导入需要的资源
 
 ```js
-import {helloWorld} from "./utils.js" 	// 只导入utils.js中的helloWorld方法
+import { helloWorld } from "./utils.js" 	// 只导入utils.js中的helloWorld方法
 
 helloWorld(); 	// 执行utils.js中的helloWorld方法
 ```
