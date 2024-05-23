@@ -84,6 +84,8 @@ vscode 打开的文件夹的根目录是一个工作区，`.vscode`目录就是�
 
 # 四、task.json
 
+[w3cschool - vscode 如何创建自定义的任务](https://www.w3cschool.cn/vscode/vscode-create-custom-task.html)
+
 之前很多工作都是通过命令行为完成，比如执行一个文件 node test.js。这种工作就可以配置成任务，让vscode一键执行。
 
 

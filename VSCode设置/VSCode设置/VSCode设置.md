@@ -1,3 +1,7 @@
+* [Visual Studio Code 教程](https://www.w3cschool.cn/vscode/)
+
+
+
 # 1. 打开配置页面
 
 ## a. 快捷键

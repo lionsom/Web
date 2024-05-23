@@ -1,4 +1,12 @@
+## VScode 插件 - EditorConfig
 
+因为VS Code是没有绑定 **EditorConfig** 这个玩意的，所以才会需要插件。
+
+![](images/001.png)
+
+
+
+## 创建 .editorconfig文件
 
 VSCode中.editorconfig文件配置
 
@@ -19,3 +27,10 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 ```
 
+![](images/002.png)
+
+
+
+## 重启VSCode，验证
+
+![](images/003.png)
