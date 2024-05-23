@@ -14,6 +14,10 @@ Command + ,
 
 <img src="images/002.png" style="zoom:50%;" />
 
+## d. 控制面板 -> settings
+
+<img src="images/013.png" style="zoom:100%;" />
+
 
 
 # 2. 控制面板
