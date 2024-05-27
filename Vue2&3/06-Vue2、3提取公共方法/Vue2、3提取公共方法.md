@@ -194,7 +194,12 @@ export default {
 
 
 
+* [深度解析:在vue3中使用自定义Hooks](https://cloud.tencent.com/developer/article/2340523)
 
+* [Vue3 Hooks函数使用及封装思想](https://blog.csdn.net/m0_46846526/article/details/131252270)
+
+* [Vue3必学技巧-自定义Hooks-让写Vue3更畅快](https://juejin.cn/post/7083401842733875208)
+* [vue3中当子组件使用defineProps时，如何使用hook函数进行拆分整理代码？](https://blog.csdn.net/Nonametoreurn/article/details/128420687)
 
 
 
@@ -202,7 +207,7 @@ export default {
 
 在 Vue 3 中，提取和复用公共方法的方式与 Vue 2 有些相似，但也有一些新的方法和最佳实践。以下是几种常见的方式：
 
-### 1. 使用组合式 API（Composition API）
+### 1. 使用组合式 API（Composition API）- Hooks
 
 组合式 API 是 Vue 3 中的新特性，它使得代码组织更加灵活，可以更容易地提取和复用逻辑。
 

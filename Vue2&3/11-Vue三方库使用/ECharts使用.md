@@ -1,3 +1,98 @@
+# GPT
+
+ECharts 是一个开源的 JavaScript 图表库，可以创建各种类型的交互式图表。Vue-ECharts 是一个将 ECharts 集成到 Vue.js 应用中的库，它提供了一个 Vue 组件，用于在 Vue 应用中使用 ECharts。
+
+## ECharts
+
+ECharts 是一个功能强大的数据可视化库，支持各种类型的图表，如折线图、柱状图、饼图、散点图、地图等。它具有高性能和丰富的交互功能，适用于各种数据可视化需求。
+
+## Vue-ECharts
+
+Vue-ECharts 是一个专门为 Vue.js 封装的 ECharts 组件库。它简化了在 Vue 应用中使用 ECharts 的过程，使得在 Vue 组件中创建和管理图表变得更加容易。Vue-ECharts 提供了一个名为 `v-chart` 的 Vue 组件，允许你通过声明式的方式在 Vue 模板中使用 ECharts。
+
+## 关系和使用方式
+
+1. **ECharts 是核心库**：ECharts 是核心的数据可视化库，所有图表的绘制和功能实现都依赖于 ECharts。
+
+2. **Vue-ECharts 是封装库**：Vue-ECharts 是对 ECharts 的封装，它提供了一个 Vue 组件，使得在 Vue.js 项目中使用 ECharts 更加方便。
+
+## 示例
+
+以下是如何在 Vue.js 应用中使用 Vue-ECharts 的示例：
+
+1. 安装依赖：
+
+```bash
+npm install echarts vue-echarts
+```
+
+2. 注册 Vue-ECharts 组件：
+
+```javascript
+// main.js
+import Vue from 'vue';
+import ECharts from 'vue-echarts';
+
+// 手动引入 ECharts 各模块来减小打包体积
+import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/component/tooltip';
+import 'echarts/lib/component/legend';
+
+// 全局注册组件
+Vue.component('v-chart', ECharts);
+
+new Vue({
+  el: '#app',
+  render: h => h(App),
+});
+```
+
+3. 使用 `v-chart` 组件：
+
+```html
+<template>
+  <div>
+    <v-chart :options="chartOptions" style="width: 600px; height: 400px;"></v-chart>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      chartOptions: {
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      }
+    };
+  }
+};
+</script>
+```
+
+在这个示例中，我们首先安装了 ECharts 和 Vue-ECharts，然后在 `main.js` 中引入并注册了 Vue-ECharts 组件。在 Vue 组件中，我们使用 `v-chart` 组件并通过 `options` 属性传递 ECharts 的配置对象。
+
+## 总结
+
+- **ECharts**：强大的数据可视化库，用于创建各种图表。
+- **Vue-ECharts**：将 ECharts 封装成 Vue 组件，使其更容易在 Vue.js 项目中使用。
+
+通过 Vue-ECharts，可以在 Vue 应用中轻松集成和使用 ECharts 提供的强大图表功能。
+
+
+
 
 
 # echarts 与 vue-echarts 关系
