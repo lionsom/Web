@@ -435,6 +435,8 @@ console.log(path.extname(pathname));
 
 # 七、http模块（未深入）
 
+* [MDN - Hello Node.js](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/Introduction#hello_node.js)
+
 ## 1. 第一个node服务端
 
 ```js

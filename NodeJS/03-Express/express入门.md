@@ -1,75 +1,179 @@
-## express入门
+- [Express 官网](https://link.juejin.cn/?target=http%3A%2F%2Fexpressjs.com%2F)
+- [Express 中文文档（非官方）](https://link.juejin.cn/?target=http%3A%2F%2Fwww.expressjs.com.cn%2F)
+- [Express GitHub仓库](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fexpressjs%2Fexpress) 
 
-### 简介
 
-作为前端开发，Nodejs已经成了很多公司对我们这一岗位的硬性要求，而 Express 框架则是其中知名度最高、也是最受欢迎的Nodejs开发框架，它帮助我们封装了Nodejs底层的API，屏蔽了大量的繁琐的细节，让我们只需要关注业务开发就行了，极大的降低了学习的成本。今天这个课程就是教大家去掌握如何使用express去搭建一个简易的后端服务，我们主要围绕以下几个部分：
 
-- 路由
-- 中间件
-- 静态文件服务
-- 模板引擎
+# 一、Node开发环境
 
-### 环境准备
+[MDN - 设置 Node 开发环境](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment)
 
-- 电脑 - mac
+* Node.js 
+* NPM
+* express-generator：Express 应用生成器（可选项）
 
-- Node - 16.14.2
-- Npm - 8.5.0
-- Express - 4.x
 
-### 第一个demo
 
-##### 使用Nodejs内置的http模块搭建服务
+# 二、Express创建最简单的web服务器
 
-为了便于大家去理解express对nodejs做了哪些封装，在使用express之前，我们先来看下使用nodejs内置的http模块是怎么搭建node服务的。
+* Demo路径
+    * 04-server-demo/02-express-demo/helloworld
+    * 04-server-demo/02-express-demo/helloworld2
 
-首先创建一个`express-demo`的文件夹并进入
+## a. 使用Express 应用生成器
 
-```bash
-mkdir express-demo && cd express-demo
+[MDN - 安装 Express 应用生成器](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment#安装_express_应用生成器)
+
+全局安装
+
+```sh
+$ npm install express-generator -g
 ```
 
-创建`server.js`，并添加如下代码：
+查看是否全局安装成功
+
+```sh
+$ npm list -g
+/Users/qiyeyun/.nvm/versions/node/v18.16.0/lib
+├── @qpaas/lego-cli-v3@3.4.2
+├── @vue/cli@5.0.8
+├── express-generator@4.16.1         <========  安装成功！
+├── npm@9.5.1
+├── nrm@1.2.6
+├── pnpm@6.35.1
+├── sass@1.69.5
+├── ts-node@10.9.1
+├── typescript@5.2.2
+└── yarn@1.22.19
+```
+
+创建一个名为 "helloworld" 的 Express 应用：
+
+```sh
+$ express helloworld
+```
+
+帮助
+
+```sh
+$ express --help
+```
+
+运行
+
+```sh
+$ cd helloworld
+$ npm install
+$ npm run start
+```
+
+打开浏览器并访问 http://127.0.0.1:3000/ 将看到 Express 的默认欢迎页面。
+
+![](images/001.png)
+
+ http://127.0.0.1:3000/111 错误的路由显示：
+
+![](images/002.png)
+
+
+
+## b. 安装express npm包
+
+在 `express-demo` 文件夹下执行 `$ npm init -y` 命令，然后一路回车，就会帮我们创建一个 `package.json` 文件，然后再执行 `$ npm install express `来安装express模块，然后改写 `server.js` 。
 
 ```js
-const http = require('http')
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/html')
-  res.end('hello world')
-})
-
-server.listen(3000, () => {
-  console.log('服务已启动...');
-})
-```
-
-然后在控制台中运行：
-
-```bash
-node server.js
-```
-
-##### 使用express搭建服务
-
-接下来，我们再用express搭建服务。
-
-在 `express-demo` 文件夹下执行 `npm init` 命令，然后一路回车，就会帮我们创建一个 `package.json` 文件，然后再执行 `npm install express `来安装express模块，然后改写 `server.js` 。
-
-```js
+// 0. 加载 Express
 const express = require('express')
 
+// 1. 调用 express() 得到一个 app
+//    类似于 http.createServer()
 const app = express()
 
+// 2. 设置请求对应的处理函数
+//    当客户端以 GET 方法请求 / 的时候就会调用第二个参数：请求处理函数
 app.get('/', (req, res) => {
   res.send('hello world')
 })
 
-app.listen(3000, () => {
-  console.log('服务已启动...');
-})
+// 3. 监听端口号，启动 Web 服务
+app.listen(3000, () => console.log('app listening on port 3000!'))
 ```
+
+`package.json`中新增script命令：`    "serve": "node app.js",`
+
+运行项目：`npm run serve` 
+
+打开浏览器并访问 http://127.0.0.1:3001/ 将看到返回数据。
+
+
+
+# 三、Express 托管静态资源 - web服务器
+
+* [Express官网 - Serving static files in Express](https://expressjs.com/en/starter/static-files.html)
+
+让用户直接访问静态资源是一个web服务器最基本的功能。
+
+
+
+```js
+// 加载 Express
+const express = require('express')
+
+// 1. 调用 express() 得到一个 app
+//    类似于 http.createServer()
+const app = express();
+
+// 2. 设置请求对应的处理函数
+app.use(express.static('public'))
+
+// 3. 监听端口号，启动 Web 服务
+app.listen(3003, () => console.log('app listening on port 3003!'))
+```
+
+![](images/003.png)
+
+```
+根目录
+├── public
+│   ├── css
+│   │   └── index.css
+│   ├── img
+│   │   └── bg.jpeg
+│   ├── js
+│   │   └── axios.js
+│   └── index.html
+└── serve.js     # 服务器
+```
+
+
+
+### 忽略前缀
+
+```js
+// 2. 设置请求对应的处理函数
+app.use(express.static('public'))
+```
+
+### 限制前缀
+
+```js
+// 限制访问前缀
+app.use('/public', express.static('public'))
+```
+
+这意味着想要访问public下的内容，必须要在请求url中加上/public
+
+
+
+
+
+
+
+
+
+
+
+# 四、介绍
 
 ##### Request和Response对象
 
@@ -93,34 +197,7 @@ app.METHOD(URL, CALLBACK)
 
 这种方式就可以通过请求方式和URL来帮我们区分不同的请求，从而去执行不同的响应。
 
-##### nodemon
 
-nodemon能够检测工作区代码的变化，并自动重启。
-
-执行 `npm install nodemon --save-dev` 安装nodemon，然后修改package.json文件中的start命令：
-
-```json
-{
-  "name": "express-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
-}
-```
-
-再执行`npm start`启动服务，之后我们再修改代码就不需要手动的重启服务了。
 
 ### 核心概念
 
