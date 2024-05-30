@@ -17,12 +17,38 @@
 # 二、Express创建最简单的web服务器
 
 * Demo路径
-    * 04-server-demo/02-express-demo/helloworld
-    * 04-server-demo/02-express-demo/helloworld2
+    * 04-server-demo/02-express-demo/xxxx
+    
+        
 
 ## a. 使用Express 应用生成器
 
 [MDN - 安装 Express 应用生成器](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment#安装_express_应用生成器)
+
+[官方文档 - Express 应用程序生成器](https://www.expressjs.com.cn/starter/generator.html)
+
+### ① 官方介绍
+
+Express 应用程序生成器
+
+通过应用生成器工具 `express-generator` 可以快速创建一个应用的骨架。
+
+你可以通过 `npx` （包含在 Node.js 8.2.0 及更高版本中）命令来运行 Express 应用程序生成器。
+
+```console
+$ npx express-generator
+```
+
+对于较老的 Node 版本，请通过 npm 将 Express 应用程序生成器安装到全局环境中并使用：
+
+```console
+$ npm install -g express-generator
+$ express
+```
+
+
+
+### ② 操作步骤
 
 全局安装
 
@@ -113,7 +139,9 @@ app.listen(3000, () => console.log('app listening on port 3000!'))
 
 让用户直接访问静态资源是一个web服务器最基本的功能。
 
+例如，如上url分别是请求一张图片，一份样式文件，一份js代码。我们实现的web服务器需要能够直接返回这些文件的内容给客户端浏览器。
 
+在前面学习http模块时，我们已经实现了这些功能了，但是要写很多代码，现在使用express框架，只需一句代码就可以搞定了，这句代码是  `express.static('public')`
 
 ```js
 // 加载 Express
@@ -147,14 +175,18 @@ app.listen(3003, () => console.log('app listening on port 3003!'))
 
 
 
-### 忽略前缀
+## a. 忽略前缀
 
 ```js
 // 2. 设置请求对应的处理函数
 app.use(express.static('public'))
 ```
 
-### 限制前缀
+此时，所有放在public下的内容可以直接访问，注意，此时在url中并不需要出现public这级目录。在public下新建index.html，可以直接访问到。
+
+
+
+## b. 限制前缀
 
 ```js
 // 限制访问前缀
@@ -162,14 +194,6 @@ app.use('/public', express.static('public'))
 ```
 
 这意味着想要访问public下的内容，必须要在请求url中加上/public
-
-
-
-
-
-
-
-
 
 
 
