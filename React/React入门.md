@@ -68,25 +68,63 @@ React 是一个用于构建用户界面的JavaScript库，而不是一个完整�
 
 
 
-# React
+# React 入门
 
 * [MDN - React入门](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started)
 
-## React是什么
+## React 是什么
 
-[React](https://reactjs.org/) 是一个用于构建用户界面的库。React 不是一个框架——它的应用甚至不局限于 Web 开发，它可以与其他库一起使用以渲染到特定环境。例如，[React Native](https://reactnative.dev/) 可用于构建移动应用程序；[React 360](https://facebook.github.io/react-360/) 可用于构建虚拟现实应用程序……
+**[React](https://reactjs.org/) 是一个用于构建用户界面的库。React 不是一个框架**——它的应用甚至不局限于 Web 开发，它可以与其他库一起使用以渲染到特定环境。例如，[React Native](https://reactnative.dev/) 可用于构建移动应用程序；[React 360](https://facebook.github.io/react-360/) 可用于构建虚拟现实应用程序……
 
 
 
 ##  JSX 
 
-JSX 代表 `JavaScript XML`。JSX 允许我们在 React 中编写 HTML。JSX 使在 React 中编写和添加 HTML 变得更加容易。
+**JSX 代表 `JavaScript XML`。JSX 允许我们在 React 中编写 HTML。JSX 使在 React 中编写和添加 HTML 变得更加容易。**
 
-浏览器是无法读取直接解析 JSX 的。我们的 header 表达式经过（ [Babel](https://babeljs.io/) 或 [Parcel](https://parceljs.org/) 之类的工具）编译。
+**浏览器是无法读取直接解析 JSX 的。我们的 header 表达式经过（ [Babel](https://babeljs.io/) 或 [Parcel](https://parceljs.org/) 之类的工具）编译。**
 
 * [MDN - React 如何使用 JavaScript?](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started#react_如何使用_javascript)
 
 * [JSX In Depth](https://reactjs.org/docs/jsx-in-depth.html)
+
+
+
+**JSX 表达式**
+
+```react
+const heading = <h1>Mozilla Developer Network</h1>;
+```
+
+该 heading 常量称为 **JSX 表达式**。React 可以使用它在我们的应用程序中渲染 `<h1>` 标签。
+
+我们想将 heading 包装 `<header>` 在标记中？JSX 方法允许我们将元素彼此嵌套，就像使用 HTML 一样：
+
+```react
+const header = (
+  <header>
+    <h1>Mozilla Developer Network</h1>
+  </header>
+);
+```
+
+**括号**
+
+上面代码段中的括号并非 JSX 的一部分，它对你的应用程序没有任何影响，括号只是用来向你（和你的计算机）表明其中的多行代码属于同一个表达式。
+
+
+
+# React - First Demo
+
+
+
+
+
+
+
+
+
+
 
 
 
