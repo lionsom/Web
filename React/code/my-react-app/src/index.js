@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('myRoot'));
 root.render(
   <React.StrictMode>
-    <App subject="Clarice"/>
+    <App subject="Clarice 我是传参！"/>
   </React.StrictMode>
 );
 

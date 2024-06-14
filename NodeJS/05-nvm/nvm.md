@@ -115,3 +115,21 @@ $ nvm uninstall [version] //卸载node
 
 * [StackOverflow nvm ls-remote command results in "N/A"](https://stackoverflow.com/questions/26476744/nvm-ls-remote-command-results-in-n-a)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
