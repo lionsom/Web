@@ -263,17 +263,119 @@ function App() {
 
 
 
+### 3. Index 
+
+现在让我们打开 `src/index.js`, 因为这也是 `App` 组件被用到的地方。这个文件是我们 app 的 **入口点**，在一开始它如下所示
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('myRoot'));
+root.render(
+  <React.StrictMode>
+    <App subject="Clarice 我是传参！"/>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+#### a. import
+
+就像 `App.js` 一样，这个文件一开始 import 了所有的 JS 模块和其他运行所需要的资源。
+
+* `src/index.css`定义了运用于整个 app 的 global style。
+* 我们可以看到我们的 `App` 组件也被 imported 了，这是在 `App.js` 底部的语句让 import `App` 变得可行。
 
 
 
+#### b. ReactDom.render()
+
+第七行调用 React 的 `ReactDOM.render()` 函数，并传入两个参数：
+
+- 我们想要渲染的组件，在这个例子中是 `<App />` .
+- 我们想要渲染组件所在的 DOM 元素，在这个例子中是带着 `root` 标签的元素。让我们看一下 `public/index.html` 的代码，可以看到这有一个 `<div>` 元素 在 `<body>` 里。
+
+上述所有都告诉 React 我们想把 `App` 组件作为 root 或者第一个组件来渲染我们的 React App。
 
 
 
+### 4. [Variables in JSX](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started#variables_in_jsx)
+
+#### a. 变量
+
+ `App.js`, 让我们看一下第 9 行：
+
+```
+<img src={logo} className="App-logo" alt="logo" />
+```
+
+可以看到，`<img />` 标签的 `src` 属性值是在大括号中的——`{logo}`。这是 JSX 识别变量的方式。React 将会识别 `{logo}`，知道你在我们 app 第二行引入的 logo，然后 React 会读取这个文件它并渲染。
 
 
 
+#### b. 自己写一个变量
+
+让我们试着设置一个我们自己的变量，在 `App` return 之前，添加 `const subject = 'React';`。你的代码现在应该如下所示：
+
+```react
+function App() {
+  const subject = "React";
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hello, World!</p>   	// 【注意】
+      </header>
+    </div>
+  );
+}
+```
+
+修改后：
+
+```react
+function App() {
+  const subject = "React";
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hello, {subject}!</p>      // 【注意】
+      </header>
+    </div>
+  );
+}
+```
 
 
+
+### 5. 传参
+
+index.js
+
+```react
+ReactDOM.render(<App subject="Clarice" />, document.getElementById("root"));
+```
+
+App.js
+
+```react
+function App(props) {
+  const subject = props.subject;
+  console.log(props);
+  return (
+    // return statement
+  );
+}
+```
 
 
 
