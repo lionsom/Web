@@ -34,8 +34,8 @@ export const data = {
   "git": {
     "contributors": [
       {
-        "name": "xiongjian",
-        "email": "webjsforyou@gmail.com",
+        "name": "linxiang",
+        "email": "lionsom.linx@qq.com",
         "commits": 1
       }
     ]

@@ -135,9 +135,9 @@ export const data = {
   "git": {
     "contributors": [
       {
-        "name": "xiongjian",
-        "email": "webjsforyou@gmail.com",
-        "commits": 2
+        "name": "linxiang",
+        "email": "lionsom.linx@qq.com",
+        "commits": 1
       }
     ]
   },
