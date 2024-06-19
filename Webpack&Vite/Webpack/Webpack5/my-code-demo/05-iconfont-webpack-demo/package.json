@@ -1,0 +1,29 @@
+{
+  "name": "01-base-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./src/main.js",
+    "build:webpack-dev": "npx webpack ./src/main.js --mode=development",
+    "build:webpack-prod": "npx webpack ./src/main.js --mode=production",
+    "webpack:dev": "npx webpack ./src/main.js -o ./dist_dev --mode=development",
+    "webpack:pro": "npx webpack ./src/main.js -o ./dist_pro --mode=production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "stylus": "^0.63.0",
+    "stylus-loader": "^8.1.0",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

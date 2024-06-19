@@ -22,6 +22,18 @@
 
 * [30 分钟掌握 Webpack - 笔记](https://www.yuque.com/zhangyuge-vkorl/nmt4ko/plsxw6irc06kwqqc)
 
+三金
+
+* [保姆级教程！从零搭建一个 Vue-Cli 脚手架【基础篇】](https://mp.weixin.qq.com/s/gcH_jQWcuJSlUot1JJ7kdQ)
+* [【优化篇】从零搭建 Vue-Cli，15个 Webpack 优化点，速度提升70%，体积减小80%！](https://mp.weixin.qq.com/s/X5ntqJFc-91s-hFRg793WA)
+* [【代码规范篇】从零到一带你搭建一个脚手架 Vue-Cli](https://mp.weixin.qq.com/s/vL7N12jkA5SqRletog848A)
+* [Webpack来了！三心教你实现一个Vue-Cli的「基础搭建」](https://mp.weixin.qq.com/s?__biz=Mzg2NjY2NTcyNg==&mid=2247485902&idx=1&sn=14e0e68cc79573b9c8660646423354c3&chksm=ce461c5ff931954901fb4029cfd0b3eefc4ebaaded854cbf2ad51295b6fc1089775d3621f083&scene=21#wechat_redirect)
+* [15个 Webpack 优化点，速度提升70%，体积减小80%！](https://mp.weixin.qq.com/s?__biz=Mzg2NjY2NTcyNg==&mid=2247485938&idx=1&sn=a7d1a7a0f4dffd44242f5eb8fac4097e&chksm=ce461c63f9319575372331fe7a8373fed34e0993260523c2ce4aea6cf20437a255f44aaac25f&scene=21#wechat_redirect)
+
+视频
+
+* [从零搭建 Vue 脚手架，基于 webpack 5【我觉得我讲明白了系列】](https://www.bilibili.com/video/BV1234y1D7Bv/?spm_id_from=333.337.search-card.all.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
+
 
 
 
@@ -848,7 +860,7 @@ module.exports = {
 
 ## 7.自动清空上次打包资源
 
-`webpack.config.js` 配置：
+`webpack.config.js` 的 `output` 配置：  `clean: true,`
 
 ```js
 const path = require("path");
@@ -863,4 +875,149 @@ module.exports = {
   ......
 }
 ```
+
+
+
+## 8. Iconfont打包
+
+[https://www.iconfont.cn/](https://www.iconfont.cn/)
+
+> Demo:  ./my-code-demo/05-iconfont-webpack-demo
+
+### a. 导入iconfont资源
+
+![](images/019.png)
+
+**此处仅仅是导入css文件，才能被webpack识别并打包。**
+
+```js
+import sum from "./js/sum.js";
+import count from "./js/count.js";
+// 需要引入css，才能被webpack识别到
+import "./css/first.css";
+import "./css/second.less";
+import "./css/third.scss";
+import "./css/fourth.styl";
+// iconfont
+import "./asset/iconfont/iconfont.css";
+
+console.log(count(2, 1));
+console.log(sum(1, 2, 3, 4));
+```
+
+
+
+### b. `webpack.config.js` 配置处理iconfont
+
+然后把 loader 引用到你 `webpack` 的配置中。如下所示：
+
+```js
+// webpack.config.js
+module.exports = {
+  /* 加载器 */
+  module: {
+    rules: [
+      {
+         .......
+      },
+      // iconfont
+      {
+        test: /\.(ttf|woff2?)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "static/media/[hash:8][ext][query]",
+        },
+      },
+    ],
+  },
+};
+```
+
+`type: "asset/resource"`和`type: "asset"`的区别：
+
+* `type: "asset/resource"` 相当于`file-loader`, 将文件转化成 Webpack 能识别的资源，其他不做处理
+
+* `type: "asset"` 相当于`url-loader`, 将文件转化成 Webpack 能识别的资源，同时小于某个大小的资源会处理成 data URI 形式
+
+
+
+### c. webpack打包并在html运行测试
+
+```sh
+# 全局安装webpack
+$ webpack
+
+# 局部安装webpack
+$ npx webpack
+```
+
+导出的包，可以看到iconfont：
+
+![](images/020.png)
+
+打开html页面，也可以看到我们的dist中的资源可以被正常加载。
+
+![](images/021.png)
+
+## 9. 其他资源打包
+
+同上：
+
+```js
+// webpack.config.js
+module.exports = {
+  /* 加载器 */
+  module: {
+    rules: [
+      {
+         .......
+      },
+      // iconfont & 音视频 等资源
+      {
+        test: /\.(ttf|woff2?|map4|map3|avi)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "static/media/[hash:8][ext][query]",
+        },
+      },
+    ],
+  },
+};
+```
+
+
+
+## 10. ESlint
+
+
+
+
+
+## 11. Babel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

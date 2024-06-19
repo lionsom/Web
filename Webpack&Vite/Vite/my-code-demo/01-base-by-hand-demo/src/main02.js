@@ -1,0 +1,1 @@
+document.body.insertAdjacentHTML('beforeend', '<h2>你好 Vite 我是二号</h2>')
