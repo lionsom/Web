@@ -100,7 +100,7 @@ document.body.insertAdjacentHTML('beforeend', '<h1>你好 Vite！！</h1>')
 
 
 
-### Ⅱ. 放到src目录下
+#### Ⅱ. 放到src目录下
 
 ![](images/003.png)
 
@@ -127,9 +127,7 @@ document.body.insertAdjacentHTML('beforeend', '<h1>你好 Vite！！</h1>')
 
 ## 2. 自动创建vite项目
 
-> Demo: my-code-demo/01-base-by-vite-demo
-
-
+> Demo: my-code-demo/02-base-by-vite-demo
 
 ```sh
 $ npm create vite@latest
@@ -137,7 +135,17 @@ $ npm create vite@latest
 $ pnpm create vite
 ```
 
+![](images/006.png)
 
+
+
+```sh
+# 运行
+$ pnpm install
+$ pnpm run dev
+```
+
+![](images/007.png)
 
 
 
@@ -177,4 +185,189 @@ $ pnpm create vite
 
 * `pnpm vite build`：打包项目
 * `pnpm vite preview`：开启一个服务器，预览打包好的项目
+
+
+
+# 三、vite处理css
+
+> Demo: my-code-demo/03-css-vite-demo
+
+**结论：无需任何配置。内置已经配置好了，这与webpack很不一样！！！**
+
+
+
+新建一个css文件 index.css
+
+```css
+h1 {
+  background-color: aqua;
+}
+```
+
+在main.js中引入index.css，便于打包时候找到
+
+```js
+// 导入css
+import './styles/index.css'
+```
+
+打包 & 预览
+
+```sh
+# 打包
+$ pnpm run build
+
+# 预览
+$ pnpm run preview     
+```
+
+显示正常！！！
+
+![](images/008.png)
+
+
+
+# 四、处理js版本兼容
+
+在 `main.js` 中写一个ES6函数
+
+```js
+// 自写函数，如何兼容
+document.body.onclick = () => {
+  console.log('哈哈哈哈哈')
+}
+```
+
+
+
+## 1. 直接打包
+
+```sh
+$ pnpm run build
+```
+
+![](images/009.png)
+
+
+
+**【无法兼容】：可以发现，打出的包中，高级的函数没有被兼容到低版本的浏览器**
+
+```js
+document.body.onclick=()=>{console.log("哈哈哈哈哈")};
+```
+
+
+
+## 2. 使用插件兼容js
+
+[Vite官网 - 使用插件](https://cn.vitejs.dev/guide/using-plugins.html)
+
+
+
+### a. 安装插件
+
+```sh
+$ pnpm add -D @vitejs/plugin-legacy
+$ pnpm add -D terser 
+```
+
+
+
+### b.  `vite.config.js` 配置文件
+
+```js
+// vite.config.js
+import legacy from '@vitejs/plugin-legacy'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    legacy({
+      targets: ['defaults', 'IE 11'],
+    }),
+  ],
+})
+```
+
+
+
+### c. `defineConfig` 介绍
+
+* `import { defineConfig } from 'vite'`，是vite包中的方法。
+* `defineConfig` ：可写可不写！写了之后，就有了输入提示。
+
+无 `defineConfig`，如下：
+
+```js
+// vite.config.js
+import legacy from '@vitejs/plugin-legacy'
+
+export default {
+  plugins: [
+    legacy({
+      targets: ['defaults', 'IE 11'],
+    }),
+  ],
+}
+```
+
+
+
+### d. Vite导出模式 vs Webpack导出模式
+
+Vite 使用 **ES6 模块化** 规范来导出文件
+
+```js
+// vite.config.js
+export default {
+	......
+}
+```
+
+webpack使用 **Common.js 模块化** 规范
+
+```js
+// webpack.config.js
+module.exports = {
+	......
+}
+```
+
+
+
+Vite包的 `package.json` 中可以看到 `"type": "module",`
+
+![](images/010.png)
+
+
+
+### e. 打包，查看
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+import legacy from "@vitejs/plugin-legacy";
+
+export default defineConfig({
+  plugins: [
+    legacy({
+      targets: ["defaults", "IE 11"]     // 默认是支持ES6，所以后面必须指定也要支持IE11，才会兼容代码
+    })
+  ]
+})
+```
+
+
+
+同一个文件，会导出两个文件，一个是默认支持ES6的，一个含 `legacy` 文件是支持IE11的兼容文件，如下图：
+
+![](images/011.png)
+
+
+
+
+
+
+
+
 

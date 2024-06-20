@@ -212,8 +212,6 @@ $ npx webpack ./src/main.js --mode=development
 
 - 生产模式
 
-* 生产模式
-
 ```sh
 $ npx webpack ./src/main.js --mode=production
 
