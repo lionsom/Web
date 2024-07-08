@@ -1,6 +1,7 @@
 // 0. 加载 Express
 const express = require('express')
-const history = require('connect-history-api-fallback');
+const history = require('connect-history-api-fallback'); // 解决路由跳转404问题
+const { createProxyMiddleware } = require('http-proxy-middleware');  // 解决请求跨域问题
 
 // 端口号
 const PORT = 3002
@@ -10,6 +11,17 @@ const PORT = 3002
 const app = express()
 
 app.use(history())
+
+app.use(
+  '/dev',  // 同vue项目中的配置
+  createProxyMiddleware({
+    target: 'http://www.example.org/secret',  // 跨域的地址
+    changeOrigin: true,
+    pathRewrite: {
+      '^/dev': ''    // 移除链接中的/dev
+    }
+  }),
+);
 
 // 2. 设置请求对应的处理函数
 //    当客户端以 GET 方法请求 / 的时候就会调用第二个参数：请求处理函数
