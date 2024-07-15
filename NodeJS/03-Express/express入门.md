@@ -17,7 +17,7 @@
 # 二、Express创建最简单的web服务器
 
 * Demo路径
-    * 04-server-demo/02-express-demo/xxxx
+    * my-code-demo-express-Base/02-express-demo/xxxx
     
         
 
