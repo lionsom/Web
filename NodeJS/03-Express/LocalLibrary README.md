@@ -2,6 +2,8 @@
 
 
 
+# 一、创建Express项目
+
 我们为本地图书馆应用创建一个名为 express-locallibrary-tutorial 的项目，使用 Pug 模板库，不使用 CSS 引擎。
 
 首先，进入准备放置项目的目录，然后在命令提示符运行 Express 应用生成器，生成器将创建（并列出）项目的文件：
@@ -37,7 +39,7 @@ $ express --view=pug
 
 
 
-## 运行
+## 1. 运行
 
 1. 首先，安装依赖项（install命令将获取项目的package.json文件中列出的所有依赖项包）。
 
@@ -56,17 +58,55 @@ $ express --view=pug
 
 3. 最后在浏览器中导航至 http://localhost:3000/ ，就可以访问该应用。你应该可以看到：
 
-![](images/001.png)
+![](LocalLibrary-images/001.png)
 
 
 
-## 项目目录结构介绍
+## 2. 使用nodemon，不用重启
+
+```sh
+$ npm install -g nodemon
+
+$ npm install --save-dev nodemon
+```
+
+Package.json
+
+```js
+ "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+```
+
+运行
+
+```sh
+$ DEBUG=express-locallibrary-tutorial:* npm run devstart
+```
+
+
+
+## 3. 项目目录结构介绍
 
 * [MDN - 目录结构](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website#目录结构)
 
+**package.json** 文件定义依赖项和其他信息，以及一个调用应用入口（**/bin/www**，一个 JavaScript 文件）的启动脚本，脚本中还设置了一些应用的错误处理，加载 **app.js** 来完成其余工作。**/routes** 目录中用不同模块保存应用路由。/**views** 目录保存模板。
 
 
-## 将模板引擎用于 Express
+
+- [cookie-parser](https://www.npmjs.com/package/cookie-parser)：用于解析 cookie 头来填充 `req.cookies`（提供了访问 cookie 信息的便捷方法）。
+- [debug](https://www.npmjs.com/package/debug)：一个小型 node 调试程序，仿照 node 核心的调试技术建立。
+- [http-errors](https://www.npmjs.com/package/http-errors)：处理错误中间件。
+- [morgan](https://www.npmjs.com/package/morgan)：node 专用 HTTP 请求记录器中间件。
+
+
+
+文件 **/bin/www** 是应用入口！它做的第一件事是 `require()` “真实”的应用入口（即项目根目录中的 **app.js** ），**app.js** 会设置并返回 [`express()`](http://expressjs.com/en/api.html)应用对象。
+
+
+
+## 4. 将模板引擎用于 Express
 
 * [Express官方文档 - 将模板引擎用于 Express](https://expressjs.com/zh-cn/guide/using-template-engines.html)
 
@@ -111,7 +151,20 @@ app.get('/', function (req, res) {
 
 
 
-## 数据库
+## 5. 项目中的[视图（模板）](https://developer.mozilla.org/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website#视图（模板）)
+
+视图（模板）存保存在 **/views** 目录中（ **app.js** 中指定），使用 **.pug** 扩展名。 [`Response.render()`](http://expressjs.com/en/4x/api.html#res.render) 方法用某对象的某个变量值一同来渲染一个特定的模板，然后将结果作为响应发送。在 **/routes/index.js** 中可以看到，该路由使用 '`index`' 模板和一个模板变量 `title` 来渲染响应。
+
+```js
+/* GET home page. */
+router.get("/", function (req, res) {
+  res.render("index", { title: "Express" });
+});
+```
+
+
+
+# 二、数据库
 
 
 
