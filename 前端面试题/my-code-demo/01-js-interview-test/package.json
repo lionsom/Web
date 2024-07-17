@@ -1,0 +1,17 @@
+{
+  "name": "01-js-interview-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "001": "nodemon js-base/001-null-undefine.js",
+    "002": "nodemon js-base/002-array-duplicate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
