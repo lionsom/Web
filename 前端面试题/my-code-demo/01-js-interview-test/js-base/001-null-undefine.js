@@ -25,8 +25,8 @@ console.log(objb.key); // 输出：null
 
 
 
-console.log('typeof null =', typeof null);  // 输出：object
-console.log('typeof undefined =', typeof undefined); // 输出：undefined
+console.log('typeof null =', typeof null);  // 输出：object，对象
+console.log('typeof undefined =', typeof undefined); // 输出：undefined，原始值
 
 
 console.log(null == undefined); // 输出：true , 因为它们都被认为是相等的非值。
