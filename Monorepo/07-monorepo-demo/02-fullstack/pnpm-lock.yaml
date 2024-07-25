@@ -1,0 +1,33 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .: {}
+
+  backend:
+    dependencies:
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
+      mylog:
+        specifier: workspace:*
+        version: link:../my-packages/mylog
+      validation:
+        specifier: workspace:*
+        version: link:../my-packages/validation
+
+  frontend: {}
+
+  my-packages/mylog: {}
+
+  my-packages/validation: {}
+
+packages:
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
