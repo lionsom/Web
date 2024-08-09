@@ -1,5 +1,5 @@
 {
-  "name": "toy-element",
+  "name": "@toy-element/workspace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,8 @@
   "dependencies": {
     "@lx-element/components": "workspace:^",
     "@lx-element/core": "workspace:^",
-    "@lx-element/hooks": "workspace:^"
+    "@lx-element/hooks": "workspace:^",
+    "element-plus": "^2.7.8"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",

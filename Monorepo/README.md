@@ -7,7 +7,7 @@
 
 
 
-* 本人的demo：Vue_Projects  ->  07-monorepo-demo
+* 本人的demo：./monorepo-demo
 
 
 
@@ -15,7 +15,7 @@
 
 # pnpm创建Monorepo工程
 
-第一步：`pnpm`初始化工程，生成 `package.json`
+1. 第一步：`pnpm`初始化工程，生成 `package.json`
 
 ```sh
 $ pnpm init -y
@@ -27,7 +27,7 @@ $ pnpm init -y
 
 
 
-第二步：配置 `pnpm` 的 `monorepo` 工作区
+2. 第二步：配置 `pnpm` 的 `monorepo` 工作区
 
 创建 `pnpm-workspace.yaml`
 
@@ -40,13 +40,13 @@ packages:
 
 
 
-第三步：在 `packages` 目录下创建多个项目
+3. 第三步：在 `packages` 目录下创建多个项目
 
 ![](images/002.png)
 
 
 
-第五步：仓库项目内的包相互调用
+4. 第四步：仓库项目内的包相互调用
 
  这几个包要互相进行调用呢，就需要把它们安装到仓库根目录下的 `node_modules` 目录中。然后我们在根目录下进行安装操作。
 
@@ -74,7 +74,7 @@ dependencies:
 
 
 
-第六步：安装一些我们开发时所需要的依赖
+5. 第五步：安装一些我们开发时所需要的依赖
 
 ```sh
 $ pnpm install vue typescript @types/node -D -w
@@ -84,7 +84,7 @@ $ pnpm install vue typescript @types/node -D -w
 
 
 
-第七步：TypeScript 初始化配置文件
+6. 第六步：TypeScript 初始化配置文件
 
 生成 `tsconfig.json` 文件
 
