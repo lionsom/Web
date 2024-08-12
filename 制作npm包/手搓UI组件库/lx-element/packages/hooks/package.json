@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@lx-element/core": "workspace:^"
-  }
+  "license": "ISC"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@toy-element/workspace",
+  "name": "@lx-element/workspace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@lx-element/components": "workspace:^",
-    "@lx-element/core": "workspace:^",
     "@lx-element/hooks": "workspace:^",
-    "element-plus": "^2.7.8"
+    "element-plus": "^2.7.8",
+    "lx-element": "workspace:^"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
