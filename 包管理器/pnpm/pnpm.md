@@ -70,6 +70,22 @@ $ which pnpm
 
 
 
+# 独立安装的pnpm 与 nvm下安装的pnpm
+
+```sh
+# 独立安装的pnpm路径
+$ which pnpm
+/Users/qiyeyun/Library/pnpm/pnpm
+
+# nvm下安装的pnpm路径
+$ which pnpm
+/Users/qiyeyun/.nvm/versions/node/v14.17.0/bin/pnpm
+```
+
+<font color='red' size=5>建议：移除独立安装的，避免造成node版本与pnpm版本不对应！！！</font>
+
+
+
 # 日常使用
 
 ## pnpm升级
