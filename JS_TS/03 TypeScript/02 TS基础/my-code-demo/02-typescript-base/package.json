@@ -1,0 +1,27 @@
+{
+  "name": "typescripe-base",
+  "version": "1.0.0",
+  "description": "typescript基础语法",
+  "main": "src/index.js",
+  "scripts": {
+    "dev:cjs": "node src/cjs/index.cjs",
+    "dev:esm": "node src/esm/index.mjs",
+    "serve:compile": "ts-node src/compile/index.ts",
+    "serve:original-data-type": "ts-node src/original-data-type/index.ts",
+    "serve:class": "ts-node src/class/index.ts",
+    "serve:function": "ts-node src/function/index1.ts && ts-node src/function/index2.ts && ts-node src/function/index3.ts",
+    "serve:package": "ts-node src/package/index.ts",
+    "build": "tsc src/ts/index.ts --outDir dist --target es6",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "linx",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/md5": "^2.3.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}

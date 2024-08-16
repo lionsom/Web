@@ -1,0 +1,20 @@
+{
+  "name": "webpack_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./src/index.js",
+    "webpack:dev": "webpack ./src/index.js -o ./dist_dev/built_dev.js --mode=development",
+    "webpack:pro": "webpack ./src/index.js -o ./dist_pro/built_pro.js --mode=production",
+    "dist:dev": "node ./dist_dev/built_dev.js",
+    "dist:pro": "node ./dist_pro/built_pro.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.47.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
