@@ -2,9 +2,7 @@
 
 
 
-
-
-# 全局安装
+# 一、全局安装
 
 ```bash
 # 命令
@@ -31,19 +29,20 @@ $ json-server -v
 
 
 
-# 初体验
+# 二、初体验
 
-Install JSON Server
+1. 全局安装 `json-server`
 
+```sh
+# 全局安装
+$ npm install -g json-server
 ```
-npm install -g json-server
-```
 
 
 
-Create a `db.json` file with some data
+2. Create a `db.json` file with some data
 
-```
+```json
 {
   "posts": [
     { "id": 1, "title": "json-server", "author": "typicode" }
@@ -57,21 +56,24 @@ Create a `db.json` file with some data
 
 
 
-Start JSON Server
+3. Start JSON Server
 
-```
-json-server --watch db.json
+```sh
+# 运行
+$ json-server --watch db.json
 ```
 
-Now if you go to http://localhost:3000/posts/1, you'll get
 
-```
+
+4. Now if you go to http://localhost:3000/posts/1, you'll get
+
+```json
 { "id": 1, "title": "json-server", "author": "typicode" }
 ```
 
 
 
-## 实操
+## 2.1 实操
 
 ![](images/001.png)
 
@@ -107,7 +109,7 @@ GET /comments 200 3.295 ms - 68
 
 
 
-# GPT
+# 三、json-server介绍 - GPT
 
 `json-server` 是一个基于 Node.js 的工具，可以快速创建一个模拟 REST API 服务。它允许你使用一个简单的 JSON 文件作为数据源，并提供了常用的 RESTful API 接口，比如 `GET`、`POST`、`PUT`、`DELETE`。这对于前端开发人员在后端 API 尚未完成时进行开发和测试非常有帮助。
 
@@ -176,7 +178,7 @@ json-server --watch db.json
 ## 4. 示例命令
 
 1. **启动服务器并指定端口**：
-   
+  
    ```bash
    json-server --watch db.json --port 4000
    ```

@@ -2,17 +2,17 @@
 * [Vite 官方中文文档](https://cn.vitejs.dev/)
 * [Vue3入门指南与实战案例 - 脚手架](https://vue3.chengpeiquan.com/upgrade.html#create-vite)
 * [已迁移-Vue - 创建vue2和vue3项目的那些命令](https://www.cnblogs.com/Neeo/articles/17311392.html)
-* Vue2 -> [Vue CLI](https://cli.vuejs.org/zh/#%E8%B5%B7%E6%AD%A5) -> Webpack
-* Vue3 -> [create-vue](https://cn.vuejs.org/guide/scaling-up/tooling.html#project-scaffolding)  -> Vite
-
-
 
 
 
 # 一、脚手架、构建项目、打包代码
 
-| 脚手架   | vue-cli | create-vue |
+* Vue2 -> [Vue CLI](https://cli.vuejs.org/zh/#%E8%B5%B7%E6%AD%A5) -> Webpack
+* Vue3 -> [create-vue](https://cn.vuejs.org/guide/scaling-up/tooling.html#project-scaffolding)  -> Vite
+
+|          | Vue2    | Vue3       |
 | -------- | ------- | ---------- |
+| 脚手架   | vue-cli | create-vue |
 | 构建项目 |         | vite       |
 | 打包代码 | webpack | rollup     |
 
@@ -40,7 +40,40 @@
 
 # 二、Vue2
 
-## 1. Vue CLI - 选择vue2
+## 1. 手动创建项目
+
+如果你想更灵活地配置项目，或者在没有安装 Vue CLI 的情况下，可以手动创建一个 Vue 2 项目。
+
+1. 创建一个新的项目目录并进入该目录：
+
+    ```bash
+    mkdir my-project
+    cd my-project
+    ```
+
+2. 初始化一个新的 npm 项目：
+
+    ```bash
+    npm init -y
+    ```
+
+3. 安装 Vue 2：
+
+    ```bash
+    npm install vue@2
+    ```
+
+4. 手动创建以下文件：
+
+    - `index.html`: 用于包含你的 Vue 应用的 HTML 文件。
+    - `main.js`: 你的 Vue 入口文件。
+    - `App.vue`: 主 Vue 组件。
+
+5. 使用简单的 Web 服务器（例如 `http-server`）或直接打开 `index.html` 文件来查看项目。
+
+
+
+## 2. ⭐️Vue CLI（Vue2脚手架） - 选择vue2
 
 ### a. 终端命令
 
@@ -65,17 +98,20 @@ vue ui
 
 
 
-### b. 图形化界面
+### b. 图形化界面 - GUI
 
 我们可以通过 **vue ui** 命令来打开图形化界面创建和管理项目：
 
 ```bash
+# 启动 Vue CLI GUI
 $ vue ui
 ```
 
+在浏览器中打开的界面上，你可以通过点击 "Create" 按钮来创建一个新项目，并且可以选择各种配置选项。
 
 
-## 2. create-vue（Vue 官方）- Vite + Vue2
+
+## 3. create-vue（Vue3脚手架）- Vite + Vue2
 
 [create-vue](https://github.com/vuejs/create-vue)
 
@@ -142,20 +178,106 @@ Done. Now run:
 
 
 
+## 4. 使用第三方脚手架工具
+
+除了 Vue CLI，其他工具如 `Vite` 也可以用来创建 Vue 2 项目，但需要手动指定 Vue 2 的版本。
+
+#### 步骤：
+
+1. 创建项目目录并初始化 npm：
+
+    ```bash
+    npm init vite@latest my-project
+    ```
+
+2. 在选择框中，选择 Vue 项目，然后手动安装 Vue 2 依赖：
+
+    ```bash
+    npm install vue@2
+    ```
+
+3. 根据需要调整项目配置。
+
+
+
+## 5. 使用 Vue 模板
+
+Vue 社区和第三方开发者提供了一些预先配置好的项目模板，可以使用这些模板快速启动一个 Vue 2 项目。
+
+#### 步骤：
+
+1. 查找你需要的模板，例如：
+
+    ```bash
+    vue init webpack my-project
+    ```
+
+2. 该命令将使用 `Webpack模板` 创建一个 Vue 2 项目。你也可以选择其他模板，比如 `simple` 或 `pwa`。
+
+3. 进入项目目录并安装依赖：
+
+    ```bash
+    cd my-project
+    npm install
+    ```
+
+4. 运行项目：
+
+    ```bash
+    npm run dev
+    ```
+
+### 
+
 
 
 # 三、Vue3
 
-## 1. Vue CLI - 选择vue3
+## 1. 手动创建项目
+
+你可以手动创建一个 Vue 3 项目，以完全控制项目配置。
+
+1. 创建一个新的项目目录并进入该目录：
+
+    ```bash
+    $ mkdir my-project
+    $ cd my-project
+    ```
+
+2. 初始化一个新的 npm 项目：
+
+    ```bash
+    $ npm init -y
+    ```
+
+3. 安装 Vue 3：
+
+    ```bash
+    $ npm install vue@next
+    ```
+
+4. 手动创建以下文件：
+
+    - `index.html`: 包含 Vue 应用的 HTML 文件。
+    - `main.js`: 你的 Vue 入口文件。
+    - `App.vue`: 主 Vue 组件。
+
+5. 使用简单的 Web 服务器（如 `http-server`）或直接打开 `index.html` 文件来查看项目。
+
+
+
+## 2. Vue CLI - 选择vue3
+
+Vue CLI 是官方推荐的工具，适用于 Vue 2 和 Vue 3。可以通过 Vue CLI 快速创建 Vue 3 项目。
 
 ### a. 终端命令
 
 ```bash
-## 安装或者升级
+# 安装或者升级
 $ npm install -g @vue/cli
-## 保证 vue cli 版本在 4.5.0 以上
+# 保证 vue cli 版本在 4.5.0 以上
 $ vue --version
-## 创建项目
+# 创建项目
 $ vue create my-project
 
 Vue CLI v5.0.8
@@ -167,7 +289,7 @@ Vue CLI v5.0.8
 
 
 
-### b. 图形化界面
+### b. 图形化界面 - GUI
 
 我们可以通过 **vue ui** 命令来打开图形化界面创建和管理项目：
 
@@ -177,7 +299,7 @@ $ vue ui
 
 
 
-## 2. ⭐️create-vue 脚手架
+## 3. ⭐️create-vue 脚手架
 
 * [create-vue - Github](https://github.com/vuejs/create-vue)
 * [工具链 - Vue3官网](https://cn.vuejs.org/guide/scaling-up/tooling.html)
@@ -194,7 +316,7 @@ $ vue ui
 
 
 
-### a. npm init vue@3
+### a. `npm init vue@3`
 
 ```bash
 $ npm init vue@3
@@ -225,7 +347,7 @@ Done. Now run:
 
 
 
-### b. npm init vue@latest
+### b. `npm init vue@latest`
 
 ```bash
 # 这一指令将会安装并执行 create-vue，它是 Vue 官方的项目脚手架工具。
@@ -253,7 +375,7 @@ Done. Now run:
 
 
 
-### c. npm create vue
+### c. `npm create vue`
 
 ```bash
 # create-vue 创建Vue3项目。这个命令会安装和执行 create-vue，它是 Vue 提供的官方脚手架工具。
@@ -284,17 +406,19 @@ Done. Now run:
 
 
 
-## 3. Vite
+## 4. Vite
 
 [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) 是 Vite 官方推荐的一个构建工具，可以创建基于 Vite 的不同技术栈基础模板。
 
 * [create-vite - Github](https://github.com/vitejs/vite/tree/main/packages/create-vite)
 * [Vite 官方中文文档](https://cn.vitejs.dev/)
 
-### a. npm create vite
+### a. ` npm create vite`
 
 ```bash
 $ npm create vite
+# or
+$ npm create vite@latest my-project --template vue
 
 Need to install the following packages:
   create-vite@5.1.0
@@ -314,7 +438,7 @@ Done. Now run:
 
 
 
-### b. npm init vite-app test-demo
+### b. `npm init vite-app test-demo`
 
 ```bash
 # 使用 Vite 快速构建 Vue 项目
@@ -331,7 +455,7 @@ Done. Now run:
 
 
 
-## 4. 其他脚手架 - Create Preset（Awesome Starter推荐）
+## 5. 其他脚手架 - Create Preset（Awesome Starter推荐）
 
 [Vue3入门指南与实战案例 - Create Preset](https://vue3.chengpeiquan.com/upgrade.html#create-preset)
 
@@ -396,5 +520,10 @@ $ preset init hello-vue3 --template vue3-ts-vite
 
 
 
+##  6. 使用在线 IDE
 
+如果你不想在本地搭建开发环境，还可以使用一些在线的 IDE，如 StackBlitz 或 CodeSandbox，这些平台提供了快速创建和分享 Vue 3 项目的功能。
 
+1. 访问 [StackBlitz](https://stackblitz.com/) 或 [CodeSandbox](https://codesandbox.io/)。
+2. 选择 Vue 模板或新建一个 Vue 3 项目。
+3. 在线编辑和运行你的项目。

@@ -1,124 +1,154 @@
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#参考链接)参考链接
+# 参考链接
 
-[Vue官方风格指南(opens new window)](https://cn.vuejs.org/v2/style-guide/index.html)
+* [Vue2官方 - 风格指南(opens new window)](https://v2.cn.vuejs.org/v2/style-guide/index.html)
 
-[有赞风格指南](https://youzan.github.io/vant/#/zh-CN/style-guide)
+* [有赞Vant4 - 风格指南](https://youzan.github.io/vant/#/zh-CN/style-guide)
+    * [Vant2](https://vant-ui.github.io/vant/v2/#/zh-CN/style-guide)
+
+* [AI前端Vue规范](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html)
 
 
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#文件命名)文件命名
+# Vue2规范
 
-统一小写，多个单词作为文件名使用分隔符`-`
+## 1. 组件数据
 
-```js
-// bad
-EntityList.vue
-entityList.vue
-
-// good
-entity-list.vue
-```
-
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#紧密耦合的组件命名)紧密耦合的组件命名
-
-和父组件紧密耦合的子组件应该以父组件名作为前缀命名
-
-```js
-// bad
-components/
-|- todo-list.vue
-|- todo-item.vue
-└─ todo-button.vue
-
-// good
-components/
-|- todo-list.vue
-|- todo-list-item.vue
-└─ todo-list-item-button.vue
-```
-
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#自闭合组件)自闭合组件
-
-在单文件组件中没有内容的组件应该是自闭合的
-
-```html
-<!-- bad -->
-<u-input></u-input>
-
-<!-- good -->
-<u-input />
-```
-
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#指令缩写)指令缩写
-
-用`:` 表示 `v-bind`: ，用`@`表示`v-on`
-
-```html
-<!-- bad -->
-<input v-bind:value="value" v-on:input="onInput">
-
-<!-- good -->
-<input :value="value" @input="onInput">
-```
-
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#组件数据)组件数据
-
-组件的 data 必须是一个函数,并且建议在此不使用箭头函数
+组件的 data 必须是一个函数。
 
 ```js
 // bad
 export default {
-  data: () => ({
-    foo: 'bar'
-  })
-}
+  data: {
+    foo: 'bar',
+  },
+};
 
 // good
 export default {
-  data () {
+  data() {
     return {
-      foo: 'bar'
-    }
-  }
-}
+      foo: 'bar',
+    };
+  },
+};
 ```
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#props命名)props命名
 
-小驼峰命名。内容尽量详细，至少有默认值
 
-```js
+## 2. 单文件组件文件名称
+
+单文件组件的文件名应该要么始终是单词大写开头 (PascalCase)，要么始终是横线连接 (kebab-case)。
+
+```
 // bad
-greeting-text: String
+mycomponent.vue
+myComponent.vue
 
 // good
-greetingText: { type: String, default: ''}
+my-component.vue
+MyComponent.vue
 ```
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#组件属性顺序和分行规则)组件属性顺序和分行规则
 
-顺序原则：重要属性放前面
 
-顺序依据：依次`指令`->`props属性`-> `事件`->`dom属性(class有标记作用，除外)`
+## 3. 紧密耦合的组件名
 
-分行规则：放在一行，重要内容较多时，可放置2～3行
+和父组件紧密耦合的子组件应该以父组件名作为前缀命名。
+
+```
+// bad
+components/
+|- TodoList.vue
+|- TodoItem.vue
+└─ TodoButton.vue
+
+// good
+components/
+|- TodoList.vue
+|- TodoListItem.vue
+└─ TodoListItemButton.vue
+```
+
+
+
+## 4. 自闭合组件
+
+在单文件组件中没有内容的组件应该是自闭合的。
 
 ```html
 <!-- bad -->
-<u-select
-    class="select"
-    size="s"
-    @select="searchEntity($event, row)"
-    @blur="searchEntity($event, row)"
-    v-model="row.variableId"
-    :list="variableList" />
+<my-component></my-component>
 
 <!-- good -->
-<u-select v-model="row.variableId" :list="variableList" size="s"
-    @select="searchEntity($event, row)" @blur="searchEntity($event, row)" class="select" />
+<my-component />
 ```
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#vue-api顺序)Vue API顺序
+
+
+## 5. 指令缩写
+
+指令缩写，用 `:` 表示 `v-bind:` ，用 `@` 表示 `v-on:`
+
+```html
+<!-- bad -->
+<input v-bind:value="value" v-on:input="onInput" />
+
+<!-- good -->
+<input :value="value" @input="onInput" />
+```
+
+
+
+## 6. Props 名大小写
+
+在声明 props 的时候，其命名应该始终使用 camelCase，而在模板中应该始终使用 kebab-case。
+
+```js
+// bad
+export default {
+  props: {
+    'greeting-text': String,
+  },
+};
+
+// good
+export default {
+  props: {
+    greetingText: String,
+  },
+};
+
+<!-- bad -->
+<welcome-message greetingText="hi" />
+
+<!-- good -->
+<welcome-message greeting-text="hi" />
+```
+
+
+
+## 7. 组件属性顺序
+
+标签的 Props 应该有统一的顺序，依次为 **指令、属性和事件**。
+
+```html
+<my-component
+  v-if="if"
+  v-show="show"
+  v-model="value"
+  ref="ref"
+  :key="key"
+  :text="text"
+  @input="onInput"
+  @change="onChange"
+/>
+```
+
+
+
+## 8. 组件选项的顺序
+
+组件选项应该有统一的顺序。
 
 ```js
 export default {
@@ -147,25 +177,9 @@ export default {
 }
 ```
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#vue组件顶级标签顺序)Vue组件顶级标签顺序
 
-顺序保持一致，且标签之间留有空行。template第一层级下四个空格，script和style第一层级都不加空格
 
-```html
-<template>
-    <div></div>
-</template>
-
-<script>
-export default {}
-</script>
-
-<style>
-.app {}
-</style>
-```
-
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#import引入顺序-v1-1)import引入顺序 `V1.1`
+## 9. import引入顺序
 
 原则：同等类型的放一起，优先放mixins和components等UI资源。忌随意放置
 
@@ -191,215 +205,76 @@ import { getRepeatLine } from '@/utils/common'
 import { botIdLoc, custIdLoc } from '@/utils/locs'
 ```
 
-### [#](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html#vue-复杂data加注释-分组-v1-1)Vue 复杂data加注释/分组 `V1.1`
 
-data数据是连接View和Modal的基础，当ViewModal复杂时，建议进行注释并分组。另外，当data过于复杂时应考虑优化重构。
+
+
+
+# Vue2 项目目录结构
+
+## 简要说明
+
+- `main.js`主入口，`router.js`路由划分
+- `plugins` 自己或第三方插件,包括但不限于components、directives、filters、third lib
+- `pages` 所有路由页面。原则：轻page，重component
+- `components` 所有组件。包括原子组件、业务公用组件、页面独有组件
+- `server` api引入入口
+- `assets` sass、图片资源入口，不常修改数据
+- `utils` 工具文件夹
+- `store` 标准vuex格式，非必须
+
+## 详细说明
 
 ```js
-// bad
-data() {
-    return {
-        isOpenModal: false,
-        list: [],
-        groupList: [],
-        searchParams: { groupId: '', searchParam: '', searchType: '' },
-        pageParam: { currentPage: 1, pageSize: 50 },
-        totalCount: 0,
-        groupId: '',
-        typeList: [],
-        defaultType: 'paramName'
-    }
-}
-
-// good
-data() {
-    return {
-        variableList: [],
-        groupList: [],
-        typeList: [],
-
-        /*
-        * 查询参数
-        * 组与组之间通过空行区分
-        */
-        searchParams: { groupId: '', searchParam: '', searchType: '', currentPage: 1, pageSize: 50 },
-        totalCount: 0,
-        defaultType: '',
-
-        isOpenModal: false
-    }
-}
+project
+└───src
+│   │   app.vue    // 主页面
+│   │   main.js    // 主入口
+|   |   router.js  // 所有路由
+│   │
+│   |____assets    // css、image、svg等资源
+│   |   |____css   // 所有sass资源
+|   |   |    |  reset.scss       // 兼容各浏览器
+|   |   |    |  global.scss      // 全局css
+|   |   |    |  variable.scss    // sass变量和function等
+│   |   |____img   // image图标库
+|   |   |____svg   // svg图标库
+|   |
+|   |____components    // 组件
+│   |   |____common    // common自注册组件
+│   |        |____base // 原子组件(如果是引入第三方，该文件夹可省略)
+│   |        |   ...   // 业务公用组件
+│   |   |____entity    // entity页面组件
+│   |   |____about     // about页面组件
+|   |
+|   |____pages     // UI层(原则：轻page，重component)
+|   |   |____entity
+|   |   |    |  list.vue      // 列表页
+|   |   |    |  create.vue    // 新增页
+|   |   |    |  edit.vue      // 修改页
+|   |   | main.vue
+|   |
+|   |____plugins   // 自己或第三方插件
+|   |   | index.js       // 插件入口文件
+|   |   | directives.js  // 所有Vue指令
+|   |   | filters.js  // 所有Vue过滤
+|   |
+|   |____server    // 接口层
+|   |   | index.js   // 所有接口
+|   |   | http.js  // axios二次封装
+|   |
+|   |____store     // vuex数据
+|   |   | index.js
+|   |
+|   |____utils     // 工具层
+|   |   | config.js// 配置文件，包括常量配置
+|
+└───public         // 公用文件，不经过webpack处理
+│   │   favicon.ico
+│   │   index.html
+│   vue.config.js  // vue-cli3主配置
+│   babel.config.js// babel配置
+│   .eslintrc.js   // eslint配置
+│   .prettierrc.js // perttier配置
+│   package.json   // npm配置
+│   README.md      // 项目说明
 ```
-
-
-
-
-
-# Vue规范
-
-## [单文件组件文件名的大小写](https://v2.cn.vuejs.org/v2/style-guide/index.html#单文件组件文件名的大小写强烈推荐)
-
-**[单文件组件](https://v2.cn.vuejs.org/v2/guide/single-file-components.html)的文件名应该要么始终是单词大写开头 (PascalCase)，要么始终是横线连接 (kebab-case)。**
-
-反例
-
-```
-components/
-|- mycomponent.vue
-components/
-|- myComponent.vue
-```
-
-好例子
-
-```
-components/
-|- MyComponent.vue
-components/
-|- my-component.vue
-```
-
-
-
-## [基础组件名](https://v2.cn.vuejs.org/v2/style-guide/index.html#基础组件名强烈推荐)
-
-**应用特定样式和约定的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。**
-
-反例
-
-```
-components/
-|- MyButton.vue
-|- VueTable.vue
-|- Icon.vue
-```
-
-好例子
-
-```
-components/
-|- BaseButton.vue
-|- BaseTable.vue
-|- BaseIcon.vue
-
-components/
-|- AppButton.vue
-|- AppTable.vue
-|- AppIcon.vue
-
-components/
-|- VButton.vue
-|- VTable.vue
-|- VIcon.vue
-```
-
-
-
-## [单例组件名](https://v2.cn.vuejs.org/v2/style-guide/index.html#单例组件名强烈推荐)
-
-**只应该拥有单个活跃实例的组件应该以 `The` 前缀命名，以示其唯一性。**
-
-反例
-
-```
-components/
-|- Heading.vue
-|- MySidebar.vue
-```
-
-好例子
-
-```
-components/
-|- TheHeading.vue
-|- TheSidebar.vue
-```
-
-
-
-## [自闭合组件](https://v2.cn.vuejs.org/v2/style-guide/index.html#自闭合组件强烈推荐)
-
-**在[单文件组件](https://v2.cn.vuejs.org/v2/guide/single-file-components.html)、字符串模板和 [JSX](https://v2.cn.vuejs.org/v2/guide/render-function.html#JSX) 中没有内容的组件应该是自闭合的——但在 DOM 模板里永远不要这样做。**
-
-反例
-
-```
-<!-- 在单文件组件、字符串模板和 JSX 中 -->
-<MyComponent></MyComponent>
-<!-- 在 DOM 模板中 -->
-<my-component/>
-```
-
-好例子
-
-```
-<!-- 在单文件组件、字符串模板和 JSX 中 -->
-<MyComponent/>
-<!-- 在 DOM 模板中 -->
-<my-component></my-component>
-```
-
-
-
-## [模板中的组件名大小写](https://v2.cn.vuejs.org/v2/style-guide/index.html#模板中的组件名大小写强烈推荐)
-
-**对于绝大多数项目来说，在[单文件组件](https://v2.cn.vuejs.org/v2/guide/single-file-components.html)和字符串模板中组件名应该总是 PascalCase 的——但是在 DOM 模板中总是 kebab-case 的。**
-
-反例
-
-```
-<!-- 在单文件组件和字符串模板中 -->
-<mycomponent/>
-<!-- 在单文件组件和字符串模板中 -->
-<myComponent/>
-<!-- 在 DOM 模板中 -->
-<MyComponent></MyComponent>
-```
-
-好例子
-
-```
-<!-- 在单文件组件和字符串模板中 -->
-<MyComponent/>
-```
-
-```
-<!-- 在 DOM 模板中 -->
-<my-component></my-component>
-```
-
-或者
-
-```
-<!-- 在所有地方 -->
-<my-component></my-component>
-```
-
-
-
-## [Prop 名大小写](https://v2.cn.vuejs.org/v2/style-guide/index.html#Prop-名大小写强烈推荐)
-
-**在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 [JSX](https://v2.cn.vuejs.org/v2/guide/render-function.html#JSX) 中应该始终使用 kebab-case。**
-
-反例
-
-```
-props: {
-  'greeting-text': String
-}
-<WelcomeMessage greetingText="hi"/>
-```
-
-好例子
-
-```
-props: {
-  greetingText: String
-}
-<WelcomeMessage greeting-text="hi"/>
-```
-
-
-
-
-
