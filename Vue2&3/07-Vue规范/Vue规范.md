@@ -278,3 +278,157 @@ project
 │   package.json   // npm配置
 │   README.md      // 项目说明
 ```
+
+
+
+# 文件名 + 文件 命名规范
+
+* [推荐参考](https://cloud.tencent.com/developer/article/1910861)
+
+* 文件夹： `camelCase` VS `kebab-case`
+
+* 组件：`kebab-case` VS `PascalCase`
+
+
+
+**项目名**：全部采用小写方式， 以**短横线**分隔。例：`my-project-name`。
+
+**目录名**：参照项目命名规则，有复数结构时，要采用复数命名法。例：docs、assets、components、directives、mixins、utils、views。
+
+**图像文件名**：全部采用小写方式， 优先选择单个单词命名，多个单词命名以**下划线**分隔。例如：`banner_sina.gif`
+
+**HTML 文件名**：全部采用小写方式， 优先选择单个单词命名，多个单词命名以**下划线**分隔。例如：`success_report.html`
+
+**CSS 文件名**：全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。例如：`normalize.less`
+
+**JavaScript 文件名**：全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。例如：`date-util.js`
+
+
+
+**单文件组件名**
+
+```
+components/
+	- MyComponent.vue
+```
+
+
+
+**全局公共组件**：`/src/components`示例
+
+```
+- [components]
+  - [Breadcrumb]
+    - index.vue
+  - [Hamburger]
+    - index.vue
+  - [SvgIcon]
+    - index.vue
+```
+
+**业务页面内部封装的组件**：以 `/src/views/layout/components`示例
+
+```
+-[src]
+  - [views]
+    - [layout]
+      - [components]
+        - [Sidebar]
+          - index.vue
+          - Item.vue
+          - SidebarItem.vue
+        - AppMain.vue
+        - index.js
+        - Navbar.vue`
+```
+
+
+
+
+
+**单例组件名**：只拥有单个活跃实例的组件应该以 `The` 前缀命名，以示其唯一性。
+
+```
+components/
+	- TheHeading.vue
+	- TheSidebar.vue
+```
+
+
+
+**name**
+
+**组件名应该始终是多个单词，应该始终是 PascalCase 的。**
+
+```js
+export default {
+  name: 'ToDoList',
+  // ...
+}
+```
+
+
+
+**prop**：在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 JSX 中应该始终使用 kebab-case。
+
+```js
+<WelcomeMessage greeting-text="hi"/>
+
+
+export default {
+  name: 'MyComponent',
+  // ...
+  props: {
+    greetingText: {
+      type: String,
+      required: true,
+      validator: function (value) {
+        return ['syncing', 'synced',].indexOf(value) !== -1
+      }
+    }
+  }
+}
+```
+
+
+
+**router**：**Vue Router Path 命名采用 kebab-case 格式。** 用 Snake（如：`/user_info`）或 camelCase（如：`/userInfo`)的单词会被当成一个单词，搜索引擎无法区分语义。
+
+```js
+// bad
+{
+  path: '/user_info', // user_info 当成一个单词
+  name: 'UserInfo',
+  component: UserInfo,
+  meta: {
+    title: ' - 用户',
+    desc: ''
+  }
+},
+
+// good
+{
+  path: '/user-info', // 能解析成 user info
+  name: 'UserInfo',
+  component: UserInfo,
+  meta: {
+    title: ' - 用户',
+    desc: ''
+  }
+},
+```
+
+
+
+**模板中组件**：对于绝大多数项目来说，在单文件组件和字符串模板中组件名应该总是 PascalCase 的，但是在 DOM 模板中总是 kebab-case 的。
+
+```vue
+<!-- 在单文件组件和字符串模板中 --> 
+<MyComponent/>
+
+<!-- 在 DOM 模板中 --> 
+<my-component></my-component>
+```
+
+
+
