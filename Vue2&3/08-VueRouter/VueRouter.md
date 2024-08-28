@@ -112,7 +112,7 @@ npm install vue-router@4
 
 # 四、前五步的路由设置 -> 封装抽离
 
-```vue
+```js
 import Vue from 'vue'
 
 // 1. 安装VueRouter
@@ -524,7 +524,7 @@ this.$router.push({
 
 **接受参数的方式依然是：`$route.params.参数值`**
 
-**注意：**path不能配合params使用
+<font color='red' size=6>**注意：**path不能配合params使用</font>
 
 
 
