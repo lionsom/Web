@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "iconfont"; /* 字体名称 */
+  src: url('iconfont.woff2?t=1675303337325') format('woff2'),
+       url('iconfont.woff?t=1675303337325') format('woff'),
+       url('iconfont.ttf?t=1675303337325') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-test:before {
+  content: "\e63b";
+}
+
+.icon-icon-test1:before {
+  content: "\e63f";
+}
+
+.icon-icon-test2:before {
+  content: "\e657";
+}
+
+.icon-icon-test3:before {
+  content: "\e658";
+}
+
+.icon-icon-test4:before {
+  content: "\e659";
+}
+
+.icon-icon-test5:before {
+  content: "\e65a";
+}
+

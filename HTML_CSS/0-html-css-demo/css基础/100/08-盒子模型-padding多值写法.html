@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒子模型-padding多值写法</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+
+      /* 四值：上  右  下  左 */
+      /* padding: 10px 20px 40px 80px; */
+
+      /* 三值：上  左右  下 */
+      /* padding: 10px 40px 80px; */
+
+      /* 两值：上下  左右 */
+      padding: 10px 80px;
+
+      /* 记忆方法：从上开始顺时针转一圈，如果当前方向没有数值，取值跟对面一样 */
+    }
+  </style>
+</head>
+<body>
+  <div>div 标签</div>
+</body>
+</html>

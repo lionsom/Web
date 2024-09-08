@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后代选择器</title>
+  <style>
+    /* div 里面的 span 文字颜色是红色 */
+    /* 后代选择器，选中所有后代，包含儿子、孙子、重孙子... */
+    div span {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <span>span 标签</span>
+  <div>
+    <span>这是div 的儿子 span</span>
+    <p>
+      <span>孙子 span</span>
+    </p>
+  </div>
+</body>
+</html>

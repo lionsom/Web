@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册信息</title>
+</head>
+<body>
+  <h1>注册信息</h1>
+  <form action="">
+    <!-- 表单控件 -->
+    <!-- 个人信息 -->
+    <h2>个人信息</h2>
+    <label>姓名：</label><input type="text" placeholder="请输入真实姓名">
+    <br><br>
+    <label>密码：</label><input type="password" placeholder="请输入密码">
+    <br><br>
+    <label>确认密码：</label><input type="password" placeholder="请输入确认密码">
+    <br><br>
+    <label>性别：</label>
+    <label><input type="radio" name="gender"> 男</label>
+    <label><input type="radio" name="gender" checked> 女</label>
+    <br><br>
+    <label>居住城市：</label>
+    <select>
+      <option>北京</option>
+      <option>上海</option>
+      <option>广州</option>
+      <option>深圳</option>
+      <option>武汉</option>
+    </select>
+    <!-- 教育经历 -->
+    <h2>教育经历</h2>
+    <label>最高学历：</label>
+    <select>
+      <option>博士</option>
+      <option>硕士</option>
+      <option>本科</option>
+      <option>大专</option>
+    </select>
+    <br><br>
+    <label>学校名称：</label><input type="text">
+    <br><br>
+    <label>所学专业：</label><input type="text">
+    <br><br>
+    <label>在校时间：</label>
+    <select>
+      <option>2015</option>
+      <option>2016</option>
+      <option>2017</option>
+      <option>2018</option>
+    </select>
+    --
+    <select>
+      <option>2019</option>
+      <option>2020</option>
+      <option>2021</option>
+      <option>2022</option>
+    </select>
+    <!-- 工作经历 -->
+    <h2>工作经历</h2>
+    <label>公司名称：</label><input type="text">
+    <br><br>
+    <label>工作描述：</label>
+    <br>
+    <textarea></textarea>
+    <br><br>
+    <!-- 协议 和 按钮 -->
+    <input type="checkbox"><label>已阅读并同意以下协议：</label>
+    <ul>
+      <li><a href="#">《用户服务协议》</a></li>
+      <li><a href="#">《隐私政策》</a></li>
+    </ul>
+    <br><br>
+    <button>免费注册</button>
+    <button type="reset">重新填写</button>
+  </form>
+</body>
+</html>
