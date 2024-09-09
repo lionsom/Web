@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>封装_简易axios函数_获取地区列表</title>
+</head>
+
+<body>
+  <p class="my-p"></p>
+  <script>
+    /**
+     * 目标：封装_简易axios函数_获取地区列表
+     *  1. 判断有params选项，携带查询参数
+     *  2. 使用URLSearchParams转换，并携带到url上
+     *  3. 使用myAxios函数，获取地区列表
+    */
+    function myAxios(config) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest()
+        // 1. 判断有params选项，携带查询参数
+        if (config.params) {
+          // 2. 使用URLSearchParams转换，并携带到url上
+          const paramsObj = new URLSearchParams(config.params)
+          const queryString = paramsObj.toString()
+          // 把查询参数字符串，拼接在url？后面
+          config.url += `?${queryString}`
+        }
+
+        xhr.open(config.method || 'GET', config.url)
+        xhr.addEventListener('loadend', () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(JSON.parse(xhr.response))
+          } else {
+            reject(new Error(xhr.response))
+          }
+        })
+        xhr.send()
+      })
+    }
+
+    // 3. 使用myAxios函数，获取地区列表
+    myAxios({
+      url: 'http://hmajax.itheima.net/api/area',
+      params: {
+        pname: '辽宁省',
+        cname: '大连市'
+      }
+    }).then(result => {
+      console.log(result)
+      document.querySelector('.my-p').innerHTML = result.list.join('<br>')
+    })
+
+  </script>
+</body>
+
+</html>

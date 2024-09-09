@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async函数和await_解决回调函数地狱</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select>
+      <option class="province"></option>
+    </select>
+    <span>城市：</span>
+    <select>
+      <option class="city"></option>
+    </select>
+    <span>地区：</span>
+    <select>
+      <option class="area"></option>
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：掌握async和await语法，解决回调函数地狱
+     * 概念：在async函数内，使用await关键字，获取Promise对象"成功状态"结果值
+     * 注意：await必须用在async修饰的函数内（await会阻止"异步函数内"代码继续执行，原地等待结果）
+    */
+    // 1. 定义async修饰函数
+    async function getData() {
+      // 2. await等待Promise对象成功的结果
+      const pObj = await axios({url: 'http://hmajax.itheima.net/api/province'})
+      const pname = pObj.data.list[0]
+      const cObj = await axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }})
+      const cname = cObj.data.list[0]
+      const aObj = await axios({url: 'http://hmajax.itheima.net/api/area', params: { pname, cname }})
+      const areaName = aObj.data.list[0]
+
+
+      document.querySelector('.province').innerHTML = pname
+      document.querySelector('.city').innerHTML = cname
+      document.querySelector('.area').innerHTML = areaName
+    }
+
+    getData()
+  </script>
+</body>
+
+</html>

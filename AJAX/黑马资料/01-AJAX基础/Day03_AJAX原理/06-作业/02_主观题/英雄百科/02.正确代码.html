@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <title>英雄百科</title>
+</head>
+
+<body>
+  <div class="main">
+    <img class="cover"
+      src="https://img.crawler.qq.com/lolwebschool/0/JAutoCMS_LOLWeb_f6416138ae858f73e2ca40a11587e17f/0" />
+    <div class="hero-container">
+      <input type="text" class="search" placeholder="检索" />
+      <ul class="list">
+        <li>
+          <img src="http://game.gtimg.cn/images/lol/act/img/champion/Annie.png" alt="" />
+          <p>安妮</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="infoModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">黑暗之女安妮</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="info">
+            <img src="http://game.gtimg.cn/images/lol/act/img/champion/Annie.png" class="icon img-thumbnail"
+              alt="..." />
+            <div class="progress-box">
+              <div class="progress">
+                <div class="attack progress-bar bg-success" style="width: 25%">攻击:</div>
+              </div>
+              <div class="progress">
+                <div class="defense progress-bar bg-info" role="progressbar" style="width: 50%">防御:</div>
+              </div>
+              <div class="progress">
+                <div class="magic progress-bar bg-warning" role="progressbar" style="width: 75%">魔法:</div>
+              </div>
+              <div class="progress">
+                <div class="difficulty progress-bar bg-danger" role="progressbar" style="width: 100%">难度:</div>
+              </div>
+            </div>
+          </div>
+          <p>
+            拥有危险夺命的能力，却长着一幅小大人儿的可爱模样，这就是掌握深不可测占火魔法的女孩——安妮。安妮生活在诺克萨斯北边的山脚下，但即便是在这种地方，她也依然是魔法师中的异类。她与火焰的紧密关系与生俱来——最初那些火焰是伴随着喜怒无常的冲动情绪出现的，后来她学会了如何掌握这些“好玩的小把戏”。其中，安妮最喜欢的就是她召唤亲爱的泰迪熊提伯斯——那头狂野的守护火兽。如今安妮已经迷失在了永恒的天真里，她在黑暗森林中游荡，寻觅着能陪自己玩耍的人。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./lib/axios.js"></script>
+<script src="./lib/bootstrap.min.js"></script>
+<script>
+  const modal = new bootstrap.Modal(document.querySelector('#infoModal'))
+  function getHero() {
+    const res = axios({
+      url: 'https://hmajax.itheima.net/api/lol/search',
+      method: 'get',
+    }).then(res => {
+      document.querySelector('.list').innerHTML = res.data.data
+        .map(v => {
+          return `
+            <li >
+                <img data-id='${v.heroId}' src="${v.icon}" alt="" />
+                <p >${v.title}</p>
+              </li>`
+        })
+        .join('')
+    })
+  }
+  getHero()
+
+  // 检索
+  document.querySelector('.search').onkeyup = async function (e) {
+    if (e.keyCode !== 13) return
+    if (this.value.trim() === '') {
+      return alert('内容不能为空')
+    }
+    axios({
+      url: 'https://hmajax.itheima.net/api/lol/search',
+      method: 'get',
+      params: {
+        q: this.value.trim(),
+      },
+    }).then(res => {
+      if (res.data.code !== 400) {
+        document.querySelector('.list').innerHTML = res.data.data
+          .map(v => {
+            return `
+            <li >
+                <img data-id='${v.heroId}' src="${v.icon}" alt="" />
+                <p >${v.title}</p>
+              </li>`
+          })
+          .join('')
+      } else {
+        alert(res.data.msg)
+      }
+    })
+
+  }
+
+  // 详情
+  document.querySelector('.list').addEventListener('click', async function (e) {
+    if (e.target.dataset.id) {
+      axios({
+        url: 'https://hmajax.itheima.net/api/lol/info',
+        method: 'get',
+        params: {
+          id: e.target.dataset.id,
+        },
+      }).then(res => {
+        const hero = res.data.data.hero
+        document.querySelector('.modal-title').innerHTML = hero.name + hero.title
+        document.querySelector('.icon').src = hero.icon
+        document.querySelector('.attack').style.width = (hero.attack / 10) * 100 + '%'
+        document.querySelector('.defense').style.width = (hero.defense / 10) * 100 + '%'
+        document.querySelector('.magic').style.width = (hero.magic / 10) * 100 + '%'
+        document.querySelector('.difficulty').style.width = (hero.difficulty / 10) * 100 + '%'
+        modal.show()
+      })
+    }
+  })
+</script>
+
+</html>

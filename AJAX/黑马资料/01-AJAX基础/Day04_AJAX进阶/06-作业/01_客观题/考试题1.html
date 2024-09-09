@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试题</title>
+</head>
+<body>
+    <!-- 题目1 -->
+    <script>
+        // A:
+
+        const p1 = new Promise((resolve, reject) => {
+            resolve(1)
+        })
+
+        const res1 = await p1
+
+        // B:
+
+        const p2 = new Promise((resolve, reject) => {
+            reject(2)
+        })
+
+        const res2 = await p2
+
+
+        // C:
+
+        const p3 = new Promise((resolve, reject) => {
+            resolve(3)
+        })
+
+        async const myFn = () => {
+            const res3 = await p3
+        }
+        myFn()
+
+
+        // D: 
+
+        const p4 = new Promise((resolve, reject) => {
+            resolve(4)
+        })
+
+        const myFn4 = async () => {
+            const res4 = await p4
+        }
+        myFn4()
+        
+
+        
+
+    </script>
+</body>
+</html>

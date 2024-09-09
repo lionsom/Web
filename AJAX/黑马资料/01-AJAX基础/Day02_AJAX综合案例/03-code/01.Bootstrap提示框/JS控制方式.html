@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 弹框</title>
+  <!-- 引入bootstrap.css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 
+    目标：使用JS控制弹框，显示和隐藏
+    1. 创建弹框对象
+    2. 调用弹框对象内置方法
+      .show() 显示
+      .hide() 隐藏
+   -->
+  <button type="button" class="btn btn-primary edit-btn">
+    编辑姓名
+  </button>
+
+  <div class="modal name-box" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">请输入姓名</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <span>姓名：</span>
+            <input type="text" class="username">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary save-btn">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入bootstrap.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+  <script> 
+    // 1. 创建弹框对象
+    const modalDom = document.querySelector('.name-box')
+    const modal = new bootstrap.Modal(modalDom)
+
+    // 编辑姓名->点击->赋予默认姓名->弹框显示
+    document.querySelector('.edit-btn').addEventListener('click', () => {
+      document.querySelector('.username').value = '默认姓名'
+
+      // 2. 显示弹框
+      modal.show()
+    })
+
+    // 保存->点击->->获取姓名打印->弹框隐藏
+    document.querySelector('.save-btn').addEventListener('click', () => {
+      const username = document.querySelector('.username').value
+      console.log('模拟把姓名保存到服务器上', username)
+
+      // 2. 隐藏弹框
+      modal.hide()
+    })
+  </script>
+</body>
+
+</html>

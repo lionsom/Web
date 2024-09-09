@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>评论列表</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <style>
+    .badge {
+      float: right;
+      margin-right: 5px;
+    }
+    .my-page{
+      margin: 0 5px;
+    }
+    .all-page-content{
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body style="padding: 15px;">
+
+  <!-- 评论面板 -->
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">发表评论</h3>
+    </div>
+    <form class="panel-body cmt-form">
+      <div>评论人：</div>
+      <input type="text" class="form-control" name="username" autocomplete="off" />
+      <div>评论内容：</div>
+      <textarea class="form-control" name="content"></textarea>
+      <button type="submit" class="btn btn-primary submit">发表评论</button>
+    </form>
+  </div>
+
+
+  <!-- 评论列表 -->
+  <ul class="list-group">
+    <!-- <li class="list-group-item">
+       <span>评论内容</span>
+       <span class="badge del" style="cursor:pointer; background-color: lightgray;">删除</span> 
+       <span class="badge" style="background-color: #F0AD4E;">评论时间：xxx</span>
+       <span class="badge" style="background-color: #5BC0DE;">评论人：xxx</span>
+    </li> -->
+  </ul>
+
+  <!-- 分页器 -->
+  <nav >
+    <ul class="pagination">
+      <li>
+        <button class="last">
+          <span>&laquo;</span>
+        </button>
+      </li>
+      <li class="my-page">
+        <span class="page-show"></span>
+      </li>
+      <li>
+        <button class="next">
+          <span>&raquo;</span>
+        </button>
+      </li>
+      <li class="all-page-content">
+        <span>共计:<span class="all-page"></span>页</span>
+      </li>
+    </ul>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./lib/form-serialize.js"></script>
+  <script>
+    var nowPage = 1 // 当前要第几页数据
+    var allPage // 保存后端返回的一共几页
+    // 1.1 获取铺设评论列表区
+    function getCommentList() {
+      // 1.2 调用接口 - 传递相应参数给后台 - 获取数据
+      axios({
+        url: `https://hmajax.itheima.net/api/cmtlist?page=${nowPage}`
+      }).then(res => {
+        // 1.3 保存当前一共有多少页
+        allPage = res.data.allPage
+        document.querySelector('.all-page').innerHTML = allPage
+
+        // 1.4 先清空当前列表页面 - 重新铺设
+        document.querySelector('.list-group').innerHTML = ''
+        // 1.5 遍历铺设这次获取回来的数据
+        const htmlStr = res.data.data.map(item => `<li class="list-group-item">
+              <span>${item.content}</span>
+              <span class="badge del" style="cursor:pointer; background-color: lightgray;" data-id=${item.id}>删除</span> 
+              <span class="badge" style="background-color: #F0AD4E;">评论时间：${item.time}</span>
+              <span class="badge" style="background-color: #5BC0DE;">评论人：${item.username}</span>
+              </li>`).join('')
+        document.querySelector('.list-group').innerHTML = htmlStr
+        // 1.6 设置页码
+        document.querySelector('.page-show').innerHTML = nowPage
+      })
+    }
+    // 1.7 获取此页的数据
+    getCommentList()
+
+
+    // 1.8 绑定上一个按钮/下一个按钮点击事件
+    document.querySelector('.last').addEventListener('click', () => {
+      if (nowPage > 1) nowPage--
+      getCommentList()
+    })
+    document.querySelector('.next').addEventListener('click', () => {
+      if (nowPage < allPage) nowPage++
+      getCommentList()
+    })
+
+    // 1.9 点击发布事件
+    document.querySelector('.submit').addEventListener('click', e => {
+      e.preventDefault()
+      // 2.1 获取表单上的内容形成key=value&key=value字符串
+      const form = document.querySelector('.cmt-form')
+      const data = serialize(form, { hash: true, empty: true })
+
+      // 2.2 post发送数据给后台
+      axios({
+        url: 'https://hmajax.itheima.net/api/addcmt',
+        method: 'POST',
+        data
+      }).then(result => {
+        // 2.3 发送成功后, 重新获取数据铺设页面
+        nowPage = 1
+        getCommentList()
+        // 2.4 复位表单输入框
+        form.reset()
+      })
+    })
+
+    // 3.0 事件委托 - 给所有删除绑定绑定点击事件
+    document.querySelector('.list-group').addEventListener('click', e => {
+      if (e.target.classList.contains('del')) {
+        // 3.1 去上面给删除标签绑定数据对应id, 点击获取评论对应唯一性的id
+        var theId = e.target.dataset.id
+        // 3.2 调用删除接口 - 让后台删除这个数据
+        axios({
+          url: `https://hmajax.itheima.net/api/delcmt?id=${theId}`
+        }).then(res => {
+          // 3.3 保存当前最大页码(因为当前页没数据了得自动回上一页)
+          allPage = res.data.allPage
+          if (nowPage > allPage) nowPage = allPage
+          // 3.4 设置页码 - 重新获取数据 - 铺设当前页面
+          getCommentList()
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>

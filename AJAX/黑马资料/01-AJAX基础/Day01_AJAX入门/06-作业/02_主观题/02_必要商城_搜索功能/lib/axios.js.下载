@@ -1,0 +1,36 @@
+axios.defaults.timeout = 30000;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+// 允许携带cookie
+axios.defaults.withCredentials = true
+
+axios.interceptors.request.use(request => {
+	if(request.method==="post"){
+		request.data = Qs.stringify(request.data)
+	}
+	return request
+  }, error => {
+	Vue.prototype.$message.error('ERROR: ' + error.toString())
+	return Promise.reject(error)
+  })
+
+axios.interceptors.response.use(
+	function (res) {
+		if (res.data.success === 0) {
+			if (res.data.error.code == '200000') {
+				// 约定好的，未登录的错误码
+				window.$utils.logoutFn()
+				return Promise.reject(res.data);
+			} else {
+				return res.data;
+			}
+		} else {
+			return res.data;
+		}
+	}, error => {
+		if(error.code==='ECONNABORTED'|| error.message==='Network Error' || error.message.includes('timeout')){
+			Vue.prototype.$message.error("服务器连接失败，请稍后再试")
+		}else{
+			Vue.prototype.$message.error(error.toString())
+		}
+		return Promise.reject(error)
+	  })

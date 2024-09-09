@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XMLHttpRequest_基础使用</title>
+</head>
+
+<body>
+  <p class="my-p"></p>
+  <script>
+    /**
+     * 目标：使用XMLHttpRequest对象与服务器通信
+     *  1. 创建 XMLHttpRequest 对象
+     *  2. 配置请求方法和请求 url 地址
+     *  3. 监听 loadend 事件，接收响应结果
+     *  4. 发起请求
+    */
+    // 1. 创建 XMLHttpRequest 对象
+    const xhr = new XMLHttpRequest()
+
+    // 2. 配置请求方法和请求 url 地址
+    xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+
+    // 3. 监听 loadend 事件，接收响应结果
+    xhr.addEventListener('loadend', () => {
+      console.log(xhr.response)
+      const data = JSON.parse(xhr.response)
+      console.log(data.list.join('<br>'))
+      document.querySelector('.my-p').innerHTML = data.list.join('<br>')
+    })
+
+    // 4. 发起请求
+    xhr.send()
+  </script>
+</body>
+
+</html>

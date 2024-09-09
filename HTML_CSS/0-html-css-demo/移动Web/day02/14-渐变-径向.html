@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: pink; 
+      border-radius: 50%;
+      background-image: radial-gradient(
+        50px at center center,
+        red,
+        pink
+      );
+      background-image: radial-gradient(
+        50px 20px at center center,
+        red,
+        pink
+      );
+      background-image: radial-gradient(
+        50px at 50px 30px,
+        red,
+        pink 50%
+      );
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      background-color: green;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      background-image: radial-gradient(
+        30px at 30px 20px,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <button>按钮</button>
+</body>
+</html>

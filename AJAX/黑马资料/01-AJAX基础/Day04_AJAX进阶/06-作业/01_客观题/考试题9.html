@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试题9</title>
+</head>
+<body>
+    <!-- 题目9 -->
+    <script>
+        // 读题回答打印顺序
+        new Promise((resolve, reject) => {
+            console.log(1);
+            new Promise((resolve, reject) => {
+                console.log(2);
+                setTimeout(() => {
+                    console.log(3);
+                }, 0)
+                console.log(4);
+            })
+            console.log(5);
+        })
+        setTimeout(() => {
+            console.log(6);
+        }, 1000)
+        console.log(7);
+    </script>
+</body>
+</html>

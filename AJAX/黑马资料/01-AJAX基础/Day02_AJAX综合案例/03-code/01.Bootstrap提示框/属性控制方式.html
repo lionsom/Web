@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 弹框</title>
+  <!-- 引入bootstrap.css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 
+    目标：使用Bootstrap弹框
+    1. 引入bootstrap.css 和 bootstrap.js
+    2. 准备弹框标签，确认结构
+    3. 通过自定义属性，控制弹框的显示和隐藏
+   -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".my-box">
+    显示弹框
+  </button>
+
+  <!-- 
+    弹框标签
+    bootstrap的modal弹框，添加modal类名（默认隐藏）
+   -->
+  <div class="modal my-box" tabindex="-1">
+    <div class="modal-dialog">
+      <!-- 弹框-内容 -->
+      <div class="modal-content">
+        <!-- 弹框-头部 -->
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- 弹框-身体 -->
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <!-- 弹框-底部 -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入bootstrap.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    PingFangSC-Regular,
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  color: #40404c;
+}
+
+a {
+  color: #40404c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fc5832;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+/* 头部 */
+.x-header {
+  position: relative;
+  z-index: 9;
+  height: 60px;
+}
+
+.x-header::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 60px;
+  content: "";
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+}
+
+.x-header .container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.x-header-logo {
+  position: relative;
+  z-index: 9;
+  width: 290px;
+  height: 60px;
+  font-size: 0;
+}
+
+.x-header-logo::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("../assets/logo.png") no-repeat center / contain;
+  content: "";
+}
+
+.x-header-nav {
+  display: flex;
+  width: 180px;
+  margin: 5px;
+}
+
+.x-header-nav .nav-item {
+  flex: 1;
+  font-size: 16px;
+  color: #72727b;
+  text-align: center;
+}
+
+.x-header-nav .nav-item:hover {
+  color: #40404c;
+}
+
+/* TODO 1. 箭头旋转 */
+.x-header-nav .nav-item .icon-down {
+  display: inline-block;
+  height: 16px;
+  color: #ccc;
+  transition: all 0.5s;
+}
+
+.x-header-nav .nav-item:hover .icon-down {
+  transform: rotate(-180deg);
+}
+
+.channel-layer {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  z-index: -2;
+  width: 1080px;
+  height: 120px;
+  padding: 10px;
+  margin-left: -540px;
+  color: #72727b;
+  background-color: #f5f5f5;
+  border: 1px solid #e4e4e4;
+  border-top: none;
+  transition: all 0.5s;
+  transform: translateY(-120px);
+}
+
+/* TODO 2. 弹窗频道 */
+.x-header-nav .nav-item:hover .channel-layer {
+  transform: translateY(0);
+}
+
+.x-header-search {
+  width: 300px;
+}
+
+.x-header-search form {
+  position: relative;
+  width: 100%;
+}
+
+.x-header-search form input {
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid #f86442;
+  border-radius: 20px;
+  outline: none;
+}
+
+.x-header-search form input::placeholder {
+  color: #ccc;
+}
+
+/* TODO 3. 渐变按钮 */
+.x-header-search form .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #f86442;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.3),
+    #f86442
+  );
+}
+
+.x-header-search form .btn span {
+  font-size: 24px;
+  color: #fff;
+}
+
+.x-header-icons {
+  display: flex;
+  width: 300px;
+  align-items: center;
+}
+
+.x-header-icons .icons-item {
+  flex: 1;
+  text-align: center;
+}
+
+.x-header-icons .icons-item .iconfont {
+  font-size: 20px;
+  color: #ccc;
+}
+
+.x-header-icons .icons-item:hover .iconfont {
+  color: #f86442;
+}
+
+.x-header-icons .icons-item .tit {
+  display: block;
+  font-size: 12px;
+  color: #72727b;
+}
+
+.x-header-icons .icons-item img {
+  width: 40px;
+  height: 40px;
+  vertical-align: bottom;
+  border-radius: 20px;
+}
+
+.x-main {
+  padding-top: 20px;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.banner .banner-list {
+  position: relative;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+}
+
+.banner .banner-list .banner-item {
+  position: absolute;
+  top: 0;
+  left: 165px;
+  z-index: 1;
+  width: 750px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+/* TODO 4. 摆放图片 */
+.banner .banner-list .banner-item.left {
+  z-index: 0;
+  transform: translate(-160px) scale(0.8);
+  transform-origin: left center;
+}
+
+.banner .banner-list .banner-item.right {
+  z-index: 0;
+  transform: translate(160px) scale(0.8);
+  transform-origin: right center;
+}
+
+.banner .banner-list .banner-item a img {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.category {
+  display: flex;
+  width: 100%;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.category-top {
+  display: flex;
+  width: 240px;
+}
+
+.category-top .top-item {
+  color: #72727b;
+  text-align: center;
+  flex: 1;
+}
+
+.category-top .top-item:hover {
+  color: #f86442;
+}
+
+.category-top .top-item .top-item-icon {
+  display: block;
+  font-size: 20px;
+}
+
+.category-sub {
+  display: flex;
+  width: 840px;
+  flex-wrap: wrap;
+}
+
+.category-sub-item {
+  width: 210px;
+  padding-left: 30px;
+}
+
+.category-sub-item a {
+  padding: 0 10px;
+  font-size: 13px;
+  color: #72727b;
+}
+
+.category-sub-item a.start {
+  position: relative;
+  font-size: 14px;
+  color: #40404c;
+}
+
+.category-sub-item a.start::after {
+  position: absolute;
+  top: 3px;
+  right: -1px;
+  width: 2px;
+  height: 10px;
+  background-color: #f86442;
+  content: "";
+}
+
+.layout {
+  display: flex;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.layout-main {
+  width: 780px;
+}
+
+.layout-aside {
+  width: 260px;
+  margin-left: 40px;
+}
+
+.panel {
+  margin-bottom: 20px;
+}
+
+.panel-head {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.panel-head .panel-head-tit {
+  position: relative;
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.panel-head .panel-head-tit::before {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 5px;
+  height: 15px;
+  background-color: #f86442;
+  border-radius: 6px;
+  content: "";
+}
+
+.panel-head .panel-head-toggle {
+  display: flex;
+  align-items: center;
+  color: #72727b;
+}
+
+.panel-head .panel-head-toggle .icon-sync {
+  margin-right: 5px;
+}
+
+.panel-body ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel-body ul li {
+  width: 140px;
+}
+
+.album-item {
+  width: 100%;
+}
+
+.album-item .album-item-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.album-item .album-item-box .img {
+  width: 100%;
+  vertical-align: bottom;
+  transition: all 0.5s;
+}
+
+.album-item .album-item-tit {
+  padding: 5px 0;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.album-item .album-item-aut {
+  font-size: 13px;
+  color: #ccc;
+}
+
+
+/* TODO 5. 播放按钮和遮罩 */
+.album-item .album-item-box::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5) url(../assets/play.png) no-repeat center / 20px;
+  opacity: 0;
+  transition: all .5s;
+}
+
+.album-item .album-item-box:hover::after {
+  opacity: 1;
+  background-size: 50px;
+}
+
+
+/* TODO 6. 图片缩放 */
+.album-item .album-item-box:hover img {
+  transform: scale(1.1);
+}
+
+
+.card {
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f9f9fa;
+  border-radius: 4px;
+}
+
+.card .card-head {
+  display: flex;
+  height: 70px;
+  background: url("../assets/bg01.png") no-repeat center / cover;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .card-head .avatar {
+  width: 50px;
+  height: 50px;
+  vertical-align: bottom;
+  border-radius: 50%;
+}
+
+.card .card-head .text {
+  margin-left: 10px;
+  color: #72727b;
+}
+
+.card .card-info {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TODO 7. 渐变按钮 */
+.card .card-info .login {
+  padding: 3px 34px;
+  color: #fff;
+  background-color: #ff7251;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgb(252 88 50 / 50%);
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.2),
+    #ff7251
+  );
+}
+
+.download {
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+  background-color: pink;
+  background: #f9f9fa url("../assets/bg02.png") no-repeat 4px 25px / 100%;
+  border-radius: 4px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.download .dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.download .dl .dl-tit {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* TODO 8. 径向渐变 */
+.download .dl .dl-btn {
+  width: 68px;
+  height: 34px;
+  line-height: 34px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  background-image: radial-gradient(
+    50px at 10px 10px,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+}
+
+.download .dl .dl-btn:nth-of-type(1) {
+  background-color: #67b9eb;
+}
+
+.download .dl .dl-btn:nth-of-type(2) {
+  margin-left: 10px;
+  background-color: #86d864;
+}

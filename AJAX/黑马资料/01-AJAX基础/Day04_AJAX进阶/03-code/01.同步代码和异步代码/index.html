@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同步代码和异步代码</title>
+</head>
+<body>
+  <button class="btn">点我</button>
+  <script>
+    // 目标：阅读并回答代码执行和打印的顺序
+    const result = 0 + 1
+    console.log(result)
+    setTimeout(() => {
+      console.log(2)
+    }, 2000)
+    document.querySelector('.btn').addEventListener('click', () => {
+      console.log(3)
+    })
+    document.body.style.backgroundColor = 'pink'
+    console.log(4)
+  </script>
+</body>
+</html>

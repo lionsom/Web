@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP协议_请求报文</title>
+</head>
+
+<body>
+  <button class="btn">注册用户</button>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /*
+      注册用户：http://hmajax.itheima.net/api/register
+      请求方法：POST
+      参数名：
+        username：用户名（中英文和数字组成, 最少8位）
+        password：密码（最少6位）
+
+      目标：运行后，查看请求报文
+    */
+   document.querySelector('.btn').addEventListener('click', () => {
+    axios({
+      url: 'http://hmajax.itheima.net/api/register',
+      method: 'post',
+      data: {
+        username: 'itheima007',
+        password: '7654321'
+      }
+    }).then(result => {
+      // 成功
+      console.log(result)
+    }).catch(error => {
+      // 失败
+      // 处理错误信息
+      console.log(error)
+      console.log(error.response.data.message)
+      alert(error.response.data.message)
+    })
+   })
+  </script>
+</body>
+
+</html>

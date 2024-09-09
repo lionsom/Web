@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单线程测试</title>
+</head>
+
+<body>
+  <button class="time-btn">点击网页变成粉色</button>
+  <script>
+    // 此文件没有在PPT和视频出现，供大家自己体验JS是单线程使用
+    // 点击执行30w次打印
+    // 体验JS是单线程的，必须先遍历完，才能改变颜色
+    document.querySelector('.time-btn').addEventListener('click', () => {
+      for (let i = 0; i < 300000; i++) {
+        console.log(i)
+      }
+      document.body.style.background = 'pink'
+    })
+
+    // 为了避免线程卡死，出现了异步代码，把耗时操作放到异步中，先保证主线程执行完所有同步代码
+    document.querySelector('.time-btn').addEventListener('click', () => {
+      setTimeout(() => {
+        for (let i = 0; i < 300000; i++) {
+          console.log(i)
+        }
+      }, 0)
+      document.body.style.background = 'pink'
+    })
+  </script>
+</body>
+
+</html>

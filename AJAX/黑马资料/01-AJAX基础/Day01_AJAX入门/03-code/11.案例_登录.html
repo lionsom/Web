@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例_登录</title>
+  <!-- 引入bootstrap.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <!-- 公共 -->
+  <style>
+    html,
+    body {
+      background-color: #EDF0F5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 520px;
+      height: 540px;
+      background-color: #fff;
+      padding: 60px;
+      box-sizing: border-box;
+    }
+
+    .container h3 {
+      font-weight: 900;
+    }
+  </style>
+  <!-- 表单容器和内容 -->
+  <style>
+    .form_wrap {
+      color: #8B929D !important;
+    }
+
+    .form-text {
+      color: #8B929D !important;
+    }
+  </style>
+  <!-- 提示框样式 -->
+  <style>
+    .alert {
+      transition: .5s;
+      opacity: 0;
+    }
+
+    .alert.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>欢迎-登录</h3>
+    <!-- 登录结果-提示框 -->
+    <div class="alert alert-success" role="alert">
+      提示消息
+    </div>
+    <!-- 表单 -->
+    <div class="form_wrap">
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">账号名</label>
+          <input type="text" class="form-control username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">密码</label>
+          <input type="password" class="form-control password">
+        </div>
+        <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+    
+    // 1.1 登录-点击事件
+    document.querySelector('.btn-login').addEventListener('click', () => {
+      // 1.2 获取用户名和密码
+      const username = document.querySelector('.username').value
+      const password = document.querySelector('.password').value
+      // console.log(username, password)
+
+      // 1.3 判断长度
+      if (username.length < 8) {
+        console.log('用户名必须大于等于8位')
+        return // 阻止代码继续执行
+      }
+      if (password.length < 6) {
+        console.log('密码必须大于等于6位')
+        return // 阻止代码继续执行
+      }
+
+      // 1.4 基于axios提交用户名和密码
+      // console.log('提交数据到服务器')
+      axios({
+        url: 'http://hmajax.itheima.net/api/login',
+        method: 'POST',
+        data: {
+          username,
+          password
+        }
+      }).then(result => {
+        console.log(result)
+        console.log(result.data.message)
+      }).catch(error => {
+        console.log(error)
+        console.log(error.response.data.message)
+      })
+    })
+  </script>
+</body>
+
+</html>

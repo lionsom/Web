@@ -1,0 +1,53 @@
+window.$utils = {
+    setCookie: function (cname, cvalue) {
+        var d = new Date();
+        d.setTime(d.getTime() + (20 * 365 * 86400 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        var domain = "domain=.biyao.com"
+        var path = "path=/"
+        var SameSite = "SameSite=None;Secure=true"
+        document.cookie = cname + "=" + cvalue + "; " + domain + "; " + path + "; " + expires;
+    },
+    clearCookie: function (cname, cvalue = '') {
+        var d = new Date();
+        d.setTime(d.getTime() - (60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        var domain = "domain=.biyao.com"
+        var path = "path=/"
+        var SameSite = "SameSite=None;Secure=true"
+        document.cookie = cname + "=" + cvalue + "; " + domain + "; " + path + "; " + expires;
+    },
+    getCookie: function (name) {
+        let result
+        return (result = new RegExp('(?:^|; )' + encodeURIComponent(name) + '=([^;]*)').exec(document.cookie)) ? decodeURIComponent(result[1]) : null
+    },
+    logoutFn: function () {
+        localStorage.removeItem('token')
+        localStorage.removeItem('uid')
+        localStorage.removeItem('mobile')
+        this.clearCookie("token")
+        this.clearCookie("uid")
+        this.clearCookie("identitySys")
+        this.clearCookie("fileCaller")
+        this.clearCookie("platform")
+        const pathname = window.location.pathname
+        const search = window.location.search
+        if (pathname !== "/ipr/login.html") {
+            if (pathname && !search) {
+                window.location.href = "/ipr/login.html" + '#' + pathname
+                return false
+            }
+            if (pathname && search) {
+                window.location.href = "/ipr/login.html" + '#' + pathname + search
+                return false
+            }
+
+        }
+    },
+    getQueryString: function (name) {
+        const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        const urlObj = window.location;
+        var r = urlObj.href.indexOf('#') > -1 ? urlObj.hash.split("?")[1].match(reg) : urlObj.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+}

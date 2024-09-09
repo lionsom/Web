@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平移效果</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid #000;
+        }
+        
+        .son {
+            width: 200px;
+            height: 100px;
+            background-color: pink;
+            transition: all 0.5s;
+        }
+    
+        /* 鼠标移入到父盒子，son改变位置 */
+        .father:hover .son {
+            transform: translate(200px, 100px);
+
+            /* 百分比：参照盒子自身尺寸计算结果 */
+            transform: translate(50%, 100%);
+            transform: translate(-50%, 100%);
+
+            /* 只写一个数表示水平方向 */
+            transform: translate(100px);
+
+            transform: translateY(100px);
+            transform: translateX(100px);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

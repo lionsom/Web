@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环_练习</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：阅读并回答执行的顺序结果
+    */
+    console.log(1)
+    setTimeout(() => {
+      console.log(2)
+    }, 0)
+    function myFn() {
+      console.log(3)
+    }
+    function ajaxFn() {
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+      xhr.addEventListener('loadend', () => {
+        console.log(4)
+      })
+      xhr.send()
+    }
+    for (let i = 0; i < 1; i++) {
+      console.log(5)
+    }
+    ajaxFn()
+    document.addEventListener('click', () => {
+      console.log(6)
+    })
+    myFn()
+    // 1 5 3 2 4 点击一次document就会执行一次打印6
+  </script>
+</body>
+
+</html>

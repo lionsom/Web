@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调地狱</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select>
+      <option class="province"></option>
+    </select>
+    <span>城市：</span>
+    <select>
+      <option class="city"></option>
+    </select>
+    <span>地区：</span>
+    <select>
+      <option class="area"></option>
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：演示回调函数地狱
+     * 需求：获取默认第一个省，第一个市，第一个地区并展示在下拉菜单中
+     * 概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
+     * 缺点：可读性差，异常无法获取，耦合性严重，牵一发动全身
+    */
+    // 1. 获取默认第一个省份的名字
+    axios({url: 'http://hmajax.itheima.net/api/province'}).then(result => {
+      const pname = result.data.list[0]
+      document.querySelector('.province').innerHTML = pname
+      // 2. 获取默认第一个城市的名字
+      axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }}).then(result => {
+        const cname = result.data.list[0]
+        document.querySelector('.city').innerHTML = cname
+        // 3. 获取默认第一个地区的名字
+        axios({url: 'http://hmajax.itheima.net/api/area', params: { pname, cname }}).then(result => {
+          console.log(result)
+          const areaName = result.data.list[0]
+          document.querySelector('.area').innerHTML = areaName
+        })
+      })
+    }).catch(error => {
+      console.dir(error)
+    })
+  </script>
+</body>
+
+</html>

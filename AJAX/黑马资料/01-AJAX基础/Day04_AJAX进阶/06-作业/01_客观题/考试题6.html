@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试题6</title>
+</head>
+<body>
+    <!-- 题目6 -->
+    <script>
+        // 读题回答打印顺序
+        console.log(1);
+        myFn()
+        setTimeout(() => {
+            theFn()
+        }, 0)
+        new Promise((resolve, reject) => {
+            resolve(2)
+        }).then(res => {
+            console.log(res);
+        })
+        function myFn(){
+            console.log(3);
+        }
+        const theFn = () => {
+            console.log(4);
+        }
+
+    </script>
+</body>
+</html>

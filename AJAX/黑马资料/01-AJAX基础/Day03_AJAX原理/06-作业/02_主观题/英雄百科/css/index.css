@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #1b2128;
+}
+
+.container h2 {
+  text-align: center;
+  font-size: 30px;
+  color: #6a4d52;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+
+li {
+  width: 148px;
+  border: 1px solid #313e4c;
+  text-align: center;
+}
+
+ul li img {
+  width: 148px;
+  height: 148px;
+}
+
+ul li p {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  color: #dcd4c2;
+}
+
+li {
+  transition: 0.5s;
+  cursor: pointer;
+  margin: 10px;
+}
+li:hover {
+  transform: scale(1.1);
+  border-color: #968153;
+  box-shadow: 0 0 10px #968153;
+}
+
+.loading-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.3s;
+}
+.main .cover {
+  width: 1024px;
+}
+.main {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.search {
+  width: 300px;
+  display: block;
+  margin: 10px auto;
+  background-color: #191d24;
+  outline: none;
+  border: 1px solid #313537;
+  height: 30px;
+  padding-left: 10px;
+  transition: 0.3s;
+  color: #b59758;
+}
+.search:focus {
+  border: 1px solid #b59758;
+}
+.modal-body .info {
+  display: flex;
+}
+.modal-body .info .progress-box {
+  flex: 1;
+  padding-top: 40px;
+}
+.modal-body .info .progress {
+  margin: 20px 0px 20px;
+}
+.progress-bar {
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.modal-body p {
+  flex: 1;
+}
+.modal-body img {
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查询参数</title>
+</head>
+<body>
+  <!-- 
+    城市列表: http://hmajax.itheima.net/api/city
+    参数名: pname
+    值: 省份名字
+  -->
+  <p></p>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    axios({
+      url: 'http://hmajax.itheima.net/api/city',
+      // 查询参数
+      params: {
+        pname: '辽宁省'
+      }
+    }).then(result => {
+      console.log(result.data.list)
+      document.querySelector('p').innerHTML = result.data.list.join('<br>')
+    })
+  </script>
+</body>
+</html>

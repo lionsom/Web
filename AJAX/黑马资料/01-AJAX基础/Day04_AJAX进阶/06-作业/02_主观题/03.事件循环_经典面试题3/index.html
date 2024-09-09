@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环经典_经典面试题4</title>
+</head>
+
+<body>
+  <script>
+    // Twitter面试题-20%答对
+    document.body.addEventListener('click', () => {
+      let p = new Promise(resolve => resolve(1))
+      p.then(result => console.log(result))
+      console.log(2)
+    })
+    document.body.addEventListener('click', () => {
+      let p = new Promise(resolve => resolve(3))
+      p.then(result => console.log(result))
+      console.log(4)
+    })
+  </script>
+</body>
+
+</html>

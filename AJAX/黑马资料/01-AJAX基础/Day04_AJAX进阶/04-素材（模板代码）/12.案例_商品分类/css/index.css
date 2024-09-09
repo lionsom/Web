@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+ul {
+  list-style: none;
+}
+.container {
+  width: 980px;
+  margin: 0 auto;
+}
+.container h3 {
+  font-size: 18px;
+  color: #666;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100px;
+}
+.container .sub-list {
+  background-color: #fff;
+}
+.container .sub-list ul {
+  display: flex;
+  padding: 0 32px;
+  flex-wrap: wrap;
+}
+.container .sub-list ul li {
+  width: 168px;
+  height: 160px;
+}
+.container .sub-list ul li a {
+  text-align: center;
+  display: block;
+  font-size: 14px;
+}
+.container .sub-list ul li a img {
+  width: 100px;
+  height: 100px;
+}
+.container .sub-list ul li a p {
+  line-height: 40px;
+}
+.container .sub-list ul li a:hover {
+  color: var(--xtx-color);
+}
+.ref-goods {
+  background-color: #fff;
+  margin-top: 20px;
+  position: relative;
+}
+.ref-goods .head .xtx-more {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.ref-goods .head .tag {
+  text-align: center;
+  color: #999;
+  font-size: 20px;
+  position: relative;
+  top: -20px;
+}
+.ref-goods .body {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 65px 30px;
+}
+.ref-goods .body .none {
+  height: 220px;
+  text-align: center;
+  width: 100%;
+  line-height: 220px;
+  color: #999;
+}

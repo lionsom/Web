@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例_地区查询</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <style>
+    :root {
+      font-size: 15px;
+    }
+
+    body {
+      padding-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form id="editForm" class="row">
+      <!-- 输入省份名字 -->
+      <div class="mb-3 col">
+        <label class="form-label">省份名字</label>
+        <input type="text" value="北京" name="province" class="form-control province" placeholder="请输入省份名称" />
+      </div>
+      <!-- 输入城市名字 -->
+      <div class="mb-3 col">
+        <label class="form-label">城市名字</label>
+        <input type="text" value="北京市" name="city" class="form-control city" placeholder="请输入城市名称" />
+      </div>
+    </form>
+    <button type="button" class="btn btn-primary sel-btn">查询</button>
+    <br><br>
+    <p>地区列表: </p>
+    <ul class="list-group">
+      <!-- 示例地区 -->
+      <li class="list-group-item">东城区</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /*
+      获取地区列表: http://hmajax.itheima.net/api/area
+      查询参数:
+        pname: 省份或直辖市名字
+        cname: 城市名字
+    */
+   // 目标: 根据省份和城市名字, 查询地区列表
+   // 1. 查询按钮-点击事件
+   document.querySelector('.sel-btn').addEventListener('click', () => {
+    // 2. 获取省份和城市名字
+    let pname = document.querySelector('.province').value
+    let cname = document.querySelector('.city').value
+
+    // 3. 基于axios请求地区列表数据
+    axios({
+      url: 'http://hmajax.itheima.net/api/area',
+      params: {
+        pname,
+        cname
+      }
+    }).then(result => {
+      // console.log(result)
+      // 4. 把数据转li标签插入到页面上
+      let list = result.data.list
+      console.log(list)
+      let theLi = list.map(areaName => `<li class="list-group-item">${areaName}</li>`).join('')
+      console.log(theLi)
+      document.querySelector('.list-group').innerHTML = theLi
+    })
+   })
+
+
+  </script>
+</body>
+
+</html>

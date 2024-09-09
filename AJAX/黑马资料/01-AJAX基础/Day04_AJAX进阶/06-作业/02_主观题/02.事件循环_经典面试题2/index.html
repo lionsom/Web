@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环经典_经典面试题2</title>
+</head>
+
+<body>
+  <!-- 今日头条 -->
+  <!-- 提示：await右结合，右边代码执行后原地等待（await取代then函数，相当于微任务） -->
+  <script>
+    console.log(1)
+    async function fnOne() {
+      console.log(2)
+      await fnTwo() // 右结合先执行右侧的代码, 然后等待
+      console.log(3)
+    }
+    async function fnTwo() {
+      console.log(4)
+    }
+    fnOne()
+    setTimeout(() => {
+      console.log(5)
+    }, 2000)
+    let p = new Promise((resolve, reject) => { // new Promise()里的函数体会马上执行所有代码
+      console.log(6)
+      resolve()
+      console.log(7)
+    })
+    setTimeout(() => {
+      console.log(8)
+    }, 0)
+    p.then(() => {
+      console.log(9)
+    })
+    console.log(10)
+  </script>
+</body>
+
+</html>
