@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 特性-优先级</title>
+  <style>
+    /* 技巧：选择器选中标签的范围越大，优先级/权重 越低 */
+    div {
+      color: green;
+    }
+
+    /* !important 提权功能，提高权重/优先级到 最高，慎用 */
+    * {
+      color: red !important;
+    }
+
+    .box {
+      color: blue;
+    }
+
+    #test {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="test" style="color: purple;">div 标签</div>
+</body>
+</html>

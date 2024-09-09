@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局-侧轴对齐方式</title>
+  <style>
+    .box {
+      display: flex;
+      /* 弹性盒子在侧轴方向没有尺寸才能拉伸 */
+      /* align-items: stretch; */
+
+      /* align-items: center; */
+
+      /* align-items: flex-start; */
+
+      align-items: flex-end;
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    /* 第二个div，侧轴居中对齐 */
+    .box div:nth-child(2) {
+      align-self: center;
+    }
+
+    .box div {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+</body>
+</html>

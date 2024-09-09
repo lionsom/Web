@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>京东服务</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .service {
+      margin: 100px auto;
+      width: 1190px;
+      height: 42px;
+      /* background-color: pink; */
+    }
+
+    .service ul {
+      display: flex;
+    }
+
+    .service li {
+      display: flex;
+      padding-left: 40px;
+      width: 297px;
+      height: 42px;
+      /* background-color: skyblue; */
+    }
+
+    .service li h5 {
+      margin-right: 10px;
+      width: 36px;
+      height: 42px;
+      /* background-color: pink; */
+      background: url(./images/sprite.png) 0 -192px;
+    }
+
+    .service li:nth-child(2) h5 {
+      background-position: -41px -192px;
+    }
+
+    .service li:nth-child(3) h5 {
+      background-position: -82px -192px;
+    }
+
+    .service li:nth-child(4) h5 {
+      background-position: -123px -192px;
+    }
+
+    .service li p {
+      font-size: 18px;
+      color: #444;
+      font-weight: 700;
+      line-height: 42px;
+    }
+  </style>
+</head>
+<body>
+  <div class="service">
+    <ul>
+      <li>
+        <h5></h5>
+        <p>品类齐全，轻松购物</p>
+      </li>
+      <li>
+        <h5></h5>
+        <p>多仓直发，极速配送</p>
+      </li>
+      <li>
+        <h5></h5>
+        <p>正品行货，精致服务</p>
+      </li>
+      <li>
+        <h5></h5>
+        <p>天天低价，畅选无忧</p>
+      </li>
+      
+    </ul>
+  </div>
+</body>
+</html>

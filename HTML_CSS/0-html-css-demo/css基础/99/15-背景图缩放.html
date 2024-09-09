@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景图缩放</title>
+  <style>
+    div {
+      width: 500px;
+      height: 300px;
+      background-color: pink;
+      
+      background-image: url(./images/1.png);
+      background-repeat: no-repeat;
+
+      /* contain：如果图的宽高跟盒子尺寸相等停止缩放，可能导致盒子有露白 */
+      /* background-size: contain; */
+
+      /* cover：图片完全覆盖盒子，可能导致图片显示不全 */
+      /* background-size: cover; */
+
+      /* 100% 图片的宽度跟盒子宽度一样，图片的高度按照图片比例等比缩放 */
+      background-size: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div>div 标签</div>
+</body>
+</html>

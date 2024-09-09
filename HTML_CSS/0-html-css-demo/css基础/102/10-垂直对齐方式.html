@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直对齐方式</title>
+  <style>
+    div {
+      border: 1px solid #000;
+    }
+
+    img {
+      /* vertical-align: middle; */
+
+      /* 顶对齐：最高内容的顶部 */
+      /* vertical-align: top; */
+
+      /* 底对齐：最高内容的底部 */
+      /* vertical-align: bottom; */
+
+      /* 因为浏览器把行内块、行内标签当做文字处理，默认按基线对齐 */
+      /* 效果：图片img的底下有空白，转块级不按基线对齐，空白就消失了 */
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./images/1.webp" alt="">
+    <!-- 我是谁？我在哪？ -->
+  </div>
+</body>
+</html>

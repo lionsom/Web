@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圆角-基本使用</title>
+  <style>
+    div {
+      margin: 50px auto;
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+
+      /* border-radius: 20px; */
+
+      /* 记忆：从左上角顺时针赋值，没有取值的角与对角取值相同 */
+
+      /* 四值：左上  右上  右下  左下 */
+      /* border-radius: 10px 20px 40px 80px; */
+
+      /* 三值：左上  右上+左下  右下 */
+      /* border-radius: 10px 40px 80px; */
+
+      /* 两值：左上+右下  右上+左下 */
+      border-radius: 10px 80px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
