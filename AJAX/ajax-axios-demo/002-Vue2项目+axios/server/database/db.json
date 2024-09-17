@@ -1,0 +1,47 @@
+{
+  "login": {
+    "message": "login success!!!",
+    "status": 200
+  },
+  "logout": {
+    "message": "Bye bye",
+    "status": 200
+  },
+  "totalInfo": {
+    "status": 200,
+    "data": [
+      {
+        "id": 1,
+        "title": "总销售额",
+        "total": 11111,
+        "today": 240
+      },
+      {
+        "id": 2,
+        "title": "总访问量",
+        "total": 22222,
+        "today": 2123120
+      },
+      {
+        "id": 3,
+        "title": "总收藏量",
+        "total": 33333,
+        "today": 211230
+      },
+      {
+        "id": 4,
+        "title": "总支付量",
+        "total": 44444,
+        "today": 22222
+      }
+    ]
+  },
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+      "status": 200
+    }
+  ]
+}

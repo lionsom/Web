@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <input type="button" value="获取笑话" @click="getJoke"/>
+
+      <p v-text="joke"></p>
+    </div>
+
+    <!-- 导入在线axios库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- Vue -->
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          joke: "不错的笑话",
+        },
+        methods: {
+          getJoke: function () {
+            console.log("之前：" + this.joke)
+            // 缓存this
+            var that = this
+            axios.get("https://jsonplaceholder.typicode.com/todos/1").then(
+              function(resp) {
+                console.log(resp)      
+                // axios回调中的this已经改变，无法访问到data数据
+                // 这边采用保存this        
+                console.log("之后：" + this.joke)
+                // 
+                that.joke = resp.data
+              }, 
+              function (err) {
+                console.log(err)
+              }
+            )
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

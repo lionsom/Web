@@ -2,20 +2,38 @@
 
 
 
-# 一、什么是 AJAX
+<font color='red' size=6>ajax-axios-demo：从各个项目中抽离总结的Axios例子！！！</font>
 
-**AJAX** 是 **Asynchronous JavaScript And XML** 的缩写。它不是一种编程语言。它是一种基于 HTML、CSS、JavaScript 和 XML，让开发更好、更快和更有互动的 Web 应用的技术。
 
-1. HTML：超文本标记语言（HTML）用于定义网络应用程序的结构。
-2. CSS：层叠样式表（CSS）用于为 Web 应用程序提供外观和样式。
+
+# 一、AJAX概念
+
+* 定义：
+
+    **AJAX 是异步的 JavaScript 和 XML （Asynchronous JavaScript And XML）。**简单点说，就是使用 ***XMLHttpRequest*** 对象与服务器通信。它可以使用 JSON、XML、HTML 和 text 文本等格式发送和接收数据。AJAX最吸引人的就是它的 **“异步“**特性，也就是说它可以在不重新刷新页面的情况下与服务器通信，交换数据，或更新页面。
+
+* 概念：
+
+    **AJAX 是浏览器与服务器进行数据通信的技术。**
+
+
+
+它不是一种编程语言。它是一种基于 HTML、CSS、JavaScript 和 XML，让开发更好、更快和更有互动的 Web 应用的技术。
+
 3. JavaScript：JavaScript 用于使网络应用程序互动、提供趣味和提高用户友好性。
 4. XML：可扩展标记语言（XML）是一种用于存储和传输网络服务器数据的格式。
 
 
 
-# 二、AJAX 中的异步是什么意思
+# 二、怎么用AJAX？
 
-异步意味着网络应用程序可以从网络服务器发送和接收数据，而无需刷新页面。这个向服务器发送数据和接收服务器数据以及更新网页不同部分的后台过程，就是 AJAX 的异步属性/功能。
+## 2.1. 先使用 axios [æk‘sioʊs] 库，与服务器进行数据通信
+
+> axios 基于 XMLHttpRequest 封装。
+
+
+
+## 2.2. 再学习 XMLHttpRequest 对象的使用，了解 AJAX 底层原理
 
 
 
@@ -104,3 +122,16 @@ function changeContent() {
 ```
 
 文件 `content.txt` 应该存在于Web应用程序的根目录中。
+
+
+
+
+
+# axios 使用
+
+
+
+
+
+# 认识 URL
+
