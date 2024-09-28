@@ -1,3 +1,195 @@
+# 一、HTML基础
+
+## 1. 什么是 HTML
+
+HTML 指的是超文本标记语言 (Hyper Text Markup Language) ，它是用来描述网页的一种语言。
+
+HTML 不是一种编程语言，而是一种标记语言 (markup language)。
+
+标记语言是一套标记标签 (markup tag)。
+
+所谓超文本，有 2 层含义：
+
+1. 它可以加入图片、声音、动画、多媒体等内容（超越了文本限制 ）。
+2. 它还可以从一个文件跳转到另一个文件，与世界各地主机的文件连接（超级链接文本 ）。
+
+
+
+## 2. 浏览器与其内核
+
+![](images_html/001.png)
+
+
+
+## 3.  Web 标准
+
+Web 标准是由 W3C 组织和其他标准化组织制定的一系列标准的集合。W3C（万维网联盟）是国际最著名的标准化组织。
+
+
+
+## 4. 特殊字符
+
+在 HTML 页面中，一些特殊的符号很难或者不方便直接使用，此时我们就可以使用下面的字符来替代。
+
+<font color='red' size=4>重点记住：空格 、大于号、 小于号 这三个， 其余的使用很少，如果需要回头查阅即可。</font>
+
+![](images_html/002.png)
+
+
+
+## 5. HTML5
+
+* HTML5 的新增特性主要是针对于以前的不足，增加了一些<font color='red' size=4>新的标签、新的表单和新的表单属性</font>等。
+
+* 这些新特性都有<font color='red' size=4>兼容性问题</font>，基本是 IE9+ 以上版本的浏览器才支持，如果不考虑兼容性问题，可以大量使用这些新特性。
+
+
+
+ ### a. 新增的语义化标签
+
+![](images_html/003.png)
+
+
+
+### b. 新增多媒体标签
+
+![](images_html/004.png)
+
+
+
+### c.  新增的 input 类型
+
+![](images_html/005.png)
+
+![](images_html/006.png)
+
+<font color='red' size=5>可以通过以下设置方式修改placeholder里面的字体颜色：</font>
+
+```css
+input::placeholder {
+ 	color: pink;
+}
+```
+
+
+
+
+
+
+
+# 二、CSS基础
+
+## 1. 什么是CSS
+
+**CSS** 是层叠样式表 **( Cascading Style Sheets ) ** 的简称.
+
+有时我们也会称之为 <font color='red' size=4>CSS 样式表 或 级联样式表</font>。
+
+
+
+
+
+## 1. CSS三大特性
+
+### a. 层叠性
+
+> 同一个控件样式会叠加。
+>
+> 如下：最后是粉色pink
+
+```css
+<style>
+   div {
+       color: red;
+       font-size: 12px;
+   }
+   div {
+       color: pink;
+   }
+</style>
+```
+
+
+
+### b. 继承性
+
+> 子类的元素会继承父类的特性。
+>
+> 如下：最后<p>标签是粉红色pink，字体14px。
+
+```css
+# CSS
+<style>
+    div {
+        color: pink;
+        font-size: 14px;
+    }
+</style>
+
+# HTML
+<body>
+    <div>
+        <p>龙生龙，凤生凤，老鼠生的孩子会打洞</p>
+    </div>
+</body>
+```
+
+
+
+### c. 优先级
+
+![](images/优先级1.png)
+
+![](images/优先级2.png)
+
+![](images/优先级3.png)
+
+
+
+## 33. CSS3 
+
+### 1.  新增属性选择器 
+
+
+
+
+
+### 2.  新增结构伪类选择器
+
+
+
+
+
+### 3.  新增伪元素选择器
+
+
+
+
+
+### 4. CSS3 盒子模型
+
+
+
+
+
+### 5. CSS3滤镜filter - 模糊效果
+
+
+
+### 6. CSS3 calc函数
+
+
+
+### 7. CSS3 过渡
+
+
+
+
+
+
+
+
+
 # CSS 的元素显示模式
 
 > 元素显示模式就是元素（标签）以什么方式进行显示，比如<div>自己占一行，比如一行可以放多个<span>
@@ -45,61 +237,6 @@
     }
 </style>
 ```
-
-
-
-# CSS三大特性一：层叠性
-
-> 同一个控件样式会叠加。
->
-> 如下：最后是粉色pink
-
-```css
-<style>
-   div {
-       color: red;
-       font-size: 12px;
-   }
-   div {
-       color: pink;
-   }
-</style>
-```
-
-
-
-# CSS三大特性二：继承性
-
-> 子类的元素会继承父类的特性。
->
-> 如下：最后<p>标签是粉红色pink，字体14px。
-
-```css
-# CSS
-<style>
-    div {
-        color: pink;
-        font-size: 14px;
-    }
-</style>
-
-# HTML
-<body>
-    <div>
-        <p>龙生龙，凤生凤，老鼠生的孩子会打洞</p>
-    </div>
-</body>
-```
-
-
-
-# CSS三大特性三：优先级
-
-![](images/优先级1.png)
-
-![](images/优先级2.png)
-
-![](images/优先级3.png)
 
 
 
