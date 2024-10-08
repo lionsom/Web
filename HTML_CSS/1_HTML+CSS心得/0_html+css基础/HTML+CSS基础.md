@@ -306,6 +306,12 @@ input::placeholder {
 
     ![](images_css/002.png)
 
+* 总览
+
+![](images_css/016.png)
+
+
+
 
 
 ## 6. 背景属性
@@ -379,7 +385,7 @@ input::placeholder {
 
         
 
-## 7. CSS 的元素显示模式
+## 7. 显示模式 - display
 
 > 元素显示模式就是元素（标签）以什么方式进行显示，比如<div>自己占一行，比如一行可以放多个<span>
 
@@ -415,7 +421,245 @@ div {
 
 
 
-## 8. 定位
+## 8. 盒子模型 - margin、padding、border
+
+### a. 盒子模型 - 组成
+
+* 内容区域 – width & height
+* 内边距 – padding（出现在内容与盒子边缘之间）
+* 边框线 – border 
+* 外边距 – margin（出现在盒子外面）
+
+```css
+div {
+  margin: 50px;
+  border: 5px solid brown;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+}
+```
+
+
+
+### b. 边框线 - border
+
+```css
+div {
+  border: 5px solid brown;
+
+  /* 边框线粗细  线条样式  颜色（不区分顺序） */
+  border-top: 2px solid red;      /* 实线 */
+  border-right: 3px dashed green; /* 虚线 */
+  border-bottom: 4px dotted blue; /* 点线 */
+  border-left: 5px solid orange;
+}
+```
+
+
+
+### c. 盒子尺寸计算 - box-sizing
+
+[MDN - box-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
+
+![](images_css/017.png)
+
+默认情况：盒子尺寸 = 内容尺寸 + border 尺寸 + 内边距尺寸
+
+结论：给盒子加 border / padding 会撑大盒子
+
+解决：
+
+* 手动做减法，减掉 border / padding 的尺寸
+* 內减模式：**box-sizing: border-box**
+
+
+
+### d. 版心居中
+
+左右 margin 值 为 auto（盒子要有宽度）
+
+```css
+div {
+  margin: 0 auto;   /* 核心 */
+  width: 1000px;
+  height: 200px;
+  background-color: pink;
+}
+```
+
+
+
+### e. 清除默认样式
+
+![](images_css/018.png)
+
+```css
+/* 清除默认内外边距 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 清除列表项目符号 */
+li {
+  list-style: none;
+}
+```
+
+
+
+### f. 元素溢出 - overflow
+
+![](images_css/008.png)
+
+
+
+### g. 圆角 - border-radius
+
+作用：设置元素的外边框为圆角。
+
+属性名：**border-radius**
+
+属性值：数字+px / 百分比
+
+提示：属性值是圆角半径
+
+![](images_css/009.png)
+
+多值写法
+
+![](images_css/010.png)
+
+> 技巧：从左上角开始顺时针赋值，当前角没有数值则与对角取值相同。 
+
+* 正圆形状：给正方形盒子设置圆角属性值为 **宽高的一半 / 50%**
+
+```css
+img {
+  width: 200px;
+  height: 200px;
+  
+  border-radius: 100px;
+  border-radius: 50%;
+}
+```
+
+![](images_css/011.png)
+
+* 胶囊形状：给长方形盒子设置圆角属性值为 盒子高度的一半 
+
+```css
+div {
+  width: 200px;
+  height: 80px;
+  background-color: orange;
+  border-radius: 40px;
+}
+```
+
+![](images_css/012.png)
+
+### h. 盒子阴影 - box-shadow
+
+作用：给元素设置阴影效果
+
+属性名：**box-shadow**
+
+属性值：X 轴偏移量  Y 轴偏移量  模糊半径  扩散半径  颜色  内外阴影
+
+注意： 
+
+* X 轴偏移量 和 Y 轴偏移量 必须书写
+* 默认是外阴影，内阴影需要添加 inset
+
+```css
+div {
+  width: 200px;
+  height: 80px;
+  background-color: orange;
+  box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.5) inset;
+}
+```
+
+
+
+### i. 外边距问题
+
+#### Ⅰ. 合并现象
+
+场景：**垂直**排列的兄弟元素，上下 **margin** 会**合并**
+
+现象：取两个 margin 中的**较大值生效**
+
+![](images_css/019.png)
+
+```css
+.one {
+  margin-bottom: 50px;
+}
+.two {
+  margin-top: 20px;
+}
+```
+
+
+
+#### Ⅱ. 外边距塌陷
+
+场景：父子级的标签，子级的添加 **上外边距** 会产生**塌陷**问题
+
+现象：**导致父级一起向下移动**
+
+```css
+.son {
+  margin-top: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+}
+```
+
+![](images_css/020.png)
+
+解决方法：
+
+* 取消子级margin，父级设置padding
+* 父级设置 overflow: hidden
+* 父级设置 border-top
+
+
+
+### j. 行内元素 – 内外边距问题 
+
+场景：行内元素添加 margin 和 padding，无法改变元素垂直位置
+
+解决方法：给行内元素添加 **line-height** 可以改变垂直位置
+
+```css
+span {
+  /* margin 和 padding 属性，无法改变垂直位置 */
+  margin: 50px;
+  padding: 20px;
+  /* 行高可以改变垂直位置 */
+  line-height: 100px;
+}
+```
+
+
+
+## 9. 布局方案 - 详情看其他文档
+
+布局是决定元素如何在页面上排列的方式，主要的布局方案有：
+
+- 传统布局方案（标准流、浮动流、定位流）
+- `flex`布局方案
+- `grid`布局方案
+
+
+
+## 10. 定位
 
 定位 = 定位模式 + 边偏移 
 
@@ -494,7 +738,7 @@ CSS 中的定位决定了元素在页面上的具体位置：
 
 
 
-## 9. 堆叠层级z-index
+## 11. 堆叠层级z-index
 
 默认效果：按照标签书写顺序，后来者居上
 
@@ -522,13 +766,38 @@ CSS 中的定位决定了元素在页面上的具体位置：
 
 
 
-## 9. 垂直对齐 - vertical-align
+## 12. icon + 精灵图
+
+### a. CSS精灵
+
+CSS 精灵，也叫 **CSS Sprites**，是一种网页**图片应用处理方式**。把网页中**一些背景图片**整合到**一张图片**文件中，再**background-position** 精确的定位出背景图片的位置。
+
+
+
+### b. iconfont
+
+
+
+
+
+## 13. 垂直对齐 - vertical-align
+
+[MDN - vertical-align](https://developer.mozilla.org/zh-CN/docs/Web/CSS/vertical-align)
+
+**`vertical-align`** 用来指定行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方式。
+
+注意 `vertical-align` 只对行内元素、行内块元素和表格单元格元素生效：不能用它垂直对齐[块级元素](https://developer.mozilla.org/zh-CN/docs/Glossary/Block-level_content)。
 
 ![](images_css/013.png)
 
-属性名：vertical-align
-
 ![](images_css/014.png)
+
+
+
+vertical-align 属性可被用于两种环境：
+
+- 使行内元素盒模型与其行内元素容器垂直对齐。例如，用于垂直对齐一行文本内的图片`<img>`
+- 垂直对齐表格单元内容。
 
 
 
@@ -572,7 +841,7 @@ img {
 
 
 
-## 10. 过渡
+## 14. 过渡
 
 作用：可以为一个元素在不同状态之间切换的时候添加**过渡效果**
 
@@ -601,17 +870,7 @@ img:hover {
 
 
 
-
-
-## 11. 元素溢出
-
-* overflow
-
-![](images_css/008.png)
-
-
-
-## 11. 透明度
+## 15. 透明度 - opacity
 
 作用：设置**整个元素的透明度**（包含背景和内容）
 
@@ -625,13 +884,33 @@ img:hover {
 
 
 
-## 12. 光标类型 - cursor
+## 16. 光标类型 - cursor
 
 作用：鼠标悬停在元素上时指针显示样式
 
 属性名：cursor
 
 ![](images_css/015.png)
+
+
+
+## 17. 2D - 转换
+
+
+
+## 18. 3D - 转换
+
+
+
+## 18. 渐变
+
+
+
+## 19. 动画
+
+
+
+
 
 
 
@@ -672,47 +951,6 @@ CSS 提供了实现动画和过渡效果的功能：
 
 
 
-## 14. icon + 精灵图
-
-### a. CSS精灵
-
-CSS 精灵，也叫 **CSS Sprites**，是一种网页**图片应用处理方式**。把网页中**一些背景图片**整合到**一张图片**文件中，再**background-position** 精确的定位出背景图片的位置。
-
-
-
-### b. iconfont
-
-
-
-
-
-
-
-## 15. 布局模型
-
-布局是决定元素如何在页面上排列的方式，主要的布局模型有：
-
-- **普通流（Normal Flow）**： 元素按照文档流从上到下、从左到右排列，通常用于块级元素。
-
-- **浮动布局（Float Layout）**： 使用 `float` 属性让元素浮动，常用于文字环绕和传统布局。
-
-- **弹性盒模型（Flexbox）**： 用于构建一维布局，可以通过定义父容器为 `display: flex` 来实现子元素的灵活布局。Flexbox 解决了水平和垂直居中的问题，非常适合动态、响应式布局。
-
-    常用属性：
-
-    - `justify-content`：在主轴上对齐元素（水平）。
-    - `align-items`：在交叉轴上对齐元素（垂直）。
-    - `flex-direction`：定义主轴的方向。
-
-- **网格布局（Grid Layout）**： 用于创建二维布局，通过 `display: grid` 定义容器，并使用行和列来安排元素的位置。
-
-    常用属性：
-
-    - `grid-template-columns`、`grid-template-rows`：定义网格的列和行。
-    - `grid-column`、`grid-row`：为元素指定它所占用的网格区域。
-
-
-
 ## 18. 响应式设计（Responsive Design）
 
 响应式设计确保网页在不同屏幕尺寸下具有良好的显示效果。常用技术包括：
@@ -739,104 +977,6 @@ CSS 精灵，也叫 **CSS Sprites**，是一种网页**图片应用处理方式*
 
 
 
-## 20. 圆角
-
-作用：设置元素的外边框为圆角。
-
-属性名：**border-radius**
-
-属性值：数字+px / 百分比
-
-提示：属性值是圆角半径
-
-![](images_css/009.png)
-
-多值写法
-
-![](images_css/010.png)
-
-> 技巧：从左上角开始顺时针赋值，当前角没有数值则与对角取值相同。 
-
-* 正圆形状：给正方形盒子设置圆角属性值为 **宽高的一半 / 50%**
-
-```css
-img {
-  width: 200px;
-  height: 200px;
-  
-  border-radius: 100px;
-  border-radius: 50%;
-}
-```
-
-![](images_css/011.png)
-
-* 胶囊形状：给长方形盒子设置圆角属性值为 盒子高度的一半 
-
-```css
-div {
-  width: 200px;
-  height: 80px;
-  background-color: orange;
-  border-radius: 40px;
-}
-```
-
-![](images_css/012.png)
-
-
-
-## 21. 盒子阴影
-
-作用：给元素设置阴影效果
-
-属性名：**box-shadow**
-
-属性值：X 轴偏移量  Y 轴偏移量  模糊半径  扩散半径  颜色  内外阴影
-
-注意： 
-
-* X 轴偏移量 和 Y 轴偏移量 必须书写
-* 默认是外阴影，内阴影需要添加 inset
-
-```css
-div {
-  width: 200px;
-  height: 80px;
-  background-color: orange;
-  box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.5) inset;
-}
-```
-
-
-
-## 22. CSS 页面布局三大布局
-
-**浮动：**常见的问题就是清除浮动，优点是兼容性比较好。只要把清除浮动做的好，那么它的兼容性是比较好的。因为浮动是脱离文档流的。
-
-**绝对定位：**优点是快捷。缺点是已经脱离文档流了，那么子元素也必须脱离文档流。导致这个方案的有效性是比较差的。
-
-**Flexbox****布局：**是比较完美的一个，尤其是在移动端，基本上都是使用flex布局。
-
-**表格布局：**在很多场景中是比较适用的，表格布局的兼容性是非常好的。可以兼容IE8，因为IE8是不支持flex的。缺点是，当某一个单元格的高度变高时，其他的单元格的高度也会自己变高。
-
-**网格布局：**网格布局是新出的技术。
-
-
-
-* 流式布局
-* 浮动布局
-* 层布局
-    * 定位
-
-
-
-
-
-
-
-
-
 # 四、CSS3 
 
 ## 1.  新增属性选择器 
@@ -857,7 +997,15 @@ div {
 
 
 
-# 五、实战
+# 五、移动Web
+
+
+
+
+
+
+
+# 六、实战
 
 
 
@@ -954,7 +1102,7 @@ div {
 
 
 
-## 2. 盒子大小
+## 2. 盒子模型
 
 ### a. 边框会影响盒子的实际大小
 
@@ -1060,88 +1208,7 @@ div {
 
 
 
-## 3. 浮动
-
-### a. 行内块中间有缝隙 - 浮动
-
-```html
-# CSS
-<style>
-    div {
-		/* display: inline-block; */    
-        width: 150px;
-        height: 200px;
-        background-color: pink;
-    }
-</style>
-
-# HTML
-<body>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-</body>
-```
-
-* 块元素 垂直 没有 缝隙
-
-![](images/块元素垂直无缝隙.png)
-
-* 转为  行内块元素 水平 有 缝隙
-
-![](images/行内块元素水平有间隙.png)
-
-* 解决方案：
-
-```html
-<style>
-    div {
-    	/* 使用浮动，代替行内块元素 */	
-        float: left;
- 		/* display: inline-block; */   
-
-        width: 150px;
-        height: 200px;
-        background-color: pink;
-    }
-</style>
-```
-
-![](images/浮动解决水平间隙.png)
-
-
-
-### b. 浮动 - 脱标
-
-![](images/脱标.png)
-
-
-
-### c. 清除浮动
-
-![](images/清除浮动1.png)
-
-![](images/清除浮动2.png)
-
-
-
-#### 清除浮动一：额外标签法
-
-
-
-#### 清除浮动二：父级添加 overflow
-
-
-
-#### 清除浮动三： :after 伪元素法
-
-
-
-#### 清除浮动四：双伪元素清除浮动
-
-
-
-## 4. 文本
+## 3. 文本
 
 ### a. 文本溢出省略号
 
@@ -1173,7 +1240,7 @@ display: -webkit-box;
 
 
 
-## 5. 元素的隐藏
+## 4. 元素的隐藏
 
 ### a. 方式一：display
 
