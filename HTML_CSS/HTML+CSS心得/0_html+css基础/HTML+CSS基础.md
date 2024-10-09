@@ -119,46 +119,126 @@ input::placeholder {
 
 ## 3. 选择器（大全）
 
+[MDN - CSS 选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_selectors)
+
 * 基础选择器
 
-    * 标签选择器
-
-    * 类选择器
-
-    * id选择器
-
-    * 通配符选择器
-
+    * 标签选择器：`div`
+    * 类选择器：`.myclass`
+    * id选择器：`#myId`
+    * 通配符选择器：`*`
+    
 * 复合选择器 / 组合选择器
 
-    * 后代选择器
-    * 子代选择器
-    * 并集选择器
-    * 交集选择器
-    * 伪类选择器
-        * 超链接伪类
+    * 后代选择器：`div span`，选择 div 内的所有 span
+    * 子代选择器：`div > span`，选择 div 的直接子元素 span
+    * 并集选择器：`div, p, span`
+    * 交集选择器：`div.myclass`
+    * 一般兄弟选择器：`h1 ~ p`，选择 `h1` 后面的所有兄弟元素 `p`
+    * 相邻兄弟选择器：`h1 + p`，选择紧接在 `h1` 之后的第一个兄弟元素 `p`
 
-* 伪类和伪元素
+* [属性选择器（Attribute Selectors）MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors)
 
-    * `:hover`：当用户将鼠标悬停在元素上时应用样式。
-    * `:nth-child()`：选择满足条件的特定子元素。
-    * `::before`、`::after`：在元素内容前后插入虚拟元素。
-    * 结构伪类选择器 
-    * 伪元素选择器 
+    * [`[attr]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attr)
+    
+        表示带有以 *attr* 命名的属性的元素。
+    
+    * [`[attr=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue)
 
-    ![](images_css/007.png)
+        表示带有以 *attr* 命名的属性，且属性值为 *value* 的元素。
 
+    * [`[attr~=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue_2)
+    
+        表示带有以 *attr* 命名的属性的元素，并且该属性是一个以空格作为分隔的值列表，其中至少有一个值为 *value*。
+    
+    * [`[attr|=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue_3)
+    
+        表示带有以 *attr* 命名的属性的元素，属性值为“value”或是以“value-”为前缀（`-` 为连字符，Unicode 编码为 U+002D）开头。典型的应用场景是用来匹配语言简写代码（如 zh-CN、zh-TW 可以用 zh 作为 value）。
+    
+    * [`[attr^=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue_4)
+    
+        表示带有以 *attr* 命名的属性，且属性值是以 *value* 开头的元素。
+    
+    * [`[attr$=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue_5)
+    
+        表示带有以 *attr* 命名的属性，且属性值是以 *value* 结尾的元素。
+    
+    * [`[attr*=value]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attrvalue_6)
+    
+        表示带有以 *attr* 命名的属性，且属性值至少包含一个 *value* 值的元素。
+    
+    * [`[attr operator value i]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attr_operator_value_i)
+    
+        在属性选择器的右方括号前添加一个用空格隔开的字母 `i`（或 `I`），可以在匹配属性值时忽略大小写（支持 ASCII 字符范围之内的字母）。
+    
+    * [`[attr operator value s]`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Attribute_selectors#attr_operator_value_s) 实验性
+    
+        在属性选择器的右方括号前添加一个用空格隔开的字母 `s`（或 `S`），可以在匹配属性值时区分大小写（支持 ASCII 字符范围之内的字母）。
+    
     ```css
-    div::before {
-      content: "before 伪元素";
+    <ul>
+      <li><a href="#internal">内部链接</a></li>
+      <li><a href="http://example.com">示例链接</a></li>
+      <li><a href="#InSensitive">非敏感内部链接</a></li>
+      <li><a href="http://example.org">示例 org 链接</a></li>
+      <li><a href="https://example.org">示例 https org 链接</a></li>
+    </ul>
+    
+    
+    a {
+      color: blue;
     }
-    div::after {
-      content: "after 伪元素";
+    
+    /* 以 "#" 开头的页面内部链接 */
+    a[href^="#"] {
+      background-color: gold;
+    }
+    
+    /* 包含 "example" 的链接 */
+    a[href*="example"] {
+      background-color: silver;
+    }
+    
+    /* 包含 "insensitive" 的链接，不区分大小写 */
+    a[href*="insensitive" i] {
+      color: cyan;
+    }
+    
+    /* 包含 "cAsE" 的链接，区分大小写 */
+    a[href*="cAsE" s] {
+      color: pink;
+    }
+    
+    /* 以 ".org" 结尾的链接 */
+    a[href$=".org"] {
+      color: red;
+    }
+    
+    /* 以 "https" 开始，".org" 结尾的链接 */
+    a[href^="https"][href$=".org"] {
+      color: green;
     }
     ```
+    
+* [伪类选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)：伪类由冒号（`:`）后跟着伪类名称组成。
+
+    * `:link`：选择未被访问的链接
+    * `:visited`：选取已被访问的链接
+    * `:focus`：是某个标签获得焦点的时候（比如某个输入框获得焦点）
+    * `:hover`：鼠标放到某个标签上的时候
+    * `:active`：点击某个标签没有松鼠标时
+    * `:first-child`：父元素的首个子元素
+    * `:nth-child()`：选择满足条件的特定子元素。
+    * ........还有很多，可以前往MDN查看
+
+* [伪元素选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)：一个选择器中只能使用一个伪元素。伪元素必须紧跟在语句中的简单选择器/基础选择器之后。
+
+    * `::before`：在元素内容前插入虚拟元素。
+    * `::after`：在元素内容后插入虚拟元素。
+    * `::first-line`：第一行应用样式。
+    * ........还有很多，可以前往MDN查看
 
     
-
 
 
 ## 4. CSS三大特性
@@ -213,6 +293,44 @@ input::placeholder {
 ![](images/优先级2.png)
 
 ![](images/优先级3.png)
+
+
+
+### d. 优先级
+
+相信大家对`CSS`选择器的优先级都不陌生：
+
+> 内联 > ID选择器 > 类选择器 > 标签选择器
+
+到具体的计算层⾯，优先级是由 A 、B、C、D 的值来决定的，其中它们的值计算规则如下：
+
+- 如果存在内联样式，那么 A = 1, 否则 A = 0
+- B的值等于 ID选择器出现的次数
+- C的值等于 类选择器 和 属性选择器 和 伪类 出现的总次数
+- D 的值等于 标签选择器 和 伪元素 出现的总次数
+
+这里举个例子：
+
+```css
+#nav-global > ul > li > a.nav-link
+```
+
+套用上面的算法，依次求出 `A` `B` `C` `D` 的值：
+
+- 因为没有内联样式 ，所以 A = 0
+- ID选择器总共出现了1次， B = 1
+- 类选择器出现了1次， 属性选择器出现了0次，伪类选择器出现0次，所以 C = (1 + 0 + 0) = 1
+- 标签选择器出现了3次， 伪元素出现了0次，所以 D = (3 + 0) = 3
+
+上面算出的`A` 、 `B`、`C`、`D` 可以简记作：`(0, 1, 1, 3)`
+
+知道了优先级是如何计算之后，就来看看比较规则：
+
+- 从左往右依次进行比较 ，较大者优先级更高
+- 如果相等，则继续往右移动一位进行比较
+- 如果4位全部相等，则后面的会覆盖前面的
+
+经过上面的优先级计算规则，我们知道内联样式的优先级最高，如果外部样式需要覆盖内联样式，就需要使用`!important`
 
 
 
@@ -649,7 +767,7 @@ span {
 
 
 
-## 9. 布局方案 - 详情看其他文档
+## 9. 布局方案（单独文档）
 
 布局是决定元素如何在页面上排列的方式，主要的布局方案有：
 
@@ -659,16 +777,26 @@ span {
 
 
 
-## 10. 定位
+## 10. 浮动（单独文档）
 
-定位 = 定位模式 + 边偏移 
+基础作用：让块元素水平排列。
+
+```css
+div {
+	float: left;
+}
+```
+
+
+
+## 11. 定位（单独文档）
+
+<font color='' size=4>定位 = 定位模式 + 边偏移</font>
 
 ```css
 position: relative; 
 top: 10px;
 ```
-
-
 
 CSS 中的定位决定了元素在页面上的具体位置：
 
@@ -680,65 +808,7 @@ CSS 中的定位决定了元素在页面上的具体位置：
 
 
 
-### a. static
-
-静态定位：默认定位方式，无定位的意思。
-
-
-
-### b. relative
-
-**相对定位**是元素在移动位置的时候，是相对于它原来的位置来说的（自恋型）。
-
-相对定位的特点：（务必记住）
-
-1. 它是相对于自己原来的位置来移动的（移动位置的时候参照点是自己原来的位置）。
-
-2. 原来在标准流的位置继续占有，后面的盒子仍然以标准流的方式对待它。
-
-因此，相对定位并 **没有脱标** 。它最典型的应用是给绝对定位当爹的。
-
-
-
-### c. absolute
-
-**绝对定位**是元素在移动位置的时候，是相对于它祖先元素来说的（拼爹型）。
-
-绝对定位的特点：（务必记住）
-
-1. 如果没有祖先元素或者祖先元素没有定位，则以浏览器为准定位（Document 文档）。
-
-2. 如果祖先元素有定位（相对、绝对、固定定位），则以最近一级的有定位祖先元素为参考点移动位置。
-
-3. 绝对定位不再占有原先的位置。（脱标）
-
-所以绝对定位是 **脱离标准流** 的。
-
-
-
-### d. fix
-
-**固定定位**是元素固定于 **浏览器可视区 ** 的位置。
-
-固定定位的特点：（务必记住）
-
-1. 以浏览器的可视窗口为参照点移动元素。 
-    1. 跟父元素没有任何关系
-    2. 不随滚动条滚动。
-
-2. 固定定位 **不在占有原先的位置**。
-
-固定定位也是 **脱标** 的，其实固定定位也可以看做是一种 **特殊的绝对定位** 。
-
-
-
-### e. sticky 
-
-很少
-
-
-
-## 11. 堆叠层级z-index
+## 12. 堆叠层级z-index
 
 默认效果：按照标签书写顺序，后来者居上
 
@@ -766,21 +836,47 @@ CSS 中的定位决定了元素在页面上的具体位置：
 
 
 
-## 12. icon + 精灵图
+## 13. 精灵图  +  iconfont
 
 ### a. CSS精灵
 
+[在线运行案例](https://www.cainiaoplus.com/run/css-display-individual-icon-from-image-sprite.html)
+
 CSS 精灵，也叫 **CSS Sprites**，是一种网页**图片应用处理方式**。把网页中**一些背景图片**整合到**一张图片**文件中，再**background-position** 精确的定位出背景图片的位置。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS Sprite精灵图片示例</title>
+<style>
+    .sprite {
+        background: url("/run/images/mySprite.png") no-repeat;
+    }
+    .ie {
+        width: 50px; /* Icon width */
+        height: 50px; /* Icon height */
+        display: inline-block; /* Display icon as inline block */
+        background-position: 0 -200px; /* Icon background position in sprite */
+    }
+</style>
+</head>
+<body>
+	<span class="sprite ie"></span>
+</body>
+</html>
+```
 
 
 
 ### b. iconfont
 
+[iconfont官网](https://www.iconfont.cn/)
 
 
 
-
-## 13. 垂直对齐 - vertical-align
+## 14. 垂直对齐 - vertical-align
 
 [MDN - vertical-align](https://developer.mozilla.org/zh-CN/docs/Web/CSS/vertical-align)
 
@@ -841,7 +937,11 @@ img {
 
 
 
-## 14. 过渡
+## 15. 过渡 - transition
+
+[MDN - transition](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition)
+
+[MDN - 使用 CSS 过渡](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_transitions/Using_CSS_transitions)
 
 作用：可以为一个元素在不同状态之间切换的时候添加**过渡效果**
 
@@ -856,65 +956,41 @@ img {
 * transition 设置给元素本身
 
 ```css
-img {
-  width: 200px;
-  height: 200px;
-  transition: all 1s;
-}
-
-img:hover {
-  width: 500px;
-  height: 500px;
-}
+<style>
+    div {
+        width: 200px;
+        height: 100px;
+        background-color: pink;
+        
+        /* transition: 变化的属性 花费时间 运动曲线 何时开始; */
+        /* transition: width .5s ease 0s, height .5s ease 1s; */
+        
+        /* 如果想要写多个属性，利用逗号进行分割 */
+        /* transition: width .5s, height .5s; */
+        
+        /* 如果想要多个属性都变化，属性写all就可以了 */
+        /* transition: height .5s ease 1s; */
+        
+        /* 谁做过渡，给谁加 */
+        transition: all 0.5s;
+    }
+    div:hover {
+        width: 400px;
+        height: 200px;
+        background-color: skyblue;
+    }
+</style>
 ```
 
 
 
-## 15. 透明度 - opacity
-
-作用：设置**整个元素的透明度**（包含背景和内容）
-
-属性名：opacity
-
-属性值：0 – 1
-
-* 0：完全透明（元素不可见）
-* 1：不透明
-* 0-1之间小数：半透明
-
-
-
-## 16. 光标类型 - cursor
-
-作用：鼠标悬停在元素上时指针显示样式
-
-属性名：cursor
-
-![](images_css/015.png)
-
-
-
-## 17. 2D - 转换
-
-
-
-## 18. 3D - 转换
-
-
-
-## 18. 渐变
-
-
-
-## 19. 动画
 
 
 
 
+## 16. 动画 - Animation
 
-
-
-## 13. 动画和过渡（Animation & Transition）
+[CSS动画](https://www.runoob.com/cssref/css-animatable.html)
 
 CSS 提供了实现动画和过渡效果的功能：
 
@@ -940,7 +1016,39 @@ CSS 提供了实现动画和过渡效果的功能：
 
 
 
-## 14. 变换（Transform）
+## 17. 透明度 - opacity
+
+作用：设置**整个元素的透明度**（包含背景和内容）
+
+属性名：opacity
+
+属性值：0 – 1
+
+* 0：完全透明（元素不可见）
+* 1：不透明
+* 0-1之间小数：半透明
+
+
+
+## 18. 光标类型 - cursor
+
+作用：鼠标悬停在元素上时指针显示样式
+
+属性名：cursor
+
+![](images_css/015.png)
+
+
+
+## 19. 2D转换 - transform
+
+[MDN - transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
+
+作用：为元素添加动态效果，一般与过渡配合使用
+
+概念：改变盒子在平面内的形态（位移、旋转、缩放、倾斜）
+
+平面转换也叫 2D 转换，属性是 **transform**
 
 `transform` 属性用于旋转、缩放、倾斜或移动元素：
 
@@ -951,24 +1059,314 @@ CSS 提供了实现动画和过渡效果的功能：
 
 
 
-## 18. 响应式设计（Responsive Design）
+### a. 位移 - translate
+
+```css
+transform: translate(X轴移动距离, Y轴移动距离);
+```
+
+* 取值
+    * 像素单位数值
+    * 百分比（参照**盒子自身尺寸**计算结果）
+    * **正负**均可
+* 技巧
+    * translate() **只写一个值**，表示沿着 **X** 轴移动
+    * 单独设置 X 或 Y 轴移动距离：translateX() 或 translateY()
+
+#### Ⅰ. 应用 - 居中
+
+* 方式一：
+
+![](images_css/022.png)
+
+* 方式二：
+
+![](images_css/021.png)
+
+```css
+.box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    /* 方式一：向左向上移动自身尺寸一半 */
+    margin-left: -100px;
+    margin-top: -50px;
+
+    /* 方式二：向左向上移动自身尺寸的一半 */
+    transform: translate(-50%, -50%);
+
+    width: 200px;
+    height: 100px;
+    background-color: pink;          
+}
+```
+
+
+
+### b. 旋转 - rotate()
+
+```css
+transform: rotate(旋转角度);
+```
+
+* 取值：角度单位是 **deg** 
+* 技巧
+    * 取值正负均可
+    * 取值为正，顺时针旋转
+    * 取值为负，逆时针旋转
+
+
+
+### c. 转换原点 - transform-origin
+
+> 默认情况下，转换原点是盒子中心点 
+
+```css
+transform-origin: 水平原点位置 垂直原点位置;
+```
+
+取值：
+
+* **方位名词**（left、top、right、bottom、center）
+* 像素单位数值
+* 百分比
+
+
+
+### d. 多重转换
+
+多重转换技巧：先平移再旋转
+
+```css
+transform: translate() rotate();
+```
+
+* 多重转换原理：以第一种转换方式坐标轴为准转换形态
+    * 旋转会改变网页元素的坐标轴向
+    * 先写旋转，则后面的转换效果的轴向以旋转后的轴向为准，会影响转换结果
+
+
+
+### e. 缩放 - scale()
+
+```css
+transform: scale(缩放倍数);
+transform: scale(X轴缩放倍数, Y轴缩放倍数);
+```
+
+* 技巧
+    * 通常，只为 scale() 设置一个值，表示 X 轴和 Y 轴等比例缩放
+    * 取值大于1表示放大，取值小于1表示缩小
+
+
+
+### f. 倾斜 - skew()
+
+```css
+div:hover {
+    transform: skew(30deg);
+    transform: skew(-30deg);
+}
+```
+
+取值：角度度数 deg
+
+
+
+## 20. 3D转换 - transform
+
+### a. 平移 - translateX()
+
+```css
+transform: translate3d(x, y, z);
+transform: translateX();
+transform: translateY();
+transform: translateZ();
+```
+
+> 取值与平面转换相同
+>
+> 默认情况下，Z 轴平移没有效果，原因：电脑屏幕默认是平面，无法显示 Z 轴平移效果
+
+
+
+### b. 旋转 - rotateX()
+
+X 轴：rotateX()
+
+Y 轴：rotateY()
+
+Z 轴：rotateZ()
+
+
+
+#### Ⅰ. 左手法则
+
+作用：根据旋转方向确定取值正负
+
+使用：左手握住旋转轴, 拇指指向正值方向, 其他四个手指弯曲方向为旋转正值方向 
+
+![](images_css/026.png)
+
+#### Ⅱ. rotate3d
+
+* rotate3d(x, y, z, 角度度数) ：用来设置自定义旋转轴的位置及旋转的角度
+* x，y，z 取值为0-1之间的数字
+
+
+
+### c. 缩放
+
+```css
+transform: scale3d(x, y, z);
+transform: scaleX();
+transform: scaleY();
+transform: scaleZ();
+```
+
+
+
+
+
+### d. 立体呈现 - transform-style
+
+作用：设置元素的子元素是位于 3D 空间中还是平面中
+
+属性名：transform-style
+
+属性值：
+
+* flat：子级处于平面中
+* preserve-3d：子级处于 3D 空间
+
+
+
+### e. 视距 - perspective
+
+作用：指定了观察者与 Z=0 平面的距离，为元素添加透视效果
+
+透视效果：近大远小、近实远虚
+
+属性：(添加给父级，取值范围 800-1200)
+
+```css
+perspective: 视距;
+```
+
+![](images_css/025.png)
+
+
+
+## 21. 渐变
+
+### a. 线性渐变
+
+![](images_css/023.png)
+
+```css
+background-image: linear-gradient(
+  渐变方向,
+  颜色1 终点位置,
+  颜色2 终点位置,
+  ......
+);
+```
+
+取值：
+
+* 渐变方向：可选
+    * to 方位名词
+    * 角度度数
+* 终点位置：可选
+    * 百分比
+
+```css
+div {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    background-image: linear-gradient(
+      	red,
+      	green
+    );
+    background-image: linear-gradient(
+      	to right,
+      	red,
+      	green
+    );
+    background-image: linear-gradient(
+      	45deg,
+      	red,
+      	green
+    );
+    background-image: linear-gradient(
+      	red 80%,
+      	green
+    );
+}
+```
+
+
+
+### b. 径向渐变
+
+![](images_css/024.png)
+
+```css
+background-image: radial-gradient(
+  半径 at 圆心位置,
+  颜色1 终点位置,
+  颜色2 终点位置,
+  ......
+);
+```
+
+取值：
+
+* 半径可以是2条，则为椭圆
+* 圆心位置取值：像素单位数值 / 百分比 / 方位名词
+
+```css
+div {
+    width: 100px;
+    height: 100px;
+    background-color: pink; 
+    border-radius: 50%;
+    background-image: radial-gradient(
+        50px at center center,
+        red,
+        pink
+    );
+    background-image: radial-gradient(
+        50px 20px at center center,
+        red,
+        pink
+    );
+    background-image: radial-gradient(
+        50px at 50px 30px,
+        red,
+        pink 50%
+    );
+}
+```
+
+
+
+## 22. 响应式设计（Responsive Design）
 
 响应式设计确保网页在不同屏幕尺寸下具有良好的显示效果。常用技术包括：
 
 - **媒体查询（Media Queries）**：根据设备的宽度、分辨率等特征应用不同的 CSS 样式。
 
-    ```
-    css
-    
-    
-    复制代码
+    ```css
     @media (max-width: 600px) {
       .container {
         width: 100%;
       }
     }
     ```
-
+    
 - **弹性单位**：使用相对单位（如 `em`、`rem`、`%` 等）来适应不同屏幕尺寸。
 
 - **视口（Viewport）设置**：通过 `<meta>` 标签定义视口的宽度和缩放行为。
@@ -1288,7 +1686,7 @@ overflow: auto;
 
 
 
-
+## 5. 常见布局技巧
 
 
 
