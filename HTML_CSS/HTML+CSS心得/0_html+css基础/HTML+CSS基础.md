@@ -93,27 +93,66 @@ input::placeholder {
 
 ## 2. CSS引入方式
 
-* **内部**样式表：学习使用
+[HTML 中引入 CSS 的方式](https://www.runoob.com/w3cnote/html-import-css-method.html)
 
-    * CSS 代码写在 style 标签里面
+有 4 种方式可以在 HTML 中引入 CSS。其中有 2 种方式是在 HTML 文件中直接添加 CSS 代码，另外两种是引入 外部 CSS 文件。
 
-* **外部**样式表：开发使用
-
-    * CSS 代码写在单独的 CSS 文件中（**.css**）
-
-    * 在 HTML 使用 link 标签引入
-
-        ```html
-        <link rel="stylesheet" href="./my.css">
-        ```
-
-* **行内**样式：配合 JavaScript 使用
+* 内联方式 / **行内**样式
 
     * CSS 写在标签的 style 属性值里
 
         ```html
         <div style="color: red; font-size:20px;">这是 div 标签</div>
         ```
+
+* 嵌入方式 / **内部**样式表
+
+    * 嵌入方式指的是在 HTML 头部中的 **<style>** 标签下书写 CSS 代码。
+
+    ```html
+    <head>
+        <style>
+        .content {
+            background: red;
+        }
+        </style>
+    </head>
+    ```
+
+* 链接方式 / **外部**样式表
+
+    * CSS 代码写在单独的 CSS 文件中（**.css**）
+    * 链接方式指的是使用 HTML 头部的 **<head>** 标签引入外部的 CSS 文件。
+
+    ```html
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="./my.css">
+    </head>
+    ```
+
+* 导入方式
+
+    ```css
+    <style>
+        @import url(style.css);
+        @import '@/assets/base.css';
+    </style>
+    ```
+
+
+
+### a. 比较链接方式和导入方式
+
+链接方式（下面用 link 代替）和导入方式（下面用 **@import** 代替）都是引入外部的 CSS 文件的方式，下面我们来比较这两种方式，并且说明为什么不推荐使用 **@import**。
+
+- link 属于 HTML，通过 **<link>** 标签中的 href 属性来引入外部文件，而 **@import** 属于 CSS，所以导入语句应写在 CSS 中，要注意的是导入语句应写在样式表的开头，否则无法正确导入外部文件；
+- **@import** 是 CSS2.1 才出现的概念，所以如果浏览器版本较低，无法正确导入外部样式文件；
+- 当 HTML 文件被加载时，link 引用的文件会同时被加载，而 **@import** 引用的文件则会等页面全部下载完毕再被加载；
+
+------
+
+**小结**：我们应尽量使用 **<link>** 标签导入外部 CSS 文件，避免或者少用使用其他三种方式。
 
 
 
@@ -184,7 +223,7 @@ input::placeholder {
       <li><a href="https://example.org">示例 https org 链接</a></li>
     </ul>
     
-    
+    /* CSS */
     a {
       color: blue;
     }
@@ -220,7 +259,7 @@ input::placeholder {
     }
     ```
     
-* [伪类选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)：伪类由冒号（`:`）后跟着伪类名称组成。
+* [伪类选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)（单独文档）：伪类由冒号（`:`）后跟着伪类名称组成。
 
     * `:link`：选择未被访问的链接
     * `:visited`：选取已被访问的链接
@@ -231,7 +270,7 @@ input::placeholder {
     * `:nth-child()`：选择满足条件的特定子元素。
     * ........还有很多，可以前往MDN查看
 
-* [伪元素选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)：一个选择器中只能使用一个伪元素。伪元素必须紧跟在语句中的简单选择器/基础选择器之后。
+* [伪元素选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)（单独文档）：一个选择器中只能使用一个伪元素。伪元素必须紧跟在语句中的简单选择器/基础选择器之后。
 
     * `::before`：在元素内容前插入虚拟元素。
     * `::after`：在元素内容后插入虚拟元素。
@@ -243,31 +282,9 @@ input::placeholder {
 
 ## 4. CSS三大特性
 
-### a. 层叠性
+### a. 继承性
 
-> 同一个控件样式会叠加。
->
-> 如下：最后是粉色pink
-
-```css
-<style>
-   div {
-       color: red;
-       font-size: 12px;
-   }
-   div {
-       color: pink;
-   }
-</style>
-```
-
-
-
-### b. 继承性
-
-> 子类的元素会继承父类的特性。
->
-> 如下：最后<p>标签是粉红色pink，字体14px。
+* 子级默认继承父级的文字控制属性。
 
 ```html
 <body>
@@ -286,7 +303,45 @@ input::placeholder {
 
 
 
+### b. 层叠性
+
+* 相同的属性会覆盖：**后面的 CSS 属性覆盖前面的 CSS 属性**
+* 不同的属性会叠加：**不同的 CSS 属性都生效**
+
+```css
+<style>
+   div {
+       color: red;
+       font-size: 12px;
+   }
+   div {
+       color: pink;
+   }
+</style>
+```
+
+
+
 ### c. 优先级
+
+[有趣：256个class选择器可以干掉1个id选择器](https://www.zhangxinxu.com/wordpress/2012/08/256-class-selector-beat-id-selector/)
+
+[深度的发现之256个class打平1个id](https://www.cnblogs.com/zhuyingyan/archive/2012/09/19/2694472.html)
+
+也叫权重，当一个标签使用了多种选择器时，基于不同种类的选择器的匹配规则。
+
+规则：<font color='red' size=4>选择器优先级高的样式生效。 </font>
+
+公式：<font color='red' size=4>通配符选择器 < 标签选择器 < 类选择器 < id选择器 < 行内样式 < !important  </font>
+
+<font color='red' size=4>（选中标签的范围越大，优先级越低） </font>
+
+
+
+当同一个元素指定多个选择器，就会有优先级的产生。 
+
+* 选择器相同，则执行层叠性
+* 选择器不同，则根据选择器权重执行
 
 ![](images/优先级1.png)
 
@@ -296,41 +351,88 @@ input::placeholder {
 
 
 
-### d. 优先级
+### d. 优先级计算 - GPT
 
-相信大家对`CSS`选择器的优先级都不陌生：
+在 CSS 中，**优先级**（Specificity）是用来决定当多个选择器应用到同一个元素时，哪条规则会被应用。优先级的计算规则基于选择器的类型和结构。优先级高的选择器会覆盖优先级低的选择器，具体计算方式如下。
 
-> 内联 > ID选择器 > 类选择器 > 标签选择器
+1. **优先级的结构**
 
-到具体的计算层⾯，优先级是由 A 、B、C、D 的值来决定的，其中它们的值计算规则如下：
+CSS 的优先级可以分为四个部分，通常表示为一个四位的数字：`(a, b, c, d)`。
 
-- 如果存在内联样式，那么 A = 1, 否则 A = 0
-- B的值等于 ID选择器出现的次数
-- C的值等于 类选择器 和 属性选择器 和 伪类 出现的总次数
-- D 的值等于 标签选择器 和 伪元素 出现的总次数
+- `a`：内联样式的权重，如果是内联样式则为 `1`，否则为 `0`。
+- `b`：ID 选择器的数量。
+- `c`：类选择器、属性选择器、伪类选择器的数量。
+- `d`：元素选择器、伪元素选择器的数量。
 
-这里举个例子：
+每个部分的权重从左到右依次递减，即：`a` > `b` > `c` > `d`。权重越高的部分，优先级越高。
+
+2. **优先级计算规则**
+
+- **元素选择器**：每个元素选择器和伪元素选择器（如 `p`、`h1`、`::before`）都增加 `d` 的权重。
+- **类选择器**、**属性选择器**、**伪类选择器**：每个类选择器（如 `.class`）、属性选择器（如 `[type="text"]`）和伪类选择器（如 `:hover`、`:nth-child()`）都会增加 `c` 的权重。
+- **ID 选择器**：每个 ID 选择器（如 `#id`）都会增加 `b` 的权重。
+- **内联样式**：直接在元素的 `style` 属性中写的样式增加 `a` 的权重。
+
+3. **计算示例**
+
+以下是一些选择器的优先级计算示例：
+
+- `*`（通配符选择器）：优先级 `(0, 0, 0, 0)`
+- `p`（元素选择器）：优先级 `(0, 0, 0, 1)`
+- `.class`（类选择器）：优先级 `(0, 0, 1, 0)`
+- `#id`（ID 选择器）：优先级 `(0, 1, 0, 0)`
+- `input[type="text"]`（属性选择器）：优先级 `(0, 0, 1, 1)`
+- `a:hover`（伪类选择器）：优先级 `(0, 0, 1, 1)`
+- `#header .nav a:hover`（ID、类、伪类组合）：优先级 `(0, 1, 2, 1)`
+- 内联样式：`<p style="color: red;">`：优先级 `(1, 0, 0, 0)`
+
+4. **多个选择器的组合**
+
+当一个选择器由多个部分组成时，需要分别计算它们的优先级。例如：
+```css
+#main .container p {
+    color: blue;
+}
+```
+- `#main` 是 ID 选择器，优先级为 `(0, 1, 0, 0)`。
+- `.container` 是类选择器，优先级为 `(0, 0, 1, 0)`。
+- `p` 是元素选择器，优先级为 `(0, 0, 0, 1)`。
+
+最终优先级为 `(0, 1, 1, 1)`，即 ID 选择器的权重大于类选择器和元素选择器。
+
+5. **`!important`**
+
+`!important` 是一种特殊的声明，用于强制某条 CSS 规则的应用。`!important` 不依赖于优先级，它会覆盖所有常规样式规则，即使优先级较低也会生效。但如果有多个 `!important` 声明，则优先级规则仍适用，比较权重来决定哪条规则生效。
 
 ```css
-#nav-global > ul > li > a.nav-link
+p {
+    color: blue !important;
+}
+
+p {
+    color: red;
+}
 ```
+在这个例子中，即使第二条规则位于后面，由于第一条规则使用了 `!important`，最终 `p` 元素的颜色仍然会是蓝色。
 
-套用上面的算法，依次求出 `A` `B` `C` `D` 的值：
+6. **继承的样式**
 
-- 因为没有内联样式 ，所以 A = 0
-- ID选择器总共出现了1次， B = 1
-- 类选择器出现了1次， 属性选择器出现了0次，伪类选择器出现0次，所以 C = (1 + 0 + 0) = 1
-- 标签选择器出现了3次， 伪元素出现了0次，所以 D = (3 + 0) = 3
+一些样式属性（如 `color`、`font-size`）可以被子元素继承，但继承的样式的优先级是低于显式声明的。如果在子元素中有其他声明，即使优先级较低，也会覆盖继承的样式。
 
-上面算出的`A` 、 `B`、`C`、`D` 可以简记作：`(0, 1, 1, 3)`
+7. **权重比较**
 
-知道了优先级是如何计算之后，就来看看比较规则：
+当选择器应用到相同元素时，优先级高的选择器会覆盖优先级低的选择器。如果选择器的优先级相同，那么按照代码在样式表中的出现顺序，后定义的样式会覆盖前面的样式。
 
-- 从左往右依次进行比较 ，较大者优先级更高
-- 如果相等，则继续往右移动一位进行比较
-- 如果4位全部相等，则后面的会覆盖前面的
+总结
 
-经过上面的优先级计算规则，我们知道内联样式的优先级最高，如果外部样式需要覆盖内联样式，就需要使用`!important`
+CSS 优先级从高到低可以概括如下：
+1. **内联样式**：`(1, 0, 0, 0)`。
+2. **ID 选择器**：`(0, 1, 0, 0)`。
+3. **类选择器、伪类选择器、属性选择器**：`(0, 0, 1, 0)`。
+4. **元素选择器、伪元素选择器**：`(0, 0, 0, 1)`。
+5. **通配符选择器**、**继承**：最优先级最低。
+
+通过理解这些规则，你可以更好地控制 CSS 样式的应用顺序。
 
 
 
@@ -886,6 +988,10 @@ CSS 精灵，也叫 **CSS Sprites**，是一种网页**图片应用处理方式*
 
 ![](images_css/013.png)
 
+```css
+vertical-align : baseline | top | middle | bottom
+```
+
 ![](images_css/014.png)
 
 
@@ -921,9 +1027,9 @@ bug：图片底侧会有一个空白缝隙，原因是行内块元素会和文�
 
 主要解决方法有两种：
 
-1. 给图片添加 vertical-align:middle | top| bottom 等。 （提倡使用的）
+1. 给图片添加 ` vertical-align:middle | top| bottom ` 等。 （提倡使用的）
 
-2. 把图片转换为块级元素 display: block;
+2. 把图片转换为块级元素 `display: block;`
 
 ```css
 img {
@@ -982,19 +1088,17 @@ img {
 </style>
 ```
 
+![](images_css/030.png)
 
 
 
-
-
-
-## 16. 动画 - Animation
+## 16. 动画 - animation
 
 [CSS动画](https://www.runoob.com/cssref/css-animatable.html)
 
 CSS 提供了实现动画和过渡效果的功能：
 
-- **过渡（Transition）**：用于元素状态的渐变效果，常见于 `hover` 效果。
+- **过渡（transition）**：用于元素状态的渐变效果，常见于 `hover` 效果。
 
     ```css
     div {
@@ -1002,7 +1106,7 @@ CSS 提供了实现动画和过渡效果的功能：
     }
     ```
 
-- **动画（Animation）**：通过 `@keyframes` 定义元素的动画效果。
+- **动画（animation）**：通过 `@keyframes` 定义元素的动画效果。
 
     ```css
     @keyframes example {
@@ -1373,25 +1477,114 @@ div {
 
 
 
+## 23. prefers-color-scheme
+
+[MDN - prefers-color-scheme](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-color-scheme)
+
+`prefers-color-scheme `是一个CSS媒体功能，用于检测用户系统的主题偏好（明亮模式或暗黑模式），从而让网站或应用可以根据用户的主题偏好选择相应的样式。
+
+`prefers-color-scheme `可以接受三个值：
+
+- `light`：表示用户偏好明亮模式。
+- `dark`：表示用户偏好暗黑模式。
+- `no-preference`：表示用户没有指定特定的主题偏好。
+
+使用`prefers-color-scheme`，可以为不同主题模式下设置不同的样式，提供更好的用户体验。以下是一个示例：
+
+```css
+body {
+  background-color: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+```
+
+在上面的示例中，我们首先为`body`元素设置了明亮模式下的样式（白色背景，黑色文字），然后通过`@media`查询和`prefers-color-scheme`媒体特性，为暗黑模式下设置了不同的样式（黑色背景，白色文字）。
+
+通过使用`prefers-color-scheme`，我们可以让网站或应用根据用户系统的主题偏好自动调整样式，提供更加个性化和舒适的用户体验。这在支持主题切换的网站和应用中尤其有用。
+
+
+
+## 24. 浏览器私有前缀
+
+1. 私有前缀
+
+* `-moz-`：代表 firefox 浏览器私有属性
+* `-ms-`：代表 ie 浏览器私有属性
+* `-webkit-`：代表 safari、chrome 私有属性
+* `-o-`：代表 Opera 私有属性
+
+2. 提倡的写法
+
+```css
+div {
+    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px; 
+    -o-border-radius: 10px; 
+    border-radius: 10px;
+}
+```
+
+
+
 
 
 # 四、CSS3 
 
-## 1.  新增属性选择器 
+## 1.  新增选择器 
 
-## 2.  新增结构伪类选择器
+CSS3 给我们新增了选择器，可以更加便捷，更加自由的选择目标元素。
 
-## 3.  新增伪元素选择器
+1. 属性选择器
+2. 结构伪类选择器
+3. 伪元素选择器
+
+
 
 ## 4. CSS3 盒子模型
 
-## 5. CSS3滤镜filter - 模糊效果
+CSS3 中可以通过 box-sizing 来指定盒模型，有2个值：即可指定为 content-box、border-box，这样我们
+
+计算盒子大小的方式就发生了改变。
+
+**2.5 CSS3 盒子模型**
+
+可以分成两种情况：
+
+1. box-sizing: content-box 盒子大小为 width + padding + border （以前默认的）
+
+2. box-sizing: border-box 盒子大小为 width
+
+如果盒子模型我们改为了box-sizing: border-box ， 
+
+那padding和border就不会撑大盒子了（前提padding和border不会超过width宽度）
+
+
+
+## 5. CSS3 滤镜filter - 模糊效果
+
+filter CSS属性将模糊或颜色偏移等图形效果应用于元素。
+
+```css
+filter: 函数(); 
+例如： filter: blur(5px); blur模糊处理 数值越大越模糊
+```
+
+
 
 ## 6. CSS3 calc函数
 
-## 7. CSS3 过渡
+calc() 此CSS函数让你在声明CSS属性值时执行一些计算。
 
-
+```css
+width: calc(100% - 80px);
+```
 
 
 
@@ -1444,6 +1637,16 @@ div {
   	}
 </style>
 ```
+
+
+
+### b-1. 绝对定位的盒子居中
+
+加了绝对定位的盒子不能通过 `margin:0 auto;` 水平居中，但是可以通过以下计算方法实现水平和垂直居中。
+
+① left: 50%;：让盒子的左侧移动到父级元素的水平中心位置。 
+
+② margin-left: -100px;：让盒子向左移动自身宽度的一半。
 
 
 
@@ -1686,7 +1889,36 @@ overflow: auto;
 
 
 
-## 5. 常见布局技巧
+## 5. CSS三角
+
+原理：也就是border的一个边，其他边不显示。
+
+```css
+div {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border: 50px solid transparent;
+    border-left-color: pink;
+}
+```
+
+![](images_css/027.png)
+
+![](images_css/028.png)
+
+```css
+.b {
+    width: 0;
+    height: 0;
+    border-color: transparent red transparent transparent;
+    border-style: solid;
+    border-width: 100px 50px 0 0;
+}
+```
+
+![](images_css/029.png)
 
 
 

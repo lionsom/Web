@@ -1,11 +1,11 @@
-* [:root](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root)
+* [MDN - :root](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root)
 * [自定义属性（--*）：CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)
 
 
 
-# :root
+# 一、:root
 
-**`:root`** 这个 CSS [伪类](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)匹配文档树的根元素。对于 HTML 来说，**`:root`** 表示 [``](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/html) 元素，除了[优先级](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity)更高之外，与 `html` 选择器相同。
+**`:root`** 这个 CSS [伪类](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)匹配文档树的根元素。对于 HTML 来说，**`:root`** 表示 [`html`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/html) 元素，除了[优先级](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity)更高之外，与 `html` 选择器相同。
 
 ```css
 /* 选择文档的根元素（HTML 中的 <html>） */
@@ -14,34 +14,9 @@
 }
 ```
 
-## [语法](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root#语法)
-
-```css
-:root {
-  /* ... */
-}
-```
-
-## [示例](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root#示例)
-
-### [声明全局 CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root#声明全局_css_变量)
+## 应用 - [声明全局 CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root#声明全局_css_变量)
 
 在声明全局 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)时 **`:root`** 会很有用：
-
-```css
-:root {
-  --main-color: hotpink;
-  --pane-padding: 5px 42px;
-}
-```
-
-
-
-## GPT
-
-在CSS中，`:root`伪类用于选择文档的根元素，在HTML文档中通常是`<html>`元素。通过`:root`伪类，可以方便地定义全局的CSS变量（也称为CSS自定义属性），这些变量可以在整个文档中使用。
-
-下面是一个示例，展示如何使用`:root`伪类定义全局的CSS变量：
 
 ```css
 :root {
@@ -59,25 +34,17 @@ h1 {
 }
 ```
 
-在上面的示例中，通过`:root`伪类定义了两个全局的CSS变量`--main-color`和`--font-size`，分别表示主要颜色和字体大小。在`body`和`h1`元素的样式中，使用`var()`函数来引用这些变量，从而实现全局的样式控制。
-
-使用`:root`伪类定义全局的CSS变量可以让样式更具灵活性和可维护性，可以在整个文档中方便地调整样式变量的值，而不需要一个个地修改每个元素的样式。
 
 
-
-
-
-# CSS变量
+# 二、CSS变量
 
 带有前缀 `--` 的属性名，比如 `--example--name`，表示的是带有值的自定义属性，其可以通过 [`var()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/var) 函数在全文档范围内复用的。
 
 CSS 自定义属性是可以级联的：每一个自定义属性可以多次出现，并且变量的值将会借助级联算法和自定义属性值运算出来。
 
-
-
 ## [语法](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*#语法)
 
-```
+```css
 --somekeyword: left;
 --somecolor: #0000ff;
 --somecomplexvalue: 3px 6px rgb(20, 32, 54);
@@ -89,25 +56,15 @@ CSS 自定义属性是可以级联的：每一个自定义属性可以多次出�
 
 * **备注：** 自定义属性名区分大小写——`--my-color` 会被视为与 `--My-color` 不同的自定义属性。
 
-
-
 ## [示例](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*#示例)
 
-### [HTML](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*#html)
-
-HTMLPlayCopy to Clipboard
-
-```
+```html
 <p id="firstParagraph">此段落应有蓝色背景和黄色文本。</p>
 <p id="secondParagraph">此段落应有黄色背景和蓝色文本。</p>
 <div id="container">
   <p id="thirdParagraph">此段落应有绿色背景和黄色文本。</p>
 </div>
 ```
-
-### [CSS](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*#css)
-
-CSSPlayCopy to Clipboard
 
 ```css
 :root {
@@ -137,9 +94,7 @@ CSSPlayCopy to Clipboard
 
 
 
-
-
-## GPT
+# 三、CSS变量 - GPT
 
 CSS变量（Custom Properties）是一种在CSS中定义和使用的变量，它们可以存储和重用值，使得样式表更加灵活和可维护。CSS变量以`--`开头，并在需要使用时通过`var()`函数引用。
 
