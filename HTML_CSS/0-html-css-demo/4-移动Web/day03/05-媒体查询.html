@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +13,25 @@
         background-color: green;
       }
     }
+
+    /* 针对宽度小于 600px 的设备 */
+    @media (max-width: 600px) {
+      body {
+        background-color: lightblue;
+      }
+    }
+
+    /* 针对宽度在 600px 到 1200px 之间的设备 */
+    @media (min-width: 600px) and (max-width: 1200px) {
+      body {
+        background-color: lightgreen;
+      }
+    }
   </style>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>

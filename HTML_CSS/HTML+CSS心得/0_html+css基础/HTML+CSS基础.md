@@ -1457,27 +1457,7 @@ div {
 
 
 
-## 22. 响应式设计（Responsive Design）
-
-响应式设计确保网页在不同屏幕尺寸下具有良好的显示效果。常用技术包括：
-
-- **媒体查询（Media Queries）**：根据设备的宽度、分辨率等特征应用不同的 CSS 样式。
-
-    ```css
-    @media (max-width: 600px) {
-      .container {
-        width: 100%;
-      }
-    }
-    ```
-    
-- **弹性单位**：使用相对单位（如 `em`、`rem`、`%` 等）来适应不同屏幕尺寸。
-
-- **视口（Viewport）设置**：通过 `<meta>` 标签定义视口的宽度和缩放行为。
-
-
-
-## 23. prefers-color-scheme
+## 22. prefers-color-scheme
 
 [MDN - prefers-color-scheme](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-color-scheme)
 
@@ -1588,11 +1568,7 @@ width: calc(100% - 80px);
 
 
 
-# 五、移动Web
-
-
-
-
+# 五、移动Web（单独文档）
 
 
 
