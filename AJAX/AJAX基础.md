@@ -44,6 +44,28 @@
 
 
 
+### a. AJAX vs axios
+
+* **AJAX（Asynchronous JavaScript and XML）** 是一种在网页上实现异步数据请求的技术。它允许网页在不重新加载整个页面的情况下从服务器请求数据并更新部分页面内容。尽管其名字中包含 `XML`，但 AJAX 可以处理多种数据格式，包括 `JSON`、`XML`、`HTML` 等。
+
+    * AJAX 本质上是使用了浏览器内置的 `XMLHttpRequest` 对象，通过 JavaScript 进行异步 HTTP 请求。
+
+        ```js
+        // 使用 XMLHttpRequest 实现 AJAX 请求：
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.example.com/data', true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText); // 成功获取数据
+          }
+        };
+        xhr.send();
+        ```
+
+* **Axios** 是一个基于 `Promise` 的 JavaScript 库，用于发送 HTTP 请求。它是对 `XMLHttpRequest` 的封装，简化了 AJAX 请求的写法，并提供了更丰富的功能和更好的跨浏览器兼容性。
+
+
+
 1. 什么是 AJAX ? 
 
     * 使用浏览器的 XMLHttpRequest 对象 与服务器通信
@@ -97,46 +119,43 @@
 9. 对应代码
 
   ```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX概念和axios使用</title>
-</head>
-
-<body>
-  <!--
-    axios库地址：https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
-    省份数据地址：http://hmajax.itheima.net/api/province
-
-    目标: 使用axios库, 获取省份列表数据, 展示到页面上
-    1. 引入axios库
-  -->
-  <p class="my-p"></p>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    // 2. 使用axios函数
-    axios({
-      url: 'http://hmajax.itheima.net/api/province'
-    }).then(result => {
-      console.log(result)
-      // 好习惯：多打印，确认属性名
-      console.log(result.data.list)
-      console.log(result.data.list.join('<br>'))
-      // 把准备好省份列表，插入到页面
-      document.querySelector('.my-p').innerHTML = result.data.list.join('<br>') 
-    })
-  </script>
-</body>
-
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX概念和axios使用</title>
+  </head>
+  
+  <body>
+    <!--
+      axios库地址：https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
+      省份数据地址：http://hmajax.itheima.net/api/province
+  
+      目标: 使用axios库, 获取省份列表数据, 展示到页面上
+      1. 引入axios库
+    -->
+    <p class="my-p"></p>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // 2. 使用axios函数
+      axios({
+        url: 'http://hmajax.itheima.net/api/province'
+      }).then(result => {
+        console.log(result)
+        // 好习惯：多打印，确认属性名
+        console.log(result.data.list)
+        console.log(result.data.list.join('<br>'))
+        // 把准备好省份列表，插入到页面
+        document.querySelector('.my-p').innerHTML = result.data.list.join('<br>') 
+      })
+    </script>
+  </body>
+  
+  </html>
   ```
-
-
-
 ###  小结
 
 1. AJAX 有什么用？
@@ -170,7 +189,7 @@
     </ul>
     </details>
 
-    
+
 
 
 
@@ -965,12 +984,6 @@ HTTP响应头可以分为几类：通用响应头、请求特定响应头、实�
 
 
 
-
-
-
-
-
-
 # 二、AJAX综合案例
 
 <font color='red' size=6>ajax-axios-demo：从各个项目中抽离总结的Axios例子！！！</font>
@@ -979,110 +992,117 @@ HTTP响应头可以分为几类：通用响应头、请求特定响应头、实�
 
 
 
-# 三、AJAX原理
+# 三、XMLHttpRequest 
 
-## 2.1. 先使用 axios [æk‘sioʊs] 库，与服务器进行数据通信
+## 1、AJAX 是如何工作的
 
-> axios 基于 XMLHttpRequest 封装。
+1. AJAX 是浏览器与服务器通信的技术，采用 XMLHttpRequest 对象相关代码
 
+2. axios 是对 XHR 相关代码进行了封装，让我们只关心传递的接口参数
 
+3. 学习 XHR 也是了解 axios 内部与服务器交互过程的真正原理
 
-## 2.2. 再学习 XMLHttpRequest 对象的使用，了解 AJAX 底层原理
+    ![](images/026.png)
 
+4. 语法如下：
 
+    ```js
+    const xhr = new XMLHttpRequest()
+    xhr.open('请求方法', '请求url网址')
+    xhr.addEventListener('loadend', () => {
+      // 响应结果
+      console.log(xhr.response)
+    })
+    xhr.send()
+    ```
 
-## 3、AJAX 是如何工作的
+    ![](images/027.png)
 
-AJAX 利用浏览器内置的 **XMLHttpRequest 对象** 从网络服务器请求数据，并利用 **HTML DOM** 显示或使用数据。
+5. 需求：以一个需求来体验下原生 XHR 语法，获取所有省份列表并展示到页面上
 
-**XMLHttpRequest 对象**：它是一个对象形式的 API，其方法用于网络浏览器和网络服务器之间传输数据。
+6. 代码如下：
 
-**HTML DOM**：当一个网页被加载时，浏览器会创建一个页面的文档对象模型。
-
-**创建一个 XMLHttpRequest 对象：**
-
-```javascript
-var xhttp = new XMLHttpRequest();
-```
-
-**XMLHttpRequest 对象的属性：**
-
-`readystate` 是 XMLHttpRequest 对象的一个属性，它是 XMLHttpRequest 的一种状态值。
-
-- 0：请求未被初始化
-- 1：服务器连接建立
-- 2：收到请求
-- 3：处理请求
-- 4：请求完成，响应准备就绪
-
-`onreadystatechange`是 XMLHttpRequest 对象的一个属性，它定义了一个当 readyState 属性改变时要调用的函数。
-
-`status` 是 XMLHttpRequest 对象的一个属性，用于返回一个请求的状态值。
-
-- 200："OK"
-- 403："Forbidden"
-- 404："Not Found"
-
-**XMLHttpRequest对象方法：** 为了向 Web 服务器发送请求，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法。
-
-```javascript
-xhttp.open('GET', 'content.txt', true);
-xhttp.send();
-```
-
-**使用 JavaScript 创建一个函数 changeContent()：**
-
-```javascript
-function changeContent() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById('foo').innerHTML = this.responseText;
-        }
-    };
-    xhttp.open('GET', 'content.txt', true);
-    xhttp.send();
-}
-```
-
-**改变网页内容的 AJAX 实例：**
-
-```html
-<!DOCTYPE html>
-<html>
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>XMLHttpRequest_基础使用</title>
+    </head>
+    
     <body>
-        <div id="foo">
-            <h2>The XMLHttpRequest Object</h2>
-            <button type="button" onclick="changeContent()">
-                Change Content
-            </button>
-        </div>
-        <script>
-            function changeContent() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById(
-                            'foo'
-                        ).innerHTML = this.responseText;
-                    }
-                };
-                xhttp.open('GET', 'content.txt', true);
-                xhttp.send();
-            }
-        </script>
+      <p class="my-p"></p>
+      <script>
+        /**
+         * 目标：使用XMLHttpRequest对象与服务器通信
+         *  1. 创建 XMLHttpRequest 对象
+         *  2. 配置请求方法和请求 url 地址
+         *  3. 监听 loadend 事件，接收响应结果
+         *  4. 发起请求
+        */
+        // 1. 创建 XMLHttpRequest 对象
+        const xhr = new XMLHttpRequest()
+    
+        // 2. 配置请求方法和请求 url 地址
+        xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+    
+        // 3. 监听 loadend 事件，接收响应结果
+        xhr.addEventListener('loadend', () => {
+          console.log(xhr.response)
+          const data = JSON.parse(xhr.response)
+          console.log(data.list.join('<br>'))
+          document.querySelector('.my-p').innerHTML = data.list.join('<br>')
+        })
+    
+        // 4. 发起请求
+        xhr.send()
+      </script>
     </body>
-</html>
-```
+    
+    </html>
+    ```
 
-文件 `content.txt` 应该存在于Web应用程序的根目录中。
+    
+
+
+### 小结
+
+1. AJAX 原理是什么?
+
+    <details>
+    <summary>答案</summary>
+    <ul>
+    <li>window 提供的 XMLHttpRequest</li>
+    </ul>
+    </details>
+
+2. 为什么学习 XHR ？
+
+    <details>
+    <summary>答案</summary>
+    <ul>
+    <li>有更多与服务器数据通信方式</li>
+    <li>了解 axios 内部原理</li>
+    </ul>
+    </details>
+
+3. XHR 使用步骤？
+
+    <details>
+    <summary>答案</summary>
+    <ul>
+    <li>1. 创建 XHR 对象 2. 调用 open 方法，设置 url 和请求方法 3. 监听 loadend 事件，接收结果 4. 调用 send 方法，发起请求</li>
+    </ul>
+    </details>
 
 
 
 
 
 # 四、AJAX进阶
-
 
 
 
