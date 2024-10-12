@@ -9,14 +9,24 @@
 </head>
 
 <body>
-  <p class="my-p"></p>
+  <p class="city-p"></p>
   <script>
+
+    // 多个参数
+    // 1. 创建 URLSearchParams 对象
+    const paramsObj = new URLSearchParams({
+      pname: '江苏省',
+      pname: '浙江省'
+    })
+
+    // 2. 生成指定格式查询参数字符串，结果：参数名1=值1&参数名2=值2
+    const queryString = paramsObj.toString()
 
     /**
      * 目标：使用XHR携带查询参数，展示某个省下属的城市列表
-    */
+     */
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', 'http://hmajax.itheima.net/api/city?pname=辽宁省')
+    xhr.open('GET', 'http://hmajax.itheima.net/api/city?' + queryString)
     xhr.addEventListener('loadend', () => {
       console.log(xhr.response)
       const data = JSON.parse(xhr.response)

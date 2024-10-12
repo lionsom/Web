@@ -1,26 +1,6 @@
-## 参考文献
-
-1. [客户端->百度百科](https://baike.baidu.com/item/%E5%AE%A2%E6%88%B7%E7%AB%AF/101081?fr=aladdin)
-2. [浏览器解释->百度百科](https://baike.baidu.com/item/%E6%B5%8F%E8%A7%88%E5%99%A8/213911?fr=aladdin)
-3. [服务器解释->百度百科](https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571?fr=aladdin)
-4. [url解释->百度百科](https://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F/5937042?fromtitle=URL&fromid=110640&fr=aladdin)
-5. [http协议->百度百科](https://baike.baidu.com/item/HTTP?fromtitle=HTTP%E5%8D%8F%E8%AE%AE&fromid=1276942)
-6. [主机名->百度百科](https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA%E5%90%8D)
-7. [端口号->百度百科](https://baike.baidu.com/item/%E7%AB%AF%E5%8F%A3%E5%8F%B)
-8. [Ajax解释->百度-懂啦](https://baike.baidu.com/tashuo/browse/content?id=11fca6ecdc2c066af4c5594f&lemmaId=8425&fromLemmaModule=pcBottom&lemmaTitle=ajax)
-9. [Ajax解释->MDN解释Ajax是与服务器通信而不只是请求](https://developer.mozilla.org/zh-CN/docs/Web/Guide/AJAX/Getting_Started)
-10. [axios->百度(可以点击播报听读音)](https://baike.baidu.com/item/axios)
-11. [axios(github)地址](https://github.com/axios/axios)
-12. [axios官方推荐官网](https://axios-http.com/)
-13. [axios(npmjs)地址](https://www.npmjs.com/package/axios)
-14. [GET和POST区别->百度百科](https://baike.baidu.com/item/post/2171305)
-15. [报文讲解->百度百科](https://baike.baidu.com/item/%E6%8A%A5%E6%96%87/3164352)
-16. [HTTP状态码->百度百科](https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660)
-17. [接口概念->百度百科](https://baike.baidu.com/item/%E6%8E%A5%E5%8F%A3/2886384)
-
 [AJAX Tutorial: What AJAX Is and How to Use it](https://www.freecodecamp.org/news/ajax-tutorial/)
 
-
+<font color='red' size=5>ajax-axios-promise-demo：从各个项目中抽离总结的Axios例子！！！</font>
 
 
 
@@ -45,6 +25,14 @@
 
 
 ### a. AJAX vs axios
+
+![](images/028.png)
+
+> **AJAX** 是一种技术概念，指的是通过 JavaScript 实现的异步 HTTP 请求。
+>
+> **AJAX** 本质上是使用了浏览器内置的 `XMLHttpRequest` 对象
+>
+> **Axios** 是一个基于 AJAX 和 **Promise** 对象 实现的库，它提供了更简洁、更功能丰富的接口来处理 HTTP 请求。
 
 * **AJAX（Asynchronous JavaScript and XML）** 是一种在网页上实现异步数据请求的技术。它允许网页在不重新加载整个页面的情况下从服务器请求数据并更新部分页面内容。尽管其名字中包含 `XML`，但 AJAX 可以处理多种数据格式，包括 `JSON`、`XML`、`HTML` 等。
 
@@ -984,17 +972,9 @@ HTTP响应头可以分为几类：通用响应头、请求特定响应头、实�
 
 
 
-# 二、AJAX综合案例
+# 二、XMLHttpRequest 
 
-<font color='red' size=6>ajax-axios-demo：从各个项目中抽离总结的Axios例子！！！</font>
-
-
-
-
-
-# 三、XMLHttpRequest 
-
-## 1、AJAX 是如何工作的
+## 1. XMLHttpRequest - 基础使用
 
 1. AJAX 是浏览器与服务器通信的技术，采用 XMLHttpRequest 对象相关代码
 
@@ -1102,7 +1082,359 @@ HTTP响应头可以分为几类：通用响应头、请求特定响应头、实�
 
 
 
-# 四、AJAX进阶
+## 2. XMLHttpRequest - 查询参数
+
+查询参数原理要携带的位置和语法：`http://xxxx.com/xxx/xxx?参数名1=值1&参数名2=值2`
+
+```js
+/**
+ * 目标：使用XHR携带查询参数，展示某个省下属的城市列表
+ */
+const xhr = new XMLHttpRequest()
+xhr.open('GET', 'http://hmajax.itheima.net/api/city?pname=辽宁省')
+xhr.addEventListener('loadend', () => {
+  console.log(xhr.response)
+  const data = JSON.parse(xhr.response)
+  console.log(data)
+  document.querySelector('.city-p').innerHTML = data.list.join('<br>')
+})
+xhr.send()
+```
+
+
+
+### 多个查询参数
+
+多个查询参数，如果自己拼接很麻烦，这里用 URLSearchParams 把参数对象转成“参数名=值&参数名=值“格式的字符串，语法如下：
+
+```js
+// 1. 创建 URLSearchParams 对象
+const paramsObj = new URLSearchParams({
+  参数名1: 值1,
+  参数名2: 值2
+})
+
+// 2. 生成指定格式查询参数字符串
+const queryString = paramsObj.toString()
+// 结果：参数名1=值1&参数名2=值2
+```
+
+
+
+### 小结
+
+1. XHR 如何携带查询参数?
+
+    <details>
+    <summary>答案</summary>
+    <ul>
+    <li>在调用 open 方法的时候，在 url? 后面按照指定格式拼接参数名和值</li>
+    </ul>
+    </details>
+
+
+
+## 3. XMLHttpRequest - POST
+
+步骤和语法：
+
+1. 注意1：但是这次没有 axios 帮我们了，我们需要自己设置请求头 `Content-Type：application/json`，来告诉服务器端，我们发过去的内容类型是 JSON 字符串，让他转成对应数据结构取值使用
+2. 注意2：没有 axios 了，我们前端要传递的请求体数据，也没人帮我把 JS 对象转成 JSON 字符串了，需要我们自己转换
+3. 注意3：原生 XHR 需要在 send 方法调用时，传入请求体携带
+
+```js
+const xhr = new XMLHttpRequest()
+xhr.open('请求方法', '请求url网址')
+xhr.addEventListener('loadend', () => {
+  console.log(xhr.response)
+})
+
+// 1. 告诉服务器，我传递的内容类型，是 JSON 字符串
+xhr.setRequestHeader('Content-Type', 'application/json')
+// 2. 准备数据并转成 JSON 字符串
+const user = { username: 'itheima007', password: '7654321' }
+const userStr = JSON.stringify(user)
+// 3. 发送请求体数据
+xhr.send(userStr)
+```
+
+核心代码如下：
+
+```js
+/**
+ * 目标：使用xhr进行数据提交-完成注册功能
+*/
+document.querySelector('.reg-btn').addEventListener('click', () => {
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', 'http://hmajax.itheima.net/api/register')
+  xhr.addEventListener('loadend', () => {
+    console.log(xhr.response)
+  })
+
+  // 设置请求头-告诉服务器内容类型（JSON字符串）
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  // 准备提交的数据
+  const userObj = {
+    username: 'itheima007',
+    password: '7654321'
+  }
+  const userStr = JSON.stringify(userObj)
+  // 设置请求体，发起请求
+  xhr.send(userStr)
+})
+```
+
+
+
+### 小结
+
+1. XHR 如何提交请求体数据?
+
+    <details>
+    <summary>答案</summary>
+    <ul>
+    <li>在 send 中携带请求体数据，要按照后端要求的内容类型携带</li>
+    </ul>
+    </details>
+
+
+
+
+
+# 三、Promise（单独文档）
+
+> js ->  js进阶 ->  promise
+
+
+
+
+
+# 四、Promise + XHR
+
+尝试用 Promise 管理 XHR 异步任务
+
+```js
+/**
+ * 目标：使用Promise管理XHR请求省份列表
+ *  1. 创建Promise对象
+ *  2. 执行XHR异步代码，获取省份列表
+ *  3. 关联成功或失败函数，做后续处理
+*/
+// 1. 创建Promise对象
+const p = new Promise((resolve, reject) => {
+  // 2. 执行XHR异步代码，获取省份列表
+  const xhr = new XMLHttpRequest()
+  xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+  xhr.addEventListener('loadend', () => {
+    // xhr如何判断响应成功还是失败的？
+    // 2xx开头的都是成功响应状态码
+    if (xhr.status >= 200 && xhr.status < 300) {
+      resolve(JSON.parse(xhr.response))
+    } else {
+      reject(new Error(xhr.response))
+    }
+  })
+  xhr.send()
+})
+
+// 3. 关联成功或失败函数，做后续处理
+p.then(result => {
+  console.log(result)
+  document.querySelector('.my-p').innerHTML = result.list.join('<br>')
+}).catch(error => {
+  // 错误对象要用console.dir详细打印
+  console.dir(error)
+  // 服务器返回错误提示消息，插入到p标签显示
+  document.querySelector('.my-p').innerHTML = error.message
+})
+```
+
+
+
+# 五、封装_简易axios
+
+模拟 axios 函数封装，更深入了解 axios 内部运作原理
+
+![](images/028.png)
+
+核心语法：
+
+```js
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    // XHR 请求
+    // 调用成功/失败的处理程序
+  })
+}
+
+myAxios({
+  url: '目标资源地址'
+}).then(result => {
+    
+}).catch(error => {
+    
+})
+```
+
+步骤：
+
+1. 定义 myAxios 函数，接收配置对象，返回 Promise 对象
+2. 发起 XHR 请求，默认请求方法为 GET
+3. 调用成功/失败的处理程序
+4. 使用 myAxios 函数，获取省份列表展示
+
+
+
+## a. 获取省份列表
+
+```js
+/**
+ * 目标：封装_简易axios函数_获取省份列表
+ *  1. 定义myAxios函数，接收配置对象，返回Promise对象
+ *  2. 发起XHR请求，默认请求方法为GET
+ *  3. 调用成功/失败的处理程序
+ *  4. 使用myAxios函数，获取省份列表展示
+*/
+// 1. 定义myAxios函数，接收配置对象，返回Promise对象
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    // 2. 发起XHR请求，默认请求方法为GET
+    const xhr = new XMLHttpRequest()
+    xhr.open(config.method || 'GET', config.url)
+    xhr.addEventListener('loadend', () => {
+      // 3. 调用成功/失败的处理程序
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject(new Error(xhr.response))
+      }
+    })
+    xhr.send()
+  })
+}
+
+// 4. 使用myAxios函数，获取省份列表展示
+myAxios({
+  url: 'http://hmajax.itheima.net/api/province'
+}).then(result => {
+  console.log(result)
+  document.querySelector('.my-p').innerHTML = result.list.join('<br>')
+}).catch(error => {
+  console.log(error)
+  document.querySelector('.my-p').innerHTML = error.message
+})
+```
+
+
+
+## b. 支持传递查询参数
+
+```js
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    // 1. 判断有params选项，携带查询参数
+    if (config.params) {
+      // 2. 使用URLSearchParams转换，并携带到url上
+      const paramsObj = new URLSearchParams(config.params)
+      const queryString = paramsObj.toString()
+      // 把查询参数字符串，拼接在url？后面
+      config.url += `?${queryString}`
+    }
+
+    xhr.open(config.method || 'GET', config.url)
+    xhr.addEventListener('loadend', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject(new Error(xhr.response))
+      }
+    })
+    xhr.send()
+  })
+}
+
+// 3. 使用myAxios函数，获取地区列表
+myAxios({
+  url: 'http://hmajax.itheima.net/api/area',
+  params: {
+    pname: '辽宁省',
+    cname: '大连市'
+  }
+}).then(result => {
+  console.log(result)
+  document.querySelector('.my-p').innerHTML = result.list.join('<br>')
+})
+```
+
+
+
+## c. POST
+
+```js
+function myAxios(config) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+
+    if (config.params) {
+      const paramsObj = new URLSearchParams(config.params)
+      const queryString = paramsObj.toString()
+      config.url += `?${queryString}`
+    }
+    xhr.open(config.method || 'GET', config.url)
+
+    xhr.addEventListener('loadend', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject(new Error(xhr.response))
+      }
+    })
+    // 1. 判断有data选项，携带请求体
+    if (config.data) {
+      // 2. 转换数据类型，在send中发送
+      const jsonStr = JSON.stringify(config.data)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.send(jsonStr)
+    } else {
+      // 如果没有请求体数据，正常的发起请求
+      xhr.send()
+    }
+  })
+}
+
+document.querySelector('.reg-btn').addEventListener('click', () => {
+  // 3. 使用myAxios函数，完成注册用户
+  myAxios({
+    url: 'http://hmajax.itheima.net/api/register',
+    method: 'POST',
+    data: {
+      username: 'itheima999',
+      password: '666666'
+    }
+  }).then(result => {
+    console.log(result)
+  }).catch(error => {
+    console.dir(error)
+  })
+})
+```
+
+
+
+
+
+# 六、AJAX进阶（单独文档）
+
+> js -> JS进阶 -> js异步编程
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise_链式调用</title>
+</head>
+
+<body>
+
+  <script>
+
+    let promise = new Promise((resolve, reject) => {
+      resolve(1);
+    });
+
+    promise
+      .then(result => {
+        console.log(result); // 输出 1
+        return result * 2;   // 返回新的结果 2
+      })
+      .then(result => {
+        console.log(result); // 输出 2
+        return result * 3;   // 返回新的结果 6
+      })
+      .then(result => {
+        console.log(result); // 输出 6
+      });
+
+  </script>
+
+</body>
+
+</html>

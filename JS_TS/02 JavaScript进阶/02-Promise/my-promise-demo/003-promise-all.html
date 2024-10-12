@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise_链式调用</title>
+</head>
+
+<body>
+
+  <script>
+
+    /*
+     * Promise.all(promises)
+     * 接收一个 Promise 数组，返回一个新的 Promise。当所有传入的 Promise 都成功时，返回的 Promise 状态为 fulfilled，结果为所有 Promise 结果组成的数组；如果有任何一个 Promise 失败，返回的 Promise 状态为 rejected，并将第一个失败的结果作为错误返回。
+     */
+    let p1 = Promise.resolve(1);
+    let p2 = Promise.resolve(2);
+    let p3 = Promise.resolve(3);
+
+    Promise.all([p1, p2, p3])
+      .then(results => {
+        console.log(results); // [1, 2, 3]
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+  </script>
+
+</body>
+
+</html>
