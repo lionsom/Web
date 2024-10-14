@@ -176,7 +176,7 @@ Promise.race([p1, p2])
 
 ## 6. async/await 和 Promise 的关系
 
-虽然 `Promise` 提供了强大的异步处理能力，但嵌套和链式调用在复杂情况下仍可能让代码不够简洁。为此，JavaScript 引入了 `async/await` 语法，它基于 `Promise`，让异步代码看起来更像同步代码。
+虽然 `Promise` 提供了强大的异步处理能力，但嵌套和链式调用在复杂情况下仍可能让代码不够简洁。为此，JavaScript 引入了 `async/await` 语法，**它基于 `Promise`，让异步代码看起来更像同步代码。**
 
 - **`async`**：定义一个异步函数，返回的是一个 `Promise` 对象。
 - **`await`**：用于等待一个 `Promise` 完成，它可以暂停异步函数的执行，直到 `Promise` 完成。
