@@ -317,7 +317,7 @@ async function processData() {
 }
 ```
 
-## 4. **Generator 函数**
+## 4. **Generator 函数**（单独文档⭐️）
 
 * [阮一峰 - ECMAScript 6 入门 - Generator](https://es6.ruanyifeng.com/#docs/generator)
 
