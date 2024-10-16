@@ -151,6 +151,20 @@ Promise.all([p1, p2, p3])
   .catch(error => {
     console.error(error);
   });
+
+// ===================================================
+
+// 对比 async await
+async function processData() {
+  try {
+    const result1 = await getData1();
+    const result2 = await getData2(result1);
+    const result3 = await getData3(result2);
+    console.log(result3);
+  } catch (error) {
+    console.error(error);
+  }
+}
 ```
 
 

@@ -502,7 +502,7 @@ setTimeout(function() {
 2. 概念：在回调函数中嵌套回调函数，一直嵌套下去就形成了回调函数地狱
 3. 缺点：可读性差，异常无法捕获，耦合性严重，牵一发动全身
 
-![](/Users/linxiang/Study/Web/JS_TS/02 JavaScript进阶/01-JS异步编程/images/005.png)
+![](images/005.png)
 
 ```js
 axios({ url: 'http://hmajax.itheima.net/api/province' }).then(result => {
@@ -528,7 +528,7 @@ axios({ url: 'http://hmajax.itheima.net/api/province' }).then(result => {
 2. 细节：then() 回调函数中的返回值，会影响新生成的 Promise 对象最终状态和结果
 3. 好处：通过链式调用，解决回调函数嵌套问题
 
-![](/Users/linxiang/Study/Web/JS_TS/02 JavaScript进阶/01-JS异步编程/images/006.png)
+![](images/006.png)
 
 ```js
 /**
@@ -563,7 +563,7 @@ p2.then(result => {
 console.log(p2 === p)
 ```
 
-![](/Users/linxiang/Study/Web/JS_TS/02 JavaScript进阶/01-JS异步编程/images/007.png)
+![](images/007.png)
 
 ```js
 /**
@@ -647,7 +647,7 @@ HTML5中支持了 `Web Worker`，使得能够同时执行两段JS了，那是不
 
 WebWorker是向浏览器申请一个子线程，该子线程服务于主线程，完全受主线程控制。
 
-![](/Users/linxiang/Study/Web/JS_TS/02 JavaScript进阶/01-JS异步编程/images/004.png)
+![](images/004.png)
 
 
 
