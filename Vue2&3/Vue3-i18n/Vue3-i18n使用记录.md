@@ -2,9 +2,7 @@
 
 
 
-
-
-## 安装
+# 安装
 
 ```sh
 $ pnpm add vue-i18n@10
@@ -156,21 +154,9 @@ let AA = computed(() => {
 
 
 
-
-
-
-
-
-
 # 使用动态传值
 
 https://blog.csdn.net/lijiahui_/article/details/126591197
-
-
-
-
-
-
 
 
 
@@ -275,15 +261,6 @@ const translatedText = $t('project.projectName');
 console.log(translatedText);
 </script>
 ```
-
-
-
-
-
-
-
-
-
 
 
 

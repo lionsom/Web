@@ -11,6 +11,7 @@
 将外部的css文件放到style文件下，引入外部文件只需在main.js文件中
 
 ```javascript
+// js文件
 import '@/style/reset.css'
 ```
 
