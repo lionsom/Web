@@ -669,9 +669,11 @@ result = str.toLowerCase();
         * 5e-324
 
 * 如果使用Number表示的数字超过了最大值，则会返回一个
-       *      Infinity表示：正无穷
-       *      -Infinity表示：负无穷
-       *      使用 `typeof` 检查 `Infinity` 也会返回number
+   
+   * Infinity表示：正无穷
+   
+   * -Infinity表示：负无穷
+   * 使用 `typeof` 检查 `Infinity` 也会返回number
 * `NaN` 是一个特殊的数字，表示：Not A Number
     * 使用`typeof` 检查一个 `NaN` 也会返回number
 
