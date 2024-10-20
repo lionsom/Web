@@ -1,14 +1,19 @@
-
-
 # JavaScript
 
-* [JavaScript基础](./JavaScript基础)
-    * [JavaScript介绍]()
-    * [浏览器内核]()
-    * [JavaScript 书写位置]()
-    * [JavaScript输入输出语法]()
-    * [控制台运行JavaScript]()
+* [JavaScript入门](./JavaScript入门)
+    * [JavaScript介绍](./JavaScript入门/JavaScript介绍/JavaScript介绍.md)
+    * [浏览器内核](./JavaScript入门/浏览器内核/浏览器内核.md)
+    * [JavaScript 书写位置](./JavaScript入门/JavaScript书写位置/JavaScript书写位置.md)
+    * [JavaScript输入输出语法](./JavaScript入门/JavaScript输入输出语法/JavaScript输入输出语法.md)
+    * [控制台运行JavaScript](./JavaScript入门/控制台运行JavaScript/控制台运行JavaScript,md)
 
+* [JavaScript基础](./JavaScript基础)
+    * [JavaScript数据类型](./JavaScript基础/JavaScript数据类型/JavaScript数据类型.md)
+    * [JavaScript变量与常量](./JavaScript基础/JavaScript变量与常量/JavaScript变量与常量.md)
+    * [JavaScript类型判断](./JavaScript基础/JavaScript类型判断/JavaScript类型判断.md)
+    * [JavaScript类型转换](./JavaScript基础/JavaScript类型转换/JavaScript类型转换.md)
+    * [JavaScript中undefined与null](./JavaScript基础/JavaScript中undefined与null/JavaScript中undefined与null.md)
+    * 
 * [JavaScript对象]()
 * [JavaScript函数]()
 * [JavaScript异步编程]()
@@ -22,5 +27,4 @@
 
 
 
-# TypeScript
-
+* [ES6 教程 - 菜鸟鸭](https://www.cainiaoya.com/es6/es6-jiaocheng.html)

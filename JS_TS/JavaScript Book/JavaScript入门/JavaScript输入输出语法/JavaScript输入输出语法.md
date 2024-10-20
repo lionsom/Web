@@ -1,7 +1,17 @@
 # JavaScript 输入输出语法
 
+* `document.write('')`
+* `alert('我是弹框')`
+* `console.log('我是控制台输出')`
+* `prompt('请输入：')`
+* `innerHTML`
+
 ```html
+<!DOCTYPE html><html>
 <body>
+ 	 	<h1>我的第一个 Web 页面</h1>
+		<p id="demo">我的第一个段落</p>
+  
     <script>
         // 1.文档输出语法
         document.write('我是div标签')
@@ -15,8 +25,12 @@
 
         // 4.输入弹框
         prompt('请输入姓名：')
+      
+      	// 5.innerHTML
+	      document.getElementById("demo").innerHTML = "段落已修改。";
     </script>
 </body>
+</html>
 ```
 
 **实战案例**
@@ -30,44 +44,5 @@
         document.write(uname, age, gender)
     </script>
 </body>
-```
-
-
-
-
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-<h1>我的第一个页面</h1><p>我的第一个段落。</p>
-	
-<script>window.alert(5 + 6);
-</script>
-
-</body>
-</html>
-```
-
-
-
-
-
-innerHTML
-
-```html
-<!DOCTYPE html><html>
-<body>
-
-<h1>我的第一个 Web 页面</h1>
-
-	<p id="demo">我的第一个段落</p>
-
-<script>
-	document.getElementById("demo").innerHTML = "段落已修改。";
-</script>
-
-</body>
-</html>
 ```
 
