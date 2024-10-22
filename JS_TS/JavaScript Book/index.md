@@ -17,8 +17,9 @@
     * [JavaScript循环语句（未完成）](./JavaScript基础/JavaScript循环语句/JavaScript循环语句.md)
     * [JavaScript数组](./JavaScript基础/JavaScript数组/JavaScript数组.md)
     * [JavaScript编码 - Unicode编码 + URL编码](./JavaScript基础/JavaScript编码/JavaScript编码.md)
+    * [JavaScript作用域](./JavaScript基础/)
     * [](./JavaScript基础/)
-* [JavaScript对象]()
+* [JavaScript对象](./JavaScript对象/JavaScript对象.md)
 * [JavaScript函数](./JavaScript函数/JavaScript函数)
     * [JavaScript函数](./JavaScript函数/JavaScript函数/JavaScript函数.md)
     * [JavaScript原型与原型链](./JavaScript函数/JavaScript原型与原型链/JavaScript原型与原型链.md)
@@ -34,8 +35,9 @@
 * [Dom]()
 * [BOM]()
 * 其他
-    * 
-
+    * [JavaScript:void(0)](./其他/JavaScript void(0)/JavaScript void(0).md)
+    * [JavaScript严格模式](./其他/JavaScript严格模式/JavaScript严格模式.md)
+    
 * 教程推荐
     * [MDN - JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
     * [菜鸟教程 - JavaScript](https://www.runoob.com/js/js-tutorial.html)

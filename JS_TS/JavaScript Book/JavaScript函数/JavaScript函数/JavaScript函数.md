@@ -37,6 +37,8 @@ var x = myFunction(4, 3);
 
 ## c. 函数表达式
 
+函数表达式是将声明的函数赋值给一个变量，通过变量完成函数的调用和参数的传递。
+
 ```js
 var fun3 = function() {
 	console.log("我是匿名函数中封装的代码");
@@ -51,6 +53,24 @@ var z = x(4, 3);
 
 
 # 2. 函数的参数
+
+<font color='red' size=5>JavaScript 函数对参数的值没有进行任何的检查。</font>
+
+
+
+## a. 显式参数(Parameters)与隐式参数(Arguments)
+
+> 函数显式参数在函数定义时列出。
+>
+> 函数隐式参数在函数调用时传递给函数真正的值。
+
+
+
+## b. 参数规则
+
+* JavaScript 函数定义显式参数时没有指定数据类型。
+* JavaScript 函数对隐式参数没有进行类型检测。
+* JavaScript 函数对隐式参数的个数没有进行检测。
 
 ```js
 function sum(a,b) {
@@ -75,7 +95,51 @@ sum(123,456,"hello",true,null);
 sum(123);
 ```
 
-## a. 隐含的参数
+
+
+## c. ES6 函数可以自带参数
+
+```js
+function myFunction(x, y = 10) {
+    // y is 10 if not passed or undefined
+    return x + y;
+}
+ 
+myFunction(0, 2) // 输出 2
+myFunction(5); // 输出 15, y 参数的默认值
+```
+
+
+
+
+
+## d. 函数内置对象 - this
+
+```js
+/*
+ * 解析器在调用函数每次都会向函数内部传递进一个隐含的参数,
+ * 	这个隐含的参数就是this，this指向的是一个对象，
+ * 	这个对象我们称为函数执行的 上下文对象，
+ * 	根据函数的调用方式的不同，this会指向不同的对象
+ * 		1.以函数的形式调用时，this永远都是window
+ * 		2.以方法的形式调用时，this就是调用方法的那个对象
+ */
+
+function fun(){
+    // 表明：this = window，
+    //		this.name = window.name
+    console.log(this.name);
+}
+
+var name = "全局的name属性";
+fun(); 
+
+// 全局的name属性             
+```
+
+
+
+## e. 函数内置对象 - arguments
 
 ```js
 /*
@@ -166,7 +230,7 @@ function myFunction(y) {
 
 
 
-# 4. 立即执行函数 / 自调用函数
+# 5. 立即执行函数 / 自调用函数
 
 下面的函数实际上是一个 **匿名自我调用的函数 (没有函数名)**。
 
@@ -192,30 +256,6 @@ function myFunction(y) {
 
 
 
-
-# 5. this
-
-```js
-/*
- * 解析器在调用函数每次都会向函数内部传递进一个隐含的参数,
- * 	这个隐含的参数就是this，this指向的是一个对象，
- * 	这个对象我们称为函数执行的 上下文对象，
- * 	根据函数的调用方式的不同，this会指向不同的对象
- * 		1.以函数的形式调用时，this永远都是window
- * 		2.以方法的形式调用时，this就是调用方法的那个对象
- */
-
-function fun(){
-    // 表明：this = window，
-    //		this.name = window.name
-    console.log(this.name);
-}
-
-var name = "全局的name属性";
-fun(); 
-
-// 全局的name属性             
-```
 
 
 
@@ -282,7 +322,7 @@ console.log(dog instanceof Object);
 
 
 
-# 6. 箭头函数 - ES6新增
+# 7. 箭头函数 - ES6新增
 
 * 有的箭头函数都没有自己的 **this**。 不适合定义一个 **对象的方法**。
 * 使用 **const** 比使用 **var** 更安全，因为函数表达式始终是一个常量。
@@ -303,7 +343,7 @@ const x = (x, y) => x * y;
 
 
 
-# 7. 函数是对象
+# 8. 函数是对象
 
 在 JavaScript 中使用 `typeof` 操作符判断函数类型将返回 `"function"`。
 
@@ -321,7 +361,7 @@ function myFunction(a, b) {
 
 
 
-# 7. 函数对象的方法
+# 9. 函数对象的方法
 
 ## a. call() 和 apply()
 
