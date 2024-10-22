@@ -38,6 +38,8 @@
     * [JavaScript:void(0)](./其他/JavaScript void(0)/JavaScript void(0).md)
     * [JavaScript严格模式](./其他/JavaScript严格模式/JavaScript严格模式.md)
     
+* [JavaScript面试题](./JavaScript面试题/JavaScript面试题.md)
+    
 * 教程推荐
     * [MDN - JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
     * [菜鸟教程 - JavaScript](https://www.runoob.com/js/js-tutorial.html)
