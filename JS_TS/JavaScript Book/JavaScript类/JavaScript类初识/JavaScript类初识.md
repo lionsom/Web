@@ -1,3 +1,5 @@
+ES6之前的类 https://blog.csdn.net/qq_40626218/article/details/115858983
+
 
 
 # JavaScript 类(class)
