@@ -2,6 +2,8 @@
 
 原型 - prototype
 
+原型链 - Prototype Chain
+
 ## a. 为什么引入原型？
 
 > 解决多个对象公用一个方法，减少内存。

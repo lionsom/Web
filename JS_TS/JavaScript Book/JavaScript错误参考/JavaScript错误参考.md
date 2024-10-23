@@ -1,0 +1,1 @@
+[JavaScript 错误参考 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Errors)
