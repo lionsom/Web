@@ -27,21 +27,26 @@
     * [JavaScript Math对象](./JavaScript对象/JavaScript Math对象/JavaScript Math对象.md)
     * [JavaScript Date对象](./JavaScript对象/JavaScript Date对象/JavaScript Date对象.md)
     * [JavaScript RegExp对象](./JavaScript对象/JavaScript RegExp对象/JavaScript RegExp对象.md)
-    * [JavaScript原型对象](./)
+    * [JavaScript原型对象](./JavaScript对象/JavaScript原型对象/JavaScript原型对象.md)
+    * [JavaScript原型与原型链](./JavaScript对象/JavaScript原型与原型链/JavaScript原型与原型链.md)
 
 * [JavaScript函数](./JavaScript函数/JavaScript函数)
 
     * [JavaScript函数](./JavaScript函数/JavaScript函数/JavaScript函数.md)
-    * [JavaScript原型与原型链](./JavaScript函数/JavaScript原型与原型链/JavaScript原型与原型链.md)
+    * [JavaScript构造函数 - ES5](./JavaScript函数/JavaScript构造函数/JavaScript构造函数.md)
     * [JavaScript闭包函数](./JavaScript函数/JavaScript闭包函数/JavaScript闭包函数.md)
+    * [JavaScript箭头函数](./JavaScript函数/JavaScript箭头函数/JavaScript箭头函数.md)
 
 * [JavaScript类](./JavaScript类)
 
     * [JavaScript类初识](./JavaScript类/JavaScript类初识/JavaScript类初识.md)
     * [JavaScript类继承](./JavaScript类/JavaScript类继承/JavaScript类继承.md)
     * [JavaScript类方法](./JavaScript类/JavaScript类方法/JavaScript类方法.md)
+    * [JavaScript构造函数vs类](./JavaScript类/JavaScript构造函数vs类/JavaScript构造函数vs类.md)
+    * [this的指向](./JavaScript类/this的指向/this的指向.md)
 
 * [JavaScript异步编程](./JavaScript异步编程)
+
     * [JavaScript异步编程](./JavaScript异步编程/01-JS异步编程/JavaScript异步编程.md)
     * [JavaScript setTimeout](./JavaScript异步编程/02-setTimeout/setTimeout.md)
     * [JavaScript Promise](./JavaScript异步编程/03-Promise/Promise.md)
@@ -73,3 +78,10 @@
     * [黑马程序员 - JavaScript](https://book.itheima.net/course/1258676978588860418/1277481554465005570)
 
     * [ES6 教程 - 菜鸟鸭](https://www.cainiaoya.com/es6/es6-jiaocheng.html)
+
+
+
+
+
+
+

@@ -173,6 +173,44 @@ fun("hello",true);
 
 
 
+## f. 剩余参数
+
+* [剩余参数 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+
+**剩余参数**语法允许我们将一个不定数量的参数表示为一个数组。
+
+```js
+function sum(...theArgs) {
+  let total = 0;
+  for (const arg of theArgs) {
+    total += arg;
+  }
+  return total;
+}
+
+console.log(sum(1, 2, 3));
+// Expected output: 6
+
+console.log(sum(1, 2, 3, 4));
+// Expected output: 10
+```
+
+
+
+### 1. 剩余参数和 `arguments`对象的区别
+
+* [剩余参数和 `arguments`对象的区别](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/rest_parameters#剩余参数和_arguments对象的区别)
+
+剩余参数和 [`arguments`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments)对象之间的区别主要有三个：
+
+- 剩余参数只包含那些没有对应形参的实参，而 `arguments` 对象包含了传给函数的所有实参。
+- `arguments`对象不是一个真正的数组，而剩余参数是真正的 [`Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)实例，也就是说你能够在它上面直接使用所有的数组方法，比如 [`sort`](https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Array/sort)，[`map`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map)，[`forEach`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)或[`pop`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)。
+- `arguments`对象还有一些附加的属性（如`callee`属性）。
+
+
+
+
+
 # 3. 函数返回值
 
 ```js
@@ -253,97 +291,7 @@ function myFunction(y) {
 
 
 
-
-
-
-
-
-
-# 6. 构造函数 - 自定义
-
-```js
-/*
- * 创建一个构造函数，专门用来创建Person对象的
- * 	构造函数就是一个普通的函数，创建方式和普通函数没有区别,
- * 	不同的是构造函数习惯上首字母大写
- * 
- * 构造函数和普通函数的区别就是调用方式的不同
- * 	普通函数是直接调用，而构造函数需要使用new关键字来调用
- * 
- * 构造函数的执行流程：
- * 	1.立刻创建一个新的对象
- * 	2.将新建的对象设置为函数中this,在构造函数中可以使用this来引用新建的对象
- * 	3.逐行执行函数中的代码
- * 	4.将新建的对象作为返回值返回
- * 
- * 使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数称为一个类。
- * 	我们将通过一个构造函数创建的对象，称为是该类的实例
- * 
- * this的情况：
- * 	1.当以函数的形式调用时，this是window
- * 	2.当以方法的形式调用时，谁调用方法this就是谁
- * 	3.当以构造函数的形式调用时，this就是新创建的那个对象
- * 
- */
-function Person(name , age , gender){
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
-    this.sayName = function(){
-      	alert(this.name);
-    };
-}
-
-var per = new Person("孙悟空",18,"男");
-var per2 = new Person("玉兔精",16,"女");
-var per3 = new Person("奔波霸",38,"男");
-```
-
-
-
-## a. instanceof
-
-```js
-/*
- * 使用instanceof可以检查一个对象是否是一个类的实例
- * 	语法：
- * 		对象 instanceof 构造函数
- * 如果是，则返回true，否则返回false
- */
-console.log(per instanceof Person);
-console.log(dog instanceof Person);
-
-/*
- * 所有的对象都是Object的后代，
- * 	所以任何对象和Object左instanceof检查时都会返回true
- */
-console.log(dog instanceof Object);
-```
-
-
-
-# 7. 箭头函数 - ES6新增
-
-* 有的箭头函数都没有自己的 **this**。 不适合定义一个 **对象的方法**。
-* 使用 **const** 比使用 **var** 更安全，因为函数表达式始终是一个常量。
-* 箭头函数是不能提升的，所以需要在使用之前定义。
-* **注意：**IE11 及更早 IE 版本不支持箭头函数。
-
-```js
-// ES5
-var x = function(x, y) {
-     return x * y;
-}
- 
-// ES6
-const x = (x, y) => { return x * y };
-// 更精简
-const x = (x, y) => x * y;
-```
-
-
-
-# 8. 函数是对象
+# 6. 函数是对象
 
 在 JavaScript 中使用 `typeof` 操作符判断函数类型将返回 `"function"`。
 
@@ -361,9 +309,11 @@ function myFunction(a, b) {
 
 
 
-# 9. 函数对象的方法
+# 7. 函数对象的方法
 
 ## a. call() 和 apply()
+
+在JavaScript中，每个函数对象都带有call()和apply()方法，即Function.prototype.call()和Function.prototype.apply()，这两个方法都是挂载在原型上的。
 
 ```js
 function fun(a, b) {

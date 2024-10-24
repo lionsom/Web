@@ -4,7 +4,7 @@
 
 
 
-# 对象 - Object
+# 对象 - Object - 黑马
 
 ### a. 对象分类 + 新增、修改、删除属性
 
@@ -175,7 +175,7 @@ var obj2 = {
 
 
 
-### e. 对象属性是个函数
+### e. 对象属性可以是个函数
 
 ```js
 /*
@@ -314,4 +314,182 @@ console.log(obj4);
 
 * 十四、函数
     * 6. 构造函数
+
+
+
+
+
+
+
+# 新
+
+## 一、对象的分类
+
+1.内建对象
+
+* 由ES标准中定义的对象，在任何的ES的实现中都可以使用
+* 比如：Math String Number Boolean Function Object....
+
+2.宿主对象
+
+* 由JS的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+* 比如 BOM DOM
+
+3.自定义对象
+
+* 由开发人员自己创建的对象
+
+
+
+## 二、多种方式创建对象
+
+### 1. 对象字面量
+
+使用大括号 `{}` 来创建对象：
+
+```js
+const person = {
+  name: 'John',
+  age: 30,
+  greet: function() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+console.log(person.name); // 输出: John
+person.greet(); // 输出: Hello, my name is John
+```
+
+### 2. 使用 `new Object()`
+
+通过 `Object` 构造函数创建对象：
+
+```js
+const car = new Object();
+car.make = 'Toyota';
+car.model = 'Camry';
+car.year = 2020;
+
+console.log(car.make); // 输出: Toyota
+```
+
+### 3. 使用构造函数
+
+自定义构造函数并通过 `new` 关键字创建对象：
+
+```js
+function Animal(name, type) {
+  this.name = name;
+  this.type = type;
+}
+
+const dog = new Animal('Buddy', 'Dog');
+console.log(dog.name); // 输出: Buddy
+```
+
+### 4. 使用 `class` 语法
+
+在 ES6 中，可以使用 `class` 关键字来定义对象：
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const alice = new Person('Alice', 25);
+alice.greet(); // 输出: Hello, my name is Alice
+```
+
+### 5. 使用 `Object.create()`
+
+通过原型链创建对象：
+
+```js
+const proto = {
+  greet: function() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+const bob = Object.create(proto);
+bob.name = 'Bob';
+bob.greet(); // 输出: Hello, my name is Bob
+```
+
+
+
+## 三、访问对象的属性和方法
+
+### 1. 普通
+
+```js
+// 访问对象的属性（语法1）
+console.log(stu1.name);   // 输出结果：小明
+
+// 访问对象的属性（语法2）
+console.log(stu1['age']);  // 输出结果：18
+
+// 调用对象的方法（语法1）
+stu1.sayHello();       // 输出结果：Hello
+
+// 调用对象的方法（语法2）
+stu1['sayHello']();   // 输出结果：Hello
+```
+
+### 2. 对象的成员名中包含特殊字符
+
+```js
+var obj = {
+	'name-age': '小明-18'
+};
+
+console.log(obj['name-age']);  // 输出结果：“小明-18”
+```
+
+
+
+## 四、遍历对象的属性和方法
+
+```js
+// 准备一个待遍历的对象
+var obj = { name: '小明', age: 18, sex: '男' };
+
+// 遍历obj对象
+for (var k in obj) {
+    
+    // 通过k可以获取遍历过程中的属性名或方法名
+    console.log(k);    // 依次输出：name、age、sex
+
+    console.log(obj[k]);  // 依次输出：小明、18、男
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
