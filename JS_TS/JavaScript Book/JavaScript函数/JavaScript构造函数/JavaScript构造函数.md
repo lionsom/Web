@@ -144,7 +144,38 @@ jane.greet(); // 输出: Hello, my name is Jane and I am 25 years old.
 - **调用方式**：普通函数直接调用，构造函数需要使用 `new` 关键字调用。
 - **`this` 指向**：在普通函数中，`this` 通常指向全局对象或当前作用域对象，而在构造函数中，`this` 指向新创建的对象。
 
-## 7. 总结
+
+
+## 7. 静态成员和实例成员
+
+[静态成员和实例成员](https://book.itheima.net/course/1258676978588860418/1277481554465005570/1277497920576299012)
+
+在面向对象中有静态成员和实例成员的概念，实例成员是指实例对象的成员，例如，上述代码中的p1.name就是实例成员，而静态成员是指通过类或构造函数访问的成员，不需要创建实例对象就能访问。下面我们来演示静态成员的添加和访问。
+
+```js
+function Person(uname) {
+  this.uname = uname;
+}
+
+Person.school = 'X大学';      // 添加静态属性school
+
+Person.sayHello = function () {   // 添加静态方法sayHello
+  console.log('Hello');
+};
+
+console.log(Person.school);     // 访问静态属性，输出结果：X大学
+
+Person.sayHello();         // 访问静态方法，输出结果：Hello
+```
+
+### a. 静态方法中的this
+
+需要注意的是，在静态方法中不能使用this访问实例对象，因为静态方法与实例对象没有关联，在静态方法中如果使用this，访问到的是构造函数本身，即Person。
+
+
+
+## 8. 总结
+
 构造函数是 JavaScript 中用于创建对象的一种常用模式。
 
 通过结合 `this` 和 `prototype`，你可以高效地创建多个共享同一逻辑的对象实例，同时节省内存。

@@ -127,15 +127,21 @@ user.showPass();
 ```
 
 ### 2. 类的继承
-使用call关键字来继承父类的变量:
+* 使用call关键字来继承父类的变量
+* 利用原型对象继承父类方法
 
 ```js
+function User(name, pass){
+  this.name = name;
+  this.pass = pass;
+}
+
 function vipUser(name, pass, level){
   User.call(this, name, pass);
   this.level = level;
 }
 
-vipUser.prototype = new User;
+vipUser.prototype = new User();
 vipUser.prototype.constructor = vipUser;
 vipUser.prototype.showLevel = function(){
   console.log(this.level);

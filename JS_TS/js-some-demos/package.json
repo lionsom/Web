@@ -1,0 +1,21 @@
+{
+  "name": "some-demos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:001": "node ./001-prototype-demo/001.js",
+    "start:002": "node ./类继承/001-es6之前-利用构造函数继承父类属性.js",
+    "start:003": "node ./类继承/002-es6之前-利用原型对象继承父类方法.js",
+    "start:004": "node ./类继承/003-es6之后-extends类继承.js",
+    "start:005": "node ./构造函数vs类/构造函数vs类.js",
+    "start:006": "node ./构造函数/构造函数.js",
+    "start:007": "node ./this/this.js",
+    "start:008": "node ./this/更改this指向-call-apply.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -57,6 +57,8 @@ console.log(Person.species()); // 输出: Homo sapiens
 
 ## 3. 访问器方法（Getters 和 Setters）
 
+* [getter 和 setter - 菜鸟教程](https://www.runoob.com/js/js-class-inheritance.html)
+
 类中还可以使用 `get` 和 `set` 关键字定义访问器方法，用来处理对象属性的读取和赋值操作。
 
 ```js
