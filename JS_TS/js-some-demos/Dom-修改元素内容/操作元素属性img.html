@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="flower">鲜花</button>
+  <button id="grass">四叶草</button> <br>
+  <img src="images/grass.png" alt="" title="四叶草">
+
+  <script>
+    // 1. 获取元素
+    var flower = document.getElementById('flower');
+    var grass = document.getElementById('grass');
+    var img = document.querySelector('img');
+
+    // 2. 注册事件处理程序
+    flower.onclick = function () {
+      img.src = 'images/flower.jpeg';
+      img.title = '鲜花';
+    };
+
+    grass.onclick = function () {
+      img.src = 'images/grass.jpeg';
+      img.title = '四叶草';
+    };
+  </script>
+</body>
+</html>

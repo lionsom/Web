@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <span class="one">英语</span> <span class="two">数学</span>
+  <span class="one">语文</span> <span class="two">物理</span>
+
+  <script>
+    /**
+    * 获取元素
+    * 
+    * 4. 通过类名获取元素
+    *    document.getElementsByClassName('类名')
+    * 
+    */
+    var Ospan1 = document.getElementsByClassName('one');
+    var Ospan2 = document.getElementsByClassName('two');
+    Ospan1[0].style.fontWeight = 'bold';
+    Ospan2[1].style.background = 'red';
+  </script>
+</body>
+
+</html>

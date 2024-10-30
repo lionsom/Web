@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <p>请选择你最喜欢的水果（多选）</p>
+  <label><input type="checkbox" name="fruit" value="苹果">苹果</label>
+  <label><input type="checkbox" name="fruit" value="香蕉">香蕉</label>
+  <label><input type="checkbox" name="fruit" value="西瓜">西瓜</label>
+
+  <script>
+    /**
+     * 获取元素
+     * 
+     * 3. 通过 name 获取元素
+     *    document.getElementsByName('name值')
+     * 
+     */
+    var fruits = document.getElementsByName('fruit');
+    fruits[2].checked = true;
+
+  </script>
+</body>
+</html>

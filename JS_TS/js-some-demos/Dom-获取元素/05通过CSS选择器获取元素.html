@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box">盒子1</div>
+  <div class="box">盒子2</div>
+  <div id="nav">
+    <ul>
+      <li>首页</li>
+      <li>产品</li>
+    </ul>
+  </div>
+
+  <script>
+    var firstBox = document.querySelector('.box');
+    console.log(firstBox); // 获取class为box的第1个div
+
+    var nav = document.querySelector('#nav');
+    console.log(nav);    // 获取id为nav的第1个div 
+
+    var li = document.querySelector('li');
+    console.log(li);    // 获取匹配到的第一个li
+
+    var allBox = document.querySelectorAll('.box');
+    console.log(allBox);  // 获取class为box的所有div
+
+    var lis = document.querySelectorAll('li');
+    console.log(lis);    // 获取匹配到的所有li
+  </script>
+</body>
+
+</html>

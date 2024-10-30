@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+
+  <ul>
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>西瓜</li>
+    <li>樱桃</li>
+  </ul>
+
+  <ol id="ol">
+    <li>绿色</li>
+    <li>蓝色</li>
+    <li>白色</li>
+    <li>红色</li>
+  </ol>
+
+  <script>
+
+    var lis = document.getElementsByTagName('li');
+    // 结果为：HTMLCollection(8) [li, li, li, li, li, li, li, li]
+    console.log(lis);
+    
+    // 结果为：false，说明不是一个数组
+    console.log(Array.isArray(lis));
+
+    // 查看集合中的索引为0的元素，结果为：<li>苹果</li>
+    console.log(lis[0]);
+
+    // 遍历集合中的所有元素
+    for (var i = 0; i < lis.length; i++) {
+      console.log(lis[i]);
+    }
+
+    // 通过元素对象获取元素
+    var ol = document.getElementById('ol');
+
+    // 结果为：HTMLCollection(4) [li, li, li, li]
+    const eleLis = ol.getElementsByTagName('li');
+    console.log(eleLis);
+
+  </script>
+
+</body>
+
+</html>

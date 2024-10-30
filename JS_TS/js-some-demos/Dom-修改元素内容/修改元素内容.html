@@ -1,0 +1,31 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>getElementsByTagName example</title>
+    <script>
+      function div1ParaElems() {
+        var div1 = document.getElementById("div1");
+        var div1Paras = div1.getElementsByTagName("p");
+        
+        div1Paras[0].innerHTML = "<img src='x' style='backgroundColor='red'; width=100px; height=100px;' onerror='alert(1)'>";
+        div1Paras[1].innerText = 'AAA';
+        div1Paras[2].textContent = 'BBB';
+      }
+    </script>
+  </head>
+  <body style="border: solid green 3px">
+    
+    <div id="div1" style="border: solid blue 3px">
+      <p>Some div1 text</p>
+      <p>Some div1 text</p>
+      <p>Some div1 text</p>
+    </div>
+
+    <button onclick="div1ParaElems();">
+      show all p elements in document
+    </button><br />
+
+  </body>
+</html>
