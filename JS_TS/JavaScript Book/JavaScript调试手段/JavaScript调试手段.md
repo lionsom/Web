@@ -4,5 +4,203 @@
 
 
 
+# 一、之前文章 - 《调试技巧_模拟环境》
+
+
+
+# 二、前端冷知识，妙用「浏览器地址栏」
+
+## 1. 弹框
+
+```
+javascript:alert('I am wscats :)');
+
+javascript:alert(3+4-6);
+
+javascript:alert(355/113);void(0);
+
+javascript:alert("本网址域名为:" + location.protocol + "//" + location.hostname + "/" + "\n此时浏览的地址为:" + location.href + "\n" + "\n注意：如果域名对不上，就赶紧关掉噢");
+```
+
+
+
+## 2. textarea框
+
+```
+data:text/html, <textarea style="font-size: 1.5em; width: 100%; height: 100%;" autofocus />
+
+data:text/html,<button onClick="SaveTextArea()">Save</button> <script language="javascript" type="text/javascript"> function SaveTextArea() { window.location = "data:application/octet-stream," + escape(txtBody.value); } </script> <textarea id="txtBody" style="font-size: 1.5em; width: 100%; height: 100%; boarder: none; outline: none" autofocus> </textarea>
+```
+
+
+
+## 3. 其他的用法如下
+
+1. data:,<文本数据>
+2. data:text/plain,<文本数据>
+3. data:text/html,<HTML代码>
+4. data:text/html;base64,<base64编码的HTML代码>
+5. data:text/css,<CSS代码>
+6. data:text/css;base64,<base64编码的CSS代码>
+7. data:text/javascript,<Javascript代码>
+8. data:text/javascript;base64,<base64编码的Javascript代码>
+9. data:image/gif;base64,base64编码的gif图片数据
+10. data:image/png;base64,base64编码的png图片数据
+11. data:image/jpeg;base64,base64编码的jpeg图片数据
+12. data:image/x-icon;base64,base64编码的icon图片数据
+
+
+
+
+
+# 三、console更多用法
+
+## **01. console.table**
+
+使用 console.table 可视化复杂的对象和数组：
+
+```js
+const myData = [
+  { name: "程序员Sunday", age: 30 },
+  { name: "Sunday", age: 25 }
+];
+console.table(myData);
+```
+
+打印结果如下：
+
+![图片](images/001.webp)
+
+## **02. console.trace**
+
+使用 console.trace 可以明确函数的调用逻辑关系：
+
+```js
+function fn() {
+  function test() {
+    console.trace("这是一个利用trace的测试打印"); 
+  }
+  test();
+}
+fn();
+```
+
+打印结果如下：
+
+![图片](images/002.webp)
+
+## **03. console.time && console.timeEnd**
+
+使用 console.time && console.timeEnd 来记录代码的执行耗时：
+
+```js
+console.time('js 耗时')  // key对应
+const vNodes = []
+for (let i = 0; i < 10000; i++) {
+  const vNode = {
+    type: 'div'
+  }
+  vNodes.push(vNode)
+}
+console.timeEnd('js 耗时')
+```
+
+打印结果如下：
+
+![图片](images/003.webp)
+
+## **04. console.assert**
+
+使用 console.assert **断言**你的判断逻辑。
+
+如果断言为假，它抛出一个你指定的错误：
+
+```js
+const myArray = []
+console.assert(myArray.length > 0, "myArray 是空的!");
+```
+
+打印结果如下：
+
+![图片](images/004.webp)
+
+## **05. console.clear**
+
+在很多时候，我们的控制台可能会打印非常多的内容。所以，可以让代码在执行到某一个特定的时机时，**利用 console.clear() 清空控制台**
+
+```js
+console.clear()
+```
+
+执行之后会打印这个：
+
+![图片](images/005.webp)
+
+## **06. console.error**
+
+使用 console.error 直接打印一个错误级别的描述：
+
+```js
+console.error('错误信息')
+```
+
+打印结果如下：
+
+![图片](images/006.webp)
+
+
+
+## 07. console.dir
+
+`console.dir()` 是一个专门打印 **对象** 的 API。
+
+
+
+## 08. console.group && console.groupEnd
+
+使用 console.group() 控制打印组
+
+这在 **嵌套函数、递归** 中非常有用，配合 `console.groupEnd()` 可以帮助我们完成分组打印。
+
+```js
+function factorial(n) {
+    console.group(`方法开始，长度(${n})`);
+    if (n <= 1) {
+        console.log("执行 1");
+        console.groupEnd();
+        return 1;
+    } else {
+        let result = n * factorial(n - 1);
+        console.log(`执行 ${result}`);
+        console.groupEnd();
+        return result;
+    }
+}
+
+factorial(3);
+```
+
+![图片](images/007.webp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
