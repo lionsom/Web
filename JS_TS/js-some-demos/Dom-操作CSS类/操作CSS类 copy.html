@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>菜鸟教程(runoob.com)</title>
+  <style>
+    .mystyle {
+      width: 500px;
+      height: 50px;
+      padding: 15px;
+      border: 1px solid black;
+    }
+
+    .anotherClass {
+      background-color: coral;
+      color: white;
+    }
+
+    .thirdClass {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 25px;
+    }
+
+    .newClassName {
+      width: 400px;
+      height: 100px;
+      background-color: lightblue;
+      text-align: center;
+      font-size: 25px;
+      color: navy;
+      margin-bottom: 10px;
+    }
+  </style>
+  </style>
+</head>
+
+<body>
+  <p>点击按钮为 DIV 元素添加多个类。</p>
+  <button onclick="addFunc()">新增</button>
+  <button onclick="removeFunc()">移除</button>
+  <button onclick="toggleFun()">切换</button>
+  <button onclick="getAllClassNameFun()">获取所有className</button>
+  <button onclick="isContainClassNameFun()">是否存在className</button>
+
+  <p><strong>注意：</strong> Internet Explorer 9 及更早 IE 版本浏览器不支持 classList 属性。</p>
+  <div id="myDIV">
+    我是一个 DIV 元素。
+  </div>
+  <script>
+    function addFunc() {
+      document.getElementById("myDIV").classList.add("mystyle", "anotherClass", "thirdClass");
+    }
+
+    function removeFunc() {
+      document.getElementById("myDIV").classList.remove("mystyle");
+    }
+
+    function toggleFun() {
+      document.getElementById("myDIV").classList.toggle("newClassName");
+    }
+
+    function getAllClassNameFun() {
+      const a = document.getElementById("myDIV").classList;
+      alert(a);
+    }
+
+    function isContainClassNameFun() {
+      var x = document.getElementById("myDIV").classList.contains("mystyle");
+      alert(x);
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box" AAA="123" style="border: 1px solid red;"></div>
+
+  <script>
+    var element = document.querySelector('#box'); // 获取元素对象
+
+    // 1. 
+    const styles = window.getComputedStyle(element);
+    console.log(styles.width);
+    console.log(styles.backgroundColor);
+
+    // 2.
+    console.log(styles.getPropertyValue("height"));
+
+    // 3.
+    console.log(element.style.border);
+
+    // 4.
+    console.log(element.offsetWidth);
+    
+    // 5.
+    console.log(element.getAttribute("AAA"));
+
+  </script>
+</body>
+
+</html>

@@ -459,13 +459,158 @@
 
 
 
+## 1. 创建元素
+
+### a. `element.innerHTML`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:100px;
+			height:100px;
+			border: 10px solid #000;
+		}
+		.red{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>这是页面中已经有的111</div>
+	<div>这是页面中已经有的2222</div>
+	<div id="test"></div>
+	<script>
+		document.getElementById('test').innerHTML = `<span class='red'>innerHTML方法添加进来的</span>`
+	</script>
+</body>
+</html>
+```
 
 
 
+### b. `document.write()`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:100px;
+			height:100px;
+			border: 10px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div>这是页面中已经有的111</div>
+	<div>这是页面中已经有的2222</div>
+	<script>
+		document.write(`<div id="test" style='background-color: pink'>这是新添加进来的6666</div>`)
+	</script>
+</body>
+</html>
+```
 
 
 
+### c. `document.createElement() + appendChild()`
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:100px;
+			height:100px;
+			border: 10px solid #000;
+		}
+		.red{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>这是页面中已经有的111</div>
+	<div>这是页面中已经有的2222</div>
+	<script>
+		let dom = document.createElement('div')
+		dom.classList.add('red')
+		dom.textContent = '新插入的dom6666'
+		document.body.appendChild(dom)
+	</script>
+</body>
+</html>
+```
+
+
+
+### 【拓展】`createTextNode()` vs `createElement()`
+
+`<td>hello</td>`
+`createTextNode` 对应 hello
+`createElement` 对应 `<td></td>`
+
+```html
+<div id="div1">
+<p id="p1">这是一个段落。</p>
+<p id="p2">这是另外一个段落。</p>
+</div>
+ 
+<script>
+// 以下代码是用于创建 <p> 元素:
+var para = document.createElement("p");
+// 为 <p> 元素创建一个新的文本节点：
+var node = document.createTextNode("这是一个新的段落。");
+// 将文本节点添加到 <p> 元素中：
+para.appendChild(node);
+ 
+// 查找已存在的元素：
+var element = document.getElementById("div1");
+// 添加到已存在的元素中:
+element.appendChild(para);
+</script>
+```
+
+
+
+## 2. 添加元素
+
+### a. `element.appendChild()`
+
+`element.appendChild(newElement)`：将新元素添加为指定元素的子元素。
+
+
+
+### b. `element.insertBefore()`
+
+`element.insertBefore(newElement, referenceElement)`：在指定元素之前插入新元素。
+
+
+
+## 3. 替换元素
+
+### a. `element.replaceChild()`
+
+- `element.replaceChild(newElement, oldElement)`：替换子元素。
+
+
+
+## 4. 移除元素
+
+### a. `element.removeChild()`
+
+`element.removeChild(childElement)`：从父元素中删除指定子元素。
 
 
 

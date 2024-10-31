@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">单击</button>
+  <button id="btn22">单击</button>
+
+  <script>
+    // 1.
+    var btn = document.getElementById('btn');
+    btn.onclick = function () {
+      alert('弹出');
+    };
+
+    // 2. 
+    var btn22 = document.getElementById('btn22');
+    btn22.addEventListener('click', function () {
+
+      console.log('AAAA');
+      
+      alert('弹出22');
+
+    });
+  </script>
+</body>
+
+</html>

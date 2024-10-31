@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: aqua;
+    }
+    .myBox1 {
+      margin-top: 20px;
+      background-color: red;
+    }
+    .myBox2 {
+      margin-top: 100px;
+      background-color: greenyellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box" class="" AAA="123" style="border: 1px solid red;"></div>
+
+  <button onclick="add()">新增</button>
+
+  <script>
+    var element = document.querySelector('#box'); // 获取元素对象
+
+
+    function add() {
+      console.log('AAA');
+      
+      element.classList.add('myBox1');
+      element.classList.add('myBox2');
+    }
+
+  </script>
+</body>
+
+</html>
