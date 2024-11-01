@@ -1,5 +1,9 @@
 # 一、获取元素
 
+<font color='red' size=5>获取元素通用有两种方式，Node在单独文档《节点》</font>
+
+![p](images/002.png)
+
 ## 1. `document.getElementById()`
 
 * [根据id获取元素 - 黑马](https://book.itheima.net/course/1258676978588860418/1277481554465005570/1277491357669138438)
@@ -207,7 +211,7 @@
 
 
 
-## 3. `document.getElementsByName()`
+## 3. `document.getElementsByName()` - HTML5
 
 * [Document：getElementsByName() 方法 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/getElementsByName)
 * [根据name获取元素 - 黑马](https://book.itheima.net/course/1258676978588860418/1277481554465005570/1277491357669138435)
@@ -350,6 +354,9 @@
 | document.documentElement | 返回文档的html元素            |
 | document.forms           | 返回对文档中所有Form对象引用  |
 | document.images          | 返回对文档中所有Image对象引用 |
+| document.anchors         | a标签                         |
+| document.links           | 连接                          |
+| document.URL             | 当前文档的网址                |
 
 ```html
 <!DOCTYPE html>
@@ -613,6 +620,14 @@ element.appendChild(para);
 `element.removeChild(childElement)`：从父元素中删除指定子元素。
 
 
+
+## 5. 复制元素
+
+`element.cloneNode(true/false) `：方法返回调用该方法的节点的一个副本。 也称为克隆节点/拷贝节点。
+
+1. 如果括号参数为空或者为 false ，则是浅拷贝，即只克隆复制节点本身，不克隆里面的子节点。
+
+2. 如果括号参数为 true ，则是深度拷贝，会复制节点本身以及里面所有的子节点。
 
 
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <a href="http://www.baidu.com">百度</a>
+
+  <script>
+    var a = document.querySelector('a');
+
+    a.addEventListener("click", function () {
+      console.log("事件触发");
+      debugger;      
+    }, true);  // 使用 true 开启捕获阶段
+
+    a.addEventListener("click", function () {
+      console.log("事件冒泡");
+      debugger;
+    }, false);  // 使用 true 开启捕获阶段
+  </script>
+</body>
+
+</html>

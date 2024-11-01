@@ -1,6 +1,4 @@
-https://www.cnblogs.com/LiuWeiLong/p/6058059.html
-
-
+<font color='red' size=5>注：与《JavaScript操作元素属性》内容有重合！！！</font>
 
 # 一、设置元素样式
 

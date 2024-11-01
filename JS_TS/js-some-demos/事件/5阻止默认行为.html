@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <a href="http://www.baidu.com">百度</a>
+
+  <script>
+    var a = document.querySelector('a');
+    a.addEventListener('click', function (e) {
+      e.preventDefault();   // DOM标准写法，早期版本浏览器不支持
+    });
+
+    // 推荐使用传统的注册方式
+    a.onclick = function (e) {
+      e.preventDefault();  // 标准浏览器使用e.preventDefault()方法
+
+      // or
+      e.returnValue;     // 早期版本浏览器（IE 6~IE 8）使用returnValue属性
+    };
+  </script>
+</body>
+
+</html>

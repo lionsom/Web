@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>我是第 1 个li</li>
+    <li>我是第 2 个li</li>
+    <li>我是第 3 个li</li>
+    <li>我是第 4 个li</li>
+    <li>我是第 5 个li</li>
+  </ul>
+
+  <script>
+    var ul = document.querySelector('ul');
+    ul.addEventListener('click', function (e) {
+      e.target.style.backgroundColor = 'pink';
+    });
+  </script>
+</body>
+
+</html>

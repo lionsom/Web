@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="parent">
+    This is parent content.
+    <div id="child1">This is child1.</div>
+    <div id="child2">This is child2.</div>
+  </div>
+
+  <script>
+    let parentEle = document.getElementById('parent');
+
+    console.log('AA = ', parentEle.nodeName, parentEle.nodeType, parentEle.nodeValue);
+    
+
+    // instanceof
+    console.log('parentEle instanceof Node = ', parentEle instanceof Node); // true
+    console.log('parentEle instanceof Element = ', parentEle instanceof Element); // true
+    console.log('parentEle instanceof HTMLElement = ', parentEle instanceof HTMLElement); // true
+
+
+    // HTMLDivElement {…}
+    console.log('parentEle.__proto__ = ');
+    console.log(parentEle.__proto__);
+
+    // HTMLElement {…}
+    console.log('parentEle.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__);
+
+    // Element {…}
+    console.log('parentEle.__proto__.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__.__proto__);
+
+    // Node {…}
+    console.log('parentEle.__proto__.__proto__.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__.__proto__.__proto__);
+
+    // EventTarget {…}
+    console.log('parentEle.__proto__.__proto__.__proto__.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__.__proto__.__proto__.__proto__);
+
+    // {constructor: ƒ, …}
+    console.log('parentEle.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);
+
+    // null
+    console.log('parentEle.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__ = ');
+    console.log(parentEle.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);
+  </script>
+</body>
+
+</html>

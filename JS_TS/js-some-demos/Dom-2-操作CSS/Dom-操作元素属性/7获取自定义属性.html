@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div getTime="20" data-index="2" data-list-name="andy"></div>
+
+  <script>
+    var div = document.querySelector('div');
+
+    // 1. getAttribute()
+    console.log(div.getAttribute('data-index'));   // 结果为：2
+    console.log(div.getAttribute('data-list-name')); // 结果为：andy
+
+    // 2. HTML5新增的获取自定义属性的方法，只能获取“data-”开头的属性
+    console.log(div.dataset); // DOMStringMap {index:"2",listName:"andy"}
+    console.log(div.dataset.index);    // 结果为：2
+    console.log(div.dataset['index']);   // 结果为：2
+    console.log(div.dataset.listName);   // 结果为：andy
+    console.log(div.dataset['listName']); // 结果为：andy
+  </script>
+</body>
+
+</html>
