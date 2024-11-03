@@ -314,6 +314,7 @@ JavaScript 的事件流控制和管理使得事件处理变得灵活。事件捕
 
 * [鼠标事件的常用方法 - 黑马](https://book.itheima.net/course/1258676978588860418/1277481554465005570/1277496257278910466)
 * [键盘事件的常用方法 - 黑马](https://book.itheima.net/course/1258676978588860418/1277481554465005570/1277496309615435779)
+* [Dom事件 - 菜鸟教材](https://www.runoob.com/js/js-htmldom-events.html)
 
 JavaScript 事件是用户与网页进行交互时触发的操作。常见的 JavaScript 事件包括点击按钮、提交表单、加载页面等。这些事件可以帮助开发者在用户与网页交互时触发相应的功能。以下是一些常用的 JavaScript 事件：
 
@@ -347,7 +348,19 @@ JavaScript 事件是用户与网页进行交互时触发的操作。常见的 Ja
 - **touchmove**: 触摸点移动时触发。
 - **touchend**: 触摸结束时触发。
 
-## 6. 使用示例
+## 6. onload 和 onunload 事件
+
+onload 和 onunload 事件会在用户进入或离开页面时被触发。
+
+onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。
+
+onload 和 onunload 事件可用于处理 cookie。
+
+```html
+<body onload="checkCookies()">
+```
+
+## 7. 使用示例
 可以通过 JavaScript 的 `addEventListener` 方法监听事件：
 
 ```javascript
