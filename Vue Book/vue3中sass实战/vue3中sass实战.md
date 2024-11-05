@@ -1,3 +1,7 @@
+* [Sass Guide](https://www.sass.hk/guide/)
+
+
+
 # 一、Vue3 安装 Sass
 
 ## 1、安装依赖
@@ -7,8 +11,6 @@
 ```sh
 $ pnpm install sass sass-loader --save-dev
 ```
-
-
 
 ## 2、使用 lang="scss"
 
@@ -22,15 +24,13 @@ div{
 </style>
 ```
 
-
-
 ## 3、添加全局样式
 
 在src/styles目录下创建一个index.scss文件。
 
-
-
 ## 4、设置清除默认样式
+
+* [npm - scss-reset](https://www.npmjs.com/package/scss-reset)
 
 项目中需要用到清除默认样式。
 
@@ -44,8 +44,6 @@ div{
 // 引入清除默认样式
 @import 'reset.scss' ;
 ```
-
-
 
 ## 5、sass 全局配置
 
@@ -129,6 +127,17 @@ div {
 </style>
 ```
 
+## 1、拓 - [自定义属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)
+
+```scss
+:root {
+  --main-bg-color: pink;
+}
+
+
+border-color: var(--main-bg-color);
+```
+
 ## 2、计算功能
 
 SASS允许在代码中使用算式：
@@ -199,32 +208,111 @@ div {
 
 mixin的强大之处，在于可以指定参数和缺省值。
 
-> 　　@mixin left($value: 10px) {
-> 　　　　float: left;
-> 　　　　margin-right: $value;
-> 　　}
+```scss
+@mixin left($value: 10px) {
+	float: left;
+	margin-right: $value;
+}
+```
 
 使用的时候，根据需要加入参数：
 
-> 　　div {
-> 　　　　@include left(20px);
-> 　　}
+```scss
+div {
+	@include left(20px);
+}
+```
 
 下面是一个mixin的实例，用来生成浏览器前缀。
 
-> 　　@mixin rounded($vert, $horz, $radius: 10px) {
-> 　　　　border-#{$vert}-#{$horz}-radius: $radius;
-> 　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
-> 　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
-> 　　}
+```scss
+@mixin rounded($vert, $horz, $radius: 10px) {
+	border-#{$vert}-#{$horz}-radius: $radius;
+	-moz-border-radius-#{$vert}#{$horz}: $radius;
+	-webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}
+```
 
 使用的时候，可以像下面这样调用：
 
-> 　　#navbar li { @include rounded(top, left); }
->
-> 　　#footer { @include rounded(top, left, 5px); }
+```scss
+#navbar li { 
+    @include rounded(top, left); 
+}
+
+#footer { 
+    @include rounded(top, left, 5px); 
+}
+```
+
+## 3、颜色函数
+
+SASS提供了一些内置的颜色函数，以便生成系列颜色。
+
+```scss
+lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329
+grayscale(#cc3) // #808080
+complement(#cc3) // #33c
+```
+
+## 4、插入文件
+
+@import命令，用来插入外部文件。
+
+```scss
+@import "path/filename.scss";
+```
+
+如果插入的是.css文件，则等同于css的import命令。
+
+```scss
+@import "foo.css";
+```
 
 
+
+## 【拓】 `@import` -> `@use`
+
+```scss
+@use './reset.scss' as *;
+
+@use './variable.scss' as ABC;
+@use './variable';
+```
+
+
+
+
+
+
+
+## 警告：The legacy JS API is deprecated
+
+```js
+Deprecation Warning: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+```
+
+解决
+
+```js
+// https://vitejs.dev/config/
+export default defineConfig({
+  // scss 全局变量的配置
+  css: {
+    preprocessorOptions: {
+      scss: {
+        javascriptEnabled: true,
+        silenceDeprecations: ["legacy-js-api"], // 忽略警告
+        additionalData: '@use "./src/styles/constant.scss" as *;',
+      },
+    },
+  },
+})
+
+```
 
 
 
