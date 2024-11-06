@@ -100,7 +100,7 @@ const updateState = () => {
 
 
 
-4. `defineProps` 定义一个指定对象类型的数组
+# 4. `defineProps` 定义一个指定对象类型的数组
 
 在 Vue 3 中，使用 `defineProps` 定义一个指定对象类型的数组可以通过 TypeScript 或 PropTypes 来实现。下面是两种方法的示例：
 

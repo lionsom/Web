@@ -214,9 +214,7 @@ const errorClass = ref('text-danger')
 
 ### 写法一：字符串 + 模板字符串
 
-
-
-```
+```vue
 <!--字符串-->
 <div class="container" :style="isSquare ? 'background-color: blue;' : ''"></div>
 
@@ -225,7 +223,6 @@ const errorClass = ref('text-danger')
 <div class="container" :style="`background-color: ${isChange ? 'pink' : 'orange'}`"></div>
 <!-- 或者这样 -->
 <div class="container" :style="'background-color:' + `${isChange ? 'pink' : 'orange'}`"></div>
-
 ```
 
 
@@ -366,9 +363,30 @@ methods: {
 
 
 
+# 三、实战
 
+## 1. 动态修改div背景图
 
+使用 Vue 的动态绑定，可以在任意块级元素中设置背景图像。
 
+```vue
+<template>
+  <div :style="{ backgroundImage: `url(${imageUrl})` }" class="image-background"></div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const imageUrl = ref('your-initial-image-url.jpg');
+</script>
+
+<style>
+.image-background {
+  background-size: cover;
+  height: 300px; /* 根据需要设置高度 */
+}
+</style>
+```
 
 
 
