@@ -65,9 +65,7 @@ const props = defineProps({
 });
 ```
 
-
-
-#### 问题分析：
+#### a. 问题分析：
 
 ```typescript
 import { PropType, defineProps, defineEmits } from 'vue';
@@ -76,7 +74,7 @@ import { PropType, defineProps, defineEmits } from 'vue';
 'PropType' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
 ```
 
-#### 解决方案：
+#### b. 解决方案：
 
 需要使用类型导入语法来导入 `PropType`。
 可以通过在 `import` 语句前添加 `type` [关键字](https://so.csdn.net/so/search?q=关键字&spm=1001.2101.3001.7020)来实现。
@@ -88,3 +86,48 @@ import type { PropType } from 'vue';
 
 这样，`PropType` 将作为一个类型导入，而不是一个普通的导入。
 
+
+
+
+
+# 二、defineProps 泛型 + 默认值
+
+在 `<script setup>` 中必须使用 defineProps 和 defineEmits API 来声明 props 和 emits
+
+```typescript
+<script setup>
+const props = defineProps({
+  foo: String
+})
+//使用的时候用props.foo
+const emit = defineEmits(['change', 'delete'])
+// setup code
+</script>
+```
+
+在Typescript中的用法（泛型）：
+
+```typescript
+const props = defineProps<{
+  foo: string
+  bar?: number //非必传
+}>()
+
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+```
+
+设置默认值（**withDefaults**）
+
+```typescript
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
