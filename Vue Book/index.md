@@ -21,6 +21,11 @@
 * [Vue2/3公共方法](./Vue2/3公共方法/Vue2/3公共方法.md)
 * [Vue3判断PC与Mobile方案](./Vue3判断PC与Mobile方案/Vue3判断PC与Mobile方案.md)
 * [Vue打包部署](./Vue打包部署/Vue打包部署.md)
+* [Vue规范](./Vue规范)
+    * [前端开发规范](./Vue规范/前端开发规范.md)
+    * [Vue规范](./Vue规范/Vue规范.md)
+
+* [PDF预览](./PDF预览/PDF预览.md)
 
 
 
