@@ -55,20 +55,19 @@
     * [节点](./Dom/节点/节点.md)
     * [JavaScript操作事件](./Dom/JavaScript操作事件/JavaScript操作事件.md)
     * [元素位置和滚动](./Dom/)
-
 * [BOM](./Bom)
     * [Bom介绍](./Bom/Bom介绍/Bom介绍.md)
     * [Bom对象](./Bom/Bom对象/Bom对象.md)
-
 * [JavaScript内存管理](./JavaScript内存管理/JavaScript内存管理.md)
 * [JavaScript事件循环](./JavaScript事件循环/JavaScript事件循环.md)
 * [JavaScript错误参考](./JavaScript 错误参考/JavaScript错误参考.md)
 * [前端与硬件交互](./前端与硬件交互/前端与硬件交互.md)
-* [JavaScript调试手段](./JavaScript调试手段/JavaScript调试手段.md)
+* [JavaScript调试 - 统一在《调试技巧_模拟环境》]()
 * [其他](./其他)
-
+    * [了解字符编码知识](./其他/了解字符编码知识/了解字符编码知识.md)
     * [JavaScript:void(0)](./其他/JavaScript void(0)/JavaScript void(0).md)
     * [JavaScript严格模式](./其他/JavaScript严格模式/JavaScript严格模式.md)
+    
 * [JavaScript面试题](./JavaScript面试题/JavaScript面试题.md)
 * 教程推荐
     * [MDN - JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
