@@ -1,4 +1,5 @@
 * [VSCode官网 - Launch configurations](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations)
+* [官网 - Node.js debugging in VS Code](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
 * [官网 - Debugging Node.js](https://nodejs.org/en/learn/getting-started/debugging#debugging-nodejs)
 * [Node.js 调试一路走来经历了什么](https://mp.weixin.qq.com/s/5d5yiDpQ_gUTWGyx2lcCYQ)
 * [新手向：前端程序员必学基本技能——调试JS代码](https://mp.weixin.qq.com/s?__biz=MzA5MjQwMzQyNw==&mid=2650758814&idx=1&sn=3814b9c13cc14f33f6c73caff565ff96&chksm=88665d12bf11d404f93b9701dbe68ca80bf81ff6d630d0b378c58cb3b987b3fc4901a837dd25&cur_album_id=1342211915371675650&scene=21#wechat_redirect)
@@ -23,34 +24,6 @@
 
 
 
-vscode有3种调试方式
-
-**1. auto attach 自动附加**
-**2. JavaScript debug terminal**
-**3. launch.json配置方式**
-
-
-
-[Node.js 调试服务](https://juejin.cn/post/6992976045213220878#heading-0)
-
-* `chrome://inspect/#devices`
-
-* `--inspect`
-* `--inspect-brk`
-
-
-
-- Node.js 和调试器基于 Inspector Protocol 实现调试，Node.js 提供调试服务，调试器通过 websocket 对接调试服务
-- VSCode 提供了多种启动 Node.js 调试的方式
-    - Auto Attach，针对在 VSCode 集成终端执行的脚本，自动启动调试
-    - JavaScript Debug Terminal，为单个终端窗口提供 Auto Attach 功能
-    - Attach to Node Process Action，调试运行中的 Node.js 进程
-    - Launch Configuration，自定义配置
-
-
-
-
-
 
 
 [Node.js 调试一路走来经历了什么](https://mp.weixin.qq.com/s/5d5yiDpQ_gUTWGyx2lcCYQ)
@@ -59,7 +32,55 @@ vscode有3种调试方式
 
 
 
-# 一、Inspector Protocol
+# 一、Auto Attach
+
+总要编辑 launch.json 多少有些麻烦，如果能在执行脚本时自动启动调试就好了。
+
+这就是 Auto Attach 的作用，然而 Auto Attach 功能仅能作用于在 **VSCode 集成终端** 启动的进程。
+
+Auto Attach 有四种可选模式，命令面板输入 `Toggle Auto Attach` 选择菜单中罗列几种模式：
+
+- Always：在内置终端启动的所有进程都会自动接上调试器
+- Smart：排除 node_modules 目录下的执行脚本（例如 `tsc build`）。排除范围可在 `debug.javascript.autoAttachSmartPattern` 指定
+- Only With Flag：只会对带 `--inspect` 或 `--inspect-brk` 启动的进程有效果
+- Disable：禁用自动对接功能
+
+Auto Attach 依托于集成终端，因此每次切换后都需要 **重启终端** 才能生效。
+
+在命令面板选择将直接作用于 VSCode 全局环境，如要为工作区定制，可以设置 `.vscode/settings.json`。
+
+![](images/003.png)
+
+![](images/004.png)
+
+![](images/005.png)
+
+
+
+## 1. 设置『禁用』『智能』
+
+* 若设置『Disabled』，**在『终端』运行时，遇到断点不会停止！！！**
+* 若设置『Smart』，**在『终端』运行时，遇到断点就可以自动识别！！！**
+
+![](images/006.png)
+
+![](images/007.png)
+
+
+
+
+
+# 二、JavaScript Debug Terminal
+
+或许你不想全局启用 Auto Attach，只想在需要的时候调用一下。
+
+使用 JavaScript Debug Terminal 创建一个新的终端窗口，把 Auto Attach 作用范围限制在这个终端窗口内。这就是 JavaScript Debug Termial，局部的 Auto Attach。
+
+![](images/008.png)
+
+
+
+# 三、Inspector Protocol
 
 Node.js 提供 [Inspector Protocol](https://link.juejin.cn/?target=https%3A%2F%2Fchromedevtools.github.io%2Fdebugger-protocol-viewer%2Fv8%2F) 调试协议来支持调试。
 
@@ -137,10 +158,10 @@ $ node inspect app.js
 
 Node.js 调试服务默认关闭，需要通过 `--inspect` 或 `--inspect-brk` 标识符开启，服务的默认端口和地址也可通过 `node --inspect=[host:port]` 指定。
 
-- `node --inspect index.js` 开启调试服务，端口为 9229
-- `node --inspect=3003 index.js` 开启调试服务，端口为 3003
-- `node --inspect=192.168.0.101` 开启调试服务，地址为 192.168.0.101:9229
-- `node --inspect=192.168.0.101:3003` 开启调试服务，连接地址为 192.168.0.101:3003
+- `node --inspect index.js`：开启调试服务，端口为 9229
+- `node --inspect=3003 index.js`：开启调试服务，端口为 3003
+- `node --inspect=192.168.0.101`：开启调试服务，地址为 192.168.0.101:9229
+- `node --inspect=192.168.0.101:3003`：开启调试服务，连接地址为 192.168.0.101:3003
 
 那么，`--inspect` 和 `--inspect-brk` 有什么不同？
 
@@ -177,15 +198,9 @@ Chrome DevTools 会根据地址列表自动检查调试服务启动情况，默�
 
 ![](images/001.png)
 
-#### Ⅱ. VSCode
+#### Ⅱ. VSCode - `Launch Configuration` - `Attach`
 
-
-
-
-
-
-
-
+同 《四、Launch Program - Attach模块》
 
 
 
@@ -207,7 +222,7 @@ $ node --inspect-brk=0.0.0.0:9229
 
 Demo地址：./debugger-demo
 
-`package.json`
+* `package.json`
 
 ```json
 "scripts": {
@@ -218,56 +233,221 @@ Demo地址：./debugger-demo
   },
 ```
 
-运行 `pnpm dev:inspect-brk`
+* 运行 `pnpm dev:inspect-brk`
 
 ![](images/002.png)
 
+* Chrome客户端链接
 
 
 
 
 
+# 四、Launch Configuration
+
+launch.json 虽然传统，但仍是最全面的自定义入口。即使是自动化也需要通过部分的配置项来实现自定义。
+
+VSCode 提供了两种启动模式：
+
+- `launch` 启动程序并接上调试器
+- `attach` 调试器接入正在运行的程序
+
+基于这两种模式以及其他配置字段，VSCode 能支持多种调试场景。
 
 
 
-# Auto Attach
+## 1、启动程序并允许调试 - `Launch`
 
-总要编辑 launch.json 多少有些麻烦，如果能在执行脚本时自动启动调试就好了。
+### a. `Launch Program` - 直接运行程序入口文件
 
-这就是 Auto Attach 的作用，然而 Auto Attach 功能仅能作用于在 **VSCode 集成终端** 启动的进程。
+* 创建 `launch.json` 
 
-Auto Attach 有四种可选模式，命令面板输入 `Toggle Auto Attach` 选择菜单中罗列几种模式：
+![](images/010.png)
 
-- Always：在内置终端启动的所有进程都会自动接上调试器
-- Smart：排除 node_modules 目录下的执行脚本（例如 `tsc build`）。排除范围可在 `debug.javascript.autoAttachSmartPattern` 指定
-- Only With Flag：只会对带 `--inspect` 或 `--inspect-brk` 启动的进程有效果
-- Disable：禁用自动对接功能
+![](images/011.png)
 
-Auto Attach 依托于集成终端，因此每次切换后都需要 **重启终端** 才能生效。
-
-在命令面板选择将直接作用于 VSCode 全局环境，如要为工作区定制，可以设置 `.vscode/settings.json`。
-
-![](images/003.png)
-
-![](images/004.png)
-
-![](images/005.png)
+![](images/024.png)
 
 
 
-# Attach to Node Process Action
+* 创建 `Launch Program` 
+
+![](images/015.png)
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // 1. Launch Program
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/src/index.js"  // 程序入口文件
+    }
+  ]
+}
+```
+
+* 运行
+
+![](images/012.png)
 
 
 
+### b. `Launch via NPM` - 脚本跑起程序
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // 2.Launch via NPM
+    {
+      "name": "Launch via NPM",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "dev" // 这里修改为脚本名
+      ],
+      "runtimeExecutable": "npm",  // or pnpm yarn
+      "args": [],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    }
+  ]
+}
+```
+
+![](images/013.png)
+
+![](images/014.png)
 
 
-# JavaScript Debug Terminal
+
+## 2、调试正在运行的程序 - `Attach`
+
+比较常规的操作是 `node --inspect-brk` 启动程序，launch.json 配置 `Node.js: Attach`
+
+启动程序
+
+![](images/016.png)
 
 
 
+### a. `Attach` - 通过监听地址接入
+
+![](images/017.png)
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach",
+      "address": "localhost",  // IP地址，默认为localhost，可删除，or 127.0.0.1
+      "port": 9229, // 端口号
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    }
+  ]
+}
+```
+
+![](images/018.png)
 
 
-# Launch Configuration
+
+### b.  `Attach to Process` - 当前正在运行的进程
+
+![](images/019.png)
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach by Process ID",
+      "processId": "${command:PickProcess}",
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    }
+  ]
+}
+```
+
+* 运行，选择当前正在运行的进程。
+
+![](images/020.png)
+
+
+
+### c. 命令面板 - `Attach to Node Process` （同b）
+
+* **命令面板 - `Attach to Node Process`  等价于  `Launch Configuration` 中的 `Attach to Process`**
+
+VSCode 以 Action 的形式为 `Attach to Node Process` 提供了一个快捷入口。命令面板输入 `Attach to Node Procees`，下拉菜单会罗列出正在运行的所有 Node 进程。选择其一便可接上调试器。等同于上面c中的配置。
+
+![](images/021.png)
+
+![](images/022.png)
+
+
+
+### d. `Attach to Remote Program` - 未尝试
+
+![](images/023.png)
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "address": "TCP/IP address of process to be debugged",
+      "localRoot": "${workspaceFolder}",
+      "name": "Attach to Remote",
+      "port": 9229,
+      "remoteRoot": "Absolute path to the remote directory containing the program",
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    }
+  ]
+}
+```
+
+
+
+# 五、Run And Debug
+
+![](images/009.png)
 
 
 

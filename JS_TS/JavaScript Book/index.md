@@ -60,7 +60,7 @@
     * [Bom对象](./Bom/Bom对象/Bom对象.md)
 * [JavaScript内存管理](./JavaScript内存管理/JavaScript内存管理.md)
 * [JavaScript事件循环](./JavaScript事件循环/JavaScript事件循环.md)
-* [JavaScript错误参考](./JavaScript 错误参考/JavaScript错误参考.md)
+* [JavaScript错误参考](./JavaScript错误参考/JavaScript错误参考.md)
 * [前端与硬件交互](./前端与硬件交互/前端与硬件交互.md)
 * [JavaScript调试 - 统一在《调试技巧_模拟环境》]()
 * [其他](./其他)
