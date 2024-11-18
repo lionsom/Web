@@ -41,7 +41,7 @@
 * [Vue组件封装](./Vue组件封装)
     * [Vue3组件封装心得](./Vue组件封装/Vue3组件封装心得/Vue3组件封装的一些技巧和心得.md)
 
-* [PDF预览](./PDF预览/PDF预览.md)
+* [Vue3 PDF预览](./Vue3 PDF预览/PDF预览.md)
 
 
 
