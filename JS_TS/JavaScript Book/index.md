@@ -46,7 +46,11 @@
     * [JavaScript Promise](./JavaScript异步编程/03-Promise/Promise.md)
     * [JavaScript Generator](./JavaScript异步编程/04-Generator/Generator.md)
     * [JavaScript Web Worker](./JavaScript异步编程/05-Web Workder/Web Worker.md)
-* [JavaScript模块化](./JavaScript模块化/CJS_AMD_ESM介绍.md)
+* [JavaScript模块化](./JavaScript模块化/)
+    * [CJS_AMD_ESM介绍](./JavaScript模块化/CJS_AMD_ESM介绍/CJS_AMD_ESM介绍.md)
+    * [ES modules](./JavaScript模块化/ES modules/ES modules.md)
+    * [浏览器中的ES modules](./JavaScript模块化/浏览器中的ES modules/浏览器中的ES modules.md)
+
 * [Dom]()
     * [Dom介绍](./Dom/Dom介绍/Dom介绍.md)
     * [JavaScript操作HTML](./Dom/JavaScript操作HTML/JavaScript操作HTML.md)

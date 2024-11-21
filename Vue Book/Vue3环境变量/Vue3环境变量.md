@@ -60,6 +60,12 @@ envPrefix: 'VUE_APP_',
 
 
 
+##[`dotenv`](https://github.com/motdotla/dotenv)
+
+Vite 使用 [dotenv](https://github.com/motdotla/dotenv) 从 [环境目录](https://vite.vuejs.ac.cn/config/shared-options#envdir) 中的以下文件加载额外的环境变量。
+
+
+
 
 
 #  `env.d.ts` 文件
@@ -136,11 +142,122 @@ Property 'VITE_API_URL' does not exist on type 'ImportMetaEnv'.
 
 
 
-# `import.meta.env` 和 `loadEnv`
+# `import.meta.env` 和 `loadEnv()`
 
 
 
+## `import.meta.env` 和 `loadEnv` 的使用场景不同
 
+* `import.meta.env` 是在**运行时**获取环境变量的值，适用于应用程序代码中需要动态获取环境变量的场合。（**配置文件中获取不到**，因为配置文件是在构建时被读取！！！）
+
+* 而 `loadEnv` 则是在构建时加载环境变量，适用于**打包时（构建时）**需要引用环境变量的场合。
+
+
+
+## `loadEnv()` 介绍
+
+在 Vue 3 项目中，**`loadEnv`** 是一个 Vite 提供的实用函数，用于加载指定模式（例如开发、生产、测试等）的环境变量到代码中。
+
+**vite 中不支持 import.mete.env，环境变量通常从 process 获得。使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件。**
+
+- 加载指定模式的 `.env` 文件（如 `.env.development`、`.env.production`）。
+- 用于在构建配置文件（如 `vite.config.ts`）中动态加载和使用环境变量。
+
+注：在**vite.config.js**中使用，不能用 **import.meta.env**。
+
+
+
+## 详细介绍
+
+我们需要使用 `loadEnv(mode, envDir)` 获取环境变量，
+
+① `mode` - 构建模式；
+
+② `envDir` - 环境变量的配置文件所在目录；
+
+可以使用 `process.cwd()` 获取 `envDir`，该函数返回 node 的工作目录，一般为项目的根目录。
+
+![](images/002.png)
+
+
+
+### `vite.config.ts` 代码一：
+
+```json
+export default ({ command, mode }: any) => {
+  //
+  console.log('command', command);
+  console.log('mode', mode);
+
+  // 加载指定模式的环境变量
+  // 可以使用 process.cwd() 获取 envDir，该函数返回 node 的工作目录，一般为项目的根目录
+  const env = loadEnv(mode, process.cwd());
+  // 访问环境变量
+  console.log(env);
+  console.log(env.VITE_BASE_PPP);
+
+  // 合并到 process.env
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+  console.log('process.env', process.env);
+
+  return defineConfig({
+    // 配置服务器路径
+    base: '/xishan/',
+    plugins: [
+      vue(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    // scss 全局变量的配置
+    css: {
+    },
+    envPrefix: 'VUE_APP_',
+  });
+}
+```
+
+
+
+### `vite.config.ts` 代码二：
+
+```json
+export default defineConfig(({ command, mode }) => {
+  //
+  console.log('command', command);
+  console.log('mode', mode);
+
+  // 加载指定模式的环境变量
+  // 可以使用 process.cwd() 获取 envDir，该函数返回 node 的工作目录，一般为项目的根目录
+  const env = loadEnv(mode, process.cwd());
+  // 访问环境变量
+  console.log(env);
+  console.log(env.VITE_BASE_PPP);
+
+  // 合并到 process.env
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+  console.log('process.env', process.env);
+    
+  return {
+    // 配置服务器路径
+    base: '/xishan/',
+    plugins: [
+      vue(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    // scss 全局变量的配置
+    css: {
+    },
+    envPrefix: 'VUE_APP_',
+  };
+});
+```
 
 
 
