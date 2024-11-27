@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "verdaccio-demo-source": "^0.0.4"
+    "verdaccio-demo-source": "^0.0.1"
   }
 }

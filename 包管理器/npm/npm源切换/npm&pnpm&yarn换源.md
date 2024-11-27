@@ -128,6 +128,9 @@ $ yarn config set registry https://registry.npm.taobao.org/
 # 安装 nrm
 $ npm install -g nrm
 
+# 当前镜像
+$ nrm current
+
 # 列出当前可用的所有镜像源
 $ nrm ls
 
@@ -136,6 +139,12 @@ $ nrm use taobao
 
 # 测试访问速度
 $ nrm test taobao
+
+# 新增
+$ nrm add lxnpm http://localhost:4873/
+
+# 删除
+$ nrm del lxnpm
 ```
 
 

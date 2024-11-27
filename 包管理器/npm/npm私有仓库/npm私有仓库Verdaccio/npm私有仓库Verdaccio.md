@@ -99,7 +99,7 @@ $ npm logout --registry=http://0.0.0.0:4873/
 
 
 
-### a. 删除用户
+### a. 删除用户 + 用户信息路径
 
 既然有注册用户，不可避免的需求是在一些场景下，我们需要删除某个用户来禁止其登陆私有 npm 库。
 
@@ -128,6 +128,14 @@ $ npm init -y
 
 
 ## 3. 发布本地私有库
+
+### a. 若未登录用户，发布失败
+
+![](images/019.png)
+
+
+
+### b. 若已登录用户
 
 ```sh
 $ npm publish --registry http://localhost:4873/
@@ -219,7 +227,19 @@ $ npm i lodash
 
 
 
-## 5. 若未设置 register 如何安装测试包
+## 5. 执行npm时的路径
+
+设置后，再执行npm时的路径：
+
+* npm install -> Verdaccio -> npmjs
+
+Verdaccio会根据本地缓存情况，自动从官方源下载未缓存的包，提供给用户使用。
+
+![](images/018.png)
+
+
+
+## 6. 若未设置 register 如何安装测试包
 
 若没有设置 `registry=http://localhost:4873/` ：
 
@@ -249,17 +269,7 @@ registry=http://localhost:4873/
 
 
 
-# 四、发布带"命名空间"的包
-
-
-
-
-
-
-
-
-
-# 卸载包
+# 四、从仓库卸载包
 
 ```sh
 # 删除版本
@@ -268,13 +278,7 @@ $ npm unpublish [packageName] --registry http://localhost:4873 --force
 
 
 
-
-
-
-
-
-
-# 六、添加、切换源
+# 五、`nrm` 添加、切换源
 
 ## 1. 查看源列表、添加源
 
@@ -312,7 +316,9 @@ $ nrm ls
 
 
 
-## 2. 切换源
+## 2. 切换源的三种方式
+
+### a. nrm
 
 ```sh
 $ nrm use lxlx
@@ -322,11 +328,7 @@ $ nrm use lxlx
 
 
 
-
-
-
-
-### 修改npm源
+### b. `npm set register` 命令
 
 这里需要将Verdaccio设为npm的registry：
 
@@ -334,13 +336,15 @@ $ nrm use lxlx
 $ npm set registry http://localhost:4873/
 ```
 
-设置后，再执行npm时的路径：
 
-npm install -> Verdaccio -> npmjs
 
-Verdaccio会根据本地缓存情况，自动从淘宝源下载未缓存的包，提供给用户使用。
+### c. 直接修改 `.npmrc` 文件
 
-![](images/018.png)
+
+
+
+
+# 六、发布带"命名空间"的包
 
 
 
