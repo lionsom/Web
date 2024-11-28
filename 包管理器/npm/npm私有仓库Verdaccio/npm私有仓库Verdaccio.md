@@ -4,7 +4,7 @@
 
 * [【前端工程化】使用verdaccio搭建公司npm私有库完整流程和踩坑记录](https://juejin.cn/post/7096701542408912933)
 
-https://blog.csdn.net/ITyiy/article/details/132445854
+* https://blog.csdn.net/ITyiy/article/details/132445854
 
 
 
@@ -280,6 +280,8 @@ $ npm unpublish [packageName] --registry http://localhost:4873 --force
 
 # 五、`nrm` 添加、切换源
 
+具体看文档《npm源操作》。
+
 ## 1. 查看源列表、添加源
 
 ```sh
@@ -311,7 +313,7 @@ $ nrm ls
   cnpm --------- https://r.cnpmjs.org/
   taobao ------- https://registry.npmmirror.com/
   npmMirror ---- https://skimdb.npmjs.com/registry/
-  lxlx --------- http://localhostm:4873/
+  lxlx --------- http://localhostm:4873/           # 这就是新增的
 ```
 
 
@@ -346,9 +348,166 @@ $ npm set registry http://localhost:4873/
 
 # 六、发布带"命名空间"的包
 
+* [如何使用带scope的包](https://didiaohu.gitbooks.io/npm/content/14-ru-he-shi-yong-ming-ming-kong-jian-de-bao.html)
+
+## 1. 创建项目并发布
+
+* 使用 `npm init` 创建带 scope 包
+
+    要创建带scope的包，仅命令中加上参数 --scope=username 即可，但这种方式是一次性的。
+
+    ```sh
+    $ npm init --scope=username
+    ```
+
+* **全局设置 scope**
+
+    若需要永久只创建带 scope 的包，则全局设置即可，设置后再创建包就不再需要 --scope 参数了。
+
+    ```sh
+    $ npm config set scope username
+    
+    $ npm init
+    ```
+
+* `package.json` 文件
+
+    ```json
+    {
+      "name" ："@username/project-name" 
+    }
+    ```
+
+![](images/021.png)
+
+* 发布
+
+    ```sh
+    # 发布
+    $ npm publish
+    
+    # 发布一个带scope的包一定要加上 --access=public 参数，表示公开免费
+    $ npm publish --access=public
+    ```
+
+![](images/022.png)
+
+* http://localhost:4873/
+
+![](images/020.png)
+
+
+
+## 2. 使用测试包
+
+```sh
+$ npm install @lxnpm/verdaccio-demo-source-scope@0.0.1 -S
+```
+
+安装失败
+
+![](images/023.png)
+
+
+
+### a. 安装失败原因：缺少命名空间的注册表配置
+
+确保在 `.npmrc` 文件中为命名空间配置了正确的注册表地址。例如，如果你在使用私有注册表：
+
+```json
+@lxnpm:registry=http://localhost:4873/
+```
+
+![](images/024.png)
+
+再次安装，成功！！！
+
+![](images/025.png)
 
 
 
 
 
+## 3. 代码调用
+
+```js
+const { BaseMethods, Validate } = require('@lxnpm/verdaccio-demo-source-scope')
+
+console.log('test01 = ', BaseMethods.getTypeOf('123'));
+console.log('test02 = ', Validate.mobileCheck('123'));
+```
+
+
+
+# 七、权限
+
+* [发布和删除包权限控制](https://juejin.cn/post/7096701542408912933#heading-17)
+
+## 1. 发布和删除包权限控制
+
+刚才上传包的时候，任何人都可以**npm addUser**创建账号，然后上传**npm**包，这肯定是不安全的，需要对注册账号，还有发布**npm**包到私有库，删除私有库的**npm**包都要做权限控制，而**verdaccio**也提供了权限配置方案。
+
+编辑 **verdaccio** 的配置文件：
+
+```sh
+$ vi /Users/qiyeyun/.config/verdaccio/config.yaml
+```
+
+找到 **packages** 配置项：
+
+```yaml
+ packages:
+  '@*/*':
+    # scoped packages
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs
+
+  '**':
+    # allow all users (including non-authenticated users) to read and
+    # publish all packages
+    #
+    # you can specify usernames/groupnames (depending on your auth plugin)
+    # and three keywords: "$all", "$anonymous", "$authenticated"
+    access: $all
+
+    # allow all known users to publish/publish packages
+    # (anyone can register by default, remember?)
+    publish: $authenticated
+    unpublish: $authenticated
+```
+
+包的配置分两种：
+
+1. **作用域包**：一般指@xxx/xxx,比如@vue/core,@vue/compiler。
+2. **普通的包**：比如**react**, **vue**, **webpack**。
+
+包配置有几个关键的属性：
+
+1. **access**：表示哪些用户可以访问私有库上的包。
+2. **publish**：表示哪些用户可以在私有库上发布包。
+3. **unpublish**：表示哪些用户可以在私有库上删除包。
+
+而上面三个配置项对应的选项位：
+
+1. **$all:** 代表所有用户，不管是已注册还是未注册。
+2. **$authenticated**：是已注册的用户。
+3. **固定的账号**：比如： `publish: user1 user2`
+
+根据上面的信息，可以知晓，我们一般需要把访问包权限设置为已经注册用户才可以访问，而**publish**发布包和**unpublish**删除包两个权限需要设置为固定配置的账号，修改后配置如下。
+
+```yaml
+packages:
+  '@*/*':
+    # scoped packages
+    access: $authenticated # 只有注册的账号才可以访问私有库的包
+    publish: guojiongwei # 只有该账号可以发布包到私有库
+    unpublish: guojiongwei # 只有该账号可以删除私有库上的包
+    proxy: npmjs
+  '**':
+    access:$authenticated  # 只有注册的账号才可以访问私有库的包
+    publish: guojiongwei # 只有该账号可以发布包到私有库
+    unpublish: guojiongwei # 只有该账号可以删除私有库上的包
+```
 

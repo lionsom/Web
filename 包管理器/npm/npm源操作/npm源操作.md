@@ -1,7 +1,18 @@
-# 一、npm配置镜像源
+# 一、源操作的三种方式
+
+## 1. npm 命令行
 
 ```bash
-# 查看源
+# 查看 npm 配置
+$ npm config list
+# 显示全部配置
+$ npm config ls -l
+
+# 其他查看配置的方式
+$ npm config get globalconfig
+
+
+# 查看当前镜像
 $ npm config get registry
 
 # 临时修改
@@ -13,76 +24,26 @@ $ npm config set registry https://registry.npmmirror.com
 # 还原
 $ npm config set registry https://registry.npmjs.org
 
-# 删除
+# 删除npm镜像
+# 如果需要删除自己配置的镜像源，可以输入以下命令进行移除，移除后会恢复默认设置：
 $ npm config rm registry
 ```
 
 
 
-## 查看 npm 配置
-
-```bash
-$ npm config list
-# 显示全部配置
-$ npm config ls -l
-
-# 其他查看配置的方式
-$ npm config get globalconfig
-```
-
-
-
-## 查看 npm 当前镜像
-
-```shell
-$ npm config get registry
-
-https://registry.npmjs.org/
-```
-
-
-
-## 更换npm镜像 - 终端命令
-
-更换 [npm Mirror 中国镜像站](https://npmmirror.com/)
-
-```bash
-$ npm config set registry https://registry.npmmirror.com
-```
-
-再次查看：
-
-```bash
-$ npm config get registry
-
-https://registry.npmmirror.com/
-```
-
-
-
-## 更换npm镜像 - 文件修改
+## 2. 修改配置文件 `.npmrc`
 
 找到并打开配置文件：`~/.npmrc`
+
 写入配置：`registry=https://registry.npmmirror.com`
 
 
 
-## 临时更换npm镜像
+## 3. NRM - 镜像源管理器
 
-```bash
-# 临时修改
-$ npm --registry https://registry.npmmirror.com install any-touch
-```
+详情，看下面
 
 
-
-## 删除npm镜像
-
-如果需要删除自己配置的镜像源，可以输入以下命令进行移除，移除后会恢复默认设置：
-
-```shell
-$ npm config rm registry
-```
 
 
 

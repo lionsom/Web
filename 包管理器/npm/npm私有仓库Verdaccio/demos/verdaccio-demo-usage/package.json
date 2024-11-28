@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lxnpm/verdaccio-demo-source-scope": "^0.0.1",
     "verdaccio-demo-source": "^0.0.1"
   }
 }
