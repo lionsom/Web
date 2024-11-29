@@ -163,9 +163,15 @@ Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。配置
 
 
 
+## 8. 为什么需要loader和plugins
 
 
-# 二、Webpack4 - 打包JS
+
+
+
+
+
+# 二、Webpack4 - 打包初体验
 
 ## 1. 项目创建
 
@@ -242,6 +248,13 @@ function add(x, y) {
 
 console.log(add(1, 2));
 ```
+
+### a. 结论：
+    1. webpack能处理js/json资源，不能处理css/img等其他资源
+    2. 生产环境和开发环境将ES6模块化编译成浏览器能识别的模块化~
+    3. 生产环境比开发环境多一个压缩js代码。
+
+
 
 ## 3. 打包 - 命令行
 
