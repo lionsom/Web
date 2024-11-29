@@ -165,7 +165,7 @@ Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。配置
 
 ## 8. 为什么需要loader和plugins
 
-
+webpack是一个打包工具，即webpack会将一切文件视为模块，但是webpack在打包的时候只是认识JS文件或者JSON文件，并不认识CSS文件，png图片等，如果想让webpack能够在打包的时候识别其他文件，就必须要使用loader，即loader的作用就是让webpack拥有可以加载和了解除JS文件以外的其他文件。
 
 
 
