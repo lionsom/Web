@@ -156,11 +156,16 @@ Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。配置
 
 
 
+## 7. `webpack`命令行 与 `webpack.config.js`关系
+
+* `webpack.config.js`是`webpack`打包的默认配置文件，其默认位于项目的根目录中。
+* 比如说如果我们在控制台中输入`webpack`指令，后面不跟任何参数的话，则`webpack`默认查找位于根目录中的`webpack.config.js`文件，并根据该文件加载与执行相应的依赖。
 
 
 
 
-# 二、Webpack-4 初体验
+
+# 二、Webpack4 - 打包JS
 
 ## 1. 项目创建
 
@@ -226,7 +231,7 @@ body {
     3. 生产环境比开发环境多一个压缩js代码。
 */
 
-import './index.css';   // webpack无法处理css
+// import './index.css';   // webpack无法处理css
 
 import data from './data.json';
 console.log(data);
@@ -269,7 +274,7 @@ $ nvm use 16
 
 
 
-# 三、webpack4 - 打包样式文件
+# 三、webpack4 - 打包CSS
 
 第一个工程中，webpack命令行，无法将css文件进行打包。
 
@@ -290,85 +295,30 @@ $ pnpm add less-loader@5 -D
 $ pnpm up less-loader@5 -D
 ```
 
+## 2. 打包
 
+```sh
+# 全局安装webpack
+$ webpack
 
-## 2. webpack配置文件
-
-### a. 具体介绍
-
-#### Ⅰ. 模块化默认采用commonjs
-
-* 所有构建工具都是基于nodejs平台运行的，模块化默认采用commonjs。
-    * 区分：src中的代码，基于ES6与 `webpack.config.js` 不冲突！！！！
-    * 导入：`require('path');`
-    * 导出：`module.exports = {}`
-
-
-
-#### Ⅱ. output
-
-这里引入 nodejs的变量：`__dirname`， 表示当前文件的目录的绝对路径。
-
-```js
-output: {
-    // 输出文件名
-    filename: 'built.js',
-    // 输出路径
-    // __dirname nodejs的变量，代表当前文件的目录绝对路径
-    path: resolve(__dirname, 'build')
-},
+# 局部安装webpack
+$ npx webpack
+Hash: ef117f32f8ff7181f27b
+Version: webpack 4.47.0
+Time: 272ms
+Built at: 02/01/2024 2:31:52 PM
+   Asset      Size  Chunks             Chunk Names
+built.js  20.7 KiB    main  [emitted]  main
+Entrypoint main = built.js
+[./node_modules/.pnpm/css-loader@3.6.0_webpack@4.47.0/node_modules/css-loader/dist/cjs.js!./node_modules/.pnpm/less-loader@5.0.0_less@3.13.1_webpack@4.47.0/node_modules/less-loader/dist/cjs.js!./src/index.less] 312 bytes {main} [built]
+[./node_modules/.pnpm/css-loader@3.6.0_webpack@4.47.0/node_modules/css-loader/dist/cjs.js!./src/index.css] 380 bytes {main} [built]
+[./src/index.css] 623 bytes {main} [built]
+[./src/index.js] 70 bytes {main} [built]
+[./src/index.less] 728 bytes {main} [built]
+    + 2 hidden modules
 ```
 
-
-
-#### Ⅲ. module（loader的配置）
-
-* 不同文件必须配置不同loader处理，如：css与less需要不同的loader处理。
-* `test` 字段：使用正则，匹配哪些文件；
-* `use` 字段：使用哪些loader进行处理；
-    * `use` 是数组
-    * `use` 数组中loader执行顺序：从右到左，从下到上 依次执行；
-* 
-
-```js
-  // loader的配置
-  module: {
-    rules: [
-      // 详细loader配置
-      // 不同文件必须配置不同loader处理
-      {
-        // 匹配哪些文件
-        test: /\.css$/,
-        // 使用哪些loader进行处理
-        use: [
-          // use数组中loader执行顺序：从右到左，从下到上 依次执行
-          // 创建style标签，将js中的样式资源插入进行，添加到head中生效
-          'style-loader',
-          // 将css文件变成commonjs模块加载js中，里面内容是样式字符串
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          // 将less文件编译成css文件
-          // 需要下载 less-loader和less
-          'less-loader'
-        ]
-      }
-    ]
-  },
-```
-
-
-
-
-
-
-
-### b. `webpack.config.js` 完整版
+## 3. `webpack.config.js` 完整版
 
 ```js
 // webpack.config.js
@@ -435,28 +385,245 @@ module.exports = {
 
 
 
-## 3. 打包
+## 4. webpack配置文件详解 ⭐️⭐️⭐️
+
+### a. 模块化默认采用commonjs
+
+* 所有构建工具都是基于nodejs平台运行的，模块化默认采用commonjs。
+    * 区分：src中的代码，基于ES6与 `webpack.config.js` 不冲突！！！！
+    * 导入：`require('path');`
+    * 导出：`module.exports = {}`
+
+
+
+### b. output
+
+这里引入 nodejs的变量：`__dirname`， 表示当前文件的目录的绝对路径。
+
+```js
+output: {
+    // 输出文件名
+    filename: 'built.js',
+    // 输出路径
+    // __dirname nodejs的变量，代表当前文件的目录绝对路径
+    path: resolve(__dirname, 'build')
+},
+```
+
+
+
+### c. module（Loader的配置）
+
+* 不同文件必须配置不同loader处理，如：css与less需要不同的loader处理。
+* `test` 字段：使用正则，匹配哪些文件；
+* `use` 字段：使用哪些loader进行处理；
+    * `use` 是数组
+    * `use` 数组中loader执行顺序：从右到左，从下到上 依次执行；
+* <font color='red' size=4>多个loader配合使用时，处理顺序是：**从下到上，从右到左** 的顺序；</font>
+
+```js
+  // loader的配置
+  module: {
+    rules: [
+      // 详细loader配置
+      // 不同文件必须配置不同loader处理
+      {
+        // 匹配哪些文件
+        test: /\.css$/,
+        // 使用哪些loader进行处理
+        use: [
+          // use数组中loader执行顺序：从右到左，从下到上 依次执行
+          // 创建style标签，将js中的样式资源插入进行，添加到head中生效
+          'style-loader',
+          // 将css文件变成commonjs模块加载js中，里面内容是样式字符串
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          // 将less文件编译成css文件
+          // 需要下载 less-loader和less
+          'less-loader'
+        ]
+      }
+    ]
+  },
+      
+//　注意：写法是有顺序的
+```
+
+
+
+#### Ⅰ. css-loader 的作用
+
+* [css-loader、style-loader作用](https://www.cnblogs.com/goloving/p/14793201.html)
+
+* [听说webpack连less/css也能打包？](https://array-huang.gitbooks.io/multipage-webapp-architecture-with-webpack/content/chapter1/webpack-css-and-less.html)
+
+1、先讲css-loader的作用：css-loader是帮助webpack打包处理css文件的工具；
+
+​	  可以理解为**css-loader将a.css、b.css和c.css的样式内容以字符串的形式拼接在一起，并将其作为js模块的导出内容**。
+
+2、css-loader 使用注意项：
+
+* `css-loader`: 加载.css文件
+
+* `style-loader：`使用`<style>`将css-loader内部样式注入到我们的HTML页面
+
+（1）使用css-loader必须要配合使用style-loader
+
+（2）css-loader的作用是帮我们分析出各个css文件之间的关系，把各个css文件合并成一段css
+
+（3）style-loader的作用是将css-loader生成的css代码挂载到页面的header部分
+
+（4）多个loader配合使用时，处理顺序是：**从下到上，从右到左** 的顺序；
+
+
+
+#### Ⅱ. `css-loader` -> `style-loader`
+
+<font color='red' size=4>webpack是用JS写的，运行在node环境，所以默认webpack打包的时候只会处理JS之间的依赖关系！</font>
+
+因为像 .css 这样的文件不是一个 JavaScript 模块，你需要配置 webpack 使用 css-loader 或者 style-loader 去合理地处理它们。
+
+
+
+css-loader会遍历css文件，找到所有的url(...)并且处理。style-loader会把所有的样式插入到你页面的一个style标签；
+
+`　　css-loader` 会对 `@import` 和 `url()` 进行处理，就像 `js` 解析 `import/require()` 一样，默认生成一个数组存放存放处理后的样式字符串，并将其导出。
+
+
+
+`style-loader` 是通过一个JS脚本创建一个style标签，里面包含一些样式。**`style-loader`是不能单独使用的**，因为它并不负责解析 css 之前的依赖关系，每个loader的功能都是单一的，各自拆分独立
+
+`style-loader`的作用是把 `CSS` 插入到 `DOM` 中，就是处理`css-loader`导出的模块数组，然后将样式通过`style`标签或者其他形式插入到`DOM`中。
+
+配置项`injectType`可配置把 `styles` 插入到 `DOM` 中的方式。
+
+
+
+#### Ⅲ. `less-loader` -> `css-loader` -> `style-loader`
+
+　　Less是CSS预处理语言，扩展了CSS语言，增加了变量、Mixin、函数等特性，Less-loader的作用就是将less代码转译为浏览器可以识别的CSS代码。
+
+1. 所以less-loader的原理很简单，就是调用less库提供的方法，转译less语法后输出。
+
+2. css-loader的作用主要是解析css文件中的@import和url语句，处理css-modules，并将结果作为一个js模块返回。
+
+    可以理解为**css-loader将a.css、b.css和c.css的样式内容以字符串的形式拼接在一起，并将其作为js模块的导出内容**。
+
+3. style-loader的作用：经过css-loader的转译，我们已经得到了完整的css样式代码，style-loader的作用就是将结果以style标签的方式插入DOM树中。
+
+
+
+## 四、webpack4 - 打包html文件
+
+* [如何利用webpack生成HTML页面](https://array-huang.gitbooks.io/multipage-webapp-architecture-with-webpack/content/chapter4/webpack-build-html-page.html)
+
+webpack生成HTML页面主要是通过 [`html-webpack-plugin`](https://github.com/ampedandwired/html-webpack-plugin) 来实现的。
 
 ```sh
-# 全局安装webpack
-$ webpack
-
-# 局部安装webpack
-$ npx webpack
-Hash: ef117f32f8ff7181f27b
-Version: webpack 4.47.0
-Time: 272ms
-Built at: 02/01/2024 2:31:52 PM
-   Asset      Size  Chunks             Chunk Names
-built.js  20.7 KiB    main  [emitted]  main
-Entrypoint main = built.js
-[./node_modules/.pnpm/css-loader@3.6.0_webpack@4.47.0/node_modules/css-loader/dist/cjs.js!./node_modules/.pnpm/less-loader@5.0.0_less@3.13.1_webpack@4.47.0/node_modules/less-loader/dist/cjs.js!./src/index.less] 312 bytes {main} [built]
-[./node_modules/.pnpm/css-loader@3.6.0_webpack@4.47.0/node_modules/css-loader/dist/cjs.js!./src/index.css] 380 bytes {main} [built]
-[./src/index.css] 623 bytes {main} [built]
-[./src/index.js] 70 bytes {main} [built]
-[./src/index.less] 728 bytes {main} [built]
-    + 2 hidden modules
+# 可能有版本问题，@4
+$ npm i html-webpack-plugin -D
+$ pnpm add html-webpack-plugin -D
 ```
+
+
+
+### 1. `html-webpack-plugin` 配置
+
+```json
+/**
+ * 对比：
+ *  loader:  1. 下载  2. 使用（配置loader）
+ *  plugins: 1. 下载  2. 引入  3. 使用
+*/
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    // 默认：自动创建一个html文件
+    new HtmlWebpackPlugin()
+      
+    // 指定具体的html
+    new HtmlWebpackPlugin({
+       template: './src/index.html'
+    })
+  ],
+}
+```
+
+
+
+### 2. loader / plugins 使用步骤对比
+
+ * loader:  1. 下载  2. 使用（配置loader）
+ * plugins: 1. 下载  2. 引入  3. 使用
+  
+
+
+
+## 五、webpack4 - 打包图片资源
+
+```sh
+$ pnpm add url-loader -D
+
+$ pnpm add html-loader -D
+```
+
+### 1. `url-loader` 配置
+
+* `url-loader`问题：默认处理不了html中img图片。
+* 
+
+```json
+module.exports = {
+  module: {
+    rules: [
+      {
+        // 问题：默认处理不了html中img图片
+        // 处理图片资源
+        test: /\.(jpg|png|gif)$/,
+        // 使用一个loader
+        // 下载 url-loader file-loader
+        loader: 'url-loader',
+        options: {
+          // 图片大小小于8kb，就会被base64处理
+          // 优点: 减少请求数量（减轻服务器压力）
+          // 缺点：图片体积会更大（文件请求速度更慢）
+          limit: 8 * 1024,
+          // 问题：因为url-loader默认使用es6模块化解析，而html-loader引入图片是commonjs
+          // 解析时会出问题：[object Module]
+          // 解决：关闭url-loader的es6模块化，使用commonjs解析
+          esModule: false,
+          // 给图片进行重命名
+          // [hash:10]取图片的hash的前10位
+          // [ext]取文件原来扩展名
+          name: '[hash:10].[ext]'
+        }
+      },
+    ]
+  },
+}
+```
+
+
+
+
+
+### 2. `html-loader` 配置
+
+
+
+
+
+
+
+
 
 
 
