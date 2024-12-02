@@ -23,6 +23,10 @@
 
 
 
+* [学习webpack loader，这一篇文章足够了。](https://blog.csdn.net/SmileLife123/article/details/133417378)
+
+
+
 # 一、Webpack简介
 
 ## 1. 引入
@@ -168,6 +172,49 @@ Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。配置
 webpack是一个打包工具，即webpack会将一切文件视为模块，但是webpack在打包的时候只是认识JS文件或者JSON文件，并不认识CSS文件，png图片等，如果想让webpack能够在打包的时候识别其他文件，就必须要使用loader，即loader的作用就是让webpack拥有可以加载和了解除JS文件以外的其他文件。
 
 
+
+## 9. 手写loader
+
+[深度解读Webpack中的loader原理](https://www.cnblogs.com/gogo2027/p/16812364.html)
+
+[Webpack 原理系列：如何编写loader](https://www.51cto.com/article/664515.html)
+
+
+
+## 10. loader 单个与多个的写法
+
+```json
+ module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [ 'style-loader', 'css-loader', 'less-loader' ]
+      },
+      {
+        // 问题：默认处理不了html中img图片
+        // 处理图片资源
+        test: /\.(jpg|png|gif)$/,
+        // 使用一个loader
+        // 下载 url-loader file-loader
+        loader: 'url-loader',
+        options: {
+          // 图片大小小于8kb，就会被base64处理
+          // 优点: 减少请求数量（减轻服务器压力）
+          // 缺点：图片体积会更大（文件请求速度更慢）
+          limit: 8 * 1024,
+          // 问题：因为url-loader默认使用es6模块化解析，而html-loader引入图片是commonjs
+          // 解析时会出问题：[object Module]
+          // 解决：关闭url-loader的es6模块化，使用commonjs解析
+          esModule: false,
+          // 给图片进行重命名
+          // [hash:10]取图片的hash的前10位
+          // [ext]取文件原来扩展名
+          name: '[hash:10].[ext]'
+        }
+      }
+   }
+}
+```
 
 
 
@@ -582,16 +629,23 @@ module.exports = {
 
 ## 五、webpack4 - 打包图片资源
 
+场景：js中引入less文件，less文件中url() 包含图片。
+
 ```sh
+# 需要下载两个包，url-loader 依赖 file-loader
 $ pnpm add url-loader -D
+$ pnpm add file-loader -D
 
 $ pnpm add html-loader -D
 ```
 
-### 1. `url-loader` 配置
+
+
+### 第一类：css中的url引入的图片
+
+#### 1. `url-loader` 配置
 
 * `url-loader`问题：默认处理不了html中img图片。
-* 
 
 ```json
 module.exports = {
@@ -626,9 +680,345 @@ module.exports = {
 
 
 
+### 第二类：html中的图片
+
+### 1. `html-loader` 版本问题
+
+尝试了多个版本，发现都不行，最后尝试 0 的版本，才适配webpack4 ！！
+
+```sh
+$ pnpm add html-loader@0 -D
+```
+
+![](images/003.png)
+
 
 
 ### 2. `html-loader` 配置
+
+```json
+module: {
+    rules: [
+      {
+        test: /\.html$/,
+        // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
+        loader: 'html-loader'
+      }
+    ]
+},
+```
+
+
+
+#### a. 初始 html
+
+![](images/004.png)
+
+
+
+#### b. 打包后的html
+
+![](images/005.png)
+
+
+
+#### c.  `url-loader` 中 `esModule: false, ` 的作用
+
+可以看到，如果不设置 `url-loader` 中 `esModule: false, ` ，则打包出来的图片不认识！！！
+
+
+
+![](images/007.png)
+
+![](images/008.png)
+
+
+
+#### d.  `url-loader` 中 `name: '[hash:10].[ext]'` 的作用
+
+设置图片名规则！！！
+
+![](images/006.png)
+
+![](images/009.png)
+
+
+
+## 六、webpack4 - 打包其他资源
+
+<font color='red' size=5>核心：这类资源不需要做任何处理，直接输出出去即可！！！例如字体</font>
+
+具体看项目。
+
+### 1、配置
+
+```json
+module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        // 排除css/js/html...资源
+        exclude: /\.(html|js|css|less|jpg|png|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[hash:10].[ext]'
+        }
+      }
+    ]
+  },
+}
+```
+
+
+
+## 七、webpack4 - devServer
+
+为了能够实时修改代码，实时能查看打包结果的功能。推出了 『开发服务器』devServer。
+
+
+
+### 1、依赖 `webpack-dev-server` 实现实时构建
+
+```sh
+# 注意匹配版本，webpack4 & webpack-dev-server@3
+$ pnpm add webpack-dev-server@3 -D
+```
+
+
+
+### 2、 `devServer` 作用与特点
+
+* 开发服务器 devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器~~）
+* 特点：只会在内存中编译打包，不会有任何输出
+* 由于只在项目内安装，启动devServer指令为：`$ npx webpack-dev-server`
+    * webpack是全局安装，所以运行只需要：`$ webpack`
+
+
+
+### 3、 `devServer` 配置
+
+```json
+module.exports = {
+  entry: './src/index.js',
+  mode: 'development',
+
+  // 开发服务器 devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器~~）
+  // 特点：只会在内存中编译打包，不会有任何输出
+  // 启动devServer指令为：npx webpack-dev-server
+  devServer: {
+    // 项目构建后路径
+    contentBase: resolve(__dirname, 'build'),
+    // 启动gzip压缩
+    compress: true,
+    // 端口号
+    port: 3000,
+    // 自动打开浏览器
+    open: true
+  }
+}
+```
+
+
+
+## 八、开发环境配置（全）
+
+
+
+### 1. 上面学习的所有配置集合
+
+```json
+/*
+  开发环境配置：能让代码运行
+    运行项目指令：
+      webpack 会将打包结果输出出去
+      npx webpack-dev-server 只会在内存中编译打包，没有输出
+*/
+
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/js/index.js',
+  output: {
+    filename: 'js/built.js',
+    path: resolve(__dirname, 'build')
+  },
+  module: {
+    rules: [
+      // loader的配置
+      {
+        // 处理less资源
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
+        // 处理css资源
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        // 处理图片资源
+        test: /\.(jpg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8 * 1024,
+          name: '[hash:10].[ext]',
+          // 关闭es6模块化
+          esModule: false,
+          outputPath: 'imgs'
+        }
+      },
+      {
+        // 处理html中img资源
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
+      {
+        // 处理其他资源
+        exclude: /\.(html|js|css|less|jpg|png|gif)/,
+        loader: 'file-loader',
+        options: {
+          name: '[hash:10].[ext]',
+          outputPath: 'media'
+        }
+      }
+    ]
+  },
+  plugins: [
+    // plugins的配置
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  mode: 'development',
+  devServer: {
+    contentBase: resolve(__dirname, 'build'),
+    compress: true,
+    port: 3000,
+    open: true
+  }
+};
+```
+
+
+
+### 2. 运行
+
+* `$ npx webpack-dev-server` 运行开发模拟环境
+* `$ npx webpack` 打包
+
+
+
+
+
+## 九、环境介绍
+
+* 开发环境
+    * 主要将原生代码  ---》  webpack  --》 bundle.js
+    * 将代码通过webpack构建生成bundle.js，其中也加入一些自动化，如：自动打开等；
+* 生成环境
+    * 将css代码从js中剥离，避免js文件过大，还有闪屏的问题；
+    * 代码压缩
+    * 兼容多平台，多版本
+
+
+
+## 十、生产环境 - 提取CSS成单独文件
+
+### 1. 安装插件 `mini-css-extract-plugin@1`
+
+```sh
+# 注意版本
+$ pnpm add mini-css-extract-plugin@1 -D
+```
+
+
+
+### 2. 配置
+
+* 引入 `mini-css-extract-plugin`
+* 配置plugins： `MiniCssExtractPlugin`
+* `rules` 中 使用 `MiniCssExtractPlugin.loader,`  这个loader取代style-loader。作用：提取js中的css成单独文件。
+
+```json
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  //....
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          // 创建style标签，将样式放入
+          // 'style-loader', 
+          // 这个loader取代style-loader。作用：提取js中的css成单独文件
+          MiniCssExtractPlugin.loader,
+          // 将css文件整合到js文件中
+          'css-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    // plugins的配置
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      // 对输出的css文件进行重命名
+      filename: 'css/built.css'
+    })
+  ],
+}
+```
+
+
+
+### 3. 打包截图
+
+![](images/010.png)
+
+![](images/011.png)
+
+
+
+
+
+## 十一、生产环境 - CSS兼容性处理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

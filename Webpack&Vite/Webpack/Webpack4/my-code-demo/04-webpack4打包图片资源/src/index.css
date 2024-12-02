@@ -1,0 +1,29 @@
+#box1 {
+  background-color: greenyellow;
+  width: 300px;
+  height: 300px;
+  background-image: url('imgs/001.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#box2 {
+  background-color: greenyellow;
+  width: 300px;
+  height: 300px;
+  background-image: url('imgs/002.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#box3 {
+  background-color: greenyellow;
+  width: 300px;
+  height: 300px;
+  background-image: url('imgs/003.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+img {
+  width: 100px;
+  height: 100px;
+  background-color: antiquewhite;
+}

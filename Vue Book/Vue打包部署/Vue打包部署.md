@@ -338,17 +338,11 @@ $ pnpm run serve
 
 ## 4. ⭐️方式二：本地nginx服务器部署
 
-
+> 前往 Server仓库 -》 Nginx -》 Nginx实操篇 -》六、Vue项目部署到Nginx ⭐️⭐️
 
 
 
 ## 5. ⭐️方式三：云服务器部署
-
-
-
-
-
-
 
 
 

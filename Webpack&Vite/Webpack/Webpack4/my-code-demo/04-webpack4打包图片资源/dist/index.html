@@ -1,100 +1,26 @@
-Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Module build failed (from ./node_modules/.pnpm/html-loader@5.1.0_webpack@4.47.0_webpack-cli@3.3.12_/node_modules/html-loader/dist/cjs.js):
-  TypeError: this.getOptions is not a function
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack img</title>
+</head>
+<body>
   
-  
-  - TypeError: this.getOptions is not a function
-  
-  - ModuleBuildError: Module build failed (from ./node_modules/.pnpm/html-loader@5.1.0_webpack@4.47.0_webpack-cli@3.3.12_/node_modules/html-loader/dist/cjs.js):
-  
-  - TypeError: this.getOptions is not a function
-  
-  - index.js:18 Object.loader
-    [04-webpack4打包图片资源]/[html-loader@5.1.0_webpack@4.47.0_webpack-cli@3.3.12_]/[html-loader]/dist/index.js:18:27
-  
-  - NormalModule.js:316 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/NormalModule.js:316:20
-  
-  - LoaderRunner.js:367 
-    [04-webpack4打包图片资源]/[loader-runner@2.4.0]/[loader-runner]/lib/LoaderRunner.js:367:11
-  
-  - LoaderRunner.js:233 
-    [04-webpack4打包图片资源]/[loader-runner@2.4.0]/[loader-runner]/lib/LoaderRunner.js:233:18
-  
-  - child-compiler.js:131 
-    [04-webpack4打包图片资源]/[html-webpack-plugin@4.5.2_webpack@4.47.0_webpack-cli@3.3.12_]/[html-webpack-plugin]/lib/child-compiler.js:131:18
-  
-  - Compiler.js:343 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compiler.js:343:11
-  
-  - Compiler.js:681 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compiler.js:681:15
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compiler.js:678 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compiler.js:678:31
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1423 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1423:35
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1414 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1414:32
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1409 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1409:36
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1405 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1405:32
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1342 Compilation.seal
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1342:27
-  
-  - Compiler.js:675 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compiler.js:675:18
-  
-  - Compilation.js:1261 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1261:4
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [04-webpack4打包图片资源]/[tapable@1.1.3]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1253 Compilation.finish
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1253:28
-  
-  - Compiler.js:672 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compiler.js:672:17
-  
-  
-  - Compilation.js:1185 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1185:12
-  
-  - Compilation.js:1097 
-    [04-webpack4打包图片资源]/[webpack@4.47.0_webpack-cli@3.3.12]/[webpack]/lib/Compilation.js:1097:9
-  
-</pre><script src="bundle.js"></script>
+  <!-- 背景图 -->
+  <div id="box1"></div>
+  <div id="box2"></div>
+  <div id="box3"></div>
+
+
+  <!-- 图片 -->
+  <img src="c7eb66ef8d.png" alt="">
+
+  <img src="data:image/png;base64,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" alt="">
+
+
+  <!-- 引入打包后的js文件，不需要添加，会自动引入 -->
+  <!-- <script type="text/javascript" src="./bundle.js"></script> -->
+
+<script src="bundle.js"></script></body>
+</html>
