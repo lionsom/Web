@@ -344,6 +344,28 @@ $ pnpm run serve
 
 ## 5. ⭐️方式三：云服务器部署
 
+### a. **GitHub Pages**：
+
+方式一：
+
+1. 将代码推送到 GitHub 仓库。
+2. 在项目设置中启用 GitHub Pages，选择 `dist` 文件夹。
+
+方式二：`gh-pages`
+
+* [用最简单的方式来部署自己的gh-pages 网页](https://israynotarray.com/git/20230530/3386912069/)
+
+
+
+### b. **Vercel/Netlify**：
+
+1. 注册 Vercel 或 Netlify 账户。
+2. 直接将项目链接到平台，通过自动化流程进行部署。
+
+
+
+## 6. **Docker 部署** （未学习）
+
 
 
 

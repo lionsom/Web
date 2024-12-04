@@ -1203,7 +1203,7 @@ document.querySelector('.reg-btn').addEventListener('click', () => {
 
 # 三、Promise（单独文档）
 
-> js ->  js进阶 ->  promise
+> js ->  JavaSript Book -> JavaScript异步编程  ->  promise
 
 
 
@@ -1426,7 +1426,7 @@ document.querySelector('.reg-btn').addEventListener('click', () => {
 
 # 六、AJAX进阶（单独文档）
 
-> js -> JS进阶 -> js异步编程
+> js -> JavaScript Book -> js异步编程
 
 
 
