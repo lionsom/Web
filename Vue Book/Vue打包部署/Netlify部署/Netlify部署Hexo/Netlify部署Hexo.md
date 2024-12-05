@@ -16,6 +16,7 @@
 # Netlify实操
 
 * 官网：https://www.netlify.com/
+* [知乎 - Hexo+Netlify快速搭建个人博客](https://zhuanlan.zhihu.com/p/39923772)
 
 
 
