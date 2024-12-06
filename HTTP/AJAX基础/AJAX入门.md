@@ -14,11 +14,9 @@
 
     **AJAX 是异步的 JavaScript 和 XML （Asynchronous JavaScript And XML）。**简单点说，就是使用 ***XMLHttpRequest*** 对象与服务器通信。它可以使用 JSON、XML、HTML 和 text 文本等格式发送和接收数据。AJAX最吸引人的就是它的 **“异步“**特性，也就是说它可以在不重新刷新页面的情况下与服务器通信，交换数据，或更新页面。
 
-* 概念：
+* 概念：**AJAX 是浏览器与服务器进行数据通信的技术。**
 
-    **AJAX 是浏览器与服务器进行数据通信的技术。**
-
-* 它不是一种编程语言。它是一种基于 HTML、CSS、JavaScript 和 XML，让开发更好、更快和更有互动的 Web 应用的技术
+* 它不是一种编程语言。它是一种基于 HTML、CSS、JavaScript 和 XML，让开发更好、更快和更有互动的 Web 应用的技术。
 * JavaScript：JavaScript 用于使网络应用程序互动、提供趣味和提高用户友好性。
 * XML：可扩展标记语言（XML）是一种用于存储和传输网络服务器数据的格式。
 

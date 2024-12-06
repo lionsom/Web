@@ -13,24 +13,19 @@
     * [Vue项目笔记集合](./Vue3笔记汇总/Vue项目笔记集合)
         * [黑马-Vue3大事件](./Vue3笔记汇总/Vue项目笔记集合/黑马-Vue3大事件)
         * [尚硅谷-Vue2尚品汇](./Vue3笔记汇总/Vue项目笔记集合/尚硅谷-Vue2尚品汇)
-
 * [Vue2 i18n](./Vue2 i18n/Vue2 i18n.md)
 * [Vue3 i18n](./Vue3 i18n/Vue3 i18n.md)
-
 * [Vue export & import](./Vue export & import/Vue export & import.md)
 * [ref vs reactive](./ref vs reactive/ref vs reactive.md)
 * [声明ref对象](./声明ref对象/声明ref对象.md)
 * [Vue3+Vite配置proxy](./Vue3+Vite配置proxy/Vue3+Vite配置proxy.md)
-* [Vue跨域请求](./Vue跨域请求/Vue跨域请求.md)
 * [Vue组件通信](./Vue组件通信)
     * [黑马Vue2 day04-组件通讯](./Vue组件通信/黑马Vue2 day04-组件通讯/day04.md)
     * [Vue2组件通信](./Vue组件通信/Vue2组件通信/Vue2组件通信.md)
-
 * [Vuex Usage（todo）](./Vuex Usage/Vuex Usage.md)
 * [Pinia Usage（todo）](./Pinia Usage/Pinia Usage.md)
 * [VueRouter](./VueRouter/VueRouter.md)
 * [Vue3图片懒加载](./Vue3图片懒加载/Vue3图片懒加载.md)
-
 * [defineProps](./defineProps/defineProps.md)
 * [Vue2/3公共方法](./Vue2/3公共方法/Vue2/3公共方法.md)
 * [Vue3判断PC与Mobile方案](./Vue3判断PC与Mobile方案/Vue3判断PC与Mobile方案.md)
@@ -40,7 +35,6 @@
     * [Vue规范](./Vue规范/Vue规范.md)
 * [Vue组件封装](./Vue组件封装)
     * [Vue3组件封装心得](./Vue组件封装/Vue3组件封装心得/Vue3组件封装的一些技巧和心得.md)
-
 * [Vue3 PDF预览](./Vue3 PDF预览/PDF预览.md)
 
 
