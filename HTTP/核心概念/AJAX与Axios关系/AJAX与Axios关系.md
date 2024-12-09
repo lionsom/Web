@@ -19,11 +19,7 @@ AJAX 是一种**原生 JavaScript 技术**，通常通过以下方式发送请�
 ### **3. AJAX 与 Axios 的关系**
 
 - **本质上的关系**：Axios 是基于 `XMLHttpRequest`（或 `Fetch API`）封装的，它简化了发起 HTTP 请求的过程，并提供了更多的功能和便利性。
-
-- 功能上的区别
-
-    ：
-
+- 功能上的区别：
     - **AJAX**：原生的请求方式，使用 `XMLHttpRequest` 或 `Fetch API` 来发送 HTTP 请求。它需要手动处理很多事情，比如设置请求头、处理请求和响应的格式、手动解析 JSON 等。
     - **Axios**：基于 AJAX 技术（`XMLHttpRequest` 或 `Fetch`）的第三方库，封装了许多常见的请求任务，提供了更简洁的 API 和更多的功能，如自动转换 JSON 数据、请求和响应拦截器、取消请求、并发请求等。
 
