@@ -1067,6 +1067,8 @@ module.exports = {
 
 ## 十一、生产环境 - CSS兼容性处理
 
+* [webpack官网 - postcss-loader](https://webpack.docschina.org/loaders/postcss-loader/)
+
 ### 1. 安装loader 和 插件
 
 * "postcss-loader": "^8.1.1",
