@@ -183,6 +183,83 @@ webpack是一个打包工具，即webpack会将一切文件视为模块，但是
 
 ## 10. loader 单个与多个的写法
 
+### a. loader默认配置
+
+```js
+// webpack.config.js
+module.exports = {
+  entry: './src/js/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          /**
+           * css兼容性处理：postcss --> postcss-loader postcss-preset-env
+           */
+//--------------------------------------------------------------------------
+          // 使用 loader 默认配置
+          'postcss-loader',
+          // 等价于
+          {
+          	 loader: 'postcss-loader'
+          }
+//--------------------------------------------------------------------------
+        ]
+      }
+    ]
+  },
+  ......
+};
+```
+
+
+
+### b. loader修改配置 - options
+
+```js
+
+          
+          
+// webpack.config.js
+module.exports = {
+  entry: './src/js/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          /**
+           * css兼容性处理：postcss --> postcss-loader postcss-preset-env
+           */
+//--------------------------------------------------------------------------
+		  {
+            loader: 'postcss-loader',
+            options: { 
+              ident: 'postcss',
+              plugins: () => [
+                // postcss的插件 
+                require('postcss-preset-env')()
+              ]
+            }
+          }
+//--------------------------------------------------------------------------
+        ]
+      }
+    ]
+  },
+  ......
+};
+```
+
+
+
+### c. loader多种写法
+
 ```json
  module: {
     rules: [
@@ -623,7 +700,7 @@ module.exports = {
 
  * loader:  1. 下载  2. 使用（配置loader）
  * plugins: 1. 下载  2. 引入  3. 使用
-  
+
 
 
 
@@ -919,7 +996,7 @@ module.exports = {
 * 开发环境
     * 主要将原生代码  ---》  webpack  --》 bundle.js
     * 将代码通过webpack构建生成bundle.js，其中也加入一些自动化，如：自动打开等；
-* 生成环境
+* 生产环境
     * 将css代码从js中剥离，避免js文件过大，还有闪屏的问题；
     * 代码压缩
     * 兼容多平台，多版本
@@ -990,21 +1067,110 @@ module.exports = {
 
 ## 十一、生产环境 - CSS兼容性处理
 
+### 1. 安装loader 和 插件
+
+* "postcss-loader": "^8.1.1",
+* "postcss-preset-env": "^10.1.1",
+    * 用来识别当前具体的环境，精确到浏览器具体的版本。
 
 
 
+### 2. `postcss-loader` 配置
+
+```js
+// webpack.config.js
+module.exports = {
+  entry: './src/js/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          /**
+           * css兼容性处理：postcss --> postcss-loader postcss-preset-env
+           *
+           * postcss-preset-env的作用：
+           * 	帮postcss找到package.json中browserslist里面的配置，通过配置加载指定的css兼容性样式。
+           */
+            
+//---------------------------------------------------------------------------
+          // 使用 loader 默认配置
+          'postcss-loader',
+          // 等价于
+          {
+          	 loader: 'postcss-loader'
+          }
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+          // 修改 postcss-loader 配置
+          {
+            loader: 'postcss-loader',
+            options: { 
+              ident: 'postcss',
+              plugins: () => [
+                // postcss的插件 
+                require('postcss-preset-env')()
+              ]
+            }
+          }
+//---------------------------------------------------------------------------            
+        ]
+      }
+    ]
+  },
+  ......
+};
+```
 
 
 
+### 3. `postcss-preset-env` 配置和作用
+
+* `postcss-preset-env` 是 `postcss` 的插件 
+* `postcss-preset-env` 的作用
+    * 帮 `postcss` 找到 `package.json` 中 `browserslist` 里面的配置，通过配置加载指定的css兼容性样式。
 
 
 
+#### a. package.json 中 browserslist
+
+**`package.json`** 文件中 `browserslist` ：
+
+```json
+{
+  "name": "my-code-demo",
+  "devDependencies": {
+  },
+  "browserslist": {
+    // 开发环境 --》 与 `webpack.config.js` 中的 `  mode: 'development',` 不是一个东西
+    //  --》 设置node环境变量：process.env.NODE_ENV = 'development';
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    // 生产环境：默认
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  }
+}
+```
 
 
 
+### 4. 设置 `NodeJS` 环境
+
+<font color='red' size=5>注意：这里的NodeJS环境 与 `webpack.config.js` 中的 `  mode: 'development',` 不是一个东西！！！！</font>
 
 
 
+设置node环境变量：process.env.NODE_ENV = 'development';
 
 
 
