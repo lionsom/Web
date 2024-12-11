@@ -1071,13 +1071,15 @@ module.exports = {
 
 ### 1. 安装loader 和 插件
 
-* "postcss-loader": "^8.1.1",
-* "postcss-preset-env": "^10.1.1",
+* Webpack4 注意版本：
+
+* "postcss-loader": "^4.3.0",
+* "postcss-preset-env": "^5.3.0",
     * 用来识别当前具体的环境，精确到浏览器具体的版本。
 
 
 
-### 2. `postcss-loader` 配置
+### 2-1. `postcss-loader` 配置 - 方式一
 
 ```js
 // webpack.config.js
@@ -1110,20 +1112,61 @@ module.exports = {
           // 修改 postcss-loader 配置
           {
             loader: 'postcss-loader',
-            options: { 
-              ident: 'postcss',
-              plugins: () => [
-                // postcss的插件 
-                require('postcss-preset-env')()
-              ]
-            }
-          }
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // 其他选项
+                    },
+                  ],
+                ],
+              },
+            },
+          },
 //---------------------------------------------------------------------------            
         ]
       }
     ]
   },
   ......
+};
+```
+
+
+
+### 2-2.  `postcss-loader` 配置 - 方式二
+
+使用 PostCSS 本身的配置文件：**postcss.config.js**
+
+```js
+module.exports = {
+  plugins: [
+    [
+      'postcss-preset-env',
+      {
+        // 其他选项
+      },
+    ],
+  ],
+};
+```
+
+Loader 将会**自动**搜索配置文件。
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
 };
 ```
 
@@ -1168,23 +1211,75 @@ module.exports = {
 
 ### 4. 设置 `NodeJS` 环境
 
+> 设置node环境变量：process.env.NODE_ENV = 'development';
+
 <font color='red' size=5>注意：这里的NodeJS环境 与 `webpack.config.js` 中的 `  mode: 'development',` 不是一个东西！！！！</font>
 
+![](images/016.png)
 
-
-设置node环境变量：process.env.NODE_ENV = 'development';
-
-
-
+![](images/017.png)
 
 
 
+### 5. 修改 node 环境，对比打包后的CSS
+
+#### a. node环境 = 'development'
+
+![](images/012.png)
+
+![](images/013.png)
+
+
+
+#### b. Nodejs 环境 = 'production'
+
+![](images/014.png)
+
+![](images/015.png)
 
 
 
 
 
+## 十二、生产环境 - CSS压缩
 
+### 1. 安装插件
+
+* `optimize-css-assets-webpack-plugin`
+* `$ pnpm add optimize-css-assets-webpack-plugin -D `
+
+
+
+webpack.config.js
+
+```js
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+
+module.exports = {
+  entry: "./src/js/index.js",
+  output: {
+    filename: "js/built.js",
+    path: resolve(__dirname, "build"),
+  },
+  plugins: [
+    // css压缩，无需多余配置
+    new OptimizeCssAssetsWebpackPlugin(),
+  ],
+};
+
+```
+
+
+
+构建： `$ npx webpack`
+
+![](images/018.png)
+
+
+
+
+
+## 十三、js语法检查
 
 
 
