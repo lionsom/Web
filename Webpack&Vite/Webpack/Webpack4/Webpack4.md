@@ -1246,11 +1246,12 @@ module.exports = {
 ### 1. 安装插件
 
 * `optimize-css-assets-webpack-plugin`
-* `$ pnpm add optimize-css-assets-webpack-plugin -D `
+    * `$ pnpm add optimize-css-assets-webpack-plugin -D `
 
 
 
-webpack.config.js
+
+webpack.config.js：
 
 ```js
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
@@ -1277,9 +1278,104 @@ module.exports = {
 
 
 
+## 十三、eslint检查js语法
+
+### 1. 安装包 和 loader
+
+* webpack4：js语法检测
+    * eslint：` $ pnpm add eslint@8 -D`
+    * eslint-loader：`$ pnpm add eslint-loader -D`
+* 检测规则airbnb：eslint-config-airbnb-base：https://www.npmjs.com/package/eslint-config-airbnb-base
+    * ECMAScript 6+
+        * requires `eslint` and `eslint-plugin-import`.
+        * `$ pnpm add eslint-config-airbnb-base eslint-plugin-import -D`
+        * Add `"extends": "airbnb-base"` to your .eslintrc.
+    * Lints ES5 and below.
+        * Requires `eslint` and `eslint-plugin-import`
+        * Add `"extends": "airbnb-base/legacy"` to your .eslintrc
 
 
-## 十三、js语法检查
+
+注意：Webpack4 对应版本：
+
+```js
+"eslint": "6",
+"eslint-config-airbnb-base": "13",
+"eslint-loader": "2",
+"eslint-plugin-import": "^2.31.0",
+```
+
+
+
+### 2. 使用package.json中eslintConfig中设置。
+
+或者 Add `"extends": "airbnb-base"` to your .eslintrc.
+
+```json
+  "eslintConfig": {
+    "extends": "airbnb-base"
+  }
+```
+
+![](images/021.png)
+
+
+
+### 3. 配置 `webpack.config.js`
+
+可配置：自动修复。
+
+![](images/022.png)
+
+
+
+### 4. 打包 `$ npx webpack`
+
+js源码：
+
+![](images/020.png)
+
+控制台报错：
+
+![](images/019.png)
+
+
+
+
+
+## 十四、 babel兼容性处理js
+
+### 1. 下载包
+
+* `babel-loader`
+* `@babel/core`
+* `@babel/preset-env`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

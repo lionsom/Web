@@ -1,0 +1,11 @@
+{
+   "editor.tabSize": 3,
+   
+   // 当保存的时候 eslint自动修复数据
+   "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+   },
+
+   // 保存代码，不自动格式化
+   "editor.formatOnSave": false,
+}

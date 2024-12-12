@@ -1,3 +1,7 @@
+[新手入，一篇文章讲清eslint和prettier的npm包和vscode插件的关系](https://juejin.cn/post/6990929456382607374#heading-1)
+
+
+
 
 
 # ESLint
@@ -108,4 +112,229 @@ new Vue ( {
 
 + 注意：eslint的配置文件必须在根目录下，这个插件才能才能生效。打开项目必须以根目录打开，一次打开一个项目
 + 注意：使用了eslint校验之后，把vscode带的那些格式化工具全禁用了 Beatify 、Prettier
+
+
+
+
+
+
+
+
+
+
+
+# ESlint 实操 - 2024-12
+
+
+
+## 零、概念区分：VSCode插件与npm包的区别和使用（ESlint、Prettier、Vetur）
+
+* https://www.panyanbin.com/article/47d1c4a4.html
+
+
+
+
+
+
+
+## 一、只安装 `eslint` 包
+
+ESLint 包是一个 JavaScript 的代码检查工具。你可以通过在项目的终端中运行`$ npm install eslint --save-dev`（如果使用 npm 作为包管理器）来安装它。
+
+### 1. 安装
+
+```sh
+$ pnpm add eslint -D
+```
+
+### 2. `eslint` 检测
+
+```sh
+$ pnpm eslint:lint
+```
+
+```json
+// package.json
+{
+  "scripts": {
+    "eslint:lint": "eslint src/index.js",
+    "eslint:fix":  "eslint src/index.js --fix"    // 自动修复问题
+  },
+}
+```
+
+### 3. 报错 - 没找到 `eslint` 配置文件
+
+![](images/004.png)
+
+### 4. 创建 `eslint` 配置文件
+
+#### 方式一：`$ npm init @eslint/config`
+
+![](images/005.png)
+
+自动创建 `.eslintrc.js` 文件：
+
+![](images/006.png)
+
+
+
+#### 方式二：VSCode命令行 `> Create ESLint configuration`
+
+
+
+#### 方式三：终端 `$ npx eslint --init`
+
+
+
+####  方式四：手动创建多种配置文件格式
+
+常见的配置文件有`.eslintrc.js`、`.eslintrc.json`或者`.eslintrc.yml`。
+
+```js
+// 简单的.eslintrc.js配置文件示例
+module.exports = {
+   "env": {
+     "browser": true,
+     "es6": true
+   },
+   "extends": "eslint:recommended",
+   "rules": {
+     "indent": ["error", 2],
+     "linebreak - style": ["error", "unix"],
+     "quotes": ["error", "single"],
+     "semi": ["error", "always"]
+   }
+ };
+```
+
+
+
+## 二、只安装 `eslint vscode ` 插件
+
+### 1. 问：只安装 `vscode ESLint` 插件 需要安装 eslint包吗？
+
+<font color='red' size=5>答案：必须安装eslint包！！</font>
+
+vscode中的eslint插件仅仅只是eslint插件，其本质还是会调用项目本地或全局安装的eslint（npm包），然后将eslint的报错反馈给vscode，因此我们可以直接在编辑器中看到错误
+
+也就说ESlint必须依赖 **本地安装 / 全局安装** 的eslint才可以正常工作，可以对比webpack-cli与webpack的关系。
+
+当安装这个扩展插件后，可以在编辑器的配置文件（`.vscode/settings.json`）中进行eslint的配置，如编辑器识别文件类型，保存之后进行lint等
+
+![](images/007.png)
+
+![](images/008.png)
+
+
+
+### 2. 忽略某些文件
+
+* [官网 - 忽略文件](https://zh-hans.eslint.org/docs/latest/use/configure/ignore#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84-ignorepatterns)
+
+#### a. 配置文件中的 `ignorePatterns` 
+
+```js
+// .eslintrc.js
+module.exports = {
+  "ignorePatterns": [".eslintrc.js"],  // 忽略eslintrc.js文件的检测
+  'rules': {
+    'indent': ['error', 5],  // 缩进为5个空格
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always']
+  }
+};
+```
+
+
+
+#### b. `.eslintignore` 文件
+
+
+
+#### c. 使用替代文件
+
+如果你想使用一个不同于当前工作目录中的 `.eslintignore` 的文件，你可以在命令行中使用 `--ignore-path` 选项来指定它。比如你也可以使用 `.jshintignore` 文件，因为它们格式一样：
+
+```shell
+$ eslint --ignore-path .jshintignore file.js
+```
+
+你也可以使用 `.gitignore` 文件：
+
+```shell
+$ eslint --ignore-path .gitignore file.js
+```
+
+任何遵循标准忽略文件格式的文件都可以被使用。请记住，指定 `--ignore-path` 意味着任何现有的 `.eslintignore` 文件将不会被使用。注意 `.eslintignore`中的 glob 规则遵循 `.gitignore` 中的规则。
+
+
+
+#### d. package.json 中的 eslintIgnore
+
+```json
+{
+    "name": "mypackage",
+    "version": "0.0.1",
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true
+        }
+    },
+    "eslintIgnore": ["hello.js", "world.js"]
+}
+```
+
+
+
+### 3. 保存自动修复 ` .vscode/settings.json`
+
+<font color='red' size=5>如果不生效，重启VSCode！！！</font>
+
+` .vscode/settings.json`：
+
+```json
+{
+   "editor.tabSize": 3,
+   // 当保存的时候 eslint自动修复数据
+   "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+   },
+   // 保存代码，不自动格式化
+   "editor.formatOnSave": false,
+}
+```
+
+![](images/009.png)
+
+
+
+## 三、安装 `eslint` 包和 `eslint vscode ` 插件
+
+效果一样，两个互补！
+
+* `eslint` 包，可通过 `$ eslint src/index.js` 进行检测。
+
+* `eslint vscode ` 插件：通过 `settings.json` 配置，可设置保存修改。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
