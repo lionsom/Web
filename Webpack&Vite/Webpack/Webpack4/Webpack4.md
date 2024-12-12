@@ -1345,13 +1345,90 @@ js源码：
 
 ## 十四、 babel兼容性处理js
 
-### 1. 下载包
+* https://blog.csdn.net/hbiao68/article/details/104070143
 
-* `babel-loader`
-* `@babel/core`
-* `@babel/preset-env`
+### 直接打包，看看代码
+
+```js
+// 源码
+const add = (x, y) => {
+  return x + y;
+};
+console.log(add(2, 5));
+```
+
+打包：`$ npx webpack`，可以看到没有做任何兼容，无法在IE浏览器打开！！！
+
+![](images/023.png)
 
 
+
+**总揽：**
+
+```js
+/*
+  js兼容性处理：babel-loader @babel/core 
+    1. 基本js兼容性处理 --> @babel/preset-env
+      问题：只能转换基本语法，如promise高级语法不能转换
+    2. 全部js兼容性处理 --> @babel/polyfill  
+      问题：我只要解决部分兼容性问题，但是将所有兼容性代码全部引入，体积太大了~
+    3. 需要做兼容性处理的就做：按需加载  --> core-js
+*/  
+```
+
+
+
+### 1. 入门版本 - 基本js兼容性处理
+
+#### a. 下载包
+
+* `webpack 4.x`
+
+* `babel-loader@8`  
+* `@babel/core@7`
+* `@babel/preset-env@7`
+
+* 命令：`$ pnpm add babel-loader@8 @babel/core@7 @babel/preset-env@7 -D`  
+
+
+
+#### b. `webpack.config.js` 配置 babel
+
+```js
+ module: {
+    rules: [
+      /*
+        js兼容性处理：babel-loader @babel/core 
+          1. 基本js兼容性处理 --> @babel/preset-env
+            问题：只能转换基本语法，如promise高级语法不能转换
+      */
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: [ '@babel/preset-env' ]
+        }
+      }
+    ]
+  }
+```
+
+
+
+#### c. 构建，兼容失败
+
+结果：`$ npx webpack`，没有对箭头函数进行兼容，原因未知！！！！！
+
+
+
+### 2. 进阶版本 - 全部js兼容性处理
+
+* `@babel/polyfill  @7`
+
+
+
+### 3. 最终版本 - 根据浏览器版本按需设置
 
 
 

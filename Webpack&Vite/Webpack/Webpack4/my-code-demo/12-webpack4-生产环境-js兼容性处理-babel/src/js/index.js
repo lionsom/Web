@@ -1,10 +1,21 @@
-
-function add(a, b) {
-  const c = '123';
-    return a + b;
-}
+import '@babel/polyfill'
 
 
-// 下一行eslint所有规则都失效（下一行不进行eslint检查）
-// eslint-disable-next-line
+const add = (x, y) => {
+  return x + y;
+};
 console.log(add(2, 5));
+
+
+
+
+
+
+const promise = new Promise(resolve => {
+  setTimeout(() => {
+    console.log('定时器执行完了~');
+    resolve();
+  }, 1000);
+});
+
+console.log(promise);

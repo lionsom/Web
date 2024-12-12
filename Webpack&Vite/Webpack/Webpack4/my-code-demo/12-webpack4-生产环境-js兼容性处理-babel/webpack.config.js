@@ -1,7 +1,6 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   entry: './src/js/index.js',
   output: {
@@ -10,28 +9,49 @@ module.exports = {
   },
   module: {
     rules: [
-      /**
-       * js语法检查：eslint-loader eslint
-       * 注意：只检查自己写的源代码，不检查第三方库的源代码，所以需要添加exclude排除项。
-       * 
-       * 设置检查规则：
-       *   airbnb --> eslint-config-airbnb-base eslint-plugin-import eslint
-       *   package.json中eslintConfig中设置。eslintConfig中设置规则时，使用extends来继承规则。
-       *  
-       *     "eslintConfig": {
-       *        "extends": "airbnb-base"
-       *      }
-       * 
-       */
+      /*
+        js兼容性处理：babel-loader @babel/core 
+          1. 基本js兼容性处理 --> @babel/preset-env
+            问题：只能转换基本语法，如promise高级语法不能转换
+          2. 全部js兼容性处理 --> @babel/polyfill  
+            问题：我只要解决部分兼容性问题，但是将所有兼容性代码全部引入，体积太大了~
+          3. 需要做兼容性处理的就做：按需加载  --> core-js
+      */
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          // 自动修复eslint的错误
-          fix: true
-        }
+        loader: 'babel-loader',
+        // options: {
+        //   // 预设：指示babel做怎么样的兼容性处理
+        //   presets: [ '@babel/preset-env' ]
+        // }
       }
+
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'babel-loader',
+      //   options: {
+      //     presets: [
+      //       [
+      //         '@babel/preset-env',
+      //         {
+      //           useBuiltIns: 'usage',
+      //           corejs: {
+      //             version: 3
+      //           },
+      //           targets: {
+      //             chrome: '60',
+      //             firefox: '60',
+      //             ie: '9',
+      //             safari: '10',
+      //             edge: '17'
+      //           }
+      //         }
+      //       ]
+      //     ]
+      //   }
+      // }
     ]
   },
   plugins: [
