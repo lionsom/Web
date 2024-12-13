@@ -19,8 +19,11 @@ module.exports = {
       */
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        exclude: /node_modules|.babelrc.js/,
+        // loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader'
+        }
         // options: {
         //   // 预设：指示babel做怎么样的兼容性处理
         //   presets: [ '@babel/preset-env' ]

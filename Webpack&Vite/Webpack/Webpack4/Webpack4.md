@@ -1347,7 +1347,30 @@ js源码：
 
 * https://blog.csdn.net/hbiao68/article/details/104070143
 
-### 直接打包，看看代码
+
+
+### A. 普通函数，直接打包运行
+
+看看代码，低版本浏览器打开
+
+```js
+function add(x, y) {
+  return x + y;
+}
+console.log(add(2, 5));
+```
+
+![](images/024.png)
+
+**使用低版本firefox打开：**
+
+![](images/025.png)
+
+
+
+### B. 箭头函数，直接打包运行
+
+看看代码，低版本浏览器打开
 
 ```js
 // 源码
@@ -1357,9 +1380,13 @@ const add = (x, y) => {
 console.log(add(2, 5));
 ```
 
-打包：`$ npx webpack`，可以看到没有做任何兼容，无法在IE浏览器打开！！！
+打包：`$ npx webpack`，可以看到没有做任何兼容，无法在低版本Firefox浏览器打开！！！
 
 ![](images/023.png)
+
+**使用低版本firefox打开：失败**
+
+![](images/026.png)
 
 
 
@@ -1384,9 +1411,9 @@ console.log(add(2, 5));
 
 * `webpack 4.x`
 
-* `babel-loader@8`  
-* `@babel/core@7`
-* `@babel/preset-env@7`
+* `babel-loader@8`  ：是webpack的babel插件
+* `@babel/core@7` ：是babel的基础包，必装依赖
+* `@babel/preset-env@7` ：js语法转码的插件
 
 * 命令：`$ pnpm add babel-loader@8 @babel/core@7 @babel/preset-env@7 -D`  
 
