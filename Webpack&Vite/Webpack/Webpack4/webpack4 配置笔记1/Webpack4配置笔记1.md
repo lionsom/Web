@@ -656,7 +656,7 @@ css-loader会遍历css文件，找到所有的url(...)并且处理。style-loade
 
 
 
-## 四、webpack4 - 打包html文件
+# 四、webpack4 - 打包html文件
 
 * [如何利用webpack生成HTML页面](https://array-huang.gitbooks.io/multipage-webapp-architecture-with-webpack/content/chapter4/webpack-build-html-page.html)
 
@@ -670,7 +670,7 @@ $ pnpm add html-webpack-plugin -D
 
 
 
-### 1. `html-webpack-plugin` 配置
+## 1. `html-webpack-plugin` 配置
 
 ```json
 /**
@@ -696,7 +696,7 @@ module.exports = {
 
 
 
-### 2. loader / plugins 使用步骤对比
+## 2. loader / plugins 使用步骤对比
 
  * loader:  1. 下载  2. 使用（配置loader）
  * plugins: 1. 下载  2. 引入  3. 使用
@@ -704,7 +704,7 @@ module.exports = {
 
 
 
-## 五、webpack4 - 打包图片资源
+# 五、webpack4 - 打包图片资源
 
 场景：js中引入less文件，less文件中url() 包含图片。
 
@@ -718,9 +718,9 @@ $ pnpm add html-loader -D
 
 
 
-### 第一类：css中的url引入的图片
+## 第一类：css中的url引入的图片
 
-#### 1. `url-loader` 配置
+### 1. `url-loader` 配置
 
 * `url-loader`问题：默认处理不了html中img图片。
 
@@ -757,7 +757,7 @@ module.exports = {
 
 
 
-### 第二类：html中的图片
+## 第二类：html中的图片
 
 ### 1. `html-loader` 版本问题
 
@@ -821,13 +821,13 @@ module: {
 
 
 
-## 六、webpack4 - 打包其他资源
+# 六、webpack4 - 打包其他资源
 
 <font color='red' size=5>核心：这类资源不需要做任何处理，直接输出出去即可！！！例如字体</font>
 
 具体看项目。
 
-### 1、配置
+## 1、配置
 
 ```json
 module: {
@@ -851,13 +851,13 @@ module: {
 
 
 
-## 七、webpack4 - devServer
+# 七、webpack4 - devServer
 
 为了能够实时修改代码，实时能查看打包结果的功能。推出了 『开发服务器』devServer。
 
 
 
-### 1、依赖 `webpack-dev-server` 实现实时构建
+## 1、依赖 `webpack-dev-server` 实现实时构建
 
 ```sh
 # 注意匹配版本，webpack4 & webpack-dev-server@3
@@ -866,7 +866,7 @@ $ pnpm add webpack-dev-server@3 -D
 
 
 
-### 2、 `devServer` 作用与特点
+## 2、 `devServer` 作用与特点
 
 * 开发服务器 devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器~~）
 * 特点：只会在内存中编译打包，不会有任何输出
@@ -875,7 +875,7 @@ $ pnpm add webpack-dev-server@3 -D
 
 
 
-### 3、 `devServer` 配置
+## 3、 `devServer` 配置
 
 ```json
 module.exports = {
@@ -900,11 +900,11 @@ module.exports = {
 
 
 
-## 八、开发环境配置（全）
+# 八、开发环境配置（全）
 
 
 
-### 1. 上面学习的所有配置集合
+## 1. 上面学习的所有配置集合
 
 ```json
 /*
@@ -982,7 +982,7 @@ module.exports = {
 
 
 
-### 2. 运行
+## 2. 运行
 
 * `$ npx webpack-dev-server` 运行开发模拟环境
 * `$ npx webpack` 打包
@@ -991,7 +991,7 @@ module.exports = {
 
 
 
-## 九、环境介绍
+# 九、环境介绍
 
 * 开发环境
     * 主要将原生代码  ---》  webpack  --》 bundle.js
@@ -1003,9 +1003,9 @@ module.exports = {
 
 
 
-## 十、生产环境 - 提取CSS成单独文件
+# 十、生产环境 - 提取CSS成单独文件
 
-### 1. 安装插件 `mini-css-extract-plugin@1`
+## 1. 安装插件 `mini-css-extract-plugin@1`
 
 ```sh
 # 注意版本
@@ -1014,7 +1014,7 @@ $ pnpm add mini-css-extract-plugin@1 -D
 
 
 
-### 2. 配置
+## 2. 配置
 
 * 引入 `mini-css-extract-plugin`
 * 配置plugins： `MiniCssExtractPlugin`
@@ -1055,7 +1055,7 @@ module.exports = {
 
 
 
-### 3. 打包截图
+## 3. 打包截图
 
 ![](images/010.png)
 
@@ -1065,11 +1065,11 @@ module.exports = {
 
 
 
-## 十一、生产环境 - CSS兼容性处理
+# 十一、生产环境 - CSS兼容性处理
 
 * [webpack官网 - postcss-loader](https://webpack.docschina.org/loaders/postcss-loader/)
 
-### 1. 安装loader 和 插件
+## 1. 安装loader 和 插件
 
 * Webpack4 注意版本：
 
@@ -1079,7 +1079,7 @@ module.exports = {
 
 
 
-### 2-1. `postcss-loader` 配置 - 方式一
+## 2-1. `postcss-loader` 配置 - 方式一
 
 ```js
 // webpack.config.js
@@ -1136,7 +1136,7 @@ module.exports = {
 
 
 
-### 2-2.  `postcss-loader` 配置 - 方式二
+## 2-2.  `postcss-loader` 配置 - 方式二
 
 使用 PostCSS 本身的配置文件：**postcss.config.js**
 
@@ -1172,7 +1172,7 @@ module.exports = {
 
 
 
-### 3. `postcss-preset-env` 配置和作用
+## 3. `postcss-preset-env` 配置和作用
 
 * `postcss-preset-env` 是 `postcss` 的插件 
 * `postcss-preset-env` 的作用
@@ -1180,7 +1180,7 @@ module.exports = {
 
 
 
-#### a. package.json 中 browserslist
+### a. package.json 中 browserslist
 
 **`package.json`** 文件中 `browserslist` ：
 
@@ -1209,7 +1209,7 @@ module.exports = {
 
 
 
-### 4. 设置 `NodeJS` 环境
+## 4. 设置 `NodeJS` 环境
 
 > 设置node环境变量：process.env.NODE_ENV = 'development';
 
@@ -1221,9 +1221,9 @@ module.exports = {
 
 
 
-### 5. 修改 node 环境，对比打包后的CSS
+## 5. 修改 node 环境，对比打包后的CSS
 
-#### a. node环境 = 'development'
+### a. node环境 = 'development'
 
 ![](images/012.png)
 
@@ -1231,7 +1231,7 @@ module.exports = {
 
 
 
-#### b. Nodejs 环境 = 'production'
+### b. Nodejs 环境 = 'production'
 
 ![](images/014.png)
 
@@ -1241,9 +1241,9 @@ module.exports = {
 
 
 
-## 十二、生产环境 - CSS压缩
+# 十二、生产环境 - CSS压缩
 
-### 1. 安装插件
+## 1. 安装插件
 
 * `optimize-css-assets-webpack-plugin`
     * `$ pnpm add optimize-css-assets-webpack-plugin -D `
@@ -1278,9 +1278,9 @@ module.exports = {
 
 
 
-## 十三、eslint检查js语法
+# 十三、eslint检查js语法
 
-### 1. 安装包 和 loader
+## 1. 安装包 和 loader
 
 * webpack4：js语法检测
     * eslint：` $ pnpm add eslint@8 -D`
@@ -1307,7 +1307,7 @@ module.exports = {
 
 
 
-### 2. 使用package.json中eslintConfig中设置。
+## 2. 使用package.json中eslintConfig中设置。
 
 或者 Add `"extends": "airbnb-base"` to your .eslintrc.
 
@@ -1321,7 +1321,7 @@ module.exports = {
 
 
 
-### 3. 配置 `webpack.config.js`
+## 3. 配置 `webpack.config.js`
 
 可配置：自动修复。
 
@@ -1329,7 +1329,7 @@ module.exports = {
 
 
 
-### 4. 打包 `$ npx webpack`
+## 4. 打包 `$ npx webpack`
 
 js源码：
 
@@ -1343,13 +1343,13 @@ js源码：
 
 
 
-## 十四、 babel兼容性处理js
+# 十四、 babel兼容性处理js
 
 * https://blog.csdn.net/hbiao68/article/details/104070143
 
 
 
-### A. 普通函数，直接打包运行
+## A. 普通函数，直接打包运行
 
 看看代码，低版本浏览器打开
 
@@ -1368,7 +1368,7 @@ console.log(add(2, 5));
 
 
 
-### B. 箭头函数，直接打包运行
+## B. 箭头函数，直接打包运行
 
 看看代码，低版本浏览器打开
 
@@ -1405,9 +1405,9 @@ console.log(add(2, 5));
 
 
 
-### 1. 入门版本 - 基本js兼容性处理
+## 1. 入门版本 - 基本js兼容性处理
 
-#### a. 下载包
+### a. 下载包
 
 * `webpack 4.x`
 
@@ -1419,7 +1419,7 @@ console.log(add(2, 5));
 
 
 
-#### b. `webpack.config.js` 配置 babel
+### b. `webpack.config.js` 配置 babel
 
 ```js
  module: {
@@ -1443,25 +1443,169 @@ console.log(add(2, 5));
 
 
 
-#### c. 构建，兼容失败
+### c. 构建，兼容失败
 
 结果：`$ npx webpack`，没有对箭头函数进行兼容，原因未知！！！！！
 
 
 
-### 2. 进阶版本 - 全部js兼容性处理
+## 2. 进阶版本 - 全部js兼容性处理
 
 * `@babel/polyfill  @7`
 
 
 
-### 3. 最终版本 - 根据浏览器版本按需设置
+## 3. 最终版本 - 根据浏览器版本按需设置
+
+
+
+# 十五、js与html压缩
+
+## 1、js压缩
+
+生产环境下，自动压缩js代码，所以将 `webpack.config.js` 中 `model='prodiction'` 即可！！！
+
+
+
+## 2、html压缩
+
+在 `html-webpack-plugin` 配置中添加更多配置
+
+* 移除空格行
+* 移除注释
+
+![](images/027.png)
 
 
 
 
 
+# 十六、生产环境配置（全）
 
+## 1、上面学习的所有配置集合
+
+
+
+### a. `webpack.config.js`
+
+```js
+const { resolve } = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// 定义nodejs环境变量：决定使用browserslist的哪个环境
+process.env.NODE_ENV = 'production';
+
+// 复用loader
+const commonCssLoader = [
+  MiniCssExtractPlugin.loader,
+  'css-loader',
+  {
+    // 还需要在package.json中定义browserslist
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: () => [require('postcss-preset-env')()]
+    }
+  }
+];
+
+module.exports = {
+  entry: './src/js/index.js',
+  output: {
+    filename: 'js/built.js',
+    path: resolve(__dirname, 'build')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [...commonCssLoader]
+      },
+      {
+        test: /\.less$/,
+        use: [...commonCssLoader, 'less-loader']
+      },
+      /*
+        正常来讲，一个文件只能被一个loader处理。
+        当一个文件要被多个loader处理，那么一定要指定loader执行的先后顺序：
+          先执行eslint 在执行babel
+      */
+      {
+        // 在package.json中eslintConfig --> airbnb
+        test: /\.js$/,
+        exclude: /node_modules/,
+        // 优先执行
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          fix: true
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                useBuiltIns: 'usage',
+                corejs: {version: 3},
+                targets: {
+                  chrome: '60',
+                  firefox: '50'
+                }
+              }
+            ]
+          ]
+        }
+      },
+      {
+        test: /\.(jpg|png|gif)/,
+        loader: 'url-loader',
+        options: {
+          limit: 8 * 1024,
+          name: '[hash:10].[ext]',
+          outputPath: 'imgs',
+          esModule: false
+        }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
+      {
+        exclude: /\.(js|css|less|html|jpg|png|gif)/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'media'
+        }
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/built.css'
+    }),
+    new OptimizeCssAssetsWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
+    })
+  ],
+  mode: 'production'
+};
+```
+
+
+
+### b. `package.json`
 
 
 

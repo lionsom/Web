@@ -1,5 +1,5 @@
 
-const promise = new Promise(resolve => {
+export const promise = new Promise(resolve => {
   setTimeout(() => {
     console.log('定时器执行完了~');
     resolve();
@@ -7,3 +7,4 @@ const promise = new Promise(resolve => {
 });
 
 console.log(promise);
+
