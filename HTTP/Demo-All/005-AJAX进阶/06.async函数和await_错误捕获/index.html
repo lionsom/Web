@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async函数和await_错误捕获</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select>
+      <option class="province"></option>
+    </select>
+    <span>城市：</span>
+    <select>
+      <option class="city"></option>
+    </select>
+    <span>地区：</span>
+    <select>
+      <option class="area"></option>
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：async和await_错误捕获
+    */
+    async function getData() {
+      // 1. try包裹可能产生错误的代码
+      try {
+        const pObj = await axios({ url: 'http://hmajax.itheima.net/api/province' })
+        const pname = pObj.data.list[0]
+        const cObj = await axios({ url: 'http://hmajax.itheima.net/api/city', params: { pname } })
+        const cname = cObj.data.list[0]
+        const aObj = await axios({ url: 'http://hmajax.itheima.net/api/area', params: { pname, cname } })
+        const areaName = aObj.data.list[0]
+
+        document.querySelector('.province').innerHTML = pname
+        document.querySelector('.city').innerHTML = cname
+        document.querySelector('.area').innerHTML = areaName
+      } catch (error) {
+        // 2. 接着调用catch块，接收错误信息
+        // 如果try里某行代码报错后，try中剩余的代码不会执行了
+        console.dir(error)
+      }
+    }
+
+    getData()
+  </script>
+</body>
+
+</html>

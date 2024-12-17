@@ -66,10 +66,6 @@ export { baseURL }
 
 
 
-
-
-
-
 # GPT - vue 请求有哪几种方式
 
 在 Vue.js 中，可以使用多种方式来发起 HTTP 请求，与后端进行数据交互。以下是几种常见的方式：
@@ -78,7 +74,7 @@ export { baseURL }
 
 Axios 是一个基于 Promise 的 HTTP 客户端，适用于浏览器和 Node.js。它是 Vue.js 应用中最常用的请求库。
 
-#### 安装 Axios
+#### a. 安装 Axios
 
 首先，通过 npm 或 yarn 安装 Axios：
 
@@ -268,125 +264,3 @@ export default {
 
 
 
-
-# GPT - Promise 与 XMLHttpRequest 关系与区别
-
-Promise 和 XMLHttpRequest 是 JavaScript 中处理异步操作的两种不同机制。它们在功能和用途上有一些重叠，但实现和用法上有显著区别。
-
-### XMLHttpRequest
-
-**XMLHttpRequest (XHR)** 是一种浏览器原生的 API，用于在客户端与服务器之间进行数据交互。它支持各种类型的请求，包括 GET、POST 等，可以处理响应并更新网页内容而无需重新加载整个页面。
-
-#### 特点
-
-- **异步请求**：默认情况下，XHR 是异步的，但也可以配置为同步。
-- **广泛支持**：几乎所有现代浏览器都支持。
-- **事件驱动**：使用事件监听器（如 `onload`、`onerror`）处理响应和错误。
-
-#### 示例
-
-```javascript
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://api.example.com/data', true);
-
-xhr.onload = function() {
-  if (xhr.status >= 200 && xhr.status < 300) {
-    console.log('Success:', xhr.responseText);
-  } else {
-    console.log('Error:', xhr.statusText);
-  }
-};
-
-xhr.onerror = function() {
-  console.log('Request failed');
-};
-
-xhr.send();
-```
-
-### Promise
-
-**Promise** 是一种用于处理异步操作的现代化机制，它更简洁、更具可读性。Promise 是 ES6 引入的原生对象，用于表示一个异步操作的最终完成（或失败）及其结果值。
-
-#### 特点
-
-- **链式调用**：Promise 支持 `then` 和 `catch` 方法，可以链式调用以处理成功和错误。
-- **可组合性**：多个 Promise 可以组合在一起，处理复杂的异步操作链。
-- **更好的错误处理**：可以通过 `catch` 方法集中处理错误，避免回调地狱。
-
-#### 示例
-
-```javascript
-const promise = new Promise((resolve, reject) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.example.com/data', true);
-
-  xhr.onload = function() {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      resolve(xhr.responseText);
-    } else {
-      reject(new Error(xhr.statusText));
-    }
-  };
-
-  xhr.onerror = function() {
-    reject(new Error('Request failed'));
-  };
-
-  xhr.send();
-});
-
-promise.then(response => {
-  console.log('Success:', response);
-}).catch(error => {
-  console.log('Error:', error);
-});
-```
-
-### 关系与区别
-
-1. **原生支持**：
-   - XMLHttpRequest 是浏览器提供的原生对象。
-   - Promise 是 ES6 提供的原生对象。
-
-2. **处理异步操作的方式**：
-   - XMLHttpRequest 使用回调函数处理异步操作，容易导致回调地狱。
-   - Promise 使用 `then` 和 `catch` 方法，支持链式调用，代码更简洁。
-
-3. **错误处理**：
-   - XMLHttpRequest 需要在回调函数中手动处理错误。
-   - Promise 提供了统一的错误处理方式，通过 `catch` 方法处理所有错误。
-
-4. **代码可读性**：
-   - 使用 XMLHttpRequest 进行复杂的异步操作时，代码可读性较差。
-   - 使用 Promise 可以更清晰地表达异步操作的流程，提高代码可读性。
-
-### 使用 Fetch API 结合 Promise
-
-Fetch API 是现代浏览器提供的一种更简洁的 HTTP 请求方式，它基于 Promise，简化了使用 XMLHttpRequest 的很多操作。
-
-#### 示例
-
-```javascript
-fetch('https://api.example.com/data')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch(error => {
-    console.log('Error:', error);
-  });
-```
-
-### 总结
-
-- **XMLHttpRequest** 是传统的方式，虽然功能强大，但使用起来比较繁琐。
-- **Promise** 是现代 JavaScript 中处理异步操作的标准方式，更加简洁和可读。
-- **Fetch API** 是一种基于 Promise 的新方式，简化了 HTTP 请求的过程，推荐在现代 Web 开发中使用。
-
-理解 Promise 和 XMLHttpRequest 的关系和区别，可以帮助开发人员在实际项目中选择合适的方式处理异步操作，提高开发效率和代码质量。

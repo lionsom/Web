@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise的all方法</title>
+</head>
+
+<body>
+  <ul class="my-ul"></ul>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：掌握Promise的all方法作用，和使用场景
+     * 业务：当我需要同一时间显示多个请求的结果时，就要把多请求合并
+     * 例如：默认显示"北京", "上海", "广州", "深圳"的天气在首页查看
+     * code：
+     * 北京-110100
+     * 上海-310100
+     * 广州-440100
+     * 深圳-440300
+    */
+    // 1. 请求城市天气，得到Promise对象
+    const bjPromise = axios({ url: 'http://hmajax.itheima.net/api/weather', params: { city: '110100' } })
+    const shPromise = axios({ url: 'http://hmajax.itheima.net/api/weather', params: { city: '310100' } })
+    const gzPromise = axios({ url: 'http://hmajax.itheima.net/api/weather', params: { city: '440100' } })
+    const szPromise = axios({ url: 'http://hmajax.itheima.net/api/weather', params: { city: '440300' } })
+
+    // 2. 使用Promise.all，合并多个Promise对象
+    const p = Promise.all([bjPromise, shPromise, gzPromise, szPromise])
+    p.then(result => {
+      // 注意：结果数组顺序和合并时顺序是一致
+      console.log(result)
+      const htmlStr = result.map(item => {
+        return `<li>${item.data.data.area} --- ${item.data.data.weather}</li>`
+      }).join('')
+      document.querySelector('.my-ul').innerHTML = htmlStr
+    }).catch(error => {
+      console.dir(error)
+    })
+  </script>
+</body>
+
+</html>

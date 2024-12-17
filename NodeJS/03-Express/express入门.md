@@ -197,3 +197,24 @@ app.use('/public', express.static('public'))
 
 
 
+# 四、Express项目结构
+
+* [Best practices for Express app structure](https://www.terlici.com/2014/08/25/best-practices-express-structure.html)
+    * [[译]Express应用结构的最佳实践](https://github.com/DavidCai1111/my-blog/issues/17)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

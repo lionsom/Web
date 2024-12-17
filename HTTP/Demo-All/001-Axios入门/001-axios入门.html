@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" value="get请求" class="get" />
+  <input type="button" value="post请求 - 黑马账号注册" class="post" />
+  <div>
+    <textarea name="" id="" placeholder="接口返回值" style="width: 300px; height: 100px; margin-top: 30px;"></textarea>
+  </div>
+
+  <!-- 导入在线axios库 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    document.querySelector(".get").onclick = function () {
+      axios
+        .get("https://jsonplaceholder.typicode.com/posts/1")
+        .then(function (resp) {
+          console.log(resp);
+          document.querySelector("textarea").innerHTML = resp.data.title;
+        });
+    };
+  </script>
+
+  <script>
+    /*
+      注册用户: http://hmajax.itheima.net/api/register
+      请求方法: POST
+      参数名:
+        username: 用户名 (中英文和数字组成, 最少8位)
+        password: 密码 (最少6位)
+  
+      目标: 点击按钮, 通过axios提交用户和密码, 完成注册
+      需求: 使用axios错误处理语法, 拿到报错信息, 弹框反馈给用户
+    */
+    document.querySelector('.post').addEventListener('click', () => {
+      axios({
+        url: 'http://hmajax.itheima.net/api/register',
+        method: 'POST',
+        data: {
+          username: 'itheima007',
+          password: '7654321'
+        }
+      }).then(result => {
+        // 成功
+        console.log(result)
+      }).catch(error => {
+        // 失败
+        // 处理错误信息
+        console.log(error)
+        console.log(error.response.data.message)
+        alert(error.response.data.message)
+      })
+    })
+  </script>
+
+</body>
+
+</html>

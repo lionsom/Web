@@ -1,0 +1,170 @@
+/* 公共*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 1340px;
+  margin: 0 auto;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+/* alert提示框 */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast .toast-body {
+  padding: 0 !important;
+}
+
+.toast .alert-success {
+  margin-bottom: 0 !important;
+}
+
+/* 头部导航 */
+.container .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .top h3 {
+  font-weight: 900;
+}
+
+.container .top .plus-btn {
+  background-color: #539ACB !important;
+  color: #fff;
+  border: none;
+}
+
+/* 表格部分 */
+.table {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.table-light th {
+  background-color: #939CA7 !important;
+  color: #ffffff;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  border-right: 1px solid lightgray;
+}
+
+.table-light th:last-of-type {
+  border-right: none;
+}
+
+/* 表格内容 */
+.table tbody td {
+  color: #696F77;
+}
+
+.table .del {
+  color: #E5964C;
+  margin-right: 30px;
+}
+
+.table .edit {
+  color: #539ACB;
+}
+
+.table tbody tr {
+  height: 30px;
+  line-height: 30px;
+}
+
+.table tbody tr td:last-of-type span {
+  cursor: pointer;
+}
+
+/* 弹出层 */
+.modal .top {
+  display: flex;
+  justify-content: center;
+  background-color: #F0F3F7;
+  padding: 15px 0;
+  width: 100%;
+  position: relative;
+  color: #1E2023;
+}
+
+/* 右上角-关闭按钮 */
+.modal .btn-close {
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 23px;
+  /* 覆盖bootstrap样式 */
+  margin: 0;
+  padding: 0;
+}
+
+/* 表单容器 */
+.form-wrap {
+  box-sizing: border-box;
+  background-color: white;
+  padding: 40px;
+}
+
+.form-wrap .form-label {
+  color: #696F77;
+}
+
+/* 修改输入框默认占位文字
+    webkit内核, firefox18-, firfox19+, 其他
+    */
+.form-wrap input::-webkit-input-placeholder {
+  color: #BFBFBF !important;
+  font-size: 14px;
+}
+
+
+/* 底部按钮组 */
+.modal-footer{
+  border-top: 0;
+}
+.btn-group {
+  text-align: center;
+  width: 100%;
+}
+
+/* 修改bs的按钮弹性布局-改成自己设置大小 */
+.btn-group,
+.btn-group-vertical {
+  display: block;
+}
+
+.btn-group button {
+  width: 120px
+}
+
+.btn-group button:first-of-type {
+  border: 1px solid #E3E3E3;
+  background-color: #fff;
+  color: black;
+  margin-right: 60px;
+}
+
+.btn-group button:last-of-type {
+  background-color: #539ACB;
+}
+
+.alert-success {
+  border-color: transparent;
+}
+
+.toast {
+  border: none;
+}

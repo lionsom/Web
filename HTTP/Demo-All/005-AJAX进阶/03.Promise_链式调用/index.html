@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise_链式调用</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：掌握Promise的链式调用
+     * 需求：把省市的嵌套结构，改成链式调用的线性结构
+    */
+    // 1. 创建Promise对象-模拟请求省份名字
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('北京市')
+      }, 2000)
+    })
+
+    // 2. 获取省份名字
+    const p2 = p.then(result => {
+      console.log(result)
+      // 3. 创建Promise对象-模拟请求城市名字
+      // return Promise对象最终状态和结果，影响到新的Promise对象
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(result + '--- 北京')
+        }, 2000)
+      })
+    })
+
+    // 4. 获取城市名字
+    p2.then(result => {
+      console.log(result)
+    })
+
+    // then()原地的结果是一个新的Promise对象
+    console.log(p2 === p)
+  </script>
+</body>
+
+</html>

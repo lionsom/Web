@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例-图书管理</title>
+  <!-- 字体图标 -->
+  <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3736758_vxpb728fcyh.css">
+  <!-- 引入bootstrap.css -->
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 核心样式 -->
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <!-- 主体区域 -->
+  <div class="container">
+    <!-- 头部标题和添加按钮 -->
+    <div class="top">
+      <h3>图书管理</h3>
+      <button type="button" class="btn btn-primary plus-btn" data-bs-toggle="modal" data-bs-target=".add-modal"> + 添加
+      </button>
+    </div>
+    <!-- 数据列表 -->
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th style="width: 150px;">序号</th>
+          <th>书名</th>
+          <th>作者</th>
+          <th>出版社</th>
+          <th style="width: 180px;">操作</th>
+        </tr>
+      </thead>
+      <tbody class="list">
+        <tr>
+          <td>1</td>
+          <td>JavaScript程序设计</td>
+          <td>马特·弗里斯比</td>
+          <td>人民邮电出版社</td>
+          <td>
+            <span class="del">删除</span>
+            <span class="edit">编辑</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- 新增-弹出框 -->
+  <div class="modal fade add-modal">
+    <!-- 中间白色区域 -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header top">
+          <span>添加图书</span>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body form-wrap">
+          <!-- 新增表单 -->
+          <form class="add-form">
+            <div class="mb-3">
+              <label for="bookname" class="form-label">书名</label>
+              <input type="text" class="form-control bookname" placeholder="请输入书籍名称" name="bookname">
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">作者</label>
+              <input type="text" class="form-control author" placeholder="请输入作者名称" name="author">
+            </div>
+            <div class="mb-3">
+              <label for="publisher" class="form-label">出版社</label>
+              <input type="text" class="form-control publisher" placeholder="请输入出版社名称" name="publisher">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer btn-group">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> 取消 </button>
+          <button type="button" class="btn btn-primary add-btn"> 保存 </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 编辑-弹出框 -->
+  <div class="modal fade edit-modal">
+    <!-- 中间白色区域 -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header top">
+          <span>编辑图书</span>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body form-wrap">
+          <!-- 编辑表单 -->
+          <form class="edit-form">
+            <input type="hidden" class="id" name="id">
+            <div class="mb-3">
+              <label for="bookname" class="form-label">书名</label>
+              <input type="text" class="form-control bookname" placeholder="请输入书籍名称" name="bookname">
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">作者</label>
+              <input type="text" class="form-control author" placeholder="请输入作者名称" name="author">
+            </div>
+            <div class="mb-3">
+              <label for="publisher" class="form-label">出版社</label>
+              <input type="text" class="form-control publisher" placeholder="请输入出版社名称" name="publisher">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer btn-group">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> 取消 </button>
+          <button type="button" class="btn btn-primary edit-btn"> 修改 </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
+  <script src="./lib/form-serialize.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+  <!-- 核心逻辑 -->
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
