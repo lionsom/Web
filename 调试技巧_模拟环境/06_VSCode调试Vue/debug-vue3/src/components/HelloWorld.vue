@@ -1,7 +1,13 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   msg: string
 }>()
+
+const btnClick = () => {
+  debugger;
+  console.log('Button clicked!!');
+  console.log('props.msg', props.msg);
+}
 </script>
 
 <template>
@@ -13,6 +19,7 @@ defineProps<{
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
   </div>
+  <button @click="btnClick">Change message</button>
 </template>
 
 <style scoped>
