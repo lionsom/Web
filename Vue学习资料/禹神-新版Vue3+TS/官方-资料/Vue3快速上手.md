@@ -1313,7 +1313,7 @@ function test(){
 >
 > 2. 通过点击导航，视觉效果上“消失” 了的路由组件，默认是被**卸载**掉的，需要的时候再去**挂载**。
 
-## 4.4.【路由器工作模式】
+## 4.4. 【路由器工作模式】
 
 1. `history`模式
 
@@ -2282,7 +2282,7 @@ function sendToy(){
      // 注入数据
     let {money,updateMoney} = inject('moneyContext',{money:0,updateMoney:(x:number)=>{}})
      let car = inject('car')
-</script>
+   </script>
    ```
 
 

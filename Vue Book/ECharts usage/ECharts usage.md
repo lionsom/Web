@@ -201,6 +201,332 @@ GridComponent 与坐标轴组件（如 XAxisComponent 和 YAxisComponent）密�
 
 
 
+# 二、使用代码
+
+## 1. Vue2 + 纯echarts
+
+```vue
+<template>
+  <div class="Echarts">
+    我是图
+    <div id="mainaa" style="width: 600px;height: 400px;"></div>
+  </div>
+</template>
+
+<script>
+import * as echarts from 'echarts'
+
+export default {
+  name: 'Echarts',
+  methods: {
+    myEcharts() {
+      const ddd = document.getElementById('mainaa');
+      console.log('ddd =', ddd);
+      var myChart = echarts.init(ddd);
+      //配置图表
+      var option = {
+        title: {
+          text: 'echarts入门示例',
+        },
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      };
+      myChart.setOption(option);
+    }
+  },
+  mounted() {
+    this.myEcharts();
+  }
+}
+</script>
+
+<style></style>
+```
+
+### 调用
+
+```vue
+<script setup lang="ts">
+import AA from '@/components/b.vue';
+</script>
+
+<template>
+   <AA />
+</template>
+```
+
+
+
+## 2. Vue3 + 纯echarts
+
+```vue
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import * as echarts from 'echarts'
+
+const myEcharts = () => {
+  const ddd = document.getElementById('mainaa');
+  console.log('ddd =', ddd);
+  var myChart = echarts.init(ddd);
+  // 配置图表
+  var option = {
+    title: {
+      text: 'echarts入门示例',
+    },
+    tooltip: {},
+    legend: {
+      data: ['销量']
+    },
+    xAxis: {
+      data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+    },
+    yAxis: {},
+    series: [{
+      name: '销量',
+      type: 'bar',
+      data: [5, 20, 36, 10, 10, 20]
+    }]
+  };
+  myChart.setOption(option);
+}
+
+onMounted(() => {
+  myEcharts();
+})
+
+</script>
+
+<template>
+  <div class="Echarts">
+    我是图
+    <div id="mainaa" style="width: 600px;height: 400px;"></div>
+  </div>
+</template>
+
+<style></style>
+```
+
+
+
+### 调用
+
+```vue
+<script setup lang="ts">
+import AA from '@/components/b.vue';
+</script>
+
+<template>
+   <AA />
+</template>
+```
+
+
+
+## 3. Vue3 + vue-echarts + echarts
+
+在 Vue 3 中，可以使用 `vue-echarts` 来轻松集成 ECharts。`vue-echarts` 提供了 Vue 组件化的 ECharts 图表支持，便于在 Vue 中使用指令和数据绑定。
+
+1. **安装依赖** 安装 `echarts` 和 `vue-echarts`：
+
+    ```bash
+    npm install echarts vue-echarts
+    ```
+
+2. **全局注册组件（推荐）** 在 `main.js` 中注册 `vue-echarts`：
+
+    ```javascript
+    import { createApp } from 'vue';
+    import App from './App.vue';
+    import { defineAsyncComponent } from 'vue';
+    import 'echarts'; // 引入 ECharts
+    
+    // 异步引入 ECharts 组件
+    const ECharts = defineAsyncComponent(() => import('vue-echarts'));
+    
+    const app = createApp(App);
+    
+    // 全局注册 vue-echarts
+    app.component('VChart', ECharts);
+    
+    app.mount('#app');
+    ```
+
+3. **编写 ECharts 图表组件** - 折线图组件（`LineChart.vue`）
+
+    ```vue
+    <template>
+      <v-chart :options="chartOptions" style="width: 100%; height: 400px;" />
+    </template>
+    
+    <script>
+    export default {
+      name: 'LineChart',
+      props: {
+        chartData: {
+          type: Array,
+          required: true,
+        },
+        chartLabels: {
+          type: Array,
+          required: true,
+        },
+      },
+      computed: {
+        chartOptions() {
+          return {
+            title: {
+              text: '折线图示例',
+            },
+            tooltip: {
+              trigger: 'axis',
+            },
+            xAxis: {
+              type: 'category',
+              data: this.chartLabels,
+            },
+            yAxis: {
+              type: 'value',
+            },
+            series: [
+              {
+                name: '数据',
+                type: 'line',
+                data: this.chartData,
+              },
+            ],
+          };
+        },
+      },
+    };
+    </script>
+    ```
+
+4. **使用折线图组件**
+
+#### **父组件（`App.vue`）**
+
+```vue
+<template>
+  <div>
+    <LineChart :chart-data="data" :chart-labels="labels" />
+  </div>
+</template>
+
+<script>
+import LineChart from './components/LineChart.vue';
+
+export default {
+  name: 'App',
+  components: {
+    LineChart,
+  },
+  data() {
+    return {
+      labels: ['一月', '二月', '三月', '四月', '五月'],
+      data: [820, 932, 901, 934, 1290],
+    };
+  },
+};
+</script>
+```
+
+------
+
+### **功能说明**
+
+1. **Vue 组件化**
+    - `vue-echarts` 提供了 `<v-chart>` 组件，可以直接通过 `:options` 绑定 ECharts 配置。
+2. **响应式更新**
+    - 通过传递动态的 `chartData` 和 `chartLabels`，可以实现图表的自动更新。
+3. **自适应布局**
+    - 通过 `style="width: 100%; height: 400px;"` 设置图表宽高，支持动态调整。
+
+------
+
+### **扩展功能**
+
+1. **异步数据** 如果数据来自后端，可以在父组件中通过 `axios` 获取后更新：
+
+    ```javascript
+    import axios from 'axios';
+    
+    export default {
+      data() {
+        return {
+          labels: [],
+          data: [],
+        };
+      },
+      mounted() {
+        axios.get('/api/chart-data').then((response) => {
+          this.labels = response.data.labels;
+          this.data = response.data.values;
+        });
+      },
+    };
+    ```
+
+2. **全局主题** 配置全局 ECharts 主题：
+
+    ```javascript
+    import * as echarts from 'echarts';
+    import 'echarts/theme/dark';
+    
+    echarts.registerTheme('dark', { /* 自定义主题配置 */ });
+    ```
+
+    使用主题：
+
+    ```vue
+    <v-chart :options="chartOptions" theme="dark" />
+    ```
+
+3. **多种图表类型** 配置多个 `series` 支持不同图表类型：
+
+    ```javascript
+    series: [
+      { name: '数据1', type: 'line', data: [120, 132, 101, 134, 90] },
+      { name: '数据2', type: 'bar', data: [220, 182, 191, 234, 290] },
+    ];
+    ```
+
+------
+
+### **注意事项**
+
+1. **按需引入** 如果需要减少打包体积，可以结合 `vite-plugin-echarts` 或手动配置按需引入。
+2. **兼容性** 确保 `vue-echarts` 和 `echarts` 的版本匹配，否则可能报错。
+3. **图表自适应** 确保图表容器的大小是动态变化时，调用 `resize` 更新布局。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
