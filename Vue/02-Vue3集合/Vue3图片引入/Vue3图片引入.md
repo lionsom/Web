@@ -1,0 +1,1 @@
+vue3 + vite引入本地图片：https://blog.csdn.net/qq_16992475/article/details/131361671
