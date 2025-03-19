@@ -6,6 +6,7 @@
 
     * [Cursor Doc](https://docs.cursor.com/get-started/welcome)
     * [Cursor Directory](https://cursor.directory/)
+    * [Cursor快捷键大全](https://learn-cursor.com/shortcuts/)
 
 * [Learn Cursor](https://learn-cursor.com/wiki/user-guide/programming-basics-for-beginners)
 
@@ -29,6 +30,8 @@
 
 # 常用快捷键 + AI 快捷键
 
+* [Cursor快捷键大全](https://learn-cursor.com/shortcuts/)
+
 | 快捷键              | 操作               |
 | ------------------- | ------------------ |
 | Command + Shift + J | 打开Cursor Setting |
@@ -42,6 +45,18 @@
 - `Ctrl/⌘ + I` 对选中的代码进行快速智能编辑和补全，直接在编辑器中显示建议
 - `Ctrl/⌘ + Shift + I` 打开独立的智能编辑面板，提供更详细的编辑建议和交互选项（功能和 `Ctrl/⌘ + I` 一样）
 - `Ctrl/⌘ + L` 打开 AI 聊天面板,可以与 AI 进行对话交互
+
+
+
+
+
+| 功能       | macOS            |
+| :--------- | :--------------- |
+| 命令面板   | `Cmd+Shift+P`    |
+| 快速打开   | `Cmd+P`          |
+| 智能提示   | `Option+/`       |
+| 帮助对话   | `Cmd+K`          |
+| 代码格式化 | `Option+Shift+F` |
 
 
 
@@ -134,6 +149,10 @@ Cursor 会根据 `.cursorignore` 文件中的内容忽略一些文件或文件�
 - 官网文档 [Ignore Files | Cursor](https://docs.cursor.com/context/ignore-files)
 
 
+
+最新的rules目录结构：
+
+![](images/003.png)
 
 
 
