@@ -24,6 +24,10 @@ import '@/style/reset.css'
 ```javascript
 <style scoped>
   @import '../../assets/iconfont/iconfont.css';   // 这个分号一定要写，要不会报错
+
+  // 新版
+  @use '@/xx/xx.css'; 
+
 </style>
 ```
 
