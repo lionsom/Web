@@ -1,4 +1,4 @@
-# 文档
+# 一、文档
 
 * [启业云知识库 - 前端](https://blogqpaas.yuque.com/org-wiki-blogqpaas-xgx00y/me4ydl/ywzv54v1rimc9r4g)
 
@@ -22,13 +22,14 @@
         * [AI 编程：Cursor 安装注册与功能配置说明](https://zhuanlan.zhihu.com/p/15907515516)
 
 
-    * [cursor MCP 最佳实践](https://blogqpaas.yuque.com/rpsdfh/ans9sm/uqzgar97ztrg7fud)
+
+* [cursor MCP 最佳实践](https://blogqpaas.yuque.com/rpsdfh/ans9sm/uqzgar97ztrg7fud)
 
 
 
 
 
-# 常用快捷键 + AI 快捷键
+# 二、常用快捷键 + AI 快捷键
 
 * [Cursor快捷键大全](https://learn-cursor.com/shortcuts/)
 
@@ -48,8 +49,6 @@
 
 
 
-
-
 | 功能       | macOS            |
 | :--------- | :--------------- |
 | 命令面板   | `Cmd+Shift+P`    |
@@ -60,7 +59,7 @@
 
 
 
-# 修改设置
+# 三、修改设置
 
 ## 1. 修改活动栏布局
 
@@ -106,7 +105,7 @@ Cursor 的活动栏默认是水平的，用起来很别扭
 
 
 
-# 技巧
+# 四、技巧
 
 ## 1. 聊天中的 `@` 符号
 
@@ -126,7 +125,7 @@ Cursor 的活动栏默认是水平的，用起来很别扭
 
 
 
-## 2. Rules
+## 2. Rules （单独文档）
 
 * [awesome-cursorrules - Github](https://github.com/PatrickJS/awesome-cursorrules)
 * [Cursor - rules](https://cursor.directory/rules)
@@ -140,6 +139,12 @@ https://github.com/grapeot/devin.cursorrules
 
 
 
+最新的rules目录结构：
+
+![](images/003.png)
+
+
+
 
 
 ## 3. `.cursorignore` 文件 vs `.cursorindexingignore` 文件
@@ -150,15 +155,9 @@ Cursor 会根据 `.cursorignore` 文件中的内容忽略一些文件或文件�
 
 
 
-最新的rules目录结构：
-
-![](images/003.png)
 
 
-
-
-
-# Agent、Ask、Edit对比
+# 五、Agent、Ask、Edit对比
 
 * Composer
 

@@ -1,0 +1,102 @@
+{
+    "version": "1.0.0",
+    "lastUpdate": "2024-01-04T10:00:00Z",
+    "categories": [
+        {
+            "id": "app-reactnative",
+            "name": "App开发-ReactNative",
+            "description": "React Native 跨平台应用开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "app-flutter",
+            "name": "App开发-Flutter",
+            "description": "Flutter 跨平台应用开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "app-ios",
+            "name": "App开发-iOS",
+            "description": "iOS 原生应用开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "app-android",
+            "name": "App开发-Android",
+            "description": "Android 原生应用开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "web-html",
+            "name": "网站-HTML",
+            "description": "HTML/CSS/JavaScript 网站开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "web-react",
+            "name": "网站-React",
+            "description": "React 网站开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "web-vue",
+            "name": "网站-Vue",
+            "description": "Vue.js 网站开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "web-nextjs",
+            "name": "网站-Nextjs",
+            "description": "Next.js 14 全栈开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "chrome-extension",
+            "name": "Chrome插件",
+            "description": "Chrome 浏览器扩展开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "wechat-miniprogram",
+            "name": "微信小程序",
+            "description": "微信小程序开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "local-python",
+            "name": "本地-Python",
+            "description": "Python 开发规则",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        },
+        {
+            "id": "general",
+            "name": "通用",
+            "description": "通用开发规则，适用于所有项目",
+            "isBuiltin": true,
+            "isModified": false,
+            "lastModified": "2024-01-04T10:00:00Z"
+        }
+    ]
+}
