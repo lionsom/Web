@@ -10,6 +10,10 @@
 
 * [bilibili尚硅谷 - 一小时速通JavaScript模块化，涵盖CommonJS与ES6模块化](https://www.bilibili.com/video/BV13W42197jR/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 
+* [es6-模块与-commonjs-模块的差异](https://wangdoc.com/es6/module-loader#es6-%E6%A8%A1%E5%9D%97%E4%B8%8E-commonjs-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82)
+
+
+
 
 
 # 零、什么是模块化

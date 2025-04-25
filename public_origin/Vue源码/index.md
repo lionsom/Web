@@ -51,9 +51,10 @@ Vue3仓库：https://github.com/vuejs/core
 
 
 
-
+系列：
 
 [文章 - Vue 源码解读（1）—— 前言](https://juejin.cn/post/6949370458793836580)
 
 [视频 - Vue 源码解读（1）—— 前言](https://www.bilibili.com/video/BV1Jb4y1D7eA?spm_id_from=333.788.recommend_more_video.1&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 
+[精通 Vue 技术栈源码原理 专栏](https://link.juejin.cn/?target=https%3A%2F%2Fmp.weixin.qq.com%2Fmp%2Fappmsgalbum%3F__biz%3DMzA3NTk4NjQ1OQ%3D%3D%26action%3Dgetalbum%26album_id%3D2273541436891693065%23wechat_redirect)

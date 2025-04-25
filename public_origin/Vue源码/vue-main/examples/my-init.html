@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="demo">
+    {{ myTitle }}
+    <div style="width: 50px; height: 50px; background-color: aqua;" @click="sayHello">点击</div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#demo',
+      data() {
+        return {
+          myTitle: '明天',
+        }
+      },
+      methods: {
+        showHello() {
+          console.log('hello world!!!');
+        },
+        sayHello() {
+          alert('弹框！！！');
+        }
+      },
+    })
+    console.log('AAAAA = ', app.myTitle);
+
+    // 调用
+    app.showHello()
+
+    console.log('DDDDD = ', app.$options.render);
+  </script>
+</body>
+
+</html>
