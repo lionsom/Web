@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`scopeId compiler support > should wrap default slot 1`] = `
+"import { createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from "vue"
+
+export function render(_ctx, _cache) {
+  const _component_Child = _resolveComponent("Child")
+
+  return (_openBlock(), _createBlock(_component_Child, null, {
+    default: _withCtx(() => [
+      _createElementVNode("div")
+    ]),
+    _: 1 /* STABLE */
+  }))
+}"
+`;
+
+exports[`scopeId compiler support > should wrap dynamic slots 1`] = `
+"import { createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, renderList as _renderList, createSlots as _createSlots, openBlock as _openBlock, createBlock as _createBlock } from "vue"
+
+export function render(_ctx, _cache) {
+  const _component_Child = _resolveComponent("Child")
+
+  return (_openBlock(), _createBlock(_component_Child, null, _createSlots({ _: 2 /* DYNAMIC */ }, [
+    (_ctx.ok)
+      ? {
+          name: "foo",
+          fn: _withCtx(() => [
+            _createElementVNode("div")
+          ]),
+          key: "0"
+        }
+      : undefined,
+    _renderList(_ctx.list, (i) => {
+      return {
+        name: i,
+        fn: _withCtx(() => [
+          _createElementVNode("div")
+        ])
+      }
+    })
+  ]), 1024 /* DYNAMIC_SLOTS */))
+}"
+`;
+
+exports[`scopeId compiler support > should wrap named slots 1`] = `
+"import { toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from "vue"
+
+export function render(_ctx, _cache) {
+  const _component_Child = _resolveComponent("Child")
+
+  return (_openBlock(), _createBlock(_component_Child, null, {
+    foo: _withCtx(({ msg }) => [
+      _createTextVNode(_toDisplayString(msg), 1 /* TEXT */)
+    ]),
+    bar: _withCtx(() => [
+      _createElementVNode("div")
+    ]),
+    _: 1 /* STABLE */
+  }))
+}"
+`;
