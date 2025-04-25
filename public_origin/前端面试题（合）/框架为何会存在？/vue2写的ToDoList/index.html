@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TodoMatic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="todo-container">
+            <h1>TodoMatic</h1>
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    v-model="newTodo" 
+                    @keyup.enter="addTodo"
+                    placeholder="What needs to be done?"
+                >
+                <button @click="addTodo">Add</button>
+            </div>
+            <div v-for="(todo, index) in todos" :key="index" class="todo-item">
+                <span>{{ todo }}</span>
+                <button class="delete-btn" @click="deleteTodo(index)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
