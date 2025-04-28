@@ -4689,7 +4689,9 @@
 
   var uid = 0;
   function initMixin$1(Vue) {
+      console.log('=====> 挂载 initMixin');
       Vue.prototype._init = function (options) {
+          console.log("=====> 执行 _init");
           var vm = this;
           // a uid
           vm._uid = uid++;

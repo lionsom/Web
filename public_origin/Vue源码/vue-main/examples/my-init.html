@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="../dist/vue.js"></script>
+  <script src="./tools.js"></script>
 </head>
 
 <body>
@@ -16,6 +17,16 @@
   </div>
 
   <script>
+    Vue.config.silent = true;
+    Vue.config.productionTip = false;
+    console.log('Vue.config.productionTip ====>', Vue.config.productionTip);
+
+    Vue.config.devtools = true;
+    console.log('Vue Version ====>', Vue.version)
+
+    Vue.prototype.$appName = 'My App'
+
+
     const app = new Vue({
       el: '#demo',
       data() {
@@ -28,16 +39,25 @@
           console.log('hello world!!!');
         },
         sayHello() {
-          alert('弹框！！！');
+          alert(MyApp.helpers.reverseText('1234'));
         }
       },
     })
-    console.log('AAAAA = ', app.myTitle);
+    console.log('AAAAA = ', app.myTitle, app.$appName);
 
     // 调用
     app.showHello()
 
     console.log('DDDDD = ', app.$options.render);
+
+
+    const app11 = new Vue({
+      beforeMount() {
+        console.log('***********', this.$appName);
+      },
+    })
+    console.log('CCCCC = ', app11.$appName);
+
   </script>
 </body>
 
