@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>侦听属性</title>
+  </head>
+
+  <body>
+    <div id="app-25">
+      <div>{{ fullName }}</div>
+      <div>{{ fullName11 }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+      var vm = new Vue({
+        el: "#app-25",
+        data: {
+          firstName: "Foo",
+          lastName: "Bar",
+          fullName: "Foo Bar",
+        },
+        watch: {
+          // 如果firstName变化，则触发
+          firstName: function () {
+            this.fullName = this.firstName + " --- " + this.lastName;
+          },
+        },
+        computed: {
+          fullName11: function () {
+            return this.firstName + " +++ " + this.lastName;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

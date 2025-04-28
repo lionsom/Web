@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+
+    <style>
+        .circleStyle {
+            border: 2px solid rebeccapurple;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        v-bind: 设置元素的属性（如：src/title/class）
+
+        v-bind指令的作用：为元素绑定属性
+        写法：v-bind:属性名
+        简写：      :属性名
+     -->
+
+    <!-- 2.html结构 -->
+    <div id="app">
+        <!-- 全写方式 -->
+        <img v-bind:src="imgSrc" alt="">
+        <!-- 简写方式 -->
+        <img :src="imgSrc" alt="我不能显示文本" :title="imgTitle">
+
+        <br/>
+
+        <!-- 添加类名 -->
+        <img :src="imgSrc" alt="" :title="imgTitle" :class="{circleStyle: isActive}" @click="toggleActive">
+    </div>
+
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- 3.创建Vue实例 -->
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                imgSrc: "http://www.itheima.com/images/logo.png",
+                imgTitle: "白马程序员",
+                isActive: false,
+            },
+            methods: {
+                toggleActive: function() {
+                    this.isActive = !this.isActive
+                }
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

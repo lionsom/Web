@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>成绩单</title>
+
+  <!-- 引入CSS -->
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="left">
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="(item, index) in lists">
+            <td>{{item.iid}}</td>
+            <td>{{item.subject}}</td>
+            <td :class="{red : item.grade < 60}">{{item.grade}}</td>
+            <td>
+              <a href="#">删除</a>
+            </td>
+          </tr>
+
+          <tr>
+            <!-- 4列合并 -->
+            <td colspan="4">总分：{{totalGrade}}， 平均分：{{avarageGrade}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="right">
+      <input type="text" placeholder="请输入科目名称" v-model="tempSubject"> 输入科目
+      <input type="text" placeholder="请输入成绩" v-model.trim="tempGrade"> 输入成绩
+      <button @click.prevent="add(tempSubject,tempGrade)">添加</button>
+    </div>
+  </div>
+
+  <!-- 引入vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        lists: [
+          { iid: 1, subject: "语文", grade: 11 },
+          { iid: 2, subject: "数学", grade: 22 },
+          { iid: 3, subject: "英文", grade: 33 },
+          { iid: 4, subject: "地理", grade: 44 },
+        ],
+        tempSubject: '',
+        tempGrade: '',
+      },
+      computed: {
+        // 总分
+        totalGrade() {
+          var _tempGrade = 0;
+          this.lists.forEach((element) => {
+            console.log(element.iid);
+            _tempGrade += parseInt(element.grade);
+          });
+          return _tempGrade;
+        },
+        // 平均分，计算属性完整写法 set + get
+        avarageGrade: {
+          get() {
+            return this.totalGrade / this.lists.length;
+          },
+          set(value) {
+            this.avarageGrade = value;
+          },
+        },
+      },
+      methods: {
+        add(_subject, _grade) {
+
+          if (_subject.length == 0 || _grade.length == 0) {
+            alert("请输入");
+            return;
+          }
+
+          // clear 输入框
+          this.tempSubject = '';
+          this.tempGrade = '';
+
+          var newData = { iid: this.lists.length + 1, subject: _subject, grade: _grade };
+          this.lists.push(newData);
+
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

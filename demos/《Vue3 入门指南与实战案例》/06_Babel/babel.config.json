@@ -1,0 +1,17 @@
+// Babel配置文件
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            // "chrome": "41"
+            "chrome": "49"
+          },
+          "modules": false,
+          "useBuiltIns": "usage",
+          "corejs": "3.6.5"
+        }
+      ]
+    ]
+  }

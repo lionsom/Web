@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.red {
+    color: red;
+}
+
+#left {
+    background-color: antiquewhite;
+    width: 100%;
+}
+
+table, th, td {
+    border: 0.1px solid red; /* 表格边框 */
+    border-collapse:collapse;  /* 折叠边框 */
+    width:500px;
+}
+
+thead {
+    height:60px;
+}
+
+th {
+    background-color:green;
+    color:white;
+}
+
+td {
+    text-align:center;  /* 内容居中 */
+
+    height:40px;
+    vertical-align:center;  /* 垂直居中 */
+
+    padding:15px;
+}
+
+
+#right {
+    display: flex;
+}

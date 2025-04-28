@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片切换</title>
+
+    <!-- 导入CSS -->
+    <link rel="stylesheet" href="./CSS/index.css" />
+  </head>
+
+  <body>
+    <div id="myBg">
+      <div id="myCenterBg">
+        <div id="imgBg" class="red">
+          <img v-bind:src="imageUrls[index]" alt="" />
+        </div>
+
+        <div class="btnDiv">
+          <div id="preDiv">
+            <button
+              id="preBtn"
+              class="green"
+              @click="preClick"
+              v-show="index != 0"
+            >
+              上一页
+            </button>
+          </div>
+
+          <div id="nextDiv">
+            <button
+              id="nextBtn"
+              class="green"
+              @click="nextClick"
+              v-if="index != imageUrls.length - 1"
+            >
+              下一页
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- 导入Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+  <script>
+    const vm = new Vue({
+      el: "#myBg",
+      data: {
+        index: 0,
+        imageUrls: [
+          "./imgs/10-01.png",
+          "./imgs/10-02.png",
+          "./imgs/10-03.png",
+          "./imgs/10-04.png",
+        ],
+        gifUrls: [
+          "./imgs/11-01.gif",
+          "./imgs/11-02.gif",
+          "./imgs/11-03.gif",
+          "./imgs/11-04.gif",
+        ],
+      },
+      methods: {
+        preClick() {
+          this.index--;
+          console.log(this.index);
+        },
+        nextClick() {
+          this.index++;
+          console.log(this.index);
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app-23">
+      <button-counter></button-counter>
+
+      <!-- 注意名字拼法 -->
+      <my-test></my-test>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script type="text/javascript">
+      // 全局注册组件
+      Vue.component("button-counter", {
+        data: function () {
+          return {
+            count: 0,
+          };
+        },
+        template: "<h1> AAA </h1>",
+      });
+
+      var app23 = new Vue({
+        el: "#app-23",
+        data: {
+          message: "Hello Vue!",
+        },
+        // 局部注册组件
+        components: {
+          myTest: {
+            template: "<h1> BBB </h1>",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -17,21 +17,9 @@
 
 ```cobol
 "scripts": {
-
-
-
   "start": "node index.js",
-
-
-
   "serve": "vue-cli-service serve",
-
-
-
   // 其他命令...
-
-
-
 }
 ```
 
@@ -83,21 +71,9 @@
 
 ```csharp
 "scripts": {
-
-
-
   "start": "npm-run-all --parallel task1 task2",
-
-
-
   "task1": "command1",
-
-
-
   "task2": "command2"
-
-
-
 }
 ```
 

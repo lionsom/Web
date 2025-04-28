@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>按钮选择，状态变化</title>
+
+    <!-- 引入JS -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- 布局 -->
+    <div id="app">
+      <div id="myBg">
+        <ul>
+          <li v-for="item in lists" :key="item.myId">
+            <a
+              @click.prevent="btnClick(item.myId)"
+              href=""
+              :class="{selected_big: item.myId === selectedIndex,
+                selected_font: item.myId === selectedIndex}"
+              >{{item.name}}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 引入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          selectedIndex: -1,
+          lists: [
+            { myId: 11, name: "登录" },
+            { myId: 22, name: "注册" },
+            { myId: 33, name: "退出" },
+          ],
+        },
+        methods: {
+          btnClick(idd) {
+            if (idd === this.selectedIndex) {
+              this.selectedIndex = -1;
+            } else {
+              this.selectedIndex = idd;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

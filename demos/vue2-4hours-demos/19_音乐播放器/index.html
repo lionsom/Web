@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>悦听音乐</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <!-- 中心区域 -->
+    <div id="app">
+      <!-- 1.顶部搜索区域 -->
+      <div class="search_bar">
+        <input type="text" v-model="query" @keyup.enter="searchMusic" />
+      </div>
+
+      <!-- 2.中间播放区域 -->
+      <div class="center_con">
+        <!-- a.歌曲列表区域 -->
+        <div class="song_warp">
+          <ul>
+            <ol v-for="(item, index) in musicList" :key="index">
+              <a href="javascript:" @click="getMusicURL(item.id)">
+                <img src="./images/play_icon.png" alt=""
+              /></a>
+
+              <p>{{item.name}}</p>
+
+              <a href="javascript:" id="mv_btn" v-show="item.mvid > 0" @click="getMV(item.mvid)">
+                <img src="./images/mv_icon.png" alt="" />
+              </a>
+
+              <!-- 分割线 -->
+              <div id="line"></div>
+            </ol>
+          </ul>
+        </div>
+
+        <!-- b.封面 -->
+        <div id="cover">
+          <!-- <img src="./images/bgimage.jpeg" alt=""> -->
+        </div>
+        
+        <!-- c.评论 -->
+        <!-- <div class="discuss">
+
+        </div> -->
+
+      </div>
+
+      <!-- 3.Audio播放器 -->
+      <div class="audio_con">
+        <audio ref="audio" :src="currentMusicURL" controls autoplay loop class="myaudio"></audio>
+      </div>
+
+      <!-- 4.MV播放器 -->
+      <div class="video_con" v-show="isShowMV" >
+        <video :src="currentMVURL" controls="controls"></video>
+        <div class="mask" @click="hide"></div>
+      </div>
+
+    </div>
+
+    <!-- 1.导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <!-- 2.导入在线axios库 -->
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 3.自己的JS -->
+    <script src="./main.js"></script>
+  </body>
+</html>

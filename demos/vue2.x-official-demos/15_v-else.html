@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app-15">
+      <!-- 1.简单 -->
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh no 😢</h1>
+
+      <input type="button" value="v-else测试" @click="changeClick" />
+
+      <!-- 2.复杂 -->
+      <div v-if="type === 'A'">我是A</div>
+      <div v-else-if="type === 'B'">我是B</div>
+      <div v-else-if="type === 'C'">我是C</div>
+      <div v-else>Not ABC</div>
+
+      <input type="text" v-model:value="type" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script type="text/javascript">
+      var app15 = new Vue({
+        el: "#app-15",
+        data: {
+          awesome: true,
+          type: "A",
+        },
+        methods: {
+          changeClick: function () {
+            this.awesome = !this.awesome;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

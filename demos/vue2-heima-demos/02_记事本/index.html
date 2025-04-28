@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小黑记事本</title>
+
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="myBg">
+      <div id="topBg">
+        <input type="text" v-model="newData" @keyup.enter="add(newData)"/>
+        <button @click="add(newData)">新增</button>
+      </div>
+
+      <div id="bottomBg">
+        <ul>
+          <li v-for="(item, index) in lists" :key="item.myId">
+            <span>{{index}}:{{item.name}}</span> <span>{{item.author}}</span>
+            <button @click="del(item.myId)">删除</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 引入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <!-- vue实例 -->
+    <script>
+      const vm = new Vue({
+        el: "#myBg",
+        data: {
+          newData: "",
+          lists: [
+            { myId: 1, name: "《红楼梦》", author: "曹雪芹" },
+            { myId: 2, name: "《西游记》", author: "吴承恩" },
+            { myId: 3, name: "《水浒传》", author: "施耐庵" },
+            { myId: 4, name: "《三国演义》", author: "罗贯中" },
+          ],
+        },
+        methods: {
+          add(value) {
+            console.log(value);
+            // 创建一个新对象
+            var newBook = { myId: 99, name: value, author: "temppppp"}
+            this.lists.push(newBook)
+          },
+          del(key) {
+            // 删除某个字段
+            this.lists = this.lists.filter((item) => key !== item.myId);
+            console.log(this.lists);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

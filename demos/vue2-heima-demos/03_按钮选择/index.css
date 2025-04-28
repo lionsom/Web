@@ -1,0 +1,55 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+#app {
+    background-color: antiquewhite;
+    width: 80vw;
+    height: 90vh;
+    margin-top: 5vh;
+    margin-left: 10vw;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#myBg {
+    background-color: transparent;
+}
+
+#myBg a {
+    display: block;
+    float: left;
+
+    width: 10vw;
+    height: 100px;
+
+    background-color: aquamarine;
+
+    text-decoration: none;
+    /* 文字 水平居中 */
+    text-align: center; 
+    /* 文字 垂直居中 */
+    line-height: 100px;
+}
+
+#myBg a:hover {
+    background-color: green;
+    color: orange;
+}
+
+/* 按钮选择状态 */
+.selected_font {
+    font-style: italic;
+}
+
+.selected_big {
+    font-size: 30px;
+}
+

@@ -1,0 +1,59 @@
+<!-- 这是使用原生 JavaScript 实现的 demo -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 通过一个 `span` 标签来指定要渲染数据的位置 -->
+      <p>Hello <span id="name"></span>!</p>
+
+      <!-- 通过 `oninput` 给输入框绑定输入事件 -->
+      <input
+        id="input"
+        type="text"
+        placeholder="输入名称打招呼"
+        oninput="handleInput()"
+      />
+
+      <!-- 通过 `onclick` 给按钮绑定点击事件 -->
+      <button onclick="reset()">重置</button>
+    </div>
+
+    <script>
+      // 默认值
+      const DEFAULT_NAME = 'World'
+
+      // 要操作的 DOM 元素
+      const nameElement = document.querySelector('#name')
+      const inputElement = document.querySelector('#input')
+
+      // 处理输入
+      function handleInput() {
+        const name = inputElement.value
+        nameElement.innerText = name
+        printLog()
+      }
+
+      // 打印输入框的值到控制台
+      function printLog() {
+        const name = inputElement.value
+        console.log(name)
+      }
+
+      // 重置 DOM 元素的文本和输入框的值
+      function reset() {
+        nameElement.innerText = DEFAULT_NAME
+        inputElement.value = DEFAULT_NAME
+        printLog()
+      }
+
+      // 执行一次初始化，赋予 DOM 元素默认文本和输入框的默认值
+      window.addEventListener('load', reset)
+    </script>
+  </body>
+</html>

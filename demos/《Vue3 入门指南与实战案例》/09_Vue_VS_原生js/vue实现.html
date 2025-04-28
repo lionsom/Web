@@ -1,0 +1,58 @@
+<!-- 这是使用 Vue 实现的 demo -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 通过 `{{ 变量名 }}` 语法渲染响应式变量 -->
+      <p>Hello {{ name }}!</p>
+
+      <!-- 通过 `v-model` 双向绑定响应式变量 -->
+      <!-- 通过 `@input` 给输入框绑定输入事件 -->
+      <input
+        type="text"
+        v-model="name"
+        placeholder="输入名称打招呼"
+        @input="printLog"
+      />
+
+      <!-- 通过 `@click` 给按钮绑定点击事件 -->
+      <button @click="reset">重置</button>
+    </div>
+
+    <script>
+      const { createApp, ref } = Vue
+      createApp({
+        // `setup` 是一个生命周期钩子
+        setup() {
+          // 默认值
+          const DEFAULT_NAME = 'World'
+
+          // 用于双向绑定的响应式变量
+          const name = ref(DEFAULT_NAME)
+
+          // 打印响应式变量的值到控制台
+          function printLog() {
+            // `ref` 变量需要通过 `.value` 操作值
+            console.log(name.value)
+          }
+
+          // 重置响应式变量为默认值
+          function reset() {
+            name.value = DEFAULT_NAME
+            printLog()
+          }
+
+          // 需要 `return` 出去才可以被模板使用
+          return { name, printLog, reset }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>

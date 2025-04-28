@@ -1,0 +1,53 @@
+* {
+    margin: 0px;
+    padding: 0px;
+} 
+
+ul, li {
+    list-style: none;
+}
+
+li a {
+    width: 200px;
+    height: 50px;
+}
+
+#app {
+    background-color: antiquewhite;
+    width: 100vw;
+    height: 500px;
+
+    border: 1px solid ;
+}
+
+#topBg {
+    background-color: aqua;
+    height: 20px;
+    margin: 30px;
+    border-radius: 10px;
+
+    border: 1px solid;
+}
+
+#progressBg {
+    position: relative;
+    background-color: darkgrey;
+    height: 20px;
+
+    border-radius: 8px; 
+
+    /* 动画 */
+    transition: all 1s;
+}
+
+#progressBg span {
+    position: absolute;
+
+    background-color: transparent;
+    top: 20px;
+    right: -20px;
+}
+
+#bottomBg {
+    background-color: transparent;
+}

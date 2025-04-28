@@ -1,0 +1,22 @@
+{
+  "name": "07_hello_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:ts": "ts-node src/ts/index.ts",
+    "build": "tsc src/ts/index_1.ts --outDir dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/md5": "^2.3.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}

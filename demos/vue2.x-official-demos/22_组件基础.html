@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app-22">
+    <!-- 使用新组件 -->
+    <div id="components-demo">
+      <!-- 每个组件都会各自独立维护它的 count。因为你每用一次组件，就会有一个它的新实例被创建。 -->
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter @clicknow="getClick"></button-counter>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+  <script type="text/javascript">
+    // 什么是组件：组件是可复用的 Vue 实例
+    // 定义一个名为 button-counter 的新组件，
+    Vue.component("button-counter", {
+      // 一个组件的 data 选项必须是一个函数
+      data: function () {
+        return {
+          count: 0,
+        };
+      },
+      // 组件的模板内容
+      template:
+        '<button v-on:click="clickfuc">You clicked me {{ count }} times.</button>',
+      methods: {
+        clickfuc: function () {
+          this.count++;
+          console.log(this.count);
+          // 
+          this.$emit('clicknow', this.count);
+        }
+      },
+    });
+    // Vue实例
+    var app22 = new Vue({
+      el: "#components-demo",
+      data: {
+        message: "Hello Vue!",
+      },
+      methods: {
+        // 获取到组件内部的点击事件传递出来的值
+        getClick: function (e) {
+          console.log('我在组件外');
+          console.log(e);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

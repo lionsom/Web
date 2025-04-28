@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>进度条</title>
+
+    <!-- 引入CSS -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <!-- 页面 -->
+    <div id="app">
+      <div id="topBg">
+        <div id="progressBg" :style="{width: currentNum + '%'}">
+            <span>{{currentNum}}%</span>
+        </div>
+      </div>
+
+      <div id="bottomBg">
+        <a href="" v-for="item in lists" :key="item" @click.prevent="clickNum(item)">
+            进度{{item}}%
+        </a>
+      </div>
+    </div>
+
+    <!-- 引入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          currentNum: 0,
+          lists: [0, 25, 50, 75, 100],
+        },
+        methods: {
+          clickNum(newNum) {
+            console.log(newNum);
+            if (newNum !== this.currentNum) {
+              this.currentNum = newNum;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

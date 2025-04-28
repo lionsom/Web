@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data数据对象</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 插值表达式 -->
+        {{message}}
+
+        <p>{{school}}</p>
+        <p>{{school.name}}</p>
+        <p>{{school.mobile}}</p>
+
+        <p>{{campus}}</p>
+        <p>{{campus[0]}}</p>
+
+    </div>
+
+    <!-- 导入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                message: "你好 啊哈哈哈",
+                school: {
+                    name: "黑马",
+                    mobile: "400-123-1233"
+                },
+                campus: ["南京", "背景", "上海"]
+            }
+        })
+    </script>
+
+</body>
+
+</html>

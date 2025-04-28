@@ -1,0 +1,103 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* 通用class */
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+/*  */
+#myBg {
+  /* 父类写flex，子类变换 */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: antiquewhite;
+
+  /* 宽高 */
+  width: 60vw;
+  height: 80vh;
+
+  /* 居中 */
+  margin: 10vh auto;
+}
+
+#myCenterBg {
+  width: 90%;
+  height: 90%;
+
+  background-color: aqua;
+}
+
+#imgBg {
+  /* 子绝父相 - 父 */
+  position: relative;
+
+  width: 100%;
+  height: 90%;
+}
+
+#imgBg img {
+  /* 子绝父相 - 子 */
+  position: absolute;
+
+  background-color: aqua;
+
+  max-width: 90%;
+  height: auto;
+
+  margin: 50px auto;
+
+  overflow: hidden;
+
+  /* 圆角 + 边框 */
+  border: 5px solid green;
+  border-radius: 20px;
+}
+
+.btnDiv {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 10%;
+
+  background-color: palegoldenrod;
+}
+
+#preDiv {
+  width: 20%;
+  height: 100%;
+
+  margin-left: 10px;
+
+  background-color: transparent;
+}
+
+#preBtn {
+  width: 100%;
+  height: 100%;
+  background-color: darkcyan;
+}
+
+#nextDiv {
+  width: 20%;
+  height: 100%;
+
+  margin-right: 10px;
+
+  background-color: transparent;
+}
+
+#nextBtn {
+  width: 100%;
+  height: 100%;
+  background-color: darkcyan;
+}
