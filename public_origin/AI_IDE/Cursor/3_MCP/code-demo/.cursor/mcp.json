@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "mcp-server-hotnews": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@wopal/mcp-server-hotnews"
+      ]
+    },
+    "mcp_tool": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@MrCare/mcp_tool",
+        "--key",
+        "6b1994f3-7dee-416c-b18a-84269b6ad4a0",
+        "--profile",
+        "basic-tiger-noUgF9"
+      ]
+    }
+  }
+}
