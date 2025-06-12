@@ -19,7 +19,7 @@
 
 ## [#](https://lq782655835.github.io/blogs/team-standard/recommend-vue-project-structure.html#详细说明)详细说明
 
-```text
+```js
 project
 └───src
 │   │   app.vue    // 主页面
@@ -63,7 +63,7 @@ project
 |   |____utils     // 工具层
 |   |   | config.js// 配置文件，包括常量配置
 |
-└───public         // 公用文件，不经过webpack处理
+│───public         // 公用文件，不经过webpack处理
 │   │   favicon.ico
 │   │   index.html
 │   vue.config.js  // vue-cli3主配置

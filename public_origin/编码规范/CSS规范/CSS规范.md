@@ -1,56 +1,74 @@
-## 参考连接
-
-[百度CSS规范指南](https://github.com/ecomfe/spec/blob/master/css-style-guide.md)
-
-[腾讯CSS规范指南](http://alloyteam.github.io/CodeGuide/#css)
-
-[Google CSS规范指南](http://iischajn.github.io/trans/htmlcss-guide/)
+* [百度CSS规范指南](https://github.com/ecomfe/spec/blob/master/css-style-guide.md)
+* [腾讯CSS规范指南](http://alloyteam.github.io/CodeGuide/#css)
+* [Google CSS规范指南](http://iischajn.github.io/trans/htmlcss-guide/)
 
 
 
 
 
-### 分号
+## 分号
 
 每个属性声明后面都要加分号。
 
-### 命名
+
+
+## 命名
 
 1. 不使用id选择器
 2. 适用有意义的名词命名
 3. 单词全部小写，名词超过1个时，使用`-`分隔符
 
-### 属性声明顺序
 
-原则：整体到局部，外部到内部，重要属性优先
 
-```
-.element {
-    display: block;
-    float: left;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    margin: 0 100px;
-    padding: 50px; // padding习惯写到margin后面
-    width: 100px;
-    height: 100px;
-    border: 1px solid #e5e5e5; border-radius: 3px;
-    font: normal 13px "Helvetica Neue", sans-serif;
-    color: #333;
-    text-align: center;
-    line-height: 1.5;
-    background-color: #f5f5f5;
-    opacity: 1;
+## 属性顺序
+
+* 原则：**整体到局部，外部到内部，重要属性优先**
+    1. 布局相关(display, position, float, overflow, clear)，因为元素的布局会对对相邻元素产生影响，自身甚至会脱离原来的文档流，所以比较重要。
+    2. 盒模型相关(width, height, margin, padding)
+    3. 外观 (color, background, border, box-shadow)
+    4. 文字排版 (font-size, font-family, text-align, text-transform)
+    5. 其他 (cursor, z-index)
+
+
+```css
+/* bad */
+ .box {
+  font-family: 'Arial', sans-serif;
+  border: 3px solid #ddd;
+  left: 30%;
+  position: absolute;
+  text-transform: uppercase;
+  background-color: #eee;
+  right: 30%;
+  isplay: block;
+  font-size: 1.5rem;
+  overflow: hidden;
+  padding: 1em;
+  margin: 1em;
+}
+
+/* good */
+.box {
+  display: block;
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  overflow: hidden;
+  
+  margin: 1em;
+  padding: 1em;
+  
+  background-color: #eee;
+  border: 3px solid #ddd;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 ```
 
 
 
-### 其他规范
+## prettier
 
 使用prettier格式化工具约束，推荐配置如下：
 
@@ -61,7 +79,7 @@
 - 颜色全部小写
 - 小数点前面0自动添加
 
-```
+```js
 module.exports = {
     printWidth: 100, // 设置prettier单行输出（不折行）的（最大）长度
 
