@@ -1,4 +1,6 @@
-参考：黑马vue / day03
+* 参考：黑马vue / day03
+
+* [Vue CLI 官网](https://cli.vuejs.org/zh/)
 
 
 
