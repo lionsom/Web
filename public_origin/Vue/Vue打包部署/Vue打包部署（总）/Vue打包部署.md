@@ -3,7 +3,7 @@
 * [黑马前端Vue人力资源项目，Nginx项目部署上线Mac/Windows解决方案](https://www.bilibili.com/video/BV1JE421M7oe/?spm_id_from=333.337.search-card.all.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 * Webpack5 学习笔记：Webpack&Vite/Webpack5
 
-
+* [三种部署方式](https://blog.csdn.net/qq_44741577/article/details/139236697?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-139236697-blog-142086717.235^v43^pc_blog_bottom_relevance_base1&spm=1001.2101.3001.4242.1&utm_relevant_index=2)
 
 
 
@@ -16,7 +16,7 @@
 
 # 二、跨域请求、Vue代理
 
-单独的文章介绍：[Vue代理-跨域请求](./Vue2&3/10-Vue代理-跨域请求/Vue代理-跨域请求.md)
+单独的文章介绍：[HTTP / 核心概念 / CORS跨域请求]()
 
 [哔哩哔哩 -【前端面试题-Vue】Vue设置代理](https://www.bilibili.com/video/BV1wp42197GM/?spm_id_from=333.788&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 
