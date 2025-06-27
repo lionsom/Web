@@ -1,3 +1,5 @@
+* [VueCLI官网 - runtimecompiler](https://cli.vuejs.org/zh/config/#runtimecompiler)
+
 # runtimeCompiler配置项
 
 `runtimeCompiler: true` 这个配置项的作用是**启用 Vue 的运行时模板编译器**。
@@ -44,3 +46,8 @@ module.exports = defineConfig({
 })
 ```
 
+
+
+## 遇到的实际问题 Vue.extend 无法渲染 template 
+
+* 具体请查看：109_Vue2中Vue.extend介绍
