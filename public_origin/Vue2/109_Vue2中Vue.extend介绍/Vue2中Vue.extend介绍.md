@@ -2,7 +2,7 @@
 
 
 
-# Vue.extend 组件构造器
+# 一、Vue.extend 组件构造器
 
 `Vue.extend` 是Vue.js 提供的一个构造器，用于创建一个“子类”组件构造器。它接收一个包含组件选项的对象作为参数，并返回一个扩展自Vue 的构造函数。通过这个构造函数，可以实例化并挂载组件。简单来说，`Vue.extend` 允许你定义一个可复用的组件，并提供组件的模板、数据、方法等。﻿
 
@@ -70,7 +70,7 @@
 
 
 
-## 问题：`template` 加载不出来
+## 1. 问题：`template` 加载不出来
 
 浏览器控制台遇到的报错：
 
@@ -84,7 +84,7 @@ You are using the runtime-only build of Vue where the template compiler is not a
 
 而你用 `Vue.extend({ template: '...' })` 这种写法，只有在 compiler-included 版本（如 `vue.esm.js`）下才支持。
 
-## 解决方案
+## 2. 解决方案
 
 ### 方案一：用 `render` 函数代替 `template`
 
@@ -143,7 +143,7 @@ module.exports = defineConfig({
 
 
 
-## 推荐方案一
+## 3. 推荐方案一
 
 **直接用 render 函数即可，最兼容也最推荐。**
 
@@ -170,7 +170,7 @@ const MyComponent = Vue.extend({
 
 
 
-## 实战代码
+## 4. 实战代码
 
 ```vue
 <template>
@@ -250,7 +250,7 @@ export default {
 
 
 
-## 截图
+## 5. 截图
 
 ![](images/001.png)
 
@@ -258,14 +258,14 @@ export default {
 
 
 
-# Vue.extend 用来解决ts中this.$router找不到问题
+# 二、Vue.extend 用来解决ts中this.$router找不到问题
 
 `Vue.extend` 是 Vue 2.x 中用于创建组件的一种语法方式，尤其是在使用 TypeScript 时比较常见。
 
-## 作用
+## 1. 作用
 `Vue.extend` 方法会基于传入的选项对象（通常是一个包含 data、methods、components 等的对象）创建一个“扩展的”Vue 构造器。这样做的好处是可以更好地支持类型推断和类型检查。
 
-## 语法示例
+## 2. 语法示例
 ```ts
 import Vue from 'vue';
 
@@ -284,7 +284,7 @@ export default Vue.extend({
 });
 ```
 
-## 为什么不用直接导出对象？
+## 3. 为什么不用直接导出对象？
 在普通的 JavaScript 里，直接导出对象就可以了：
 ```js
 export default {
@@ -293,7 +293,7 @@ export default {
 ```
 但在 TypeScript 下，直接导出对象会丢失类型推断，this 的类型也不准确。用 `Vue.extend` 可以让 this 拥有正确的类型提示。
 
-## 总结
+## 4. 总结
 - `Vue.extend` 是 Vue 2.x 提供的一个 API，用于创建带类型的组件构造器。
 - 在 Vue 3.x 及其 Composition API 里已经不推荐使用，直接用 `defineComponent` 或 `<script setup>` 更加简洁。
 
