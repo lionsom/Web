@@ -20,6 +20,9 @@
 
 ```sh
 $ npx create-react-app my-react-app
+
+# 最新版本
+$ npx create-react-app@latest my-react-app
 ```
 
 这将在当前目录下创建一个名为 `my-react-app` 的新 React 项目。你也可以将 `my-react-app` 替换为你想要的项目名称。
@@ -33,7 +36,7 @@ $ cd my-react-app
 4. **启动开发服务器**：在项目目录中运行以下命令，启动开发服务器：
 
 ```bash
-$ npm start
+$ npm run start
 ```
 
 这将启动一个开发服务器，并在浏览器中打开你的 React 应用。你可以在代码编辑器中修改代码，并实时查看更改的效果。
@@ -59,11 +62,14 @@ $ cd my-react-app
 $ npm start
 ```
 
-> **备注：** 如果你的电脑上安装了 yarn 的话，create-react-app 会默认使用 yarn 而非 npm。如果你同时安装了 yarn 和 npm，但你希望使用 npm 的话，在 create-react-app 的时候需要输入 `--use-npm` **:**
->
-> ```sh
-> $ npx create-react-app my-react-app --use-npm
-> ```
+**备注：** 如果你的电脑上安装了 yarn 的话，create-react-app 会默认使用 yarn 而非 npm。如果你同时安装了 yarn 和 npm，但你希望使用 npm 的话，在 create-react-app 的时候需要输入 `--use-npm` **:**
+
+```sh
+# 指定使用npm
+$ npx create-react-app my-react-app --use-npm
+```
+
+
 
 
 
